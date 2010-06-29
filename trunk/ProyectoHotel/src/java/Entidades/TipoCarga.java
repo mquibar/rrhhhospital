@@ -10,6 +10,8 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -20,20 +22,19 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "TipoCarga", catalog = "hospital", schema = "public")
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @NamedQueries({@NamedQuery(name = "TipoCarga.findAll", query = "SELECT t FROM TipoCarga t"), @NamedQuery(name = "TipoCarga.findById", query = "SELECT t FROM TipoCarga t WHERE t.id = :id"), @NamedQuery(name = "TipoCarga.findByNombre", query = "SELECT t FROM TipoCarga t WHERE t.nombre = :nombre"), @NamedQuery(name = "TipoCarga.findByDescripcion", query = "SELECT t FROM TipoCarga t WHERE t.descripcion = :descripcion"), @NamedQuery(name = "TipoCarga.findByDtype", query = "SELECT t FROM TipoCarga t WHERE t.dtype = :dtype")})
 public class TipoCarga implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "id")
-    private Integer id;
+    protected Integer id;
     @Basic(optional = false)
     @Column(name = "Nombre")
-    private String nombre;
+    protected String nombre;
     @Column(name = "Descripcion")
-    private String descripcion;
-    @Column(name = "dtype")
-    private String dtype;
+    protected String descripcion;
 
     public TipoCarga() {
     }
@@ -69,14 +70,6 @@ public class TipoCarga implements Serializable {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-    public String getDtype() {
-        return dtype;
-    }
-
-    public void setDtype(String dtype) {
-        this.dtype = dtype;
     }
 
     @Override

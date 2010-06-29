@@ -6,12 +6,20 @@
 package Entidades;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -24,6 +32,8 @@ import javax.persistence.Table;
 public class TipoLicencia implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="id_sequence")
+    @SequenceGenerator(name="id_sequence",sequenceName="tipolicencia_id_sequence")
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
@@ -35,6 +45,11 @@ public class TipoLicencia implements Serializable {
     @Basic(optional = false)
     @Column(name = "Eliminado")
     private boolean eliminado;
+    @ManyToMany (fetch=FetchType.EAGER)
+    @JoinTable(name="relacion",
+                joinColumns=@JoinColumn(name="idTipoLicencia",referencedColumnName="id"),
+                inverseJoinColumns=@JoinColumn(name="idTipoEmpleado",referencedColumnName="id"))
+    private List<TipoEmpleado> tipoEmpleadoList;
 
     public TipoLicencia() {
     }
@@ -104,6 +119,20 @@ public class TipoLicencia implements Serializable {
     @Override
     public String toString() {
         return "Entidades.TipoLicencia[id=" + id + "]";
+    }
+
+    /**
+     * @return the tipoEmpleadoList
+     */
+    public List<TipoEmpleado> getTipoEmpleadoList() {
+        return tipoEmpleadoList;
+    }
+
+    /**
+     * @param tipoEmpleadoList the tipoEmpleadoList to set
+     */
+    public void setTipoEmpleadoList(List<TipoEmpleado> tipoEmpleadoList) {
+        this.tipoEmpleadoList = tipoEmpleadoList;
     }
 
 }

@@ -5,7 +5,6 @@
 
 package Entidades;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -13,13 +12,13 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -30,61 +29,55 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "Empleado", catalog = "hospital", schema = "public")
+@PrimaryKeyJoinColumn(name="idEmpleado",referencedColumnName="id")
 @NamedQueries({@NamedQuery(name = "Empleado.findAll", query = "SELECT e FROM Empleado e"), @NamedQuery(name = "Empleado.findByIdEmpleado", query = "SELECT e FROM Empleado e WHERE e.idEmpleado = :idEmpleado"), @NamedQuery(name = "Empleado.findByCuil", query = "SELECT e FROM Empleado e WHERE e.cuil = :cuil"), @NamedQuery(name = "Empleado.findByFechaIngreso", query = "SELECT e FROM Empleado e WHERE e.fechaIngreso = :fechaIngreso"), @NamedQuery(name = "Empleado.findByLegajo", query = "SELECT e FROM Empleado e WHERE e.legajo = :legajo"), @NamedQuery(name = "Empleado.findByEliminado", query = "SELECT e FROM Empleado e WHERE e.eliminado = :eliminado")})
-public class Empleado implements Serializable {
+public class Empleado extends Persona{
     private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @Column(name = "idEmpleado")
-    private Integer idEmpleado;
     @Column(name = "Cuil")
-    private String cuil;
+    protected String cuil;
     @Column(name = "FechaIngreso")
     @Temporal(TemporalType.DATE)
-    private Date fechaIngreso;
+    protected Date fechaIngreso;
     @Basic(optional = false)
     @Column(name = "Legajo")
-    private int legajo;
+    protected int legajo;
     @Column(name = "Eliminado")
-    private Boolean eliminado;
+    protected Boolean eliminado;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEmpleado", fetch = FetchType.LAZY)
-    private List<ClaseVigente> claseVigenteList;
+    protected List<ClaseVigente> claseVigenteList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEmpleado", fetch = FetchType.LAZY)
-    private List<Cargo> cargoList;
-    @JoinColumn(name = "idEmpleado", referencedColumnName = "id", insertable = false, updatable = false)
-    @OneToOne(optional = false, fetch = FetchType.LAZY)
-    private Persona persona;
+    protected List<Cargo> cargoList;
     @JoinColumn(name = "idTarjeta", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Tarjeta idTarjeta;
+    protected Tarjeta idTarjeta;
     @JoinColumn(name = "idTipoEmpleado", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private TipoEmpleado idTipoEmpleado;
+    protected TipoEmpleado idTipoEmpleado;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEmpleado", fetch = FetchType.LAZY)
-    private List<Licencia> licenciaList;
+    protected List<Licencia> licenciaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEmpleado", fetch = FetchType.LAZY)
-    private List<AsignacionHorario> asignacionHorarioList;
+    protected List<AsignacionHorario> asignacionHorarioList;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "empleado", fetch = FetchType.LAZY)
-    private Profesional profesional;
+    protected Profesional profesional;
 
     public Empleado() {
     }
 
     public Empleado(Integer idEmpleado) {
-        this.idEmpleado = idEmpleado;
+        super(idEmpleado);
     }
 
     public Empleado(Integer idEmpleado, int legajo) {
-        this.idEmpleado = idEmpleado;
+        super(idEmpleado);
         this.legajo = legajo;
     }
 
     public Integer getIdEmpleado() {
-        return idEmpleado;
+        return id;
     }
 
     public void setIdEmpleado(Integer idEmpleado) {
-        this.idEmpleado = idEmpleado;
+        id = idEmpleado;
     }
 
     public String getCuil() {
@@ -135,14 +128,6 @@ public class Empleado implements Serializable {
         this.cargoList = cargoList;
     }
 
-    public Persona getPersona() {
-        return persona;
-    }
-
-    public void setPersona(Persona persona) {
-        this.persona = persona;
-    }
-
     public Tarjeta getIdTarjeta() {
         return idTarjeta;
     }
@@ -186,7 +171,7 @@ public class Empleado implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idEmpleado != null ? idEmpleado.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -197,7 +182,7 @@ public class Empleado implements Serializable {
             return false;
         }
         Empleado other = (Empleado) object;
-        if ((this.idEmpleado == null && other.idEmpleado != null) || (this.idEmpleado != null && !this.idEmpleado.equals(other.idEmpleado))) {
+        if ((id == null && other.id != null) || (id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -205,7 +190,7 @@ public class Empleado implements Serializable {
 
     @Override
     public String toString() {
-        return "Entidades.Empleado[idEmpleado=" + idEmpleado + "]";
+        return "Entidades.Empleado[idEmpleado=" + id + "]";
     }
 
 }

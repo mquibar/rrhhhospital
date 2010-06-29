@@ -12,10 +12,14 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -28,6 +32,8 @@ import javax.persistence.Table;
 public class TipoEmpleado implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="id_sequence")
+    @SequenceGenerator(name="id_sequence",sequenceName="tipoempleado_id_sequence")
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
@@ -38,6 +44,8 @@ public class TipoEmpleado implements Serializable {
     private String codigo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTipoEmpleado", fetch = FetchType.LAZY)
     private List<Empleado> empleadoList;
+    @ManyToMany(fetch=FetchType.EAGER,mappedBy="tipoEmpleadoList")
+    private List<TipoLicencia> tipolicenciaList;
 
     public TipoEmpleado() {
     }
@@ -106,6 +114,20 @@ public class TipoEmpleado implements Serializable {
     @Override
     public String toString() {
         return "Entidades.TipoEmpleado[id=" + id + "]";
+    }
+
+    /**
+     * @return the tipolicenciaList
+     */
+    public List<TipoLicencia> getTipolicenciaList() {
+        return tipolicenciaList;
+    }
+
+    /**
+     * @param tipolicenciaList the tipolicenciaList to set
+     */
+    public void setTipolicenciaList(List<TipoLicencia> tipolicenciaList) {
+        this.tipolicenciaList = tipolicenciaList;
     }
 
 }

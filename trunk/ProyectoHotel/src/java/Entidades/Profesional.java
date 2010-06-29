@@ -5,16 +5,12 @@
 
 package Entidades;
 
-import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 /**
@@ -23,13 +19,10 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "Profesional", catalog = "hospital", schema = "public")
+@PrimaryKeyJoinColumn(name="idProfesional",referencedColumnName="idEmpleado")
 @NamedQueries({@NamedQuery(name = "Profesional.findAll", query = "SELECT p FROM Profesional p"), @NamedQuery(name = "Profesional.findByIdProfesional", query = "SELECT p FROM Profesional p WHERE p.idProfesional = :idProfesional"), @NamedQuery(name = "Profesional.findByMatricula", query = "SELECT p FROM Profesional p WHERE p.matricula = :matricula"), @NamedQuery(name = "Profesional.findByTitulo", query = "SELECT p FROM Profesional p WHERE p.titulo = :titulo"), @NamedQuery(name = "Profesional.findByEliminado", query = "SELECT p FROM Profesional p WHERE p.eliminado = :eliminado")})
-public class Profesional implements Serializable {
+public class Profesional extends Empleado {
     private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @Column(name = "idProfesional")
-    private Integer idProfesional;
     @Basic(optional = false)
     @Column(name = "Matricula")
     private String matricula;
@@ -37,30 +30,27 @@ public class Profesional implements Serializable {
     private String titulo;
     @Basic(optional = false)
     @Column(name = "Eliminado")
-    private boolean eliminado;
-    @JoinColumn(name = "idProfesional", referencedColumnName = "idEmpleado", insertable = false, updatable = false)
-    @OneToOne(optional = false, fetch = FetchType.LAZY)
-    private Empleado empleado;
+    private boolean profesionalEliminado;
 
     public Profesional() {
     }
 
     public Profesional(Integer idProfesional) {
-        this.idProfesional = idProfesional;
+        super(idProfesional);
     }
 
     public Profesional(Integer idProfesional, String matricula, boolean eliminado) {
-        this.idProfesional = idProfesional;
+        super(idProfesional);
         this.matricula = matricula;
-        this.eliminado = eliminado;
+        this.profesionalEliminado = eliminado;
     }
 
     public Integer getIdProfesional() {
-        return idProfesional;
+        return id;
     }
 
     public void setIdProfesional(Integer idProfesional) {
-        this.idProfesional = idProfesional;
+        id = idProfesional;
     }
 
     public String getMatricula() {
@@ -79,26 +69,18 @@ public class Profesional implements Serializable {
         this.titulo = titulo;
     }
 
-    public boolean getEliminado() {
-        return eliminado;
+    public boolean getProfesionalEliminado() {
+        return profesionalEliminado;
     }
 
-    public void setEliminado(boolean eliminado) {
-        this.eliminado = eliminado;
-    }
-
-    public Empleado getEmpleado() {
-        return empleado;
-    }
-
-    public void setEmpleado(Empleado empleado) {
-        this.empleado = empleado;
+    public void setProfesionalEliminado(boolean eliminado) {
+        this.profesionalEliminado = eliminado;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idProfesional != null ? idProfesional.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -109,7 +91,7 @@ public class Profesional implements Serializable {
             return false;
         }
         Profesional other = (Profesional) object;
-        if ((this.idProfesional == null && other.idProfesional != null) || (this.idProfesional != null && !this.idProfesional.equals(other.idProfesional))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -117,7 +99,7 @@ public class Profesional implements Serializable {
 
     @Override
     public String toString() {
-        return "Entidades.Profesional[idProfesional=" + idProfesional + "]";
+        return "Entidades.Profesional[idProfesional=" + id + "]";
     }
 
 }

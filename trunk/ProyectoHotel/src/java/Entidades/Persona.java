@@ -8,16 +8,19 @@ package Entidades;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,39 +30,40 @@ import javax.persistence.TemporalType;
  * @author Manuel
  */
 @Entity
+@Inheritance(strategy=InheritanceType.JOINED)
 @Table(name = "Persona", catalog = "hospital", schema = "public")
 @NamedQueries({@NamedQuery(name = "Persona.findAll", query = "SELECT p FROM Persona p"), @NamedQuery(name = "Persona.findById", query = "SELECT p FROM Persona p WHERE p.id = :id"), @NamedQuery(name = "Persona.findByApellido", query = "SELECT p FROM Persona p WHERE p.apellido = :apellido"), @NamedQuery(name = "Persona.findByNombre", query = "SELECT p FROM Persona p WHERE p.nombre = :nombre"), @NamedQuery(name = "Persona.findByDni", query = "SELECT p FROM Persona p WHERE p.dni = :dni"), @NamedQuery(name = "Persona.findByFechaNacimiento", query = "SELECT p FROM Persona p WHERE p.fechaNacimiento = :fechaNacimiento"), @NamedQuery(name = "Persona.findByTelefono", query = "SELECT p FROM Persona p WHERE p.telefono = :telefono")})
-public class Persona implements Serializable {
+public abstract class Persona implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="id_sequence")
+    @SequenceGenerator(name="id_sequence",sequenceName="persona_id_sequence")
     @Basic(optional = false)
-    @Column(name = "id")
-    private Integer id;
+    @Column(name = "id",nullable=false)
+    protected Integer id;
     @Basic(optional = false)
     @Column(name = "Apellido")
-    private String apellido;
+    protected String apellido;
     @Column(name = "Nombre")
-    private String nombre;
+    protected String nombre;
     @Basic(optional = false)
     @Column(name = "DNI")
-    private String dni;
+    protected String dni;
     @Column(name = "FechaNacimiento")
     @Temporal(TemporalType.DATE)
-    private Date fechaNacimiento;
+    protected Date fechaNacimiento;
     @Basic(optional = false)
     @Column(name = "Telefono")
-    private long telefono;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "persona", fetch = FetchType.LAZY)
-    private Empleado empleado;
+    protected long telefono;
     @JoinColumn(name = "idDomicilio", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Domicilio idDomicilio;
+    protected Domicilio idDomicilio;
     @JoinColumn(name = "idPais", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Pais idPais;
+    protected Pais idPais;
     @JoinColumn(name = "idSexo", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Sexo idSexo;
+    protected Sexo idSexo;
 
     public Persona() {
     }
@@ -121,14 +125,6 @@ public class Persona implements Serializable {
 
     public void setTelefono(long telefono) {
         this.telefono = telefono;
-    }
-
-    public Empleado getEmpleado() {
-        return empleado;
-    }
-
-    public void setEmpleado(Empleado empleado) {
-        this.empleado = empleado;
     }
 
     public Domicilio getIdDomicilio() {
