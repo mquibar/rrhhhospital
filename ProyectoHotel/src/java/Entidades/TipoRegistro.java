@@ -13,6 +13,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -24,18 +26,17 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "TipoRegistro", catalog = "hospital", schema = "public")
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @NamedQueries({@NamedQuery(name = "TipoRegistro.findAll", query = "SELECT t FROM TipoRegistro t"), @NamedQuery(name = "TipoRegistro.findById", query = "SELECT t FROM TipoRegistro t WHERE t.id = :id"), @NamedQuery(name = "TipoRegistro.findByDtype", query = "SELECT t FROM TipoRegistro t WHERE t.dtype = :dtype")})
 public class TipoRegistro implements Serializable {
-    private static final long serialVersionUID = 1L;
+    protected static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "id")
-    private Integer id;
+    protected Integer id;
     @Basic(optional = false)
-    @Column(name = "dtype")
-    private String dtype;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTipoRegistro", fetch = FetchType.LAZY)
-    private List<RegistroReloj> registroRelojList;
+    protected List<RegistroReloj> registroRelojList;
 
     public TipoRegistro() {
     }
@@ -46,7 +47,6 @@ public class TipoRegistro implements Serializable {
 
     public TipoRegistro(Integer id, String dtype) {
         this.id = id;
-        this.dtype = dtype;
     }
 
     public Integer getId() {
@@ -55,14 +55,6 @@ public class TipoRegistro implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getDtype() {
-        return dtype;
-    }
-
-    public void setDtype(String dtype) {
-        this.dtype = dtype;
     }
 
     public List<RegistroReloj> getRegistroRelojList() {

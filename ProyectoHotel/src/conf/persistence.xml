@@ -28,6 +28,11 @@
     <class>Entidades.TipoLicencia</class>
     <class>Entidades.TipoRegistro</class>
     <class>Entidades.Tramo</class>
+    <class>Entidades.CargaManual</class>
+    <class>Entidades.CargaSistematica</class>
+    <class>Entidades.RegistroEntrada</class>
+    <class>Entidades.RegistroSalida</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
       <property name="hibernate.connection.url" value="localhost:5432/hospital"/>
