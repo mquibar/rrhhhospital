@@ -13,7 +13,7 @@ import javax.ejb.Remote;
  * @author desarrollo
  */
 @Remote
-public interface Fachada{
+public interface Intermediario{
 
     public void beginTransaction();
     public void commitTransaction();
