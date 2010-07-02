@@ -5,14 +5,11 @@
 
 package Intermediarios;
 
-import javax.ejb.Remote;
-
 
 /**
  *
  * @author desarrollo
  */
-@Remote
 public interface Intermediario{
 
     public void beginTransaction();
