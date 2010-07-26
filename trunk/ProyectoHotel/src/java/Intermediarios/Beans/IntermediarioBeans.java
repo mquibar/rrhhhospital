@@ -7,56 +7,34 @@ package Intermediarios.Beans;
 
 import Configuraciones.LogAdmin;
 import Intermediarios.Intermediario;
-import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceUnit;
+import java.util.List;
+import javax.persistence.Query;
 import org.apache.commons.logging.Log;
 
 /**
  *
  * @author desarrollo
  */
-public  class IntermediarioBeans implements Intermediario{
+public abstract class IntermediarioBeans implements Intermediario{
 
+    protected Log _log= LogAdmin.getInstance().getLog(this.getClass());
+    protected String _clase;
 
-    @PersistenceContext(unitName="ProyectoHotelPU")
-    protected EntityManager _manager;
-
-    protected static int _contador=0;
-    protected Log _log= LogAdmin.getInstance().getLog(this.getClass().getName());
-
-    public void beginTransaction() {
-        if(_manager.isOpen()|| _contador>0){
-            _contador++;
-            return;
-        }
+    public List<Object> findAll() {
         try{
-            
-            _manager.getTransaction().begin();
-            _contador++;
+            Query q = GestorConeccion.getInstance().getManager().createNamedQuery(_clase + ".findAll");
+            return q.getResultList();
         }catch(Exception ex){
             ex.printStackTrace();
+            _log.error(ex.getMessage());
+            return null;
         }
     }
 
-    public void commitTransaction() {
-        if(_contador>0){
-            _contador--;
-        }
-        if(_manager.isOpen())
-            _manager.getTransaction().commit();
-    }
+    public abstract boolean guardar(Object obj);
 
-    public void rollbackTransaction() {
-        if(_contador>0){
-            _contador--;
-        }
-        if(_manager.isOpen())
-            _manager.getTransaction().rollback();
-    }
+    public abstract boolean actualizar(Object obj);
 
+    public abstract List<Object> findByDto(Object dto);
 
 }

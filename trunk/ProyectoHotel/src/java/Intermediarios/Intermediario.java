@@ -5,6 +5,8 @@
 
 package Intermediarios;
 
+import java.util.List;
+
 
 /**
  *
@@ -12,8 +14,10 @@ package Intermediarios;
  */
 public interface Intermediario{
 
-    public void beginTransaction();
-    public void commitTransaction();
-    public void rollbackTransaction();
+    public List<Object> findAll();
+    public boolean guardar(Object obj);
+    public boolean actualizar(Object obj);
+    public List<Object> findByDto(Object dto);
+    public List<Object> finAllInOrder(String order);
 
 }
