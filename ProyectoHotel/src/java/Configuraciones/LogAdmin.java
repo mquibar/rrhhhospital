@@ -25,4 +25,8 @@ public class LogAdmin {
     public Log getLog(String cl){
         return LogFactory.getLog(cl);
     }
+
+    public Log getLog(Class cl){
+        return LogFactory.getLog(cl);
+    }
 }
