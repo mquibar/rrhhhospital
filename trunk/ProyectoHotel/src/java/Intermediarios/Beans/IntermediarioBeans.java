@@ -15,12 +15,12 @@ import org.apache.commons.logging.Log;
  *
  * @author desarrollo
  */
-public abstract class IntermediarioBeans implements Intermediario{
+public abstract class IntermediarioBeans<E> implements Intermediario<E>{
 
     protected Log _log= LogAdmin.getInstance().getLog(this.getClass());
     protected String _clase;
 
-    public List<Object> findAll() {
+    public List<E> findAll() {
         try{
             Query q = GestorConeccion.getInstance().getManager().createNamedQuery(_clase + ".findAll");
             return q.getResultList();
@@ -31,10 +31,34 @@ public abstract class IntermediarioBeans implements Intermediario{
         }
     }
 
-    public abstract boolean guardar(Object obj);
+    public boolean guardar(E obj){
+        try{
+            GestorConeccion.getInstance().beginTransaction();
+            GestorConeccion.getInstance().getManager().persist(obj);
+            GestorConeccion.getInstance().commitTransaction();
+            return true;
+        }catch(Exception ex){
+            GestorConeccion.getInstance().rollbackTransaction();
+            ex.printStackTrace();
+            _log.error(ex.getMessage());
+            return false;
+        }
+    }
 
-    public abstract boolean actualizar(Object obj);
+    public boolean actualizar(E obj){
+        try{
+            GestorConeccion.getInstance().beginTransaction();
+            GestorConeccion.getInstance().getManager().merge(obj);
+            GestorConeccion.getInstance().commitTransaction();
+            return true;
+        }catch(Exception ex){
+            GestorConeccion.getInstance().rollbackTransaction();
+            ex.printStackTrace();
+            _log.error(ex.getMessage());
+            return false;
+        }
+    }
 
-    public abstract List<Object> findByDto(Object dto);
+    public abstract List<E> findByDto(Object dto);
 
 }

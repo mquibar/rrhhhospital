@@ -9,10 +9,12 @@ import javax.ejb.Remote;
 
 /**
  *
- * @author desarrollo
+ * @author Familia
  */
 @Remote
-public interface IntermediarioAgrupamiento<E> extends Intermediario<E>{
+public interface GestorConeccionCliente {
 
-    public E findByName(String nombre);
+    public boolean BeginTxClient();
+    public void CommitTxClient();
+    public void RollBackTxClient();
 }

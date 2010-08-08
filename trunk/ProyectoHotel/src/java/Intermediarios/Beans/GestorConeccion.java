@@ -8,6 +8,7 @@ package Intermediarios.Beans;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceUnit;
 import org.apache.commons.logging.Log;
 
 /**
@@ -16,6 +17,7 @@ import org.apache.commons.logging.Log;
  */
 public class GestorConeccion {
 
+    @PersistenceUnit
     private EntityManagerFactory _factory;
     private EntityManager _manager=null;
     private int _contador=0;
@@ -29,7 +31,7 @@ public class GestorConeccion {
     }
 
     public GestorConeccion(){
-        _factory = Persistence.createEntityManagerFactory("ProyectoHotelPU");
+        //_factory = Persistence.createEntityManagerFactory("ProyectoHotelPU");
         _log = Configuraciones.LogAdmin.getInstance().getLog(this.toString());
     }
 

@@ -6,18 +6,19 @@
 package Intermediarios;
 
 import java.util.List;
+import javax.ejb.Remote;
 
 
 /**
  *
  * @author desarrollo
  */
-public interface Intermediario{
+@Remote
+public interface Intermediario<E>{
 
-    public List<Object> findAll();
-    public boolean guardar(Object obj);
-    public boolean actualizar(Object obj);
-    public List<Object> findByDto(Object dto);
-    public List<Object> finAllInOrder(String order);
+    public List<E> findAll();
+    public boolean guardar(E obj);
+    public boolean actualizar(E obj);
+    public List<E> findByDto(Object dto);
 
 }

@@ -22,7 +22,7 @@ import org.hibernate.criterion.Order;
  * @author desarrollo
  */
 @Stateless
-public class IntermediarioAgrupamientoBeans extends IntermediarioBeans implements IntermediarioAgrupamiento{
+public class IntermediarioAgrupamientoBeans extends IntermediarioBeans<Agrupamiento> implements IntermediarioAgrupamiento<Agrupamiento>{
 
     public IntermediarioAgrupamientoBeans(){
         _log = LogAdmin.getInstance().getLog(this.getClass());
@@ -30,43 +30,11 @@ public class IntermediarioAgrupamientoBeans extends IntermediarioBeans implement
     }
 
     @Override
-    public boolean guardar(Object obj) {
-        Agrupamiento agrupamiento = (Agrupamiento)obj;
-        try{
-            GestorConeccion.getInstance().beginTransaction();
-            GestorConeccion.getInstance().getManager().persist(agrupamiento);
-            GestorConeccion.getInstance().commitTransaction();
-            return true;
-        }catch(Exception ex){
-            GestorConeccion.getInstance().rollbackTransaction();
-            ex.printStackTrace();
-            _log.error(ex.getMessage());
-            return false;
-        }
-    }
-
-    @Override
-    public boolean actualizar(Object obj) {
-        Agrupamiento agrupamiento = (Agrupamiento)obj;
-        try{
-            GestorConeccion.getInstance().beginTransaction();
-            GestorConeccion.getInstance().getManager().merge(agrupamiento);
-            GestorConeccion.getInstance().commitTransaction();
-            return true;
-        }catch(Exception ex){
-            GestorConeccion.getInstance().rollbackTransaction();
-            ex.printStackTrace();
-            _log.error(ex.getMessage());
-            return false;
-        }
-    }
-
-    @Override
-    public List<Object> findByDto(Object dto) {
+    public List<Agrupamiento> findByDto(Object dto) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public List<Object> finAllInOrder(String order) {
+    public List<Agrupamiento> finAllInOrder(String order) {
         try {
             Session s = (Session) GestorConeccion.getInstance().getManager().getDelegate();
             Criteria c = s.createCriteria(Agrupamiento.class).addOrder(Order.asc(order));
@@ -74,7 +42,7 @@ public class IntermediarioAgrupamientoBeans extends IntermediarioBeans implement
         } catch (HibernateException hibernateException) {
             hibernateException.printStackTrace();
             _log.error(hibernateException.getMessage());
-            return new ArrayList<Object>();
+            return new ArrayList<Agrupamiento>();
         }
     }
 

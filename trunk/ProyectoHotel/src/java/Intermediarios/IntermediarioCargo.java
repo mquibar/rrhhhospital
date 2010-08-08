@@ -9,10 +9,9 @@ import javax.ejb.Remote;
 
 /**
  *
- * @author desarrollo
+ * @author Familia
  */
 @Remote
-public interface IntermediarioAgrupamiento<E> extends Intermediario<E>{
-
-    public E findByName(String nombre);
+public interface IntermediarioCargo<E> extends Intermediario <E> {
+    
 }
