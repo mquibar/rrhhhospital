@@ -5,6 +5,10 @@
         <data xmlns="http://www.netbeans.org/ns/j2ee-ejbjarproject/3">
             <name>ProyectoHotel</name>
             <minimum-ant-version>1.6.5</minimum-ant-version>
+            <included-library>libs.hibernate-persistence.classpath</included-library>
+            <included-library>file.reference.commons-logging-1.1.1.jar</included-library>
+            <included-library>file.reference.log4j-1.2.15.jar</included-library>
+            <included-library>file.reference.postgresql-8.4-701.jdbc4.jar</included-library>
             <source-roots>
                 <root id="src.dir" name="Source Packages"/>
             </source-roots>
