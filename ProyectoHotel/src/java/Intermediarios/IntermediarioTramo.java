@@ -5,13 +5,26 @@
 
 package Intermediarios;
 
-import javax.ejb.Remote;
+import Configuraciones.LogAdmin;
+import Entidades.Tramo;
+import java.util.List;
 
 /**
  *
  * @author Manuel
  */
-@Remote
-public interface IntermediarioTramo<E> extends Intermediario<E> {
+
+public class IntermediarioTramo extends Intermediario<Tramo> {
+
+    public IntermediarioTramo() {
+        _log = LogAdmin.getInstance().getLog(this.getClass());
+        _clase = "Tramo";
+    }
+
+
+    @Override
+    public List<Tramo> findByDto(Object dto) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
     
 }

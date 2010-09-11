@@ -5,18 +5,30 @@
 
 package Intermediarios;
 
+import Configuraciones.LogAdmin;
+import Entidades.Categoria;
 import java.util.List;
-import javax.ejb.Remote;
 
 /**
  *
  * @author Familia
  */
-@Remote
-public interface IntermediarioCategoria<E> extends Intermediario<E> {
 
-    public List<E> finAllInOrder(String order);
+public class IntermediarioCategoria extends Intermediario<Categoria> {
+
+    public IntermediarioCategoria() {
+        _clase="Categoria";
+        _log = LogAdmin.getInstance().getLog(this.getClass());
+    }
+
 
     @Override
-    public List<E> findByDto(Object dto);
+    public List<Categoria> findByDto(Object dto) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public List<Categoria> finAllInOrder(String order) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
 }
