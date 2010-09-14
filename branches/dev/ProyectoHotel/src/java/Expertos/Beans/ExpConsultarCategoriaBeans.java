@@ -5,10 +5,13 @@
 
 package Expertos.Beans;
 
+import DTO.DtoCategoria;
 import Entidades.Agrupamiento;
+import Entidades.Categoria;
 import Entidades.Clase;
 import Expertos.ExpConsultarCategoria;
 import Intermediarios.IntermediarioAgrupamiento;
+import Intermediarios.IntermediarioCategoria;
 import Intermediarios.IntermediarioClase;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -26,5 +29,20 @@ public class ExpConsultarCategoriaBeans implements ExpConsultarCategoria {
 
     public List<Clase> listarClases() {
         return (new IntermediarioClase()).findAll();
+    }
+
+    public Categoria consultarCategoriaByNombre(String nombre){
+        IntermediarioCategoria intermediario = new IntermediarioCategoria();
+        Categoria categoria;
+        DtoCategoria dto = new DtoCategoria();
+        dto.setNombre(nombre);
+        try {
+            categoria = intermediario.findByDto(dto).get(0);
+        } catch (NullPointerException e) {
+            categoria=null;
+        }
+        dto=null;
+        intermediario=null;
+        return categoria;
     }
 }

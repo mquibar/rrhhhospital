@@ -8,6 +8,7 @@ package Expertos.Beans;
 import Entidades.Categoria;
 import Entidades.Clase;
 import Expertos.ExpAltaCategoria;
+import Intermediarios.IntermediarioCategoria;
 import java.util.List;
 import javax.ejb.Stateless;
 
@@ -26,7 +27,12 @@ public class ExpAltaCategoriaBeans implements ExpAltaCategoria {
 
     public List<Clase> iniciarAlta(String nombreCategoria) {
         _categoria.setNombre(nombreCategoria);
-        return (new ExpConsultarCategoriaBeans()).listarClases();
+        ExpConsultarCategoriaBeans experto = new ExpConsultarCategoriaBeans();
+        if(experto.consultarCategoriaByNombre(nombreCategoria)== null)
+            return null;
+        List<Clase> resultado = experto.listarClases();
+        experto = null;
+        return resultado;
     }
 
     public void agergarClase(Clase clase, int antiguedadMinima, boolean inicial) {
@@ -38,7 +44,7 @@ public class ExpAltaCategoriaBeans implements ExpAltaCategoria {
     }
 
     public boolean guardarCategoria() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return (new IntermediarioCategoria()).guardar(_categoria);
     }
 
 }
