@@ -19,4 +19,6 @@ public interface  ExpConsultarCategoria {
 
     public List<Agrupamiento> listarAgrupamientos();
     public List<Clase> listarClases();
+
+    public Entidades.Categoria consultarCategoriaByNombre(java.lang.String nombre);
 }
