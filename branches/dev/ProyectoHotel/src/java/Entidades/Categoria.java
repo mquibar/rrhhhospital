@@ -6,6 +6,7 @@
 package Entidades;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -139,6 +140,18 @@ public class Categoria implements Serializable {
     @Override
     public String toString() {
         return "Entidades.Categoria[id=" + id + "]";
+    }
+
+    public void addClase(Clase clase, int antMinima, boolean inicial){
+        if(claseContenidaList==null)
+            claseContenidaList = new ArrayList<ClaseContenida>();
+        ClaseContenida cc = new ClaseContenida();
+        cc.setIdClase(clase.getId());
+        cc.setAntiguedadMinima(antMinima);
+        cc.setInicial(inicial);
+        cc.setIdCategoria(this);
+        claseContenidaList.add(cc);
+        cc= null;
     }
 
 }

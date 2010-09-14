@@ -6,6 +6,7 @@
 package Expertos;
 
 import Entidades.Agrupamiento;
+import Entidades.Clase;
 import java.util.List;
 import javax.ejb.Remote;
 
@@ -17,4 +18,5 @@ import javax.ejb.Remote;
 public interface  ExpConsultarCategoria {
 
     public List<Agrupamiento> listarAgrupamientos();
+    public List<Clase> listarClases();
 }
