@@ -17,7 +17,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -30,7 +29,7 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "Empleado", catalog = "hospital", schema = "public")
 @PrimaryKeyJoinColumn(name="idEmpleado",referencedColumnName="id")
-@NamedQueries({@NamedQuery(name = "Empleado.findAll", query = "SELECT e FROM Empleado e"), @NamedQuery(name = "Empleado.findByIdEmpleado", query = "SELECT e FROM Empleado e WHERE e.idEmpleado = :idEmpleado"), @NamedQuery(name = "Empleado.findByCuil", query = "SELECT e FROM Empleado e WHERE e.cuil = :cuil"), @NamedQuery(name = "Empleado.findByFechaIngreso", query = "SELECT e FROM Empleado e WHERE e.fechaIngreso = :fechaIngreso"), @NamedQuery(name = "Empleado.findByLegajo", query = "SELECT e FROM Empleado e WHERE e.legajo = :legajo"), @NamedQuery(name = "Empleado.findByEliminado", query = "SELECT e FROM Empleado e WHERE e.eliminado = :eliminado")})
+@NamedQueries({@NamedQuery(name = "Empleado.findAll", query = "SELECT e FROM Empleado e"), @NamedQuery(name = "Empleado.findByCuil", query = "SELECT e FROM Empleado e WHERE e.cuil = :cuil"), @NamedQuery(name = "Empleado.findByFechaIngreso", query = "SELECT e FROM Empleado e WHERE e.fechaIngreso = :fechaIngreso"), @NamedQuery(name = "Empleado.findByLegajo", query = "SELECT e FROM Empleado e WHERE e.legajo = :legajo"), @NamedQuery(name = "Empleado.findByEliminado", query = "SELECT e FROM Empleado e WHERE e.eliminado = :eliminado")})
 public class Empleado extends Persona{
     private static final long serialVersionUID = 1L;
     @Column(name = "Cuil")
@@ -57,8 +56,7 @@ public class Empleado extends Persona{
     protected List<Licencia> licenciaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEmpleado", fetch = FetchType.LAZY)
     protected List<AsignacionHorario> asignacionHorarioList;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "empleado", fetch = FetchType.LAZY)
-    protected Profesional profesional;
+
 
     public Empleado() {
     }
@@ -160,13 +158,6 @@ public class Empleado extends Persona{
         this.asignacionHorarioList = asignacionHorarioList;
     }
 
-    public Profesional getProfesional() {
-        return profesional;
-    }
-
-    public void setProfesional(Profesional profesional) {
-        this.profesional = profesional;
-    }
 
     @Override
     public int hashCode() {

@@ -20,7 +20,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Profesional", catalog = "hospital", schema = "public")
 @PrimaryKeyJoinColumn(name="idProfesional",referencedColumnName="idEmpleado")
-@NamedQueries({@NamedQuery(name = "Profesional.findAll", query = "SELECT p FROM Profesional p"), @NamedQuery(name = "Profesional.findByIdProfesional", query = "SELECT p FROM Profesional p WHERE p.idProfesional = :idProfesional"), @NamedQuery(name = "Profesional.findByMatricula", query = "SELECT p FROM Profesional p WHERE p.matricula = :matricula"), @NamedQuery(name = "Profesional.findByTitulo", query = "SELECT p FROM Profesional p WHERE p.titulo = :titulo"), @NamedQuery(name = "Profesional.findByEliminado", query = "SELECT p FROM Profesional p WHERE p.eliminado = :eliminado")})
+@NamedQueries({@NamedQuery(name = "Profesional.findAll", query = "SELECT p FROM Profesional p"), @NamedQuery(name = "Profesional.findByMatricula", query = "SELECT p FROM Profesional p WHERE p.matricula = :matricula"), @NamedQuery(name = "Profesional.findByTitulo", query = "SELECT p FROM Profesional p WHERE p.titulo = :titulo"), @NamedQuery(name = "Profesional.findByEliminado", query = "SELECT p FROM Profesional p WHERE p.eliminado = :eliminado")})
 public class Profesional extends Empleado {
     private static final long serialVersionUID = 1L;
     @Basic(optional = false)
