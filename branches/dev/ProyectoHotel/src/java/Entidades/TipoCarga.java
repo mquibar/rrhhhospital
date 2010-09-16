@@ -23,7 +23,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "TipoCarga", catalog = "hospital", schema = "public")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-@NamedQueries({@NamedQuery(name = "TipoCarga.findAll", query = "SELECT t FROM TipoCarga t"), @NamedQuery(name = "TipoCarga.findById", query = "SELECT t FROM TipoCarga t WHERE t.id = :id"), @NamedQuery(name = "TipoCarga.findByNombre", query = "SELECT t FROM TipoCarga t WHERE t.nombre = :nombre"), @NamedQuery(name = "TipoCarga.findByDescripcion", query = "SELECT t FROM TipoCarga t WHERE t.descripcion = :descripcion"), @NamedQuery(name = "TipoCarga.findByDtype", query = "SELECT t FROM TipoCarga t WHERE t.dtype = :dtype")})
+@NamedQueries({@NamedQuery(name = "TipoCarga.findAll", query = "SELECT t FROM TipoCarga t"), @NamedQuery(name = "TipoCarga.findById", query = "SELECT t FROM TipoCarga t WHERE t.id = :id"), @NamedQuery(name = "TipoCarga.findByNombre", query = "SELECT t FROM TipoCarga t WHERE t.nombre = :nombre"), @NamedQuery(name = "TipoCarga.findByDescripcion", query = "SELECT t FROM TipoCarga t WHERE t.descripcion = :descripcion")})
 public class TipoCarga implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
