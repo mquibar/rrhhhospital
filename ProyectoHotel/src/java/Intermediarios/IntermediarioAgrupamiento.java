@@ -8,9 +8,6 @@ package Intermediarios;
 import Configuraciones.LogAdmin;
 import Entidades.Agrupamiento;
 import java.util.List;
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.criterion.Order;
 
 /**
  *
@@ -28,12 +25,5 @@ public class IntermediarioAgrupamiento extends Intermediario<Agrupamiento>{
     public List<Agrupamiento> findByDto(Object dto) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
-    public List<Agrupamiento> findInOrden(String orden){
-
-        Criteria criterio = ((Session)GestorConeccion.getInstance().getManager().getDelegate()).createCriteria(_clase).addOrder(Order.asc(orden));
-        return criterio.list();
-    }
-
    
 }

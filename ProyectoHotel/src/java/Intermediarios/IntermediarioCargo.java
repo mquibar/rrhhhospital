@@ -25,8 +25,4 @@ public class IntermediarioCargo extends Intermediario <Cargo> {
     public List<Cargo> findByDto(Object dto) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
-    public List<Cargo> finAllInOrder(String order) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 }
