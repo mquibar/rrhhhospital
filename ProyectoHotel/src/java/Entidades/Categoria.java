@@ -43,7 +43,7 @@ public class Categoria implements Serializable {
     private List<ClaseVigente> claseVigenteList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCategoria", fetch = FetchType.LAZY)
     private List<Requisito> requisitoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCategoria", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "claseContenidaPk.idCategoria", fetch = FetchType.LAZY)
     private List<ClaseContenida> claseContenidaList;
     @JoinColumn(name = "idTramo", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
@@ -146,10 +146,10 @@ public class Categoria implements Serializable {
         if(claseContenidaList==null)
             claseContenidaList = new ArrayList<ClaseContenida>();
         ClaseContenida cc = new ClaseContenida();
-        cc.setIdClase(clase.getId());
+        cc.setClase(clase);
         cc.setAntiguedadMinima(antMinima);
         cc.setInicial(inicial);
-        cc.setIdCategoria(this);
+        cc.setCategoria(this);
         claseContenidaList.add(cc);
         cc= null;
     }
