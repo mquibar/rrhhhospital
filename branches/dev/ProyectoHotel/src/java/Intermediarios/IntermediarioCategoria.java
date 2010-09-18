@@ -40,8 +40,4 @@ public class IntermediarioCategoria extends Intermediario<Categoria> {
         }
     }
 
-    public List<Categoria> finAllInOrder(String order) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
 }

@@ -9,6 +9,9 @@ import Configuraciones.LogAdmin;
 import java.util.List;
 import javax.persistence.Query;
 import org.apache.commons.logging.Log;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.criterion.Order;
 
 
 /**
@@ -53,5 +56,10 @@ public abstract class Intermediario<E>{
         }
     }
 
+    public List<E> findInOrden(String orden){
+
+        Criteria criterio = ((Session)GestorConeccion.getInstance().getManager().getDelegate()).createCriteria(_clase).addOrder(Order.asc(orden));
+        return criterio.list();
+    }
     public abstract List<E> findByDto(Object dto);
 }
