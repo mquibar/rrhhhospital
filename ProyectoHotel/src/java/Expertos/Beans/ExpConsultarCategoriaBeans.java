@@ -5,6 +5,7 @@
 
 package Expertos.Beans;
 
+import DTO.DtoAgrupamiento;
 import DTO.DtoCategoria;
 import Entidades.Agrupamiento;
 import Entidades.Categoria;
@@ -44,5 +45,16 @@ public class ExpConsultarCategoriaBeans implements ExpConsultarCategoria {
         dto=null;
         intermediario=null;
         return categoria;
+    }
+
+    public Agrupamiento consultarAgrupamientoByNombre(String nombre){
+        DtoAgrupamiento dto = new DtoAgrupamiento(nombre);
+        try{
+            return (new IntermediarioAgrupamiento()).findByDto(dto).get(0);
+        }catch(Exception ex){
+            ex.printStackTrace();
+            return null;
+        }
+        
     }
 }

@@ -5,11 +5,14 @@
 
 package Expertos.Beans;
 
+import Entidades.Agrupamiento;
 import Entidades.Categoria;
 import Entidades.Clase;
 import Expertos.ExpAltaCategoria;
 import Intermediarios.IntermediarioCategoria;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.ejb.Stateless;
 
 /**
@@ -25,14 +28,16 @@ public class ExpAltaCategoriaBeans implements ExpAltaCategoria {
         _categoria = new Categoria();
     }
 
-    public List<Clase> iniciarAlta(String nombreCategoria) {
+    public Map<String, List> iniciarAlta(String nombreCategoria) {
         _categoria.setNombre(nombreCategoria);
         ExpConsultarCategoriaBeans experto = new ExpConsultarCategoriaBeans();
+        Map<String, List> mapa = new HashMap<String, List>();
         if(experto.consultarCategoriaByNombre(nombreCategoria)== null)
             return null;
-        List<Clase> resultado = experto.listarClases();
+        mapa.put(Clase.class.getName(), experto.listarClases());
+        mapa.put(Agrupamiento.class.getName(), experto.listarAgrupamientos());
         experto = null;
-        return resultado;
+        return mapa;
     }
 
     public void agergarClase(Clase clase, int antiguedadMinima, boolean inicial) {
