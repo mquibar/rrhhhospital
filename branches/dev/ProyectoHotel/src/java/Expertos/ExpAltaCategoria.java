@@ -5,8 +5,8 @@
 
 package Expertos;
 
-import Entidades.Clase;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface  ExpAltaCategoria {
 
-    public List<Clase> iniciarAlta(String nombreCategoria);
+    public Map<String, List> iniciarAlta(String nombreCategoria);
     public boolean guardarCategoria();
     public void agergarClase(Entidades.Clase clase, int antiguedadMinima, boolean inicial);
 
