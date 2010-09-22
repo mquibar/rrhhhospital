@@ -6,8 +6,10 @@
 package Expertos.Beans;
 
 import Entidades.Agrupamiento;
+import Entidades.Tramo;
 import Intermediarios.GestorConeccion;
 import Intermediarios.IntermediarioAgrupamiento;
+import Intermediarios.IntermediarioTramo;
 import java.util.List;
 
 /**
@@ -43,6 +45,28 @@ public class ExpModificarAgrupamientoBeans {
             return false;
         }
 
+    }
+
+    public boolean agregarTramo(Agrupamiento agrupamiento, String nombreTramo){
+        if( (new ExpConsultarCategoriaBeans()).consultarTramoByNombre(nombreTramo) != null)
+            return false;
+        Tramo tramo = new Tramo();
+        tramo.setNombre(nombreTramo);
+        tramo.setAgrupamiento(agrupamiento);
+        try{
+            GestorConeccion.getInstance().beginTransaction();
+            if( (new IntermediarioTramo()).guardar(tramo)){
+                GestorConeccion.getInstance().commitTransaction();
+                return true;
+            }
+            else{
+                GestorConeccion.getInstance().rollbackTransaction();
+                return false;
+            }
+        }catch(Exception ex){
+            ex.printStackTrace();
+            return false;
+        }
     }
 
 }

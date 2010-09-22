@@ -75,11 +75,11 @@ public class Tramo implements Serializable {
         this.nombre = nombre;
     }
 
-    public Agrupamiento getIdAgrupamiento() {
+    public Agrupamiento getAgrupamiento() {
         return idAgrupamiento;
     }
 
-    public void setIdAgrupamiento(Agrupamiento idAgrupamiento) {
+    public void setAgrupamiento(Agrupamiento idAgrupamiento) {
         this.idAgrupamiento = idAgrupamiento;
     }
 

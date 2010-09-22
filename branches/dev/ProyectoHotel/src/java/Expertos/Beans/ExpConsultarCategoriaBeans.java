@@ -10,6 +10,7 @@ import DTO.DtoCategoria;
 import Entidades.Agrupamiento;
 import Entidades.Categoria;
 import Entidades.Clase;
+import Entidades.Tramo;
 import Expertos.ExpConsultarCategoria;
 import Intermediarios.IntermediarioAgrupamiento;
 import Intermediarios.IntermediarioCategoria;
@@ -56,5 +57,9 @@ public class ExpConsultarCategoriaBeans implements ExpConsultarCategoria {
             return null;
         }
         
+    }
+
+    public Tramo consultarTramoByNombre(String nombreTramo) {
+        throw new UnsupportedOperationException("Not yet implemented");
     }
 }
