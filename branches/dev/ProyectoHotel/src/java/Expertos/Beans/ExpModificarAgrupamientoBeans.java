@@ -6,6 +6,7 @@
 package Expertos.Beans;
 
 import Entidades.Agrupamiento;
+import Entidades.Clase;
 import Entidades.Tramo;
 import Intermediarios.GestorConeccion;
 import Intermediarios.IntermediarioAgrupamiento;
@@ -68,5 +69,6 @@ public class ExpModificarAgrupamientoBeans {
             return false;
         }
     }
+
 
 }
