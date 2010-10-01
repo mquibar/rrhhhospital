@@ -42,7 +42,7 @@ public class Requisito implements Serializable {
     private Integer id;
     @JoinColumn(name = "idCategoria", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Categoria idCategoria;
+    private Categoria _categoria;
 
     public Requisito() {
     }
@@ -81,11 +81,11 @@ public class Requisito implements Serializable {
     }
 
     public Categoria getIdCategoria() {
-        return idCategoria;
+        return _categoria;
     }
 
     public void setIdCategoria(Categoria idCategoria) {
-        this.idCategoria = idCategoria;
+        this._categoria = idCategoria;
     }
 
     @Override

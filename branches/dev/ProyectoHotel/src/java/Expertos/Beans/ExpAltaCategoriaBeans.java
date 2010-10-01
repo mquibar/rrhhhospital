@@ -5,15 +5,13 @@
 
 package Expertos.Beans;
 
-import Entidades.Agrupamiento;
 import Entidades.Categoria;
 import Entidades.Clase;
+import Entidades.Requisito;
 import Entidades.Tramo;
 import Expertos.ExpAltaCategoria;
 import Intermediarios.IntermediarioCategoria;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import javax.ejb.Stateless;
 
 /**
@@ -24,6 +22,7 @@ import javax.ejb.Stateless;
 public class ExpAltaCategoriaBeans implements ExpAltaCategoria {
 
     private Categoria _categoria;
+    private boolean _flagSave=false;
 
     public ExpAltaCategoriaBeans() {
         _categoria = new Categoria();
@@ -40,13 +39,24 @@ public class ExpAltaCategoriaBeans implements ExpAltaCategoria {
 
     public void agergarClase(Clase clase, int antiguedadMinima, boolean inicial) {
         _categoria.addClase(clase, antiguedadMinima, inicial);
+        _flagSave=true;
     }
 
     public void agergarClase(Clase clase, int antiguedadMinima) {
         _categoria.addClase(clase, antiguedadMinima, false);
     }
 
+    public void agregarRequerimiento(String descripcion){
+        Requisito requisito = new Requisito();
+        requisito.setIdCategoria(_categoria);
+        requisito.setDescripcion(descripcion);
+        requisito.setNumero(_categoria.getRequisitoList().size()+1);
+        _categoria.getRequisitoList().add(requisito);
+        _flagSave=true;
+    }
     public boolean guardarCategoria() {
+        if(!_flagSave)
+            return false;
         return (new IntermediarioCategoria()).guardar(_categoria);
     }
 
