@@ -99,6 +99,8 @@ public class Categoria implements Serializable {
     }
 
     public List<Requisito> getRequisitoList() {
+        if(requisitoList == null)
+            requisitoList=new ArrayList<Requisito>();
         return requisitoList;
     }
 
@@ -159,4 +161,14 @@ public class Categoria implements Serializable {
         cc= null;
     }
 
+    public void addRequisitos(String descripcion){
+        Requisito requisito = new Requisito();
+        requisito.setDescripcion(descripcion);
+        if(this.requisitoList==null)
+            requisitoList=new ArrayList<Requisito>();
+        requisito.setNumero(requisitoList.size()+1);
+        requisito.setIdCategoria(this);
+        requisitoList.add(requisito);
+
+    }
 }
