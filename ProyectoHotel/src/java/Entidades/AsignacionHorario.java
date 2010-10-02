@@ -25,7 +25,7 @@ import javax.persistence.TemporalType;
  * @author Manuel
  */
 @Entity
-@Table(name = "AsignacionHorario", catalog = "hospital", schema = "public")
+@Table(name = "AsignacionHorario")
 @NamedQueries({@NamedQuery(name = "AsignacionHorario.findAll", query = "SELECT a FROM AsignacionHorario a"), @NamedQuery(name = "AsignacionHorario.findById", query = "SELECT a FROM AsignacionHorario a WHERE a.id = :id"), @NamedQuery(name = "AsignacionHorario.findByFecha", query = "SELECT a FROM AsignacionHorario a WHERE a.fecha = :fecha"), @NamedQuery(name = "AsignacionHorario.findByDescripcion", query = "SELECT a FROM AsignacionHorario a WHERE a.descripcion = :descripcion"), @NamedQuery(name = "AsignacionHorario.findByVigente", query = "SELECT a FROM AsignacionHorario a WHERE a.vigente = :vigente")})
 public class AsignacionHorario implements Serializable {
     private static final long serialVersionUID = 1L;

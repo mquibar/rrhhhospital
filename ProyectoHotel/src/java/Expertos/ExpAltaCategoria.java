@@ -15,7 +15,7 @@ import java.util.List;
  */
 public interface  ExpAltaCategoria {
 
-    public List<Clase> iniciarAlta(Tramo tramo,String nombreCategoria);
+    public List<Clase> iniciarAlta(Tramo tramo,String nombreCategoria, int cupoMaximo);
     public boolean guardarCategoria();
     public void agergarClase(Entidades.Clase clase, int antiguedadMinima, boolean inicial);
 

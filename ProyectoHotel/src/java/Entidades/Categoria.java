@@ -29,7 +29,7 @@ import javax.persistence.Table;
  * @author Manuel
  */
 @Entity
-@Table(name = "Categoria", catalog = "hospital", schema = "public")
+@Table(name = "Categoria")
 @NamedQueries({@NamedQuery(name = "Categoria.findAll", query = "SELECT c FROM Categoria c"), @NamedQuery(name = "Categoria.findById", query = "SELECT c FROM Categoria c WHERE c.id = :id"), @NamedQuery(name = "Categoria.findByNombre", query = "SELECT c FROM Categoria c WHERE c.nombre = :nombre"), @NamedQuery(name = "Categoria.findByNumero", query = "SELECT c FROM Categoria c WHERE c.numero = :numero")})
 public class Categoria implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -44,9 +44,13 @@ public class Categoria implements Serializable {
     private String nombre;
     @Column(name = "Numero")
     private Integer numero;
+    @Column(name="Cupo")
+    private Integer _cupo;
+    @Column(name="Elimininado")
+    private Boolean _eliminado;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCategoria", fetch = FetchType.LAZY)
     private List<ClaseVigente> claseVigenteList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCategoria", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "_categoria", fetch = FetchType.LAZY)
     private List<Requisito> requisitoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "claseContenidaPk.idCategoria", fetch = FetchType.LAZY)
     private List<ClaseContenida> claseContenidaList;
@@ -55,15 +59,18 @@ public class Categoria implements Serializable {
     private Tramo idTramo;
 
     public Categoria() {
+        _eliminado=false;
     }
 
     public Categoria(Integer id) {
         this.id = id;
+        _eliminado=false;
     }
 
     public Categoria(Integer id, String nombre) {
         this.id = id;
         this.nombre = nombre;
+        _eliminado=false;
     }
 
     public Integer getId() {
@@ -88,6 +95,22 @@ public class Categoria implements Serializable {
 
     public void setNumero(Integer numero) {
         this.numero = numero;
+    }
+
+    public Integer getCupo() {
+        return _cupo;
+    }
+
+    public void setCupo(Integer _cupo) {
+        this._cupo = _cupo;
+    }
+
+    public Boolean getEliminado() {
+        return _eliminado;
+    }
+
+    public void setEliminado(Boolean _eliminado) {
+        this._eliminado = _eliminado;
     }
 
     public List<ClaseVigente> getClaseVigenteList() {
