@@ -100,7 +100,7 @@ public class Agrupamiento implements Serializable {
 
     @Override
     public String toString() {
-        return "Entidades.Agrupamiento[id=" + id + "]";
+        return nombre;
     }
 
 }

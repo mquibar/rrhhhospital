@@ -12,10 +12,13 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -23,10 +26,12 @@ import javax.persistence.Table;
  * @author Manuel
  */
 @Entity
-@Table(name = "Provincia", catalog = "hospital", schema = "public")
+@Table(name = "Provincia")
 @NamedQueries({@NamedQuery(name = "Provincia.findAll", query = "SELECT p FROM Provincia p"), @NamedQuery(name = "Provincia.findById", query = "SELECT p FROM Provincia p WHERE p.id = :id"), @NamedQuery(name = "Provincia.findByProvincia", query = "SELECT p FROM Provincia p WHERE p.provincia = :provincia")})
 public class Provincia implements Serializable {
     private static final long serialVersionUID = 1L;
+    @GeneratedValue(generator="id_sequence",strategy=GenerationType.SEQUENCE)
+    @SequenceGenerator(name="id_sequence",sequenceName="provincia_id_sequence")
     @Id
     @Basic(optional = false)
     @Column(name = "id")

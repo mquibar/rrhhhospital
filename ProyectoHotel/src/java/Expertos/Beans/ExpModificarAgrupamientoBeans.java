@@ -6,18 +6,20 @@
 package Expertos.Beans;
 
 import Entidades.Agrupamiento;
-import Entidades.Clase;
 import Entidades.Tramo;
+import Expertos.ExpModificarAgrupamiento;
 import Intermediarios.GestorConeccion;
 import Intermediarios.IntermediarioAgrupamiento;
 import Intermediarios.IntermediarioTramo;
 import java.util.List;
+import javax.ejb.Stateless;
 
 /**
  *
  * @author Manuel
  */
-public class ExpModificarAgrupamientoBeans {
+@Stateless
+public class ExpModificarAgrupamientoBeans implements ExpModificarAgrupamiento{
 
     private Agrupamiento _agrupamiento;
 

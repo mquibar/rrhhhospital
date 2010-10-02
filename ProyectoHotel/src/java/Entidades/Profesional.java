@@ -18,7 +18,7 @@ import javax.persistence.Table;
  * @author Manuel
  */
 @Entity
-@Table(name = "Profesional", catalog = "hospital", schema = "public")
+@Table(name = "Profesional")
 @PrimaryKeyJoinColumn(name="idProfesional",referencedColumnName="idEmpleado")
 @NamedQueries({@NamedQuery(name = "Profesional.findAll", query = "SELECT p FROM Profesional p"), @NamedQuery(name = "Profesional.findByMatricula", query = "SELECT p FROM Profesional p WHERE p.matricula = :matricula"), @NamedQuery(name = "Profesional.findByTitulo", query = "SELECT p FROM Profesional p WHERE p.titulo = :titulo"), @NamedQuery(name = "Profesional.findByEliminado", query = "SELECT p FROM Profesional p WHERE p.eliminado = :eliminado")})
 public class Profesional extends Empleado {

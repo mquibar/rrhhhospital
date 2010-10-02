@@ -12,10 +12,13 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -23,10 +26,12 @@ import javax.persistence.Table;
  * @author Manuel
  */
 @Entity
-@Table(name = "Pais", catalog = "hospital", schema = "public")
+@Table(name = "Pais")
 @NamedQueries({@NamedQuery(name = "Pais.findAll", query = "SELECT p FROM Pais p"), @NamedQuery(name = "Pais.findById", query = "SELECT p FROM Pais p WHERE p.id = :id"), @NamedQuery(name = "Pais.findByPais", query = "SELECT p FROM Pais p WHERE p.pais = :pais")})
 public class Pais implements Serializable {
     private static final long serialVersionUID = 1L;
+    @GeneratedValue(generator="id_sequence",strategy=GenerationType.SEQUENCE)
+    @SequenceGenerator(name="id_sequence",sequenceName="pais_id_sequence")
     @Id
     @Basic(optional = false)
     @Column(name = "id")

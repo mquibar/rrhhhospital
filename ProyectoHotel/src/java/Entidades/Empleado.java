@@ -27,7 +27,7 @@ import javax.persistence.TemporalType;
  * @author Manuel
  */
 @Entity
-@Table(name = "Empleado", catalog = "hospital", schema = "public")
+@Table(name = "Empleado")
 @PrimaryKeyJoinColumn(name="idEmpleado",referencedColumnName="id")
 @NamedQueries({@NamedQuery(name = "Empleado.findAll", query = "SELECT e FROM Empleado e"), @NamedQuery(name = "Empleado.findByCuil", query = "SELECT e FROM Empleado e WHERE e.cuil = :cuil"), @NamedQuery(name = "Empleado.findByFechaIngreso", query = "SELECT e FROM Empleado e WHERE e.fechaIngreso = :fechaIngreso"), @NamedQuery(name = "Empleado.findByLegajo", query = "SELECT e FROM Empleado e WHERE e.legajo = :legajo"), @NamedQuery(name = "Empleado.findByEliminado", query = "SELECT e FROM Empleado e WHERE e.eliminado = :eliminado")})
 public class Empleado extends Persona{
