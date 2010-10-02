@@ -26,8 +26,10 @@ public class ExpAltaAgrupamientoBeans implements ExpAltaAgrupamiento {
 
     public boolean guardarNuevo(String nombre){
         boolean resultado = false;
+        nombre=nombre.toUpperCase();
         if((new ExpConsultarCategoriaBeans()).consultarAgrupamientoByNombre(nombre) != null)
             return resultado;
+        _agrupamiento.setNombre(nombre);
         GestorConeccion.getInstance().beginTransaction();
         try{
             if( (new IntermediarioAgrupamiento()).guardar(_agrupamiento) ){
@@ -39,7 +41,9 @@ public class ExpAltaAgrupamientoBeans implements ExpAltaAgrupamiento {
                 GestorConeccion.getInstance().rollbackTransaction();
             }
         }catch(Exception ex){
+            System.out.println("************ <Error en el Experto de Alta de Agrupamiento>");
             ex.printStackTrace();
+            System.out.println("<\\Error> *****************");
             resultado = false;
         }
         return resultado;

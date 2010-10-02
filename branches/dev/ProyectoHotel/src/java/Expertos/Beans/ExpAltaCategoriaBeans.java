@@ -28,8 +28,9 @@ public class ExpAltaCategoriaBeans implements ExpAltaCategoria {
         _categoria = new Categoria();
     }
 
-    public List<Clase> iniciarAlta(Tramo tramo, String nombreCategoria) {
+    public List<Clase> iniciarAlta(Tramo tramo, String nombreCategoria, int cupoMaximo) {
         _categoria.setNombre(nombreCategoria);
+        _categoria.setCupo(cupoMaximo);
         ExpConsultarCategoriaBeans experto = new ExpConsultarCategoriaBeans();
         if(experto.consultarCategoriaByNombre(nombreCategoria)== null)
             return null;

@@ -6,8 +6,10 @@
 package Intermediarios;
 
 import Configuraciones.LogAdmin;
+import DTO.DtoAgrupamiento;
 import Entidades.Agrupamiento;
 import java.util.List;
+import javax.persistence.Query;
 
 /**
  *
@@ -23,7 +25,15 @@ public class IntermediarioAgrupamiento extends Intermediario<Agrupamiento>{
 
     @Override
     public List<Agrupamiento> findByDto(Object dto) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try {
+            DtoAgrupamiento dtoAgrupamiento = (DtoAgrupamiento) dto;
+            Query q = GestorConeccion.getInstance().getManager().createNamedQuery("Agrupamiento.findByNombre");
+            q.setParameter("nombre", dtoAgrupamiento.getNombre());
+            return q.getResultList();
+        } catch (Exception ex) {
+            System.out.println("**************** "+ex.getMessage());
+            return null;
+        }
     }
    
 }

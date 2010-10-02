@@ -39,8 +39,10 @@ public abstract class Intermediario<E>{
             GestorConeccion.getInstance().getManager().persist(obj);
             return true;
         }catch(Exception ex){
+            System.out.println("************* <Error al guardar>");
             ex.printStackTrace();
             _log.error(ex.getMessage());
+            System.out.println("<\\Error> *************");
             return false;
         }
     }

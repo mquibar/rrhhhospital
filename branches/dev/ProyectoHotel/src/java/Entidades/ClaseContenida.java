@@ -18,7 +18,7 @@ import javax.persistence.Table;
  * @author Manuel
  */
 @Entity
-@Table(name = "ClaseContenida", catalog = "hospital", schema = "public")
+@Table(name = "ClaseContenida")
 @NamedQueries({@NamedQuery(name = "ClaseContenida.findAll", query = "SELECT c FROM ClaseContenida c"), @NamedQuery(name = "ClaseContenida.findByAntiguedadMinima", query = "SELECT c FROM ClaseContenida c WHERE c.antiguedadMinima = :antiguedadMinima"), @NamedQuery(name = "ClaseContenida.findByInicial", query = "SELECT c FROM ClaseContenida c WHERE c.inicial = :inicial"), /*@NamedQuery(name = "ClaseContenida.findByIdClase", query = "SELECT c FROM ClaseContenida c WHERE c.idClase = :idClase"),*/ @NamedQuery(name = "ClaseContenida.findById", query = "SELECT c FROM ClaseContenida c WHERE c.id = :id")})
 public class ClaseContenida implements Serializable {
     private static final long serialVersionUID = 1L;

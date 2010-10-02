@@ -53,7 +53,7 @@ public class ExpConsultarCategoriaBeans implements ExpConsultarCategoria {
         try{
             return (new IntermediarioAgrupamiento()).findByDto(dto).get(0);
         }catch(Exception ex){
-            ex.printStackTrace();
+            System.out.println("************************** El consultar Devolvio Null");
             return null;
         }
         
