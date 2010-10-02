@@ -25,7 +25,7 @@ import javax.persistence.Table;
  * @author Manuel
  */
 @Entity
-@Table(name = "Domicilio", catalog = "hospital", schema = "public")
+@Table(name = "Domicilio")
 @NamedQueries({@NamedQuery(name = "Domicilio.findAll", query = "SELECT d FROM Domicilio d"), @NamedQuery(name = "Domicilio.findById", query = "SELECT d FROM Domicilio d WHERE d.id = :id"), @NamedQuery(name = "Domicilio.findByBarrio", query = "SELECT d FROM Domicilio d WHERE d.barrio = :barrio"), @NamedQuery(name = "Domicilio.findByCalle", query = "SELECT d FROM Domicilio d WHERE d.calle = :calle"), @NamedQuery(name = "Domicilio.findByNumero", query = "SELECT d FROM Domicilio d WHERE d.numero = :numero"), @NamedQuery(name = "Domicilio.findByPiso", query = "SELECT d FROM Domicilio d WHERE d.piso = :piso"), @NamedQuery(name = "Domicilio.findByDepartamento", query = "SELECT d FROM Domicilio d WHERE d.departamento = :departamento")})
 public class Domicilio implements Serializable {
     private static final long serialVersionUID = 1L;

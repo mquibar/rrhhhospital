@@ -11,6 +11,7 @@ import Entidades.Categoria;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -38,6 +39,12 @@ public class IntermediarioCategoria extends Intermediario<Categoria> {
             _log.error(ex.getMessage());
             return null;
         }
+    }
+
+    @Override
+    public List<Categoria> findInOrden(String orden) {
+        Criteria criterio = ((Session) GestorConeccion.getInstance().getManager().getDelegate()).createCriteria(Categoria.class).addOrder(Order.asc(orden));
+        return criterio.list();
     }
 
 }

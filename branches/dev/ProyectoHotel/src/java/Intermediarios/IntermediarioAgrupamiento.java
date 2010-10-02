@@ -10,6 +10,9 @@ import DTO.DtoAgrupamiento;
 import Entidades.Agrupamiento;
 import java.util.List;
 import javax.persistence.Query;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.criterion.Order;
 
 /**
  *
@@ -34,6 +37,12 @@ public class IntermediarioAgrupamiento extends Intermediario<Agrupamiento>{
             System.out.println("**************** "+ex.getMessage());
             return null;
         }
+    }
+
+    @Override
+    public List<Agrupamiento> findInOrden(String orden) {
+        Criteria criterio = ((Session)GestorConeccion.getInstance().getManager().getDelegate()).createCriteria(Agrupamiento.class).addOrder(Order.asc(orden));
+        return criterio.list();
     }
    
 }

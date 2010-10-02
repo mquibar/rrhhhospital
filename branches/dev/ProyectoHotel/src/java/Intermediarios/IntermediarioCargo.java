@@ -8,6 +8,9 @@ package Intermediarios;
 import Configuraciones.LogAdmin;
 import Entidades.Cargo;
 import java.util.List;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.criterion.Order;
 
 
 
@@ -24,5 +27,11 @@ public class IntermediarioCargo extends Intermediario <Cargo> {
     @Override
     public List<Cargo> findByDto(Object dto) {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public List<Cargo> findInOrden(String orden) {
+        Criteria criterio = ((Session) GestorConeccion.getInstance().getManager().getDelegate()).createCriteria(Cargo.class).addOrder(Order.asc(orden));
+        return criterio.list();
     }
 }

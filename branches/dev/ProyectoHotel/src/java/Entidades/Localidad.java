@@ -25,7 +25,7 @@ import javax.persistence.Table;
  * @author Manuel
  */
 @Entity
-@Table(name = "Localidad", catalog = "hospital", schema = "public")
+@Table(name = "Localidad")
 @NamedQueries({@NamedQuery(name = "Localidad.findAll", query = "SELECT l FROM Localidad l"), @NamedQuery(name = "Localidad.findById", query = "SELECT l FROM Localidad l WHERE l.id = :id"), @NamedQuery(name = "Localidad.findByLocalidad", query = "SELECT l FROM Localidad l WHERE l.localidad = :localidad")})
 public class Localidad implements Serializable {
     private static final long serialVersionUID = 1L;

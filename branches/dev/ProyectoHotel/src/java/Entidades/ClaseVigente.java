@@ -11,11 +11,14 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -25,10 +28,12 @@ import javax.persistence.TemporalType;
  * @author Manuel
  */
 @Entity
-@Table(name = "ClaseVigente", catalog = "hospital", schema = "public")
+@Table(name = "ClaseVigente")
 @NamedQueries({@NamedQuery(name = "ClaseVigente.findAll", query = "SELECT c FROM ClaseVigente c"), @NamedQuery(name = "ClaseVigente.findById", query = "SELECT c FROM ClaseVigente c WHERE c.id = :id"), @NamedQuery(name = "ClaseVigente.findByFechaVigencia", query = "SELECT c FROM ClaseVigente c WHERE c.fechaVigencia = :fechaVigencia"), @NamedQuery(name = "ClaseVigente.findByVigente", query = "SELECT c FROM ClaseVigente c WHERE c.vigente = :vigente")})
 public class ClaseVigente implements Serializable {
     private static final long serialVersionUID = 1L;
+    @GeneratedValue(generator="id_sequence",strategy=GenerationType.SEQUENCE)
+    @SequenceGenerator(name="id_sequence",sequenceName="clasevigente_id_sequence")
     @Id
     @Basic(optional = false)
     @Column(name = "id")
