@@ -9,9 +9,6 @@ import Configuraciones.LogAdmin;
 import java.util.List;
 import javax.persistence.Query;
 import org.apache.commons.logging.Log;
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.criterion.Order;
 
 
 /**

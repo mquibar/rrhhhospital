@@ -42,7 +42,7 @@ public class IntermediarioAgrupamiento extends Intermediario<Agrupamiento>{
     @Override
     public List<Agrupamiento> findInOrden(String orden) {
         Criteria criterio = ((Session)GestorConeccion.getInstance().getManager().getDelegate()).createCriteria(Agrupamiento.class).addOrder(Order.asc(orden));
-        return criterio.list();
+        try{return criterio.list();}catch(Exception ex){ex.printStackTrace();return null;}
     }
    
 }
