@@ -11,6 +11,7 @@ import Expertos.ExpModificarAgrupamiento;
 import Intermediarios.GestorConeccion;
 import Intermediarios.IntermediarioAgrupamiento;
 import Intermediarios.IntermediarioTramo;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 
@@ -24,7 +25,7 @@ public class ExpModificarAgrupamientoBeans implements ExpModificarAgrupamiento{
     private Agrupamiento _agrupamiento;
 
     public List<Agrupamiento> inicioModificacion(){
-        return (new IntermediarioAgrupamiento()).findInOrden("nombre");
+        return new ArrayList<Agrupamiento>((new IntermediarioAgrupamiento()).findInOrden("nombre"));
     }
 
     public boolean cambiarNombre( Agrupamiento agrupamiento, String nombre){
