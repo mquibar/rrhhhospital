@@ -28,7 +28,7 @@ import javax.persistence.Table;
  * @author Manuel
  */
 @Entity
-@Table(name = "Tramo", catalog = "hospital", schema = "public")
+@Table(name = "Tramo")
 @NamedQueries({@NamedQuery(name = "Tramo.findAll", query = "SELECT t FROM Tramo t"), @NamedQuery(name = "Tramo.findById", query = "SELECT t FROM Tramo t WHERE t.id = :id"), @NamedQuery(name = "Tramo.findByNombre", query = "SELECT t FROM Tramo t WHERE t.nombre = :nombre")})
 public class Tramo implements Serializable {
     private static final long serialVersionUID = 1L;

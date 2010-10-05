@@ -13,6 +13,7 @@ import Intermediarios.IntermediarioAgrupamiento;
 import Intermediarios.IntermediarioTramo;
 import java.util.ArrayList;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 /**
@@ -24,6 +25,9 @@ public class ExpModificarAgrupamientoBeans implements ExpModificarAgrupamiento{
 
     private Agrupamiento _agrupamiento;
 
+    @EJB
+    Expertos.ExpConsultarCategoria _expertoConsulta;
+    
     public List<Agrupamiento> inicioModificacion(){
         return new ArrayList<Agrupamiento>((new IntermediarioAgrupamiento()).findInOrden("nombre"));
     }
@@ -52,7 +56,8 @@ public class ExpModificarAgrupamientoBeans implements ExpModificarAgrupamiento{
     }
 
     public boolean agregarTramo(Agrupamiento agrupamiento, String nombreTramo){
-        if( (new ExpConsultarCategoriaBeans()).consultarTramoByNombre(nombreTramo) != null)
+        nombreTramo= nombreTramo.toUpperCase();
+        if( (new ExpConsultarCategoriaBeans()).consultarTramoByNombre(agrupamiento, nombreTramo) != null)
             return false;
         Tramo tramo = new Tramo();
         tramo.setNombre(nombreTramo);
@@ -73,5 +78,8 @@ public class ExpModificarAgrupamientoBeans implements ExpModificarAgrupamiento{
         }
     }
 
+    public List<Tramo> consultarTramos(Agrupamiento agrupamiento){
+        return _expertoConsulta.consultaTramo(agrupamiento);
+    }
 
 }
