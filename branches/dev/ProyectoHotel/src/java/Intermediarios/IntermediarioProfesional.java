@@ -36,4 +36,9 @@ public class IntermediarioProfesional extends Intermediario <Profesional> {
         return criterio.list();
     }
 
+    @Override
+    public List<Profesional> findInOrden(String orden) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
 }

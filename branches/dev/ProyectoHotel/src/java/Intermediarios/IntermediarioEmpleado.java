@@ -26,5 +26,10 @@ public class IntermediarioEmpleado extends Intermediario <Empleado> {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    @Override
+    public List<Empleado> findInOrden(String orden) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
 
 }
