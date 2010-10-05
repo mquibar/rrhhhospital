@@ -36,7 +36,7 @@ public class GestorConeccion {
 
     public void beginTransaction() {
         if(_manager != null )
-            if(_manager.isOpen() && _contador>0){
+            if(_manager.isOpen() && _contador>0 && _manager.getTransaction().isActive()){
                 _contador++;
                 return;
         }
@@ -56,7 +56,7 @@ public class GestorConeccion {
             _contador--;
             return;
         }
-        if(_manager.isOpen()){
+        if(_manager.isOpen()&& _manager.getTransaction().isActive()){
             try{
                 _manager.getTransaction().commit();
             }catch(Exception ex){

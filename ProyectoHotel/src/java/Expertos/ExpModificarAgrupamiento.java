@@ -20,4 +20,6 @@ public interface ExpModificarAgrupamiento {
 
     public boolean agregarTramo(Entidades.Agrupamiento agrupamiento, java.lang.String nombreTramo);
 
+    public java.util.List<Entidades.Tramo> consultarTramos(Entidades.Agrupamiento agrupamiento);
+
 }

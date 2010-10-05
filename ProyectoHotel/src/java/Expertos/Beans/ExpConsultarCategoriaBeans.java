@@ -7,6 +7,7 @@ package Expertos.Beans;
 
 import DTO.DtoAgrupamiento;
 import DTO.DtoCategoria;
+import DTO.DtoTramo;
 import Entidades.Agrupamiento;
 import Entidades.Categoria;
 import Entidades.Clase;
@@ -15,6 +16,7 @@ import Expertos.ExpConsultarCategoria;
 import Intermediarios.IntermediarioAgrupamiento;
 import Intermediarios.IntermediarioCategoria;
 import Intermediarios.IntermediarioClase;
+import Intermediarios.IntermediarioTramo;
 import java.util.List;
 import javax.ejb.Stateless;
 
@@ -59,7 +61,25 @@ public class ExpConsultarCategoriaBeans implements ExpConsultarCategoria {
         
     }
 
-    public Tramo consultarTramoByNombre(String nombreTramo) {
-        throw new UnsupportedOperationException("Not yet implemented");
+    public Tramo consultarTramoByNombre(Agrupamiento agrupamiento, String nombreTramo) {
+        DtoTramo dto = new DtoTramo();
+        dto.setAgrupamiento(agrupamiento);
+        dto.setNombre(nombreTramo);
+        try{
+            return (new IntermediarioTramo()).findByDto(dto).get(0);
+        }catch(Exception ex){
+            System.out.println("************** La consulta no encuentra tramos");
+            return null;
+        }
+    }
+
+    public List<Tramo> consultaTramo(Agrupamiento agrupamiento){
+        DtoTramo dto = new DtoTramo();
+        dto.setAgrupamiento(agrupamiento);
+        try{
+            return (new IntermediarioTramo()).findByDto(dto);
+        }catch(Exception e){
+            return null;
+        }
     }
 }
