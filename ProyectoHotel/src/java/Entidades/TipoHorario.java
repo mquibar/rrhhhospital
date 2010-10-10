@@ -27,7 +27,14 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "TipoHorario", catalog = "hospital", schema = "public")
-@NamedQueries({@NamedQuery(name = "TipoHorario.findAll", query = "SELECT t FROM TipoHorario t"), @NamedQuery(name = "TipoHorario.findById", query = "SELECT t FROM TipoHorario t WHERE t.id = :id"), @NamedQuery(name = "TipoHorario.findByNombre", query = "SELECT t FROM TipoHorario t WHERE t.nombre = :nombre"), @NamedQuery(name = "TipoHorario.findByHoraIngreso", query = "SELECT t FROM TipoHorario t WHERE t.horaIngreso = :horaIngreso"), @NamedQuery(name = "TipoHorario.findByHoraSalida", query = "SELECT t FROM TipoHorario t WHERE t.horaSalida = :horaSalida"), @NamedQuery(name = "TipoHorario.findByDescripcion", query = "SELECT t FROM TipoHorario t WHERE t.descripcion = :descripcion"), @NamedQuery(name = "TipoHorario.findByEliminado", query = "SELECT t FROM TipoHorario t WHERE t.eliminado = :eliminado")})
+@NamedQueries({
+    @NamedQuery(name = "TipoHorario.findAll", query = "SELECT t FROM TipoHorario t"),
+    @NamedQuery(name = "TipoHorario.findById", query = "SELECT t FROM TipoHorario t WHERE t.id = :id"),
+    @NamedQuery(name = "TipoHorario.findByNombre", query = "SELECT t FROM TipoHorario t WHERE t.nombre = :nombre"),
+    @NamedQuery(name = "TipoHorario.findByHoraIngreso", query = "SELECT t FROM TipoHorario t WHERE t.horaIngreso = :horaIngreso"),
+    @NamedQuery(name = "TipoHorario.findByHoraSalida", query = "SELECT t FROM TipoHorario t WHERE t.horaSalida = :horaSalida"),
+    @NamedQuery(name = "TipoHorario.findByDescripcion", query = "SELECT t FROM TipoHorario t WHERE t.descripcion = :descripcion"),
+    @NamedQuery(name = "TipoHorario.findByEliminado", query = "SELECT t FROM TipoHorario t WHERE t.eliminado = :eliminado")})
 public class TipoHorario implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

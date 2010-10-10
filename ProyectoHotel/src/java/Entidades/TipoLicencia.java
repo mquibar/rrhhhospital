@@ -28,7 +28,12 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "TipoLicencia", catalog = "hospital", schema = "public")
-@NamedQueries({@NamedQuery(name = "TipoLicencia.findAll", query = "SELECT t FROM TipoLicencia t"), @NamedQuery(name = "TipoLicencia.findById", query = "SELECT t FROM TipoLicencia t WHERE t.id = :id"), @NamedQuery(name = "TipoLicencia.findByNombre", query = "SELECT t FROM TipoLicencia t WHERE t.nombre = :nombre"), @NamedQuery(name = "TipoLicencia.findByDescripcion", query = "SELECT t FROM TipoLicencia t WHERE t.descripcion = :descripcion"), @NamedQuery(name = "TipoLicencia.findByEliminado", query = "SELECT t FROM TipoLicencia t WHERE t.eliminado = :eliminado")})
+@NamedQueries({
+    @NamedQuery(name = "TipoLicencia.findAll", query = "SELECT t FROM TipoLicencia t"),
+    @NamedQuery(name = "TipoLicencia.findById", query = "SELECT t FROM TipoLicencia t WHERE t.id = :id"),
+    @NamedQuery(name = "TipoLicencia.findByNombre", query = "SELECT t FROM TipoLicencia t WHERE t.nombre = :nombre"),
+    @NamedQuery(name = "TipoLicencia.findByDescripcion", query = "SELECT t FROM TipoLicencia t WHERE t.descripcion = :descripcion"),
+    @NamedQuery(name = "TipoLicencia.findByEliminado", query = "SELECT t FROM TipoLicencia t WHERE t.eliminado = :eliminado")})
 public class TipoLicencia implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
