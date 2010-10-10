@@ -72,7 +72,7 @@ public abstract class Intermediario<E> {
             String key = i.next();
             sql += "o." + key + "= :" + key + " AND ";
         }
-        sql = sql.substring(0, 5);
+        sql = sql.substring(0, sql.length()-5);
         System.out.println(sql);
 
         q = GestorConeccion.getInstance().getManager().createQuery(sql);

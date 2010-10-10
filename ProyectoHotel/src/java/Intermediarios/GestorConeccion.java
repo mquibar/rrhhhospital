@@ -5,6 +5,7 @@
 
 package Intermediarios;
 
+import Configuraciones.loadConfig;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -30,8 +31,16 @@ public class GestorConeccion {
     }
 
     public GestorConeccion(){
-        _factory = Persistence.createEntityManagerFactory("ProyectoHotelPU");
+        loadConfig.configurarConexion();
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        System.out.println("Conexion = " + System.getProperty("hibernate.connection.url"));
+        System.out.println("Usuario = " + System.getProperty("hibernate.connection.username"));
+        System.out.println("Pass = " + System.getProperty("hibernate.connection.password"));
+        System.out.println("JNDI = " + System.getProperty("post-gre-sql_hospitaltest_postgresPool.Password"));
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        _factory = Persistence.createEntityManagerFactory("ProyectoHotelPU",System.getProperties());
         _log = Configuraciones.LogAdmin.getInstance().getLog(this.toString());
+        
     }
 
     public void beginTransaction() {
