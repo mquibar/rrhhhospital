@@ -6,6 +6,7 @@
 package Expertos.Beans;
 
 import Entidades.Agrupamiento;
+import Entidades.Categoria;
 import Entidades.Tramo;
 import Expertos.ExpModificarAgrupamiento;
 import Intermediarios.GestorConeccion;
@@ -82,4 +83,7 @@ public class ExpModificarAgrupamientoBeans implements ExpModificarAgrupamiento{
         return _expertoConsulta.consultaTramo(agrupamiento);
     }
 
+    public List<Categoria> consultarCategoria(Tramo tramo){
+        return _expertoConsulta.consultarCategoria(tramo);
+    }
 }

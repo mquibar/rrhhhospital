@@ -82,4 +82,14 @@ public class ExpConsultarCategoriaBeans implements ExpConsultarCategoria {
             return null;
         }
     }
+
+    public List<Categoria> consultarCategoria(Tramo tramo) {
+        DtoCategoria dto = new DtoCategoria();
+        dto.setTramo(tramo);
+        try{
+            return (new IntermediarioCategoria()).findByDto(dto);
+        }catch(Exception ex){
+            return null;
+        }
+    }
 }
