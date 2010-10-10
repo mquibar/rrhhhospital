@@ -6,7 +6,9 @@
 package Expertos;
 
 import Entidades.Agrupamiento;
+import Entidades.Categoria;
 import Entidades.Clase;
+import Entidades.Tramo;
 import java.util.List;
 import javax.ejb.Remote;
 
@@ -27,4 +29,6 @@ public interface  ExpConsultarCategoria {
 
     public Entidades.Tramo consultarTramoByNombre(Entidades.Agrupamiento agrupamiento, java.lang.String nombreTramo);
     public List<Entidades.Tramo> consultaTramo(Agrupamiento agrupamiento);
+
+    public List<Categoria> consultarCategoria(Tramo tramo);
 }
