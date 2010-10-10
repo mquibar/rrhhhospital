@@ -55,6 +55,7 @@ public class ExpAltaCategoriaBeans implements ExpAltaCategoria {
         _categoria.getRequisitoList().add(requisito);
         _flagSave=true;
     }
+    
     public boolean guardarCategoria() {
         if(!_flagSave)
             return false;
