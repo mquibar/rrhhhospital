@@ -7,7 +7,9 @@ package Intermediarios;
 import Configuraciones.LogAdmin;
 import DTO.DtoTramo;
 import Entidades.Tramo;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.persistence.Query;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -28,24 +30,14 @@ public class IntermediarioTramo extends Intermediario<Tramo> {
     @Override
     public List<Tramo> findByDto(Object dto) {
         DtoTramo dtoTramo = (DtoTramo) dto;
-        //Criteria c = ((Session) GestorConeccion.getInstance().getManager().getDelegate()).createCriteria(Tramo.class);
-        String query = "SELECT t FROM Tramo t WHERE ";
+        Map<String,Object> restricciones = new HashMap<String, Object>();
         if (dtoTramo.getAgrupamiento() != null) {
-            query += "t.idAgrupamiento = :a";
-            //c.createAlias("idAgrupamiento", "a");
-            //c.add(Restrictions.eq("a", dtoTramo.getAgrupamiento()));
+            restricciones.put("idAgrupamiento", dtoTramo.getAgrupamiento());
         }
         if (dtoTramo.getNombre() != null) {
-            query+=" AND t.nombre = :nombre";
-            //c.add(Restrictions.eq("nombre", dtoTramo.getNombre()));
+            restricciones.put("nombre", dtoTramo.getNombre());
         }
-
-        Query q = GestorConeccion.getInstance().getManager().createQuery(query);
-        if(dtoTramo.getAgrupamiento()!=null)
-            q.setParameter("a", dtoTramo.getAgrupamiento());
-        if(dtoTramo.getNombre()!=null)
-            q.setParameter("nombre", dtoTramo.getNombre());
-        return q.getResultList();
+        return crearQuery(restricciones).getResultList();
     }
 
     @Override
