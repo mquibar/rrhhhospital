@@ -20,4 +20,6 @@ public interface ExpConsultarDomicilio {
     public Localidad consultarLocalidad (String localidad);
 
     public Pais consultarPais (String pais);
+
+    public Entidades.Domicilio consultarDomicilio(java.lang.String calle, java.lang.String numero, java.lang.String localidad, java.lang.String provincia, java.lang.String pais);
 }

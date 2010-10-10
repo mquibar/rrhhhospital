@@ -17,7 +17,19 @@ import javax.ejb.Remote;
 @Remote
 public interface ExpConsultarPersonal {
 
-    public List<Empleado> listarEmpleado();
-    public List<Profesional> listarProfesional();
+    public List<Empleado> listarEmpleadoinOrder();
 
+    public List<Profesional> listarProfesionalinOrder();
+
+    public List<Empleado> consultarEmpleadoPorNombreyApellido(String nombre, String apellido);
+
+    public List<Profesional> consultarProfesionalPorNombreyApellido(String nombre, String apellido);
+
+    public Empleado consultarEmpleadoPorDNI(String dni);
+
+    public Profesional consultarProfesionalPorDNI(String dni);
+
+    public Profesional consultarProfesionalPorMatricula(String matricula);
+
+    public Empleado consultarEmpleadoPorCuil(String cuil);
 }

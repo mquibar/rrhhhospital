@@ -15,7 +15,16 @@ public class DTODomicilio {
     private String _localidad;
     private String _pais;
     private String _calle;
+    private String _numero;
 
+    public String getNumero() {
+        return _numero;
+    }
+
+    public void setNumero(String _numero) {
+        this._numero = _numero;
+    }
+    
     public String getCalle() {
         return _calle;
     }

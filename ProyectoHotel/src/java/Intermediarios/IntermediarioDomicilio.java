@@ -6,11 +6,14 @@
 package Intermediarios;
 
 import Configuraciones.LogAdmin;
+import DTO.DTODomicilio;
 import Entidades.Domicilio;
-import Entidades.Localidad;
-import Entidades.Pais;
-import Entidades.Provincia;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.criterion.Order;
 
 /**
  *
@@ -26,12 +29,26 @@ public class IntermediarioDomicilio extends Intermediario <Domicilio>{
 
     @Override
     public List<Domicilio> findInOrden(String orden) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Criteria criterio = ((Session)GestorConeccion.getInstance().getManager().getDelegate()).createCriteria(_clase).addOrder(Order.asc(orden));
+        return criterio.list();
     }
 
     @Override
     public List<Domicilio> findByDto(Object dto) {
-        throw new UnsupportedOperationException("Not supported yet.");
+       DTODomicilio dtoDom = (DTODomicilio) dto;
+       Map<String, Object> restricciones = new HashMap<String, Object>();
+
+        if (dtoDom.getCalle() != null) {
+            restricciones.put("calle", dtoDom.getCalle());
+        }
+        if (dtoDom.getNumero() != null) {
+            restricciones.put("numero", dtoDom.getNumero());
+        }
+        try {
+            return crearQuery(restricciones).getResultList();
+        } catch (Exception e) {
+            return null;
+        }
     }
 
 }

@@ -8,15 +8,13 @@ package Intermediarios;
 import Configuraciones.LogAdmin;
 import Entidades.Profesional;
 import java.util.List;
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.criterion.Order;
 import DTO.DTOProfesional;
-import javax.persistence.Query;
+import java.util.HashMap;
+import java.util.Map;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Restrictions;
+
 
 /**
  *
@@ -27,42 +25,31 @@ public class IntermediarioProfesional extends Intermediario <Profesional> {
     public IntermediarioProfesional() {
         _clase = "Profesional";
         _log = LogAdmin.getInstance().getLog(this.getClass());
-
-
     }
 
     @Override
     public List findByDto(Object dto) {
-        DTOProfesional dtoProfesional = (DTOProfesional) dto;
-        //Criteria c = ((Session) GestorConeccion.getInstance().getManager().getDelegate()).createCriteria(Tramo.class);
-        String query = "SELECT p FROM Profesional p WHERE ";
-        if (dtoProfesional.getMatricula() != null) {
-            query += "p.Matricula = :m";
-            //c.createAlias("idAgrupamiento", "a");
-            //c.add(Restrictions.eq("a", dtoTramo.getAgrupamiento()));
+       DTOProfesional dtoPro = (DTOProfesional) dto;
+       Map<String, Object> restricciones = new HashMap<String, Object>();
+
+        if (dtoPro.getNombre() != null) {
+            restricciones.put("nombre", dtoPro.getNombre());
         }
-        if (dtoProfesional.getNombre() != null) {
-            query+=" AND p.nombre = :nombre";
-            //c.add(Restrictions.eq("nombre", dtoTramo.getNombre()));
+        if (dtoPro.getDni() != null) {
+            restricciones.put("dni", dtoPro.getDni());
         }
-
-        Query q = GestorConeccion.getInstance().getManager().createQuery(query);
-        if(dtoProfesional.getMatricula()!=null)
-            q.setParameter("m", dtoProfesional.getMatricula());
-        if(dtoProfesional.getNombre()!=null)
-            q.setParameter("nombre", dtoProfesional.getNombre());
-        return q.getResultList();
-    }
-
-    public List <Profesional> findInOrder (String orden) {
-
-        Criteria criterio = ((Session)GestorConeccion.getInstance().getManager().getDelegate()).createCriteria(_clase).addOrder(Order.asc(orden));
-        return criterio.list();
+        try {
+            return crearQuery(restricciones).getResultList();
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     @Override
     public List<Profesional> findInOrden(String orden) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Criteria criterio = ((Session)GestorConeccion.getInstance().getManager().getDelegate()).createCriteria(_clase).addOrder(Order.asc(orden));
+        return criterio.list();
     }
+ 
 
 }
