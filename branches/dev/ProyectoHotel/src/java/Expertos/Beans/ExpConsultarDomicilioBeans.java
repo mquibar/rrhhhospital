@@ -56,10 +56,27 @@ public class ExpConsultarDomicilioBeans implements ExpConsultarDomicilio {
         }
         return pais;
     }
-    /*relizar con DTO
-    public Domicilio consultarDomicilio (DTODomicilio dto) {
+    /*relizar con DTO*/
+    public Domicilio consultarDomicilio (String calle, String numero, String localidad, String provincia, String pais) {
+        IntermediarioDomicilio intermediario = new IntermediarioDomicilio();
+        Domicilio domicilio;
+        DTODomicilio dto = new DTODomicilio();
+        dto.setCalle(calle);
+        dto.setNumero(numero);
+        dto.setLocalidad(localidad);
+        dto.setProvincia(provincia);
+        dto.setPais(pais);
+        try {
+            domicilio = intermediario.findByDto(dto).get(0);
+        } catch (NullPointerException e) {
+            domicilio=null;
+        }
+        dto=null;
+        intermediario=null;
+        return domicilio;
+
 
     }
-     * */
+     
 
 }

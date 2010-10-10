@@ -22,6 +22,10 @@ public class ExpAltaProfesionalBeans implements ExpAltaProfesional {
 
     private Profesional _profesional;
 
+    public ExpAltaProfesionalBeans() {
+        _profesional = new Profesional();
+    }
+
     public void agregarProfesional(Profesional profesional) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
@@ -44,13 +48,13 @@ public class ExpAltaProfesionalBeans implements ExpAltaProfesional {
         
     }
 
-    public void agregarDomicilio (String barrio, String calle, String numero, String piso, String departamanto, String localidad, String provincia, String pais) {
+    private void agregarDomicilio (String barrio, String calle, String numero,
+            String piso, String departamanto, String localidad, String provincia, String pais) {
 
         ExpAltaDomicilioBeans expertoD = new ExpAltaDomicilioBeans();
         ExpConsultarDomicilioBeans expertoC = new ExpConsultarDomicilioBeans();
         _profesional.setIdDomicilio(expertoD.altaDomicilio(barrio, calle, numero, piso, departamanto, localidad, provincia));
         _profesional.setIdPais(expertoC.consultarPais(pais));
-
 
     }
 
