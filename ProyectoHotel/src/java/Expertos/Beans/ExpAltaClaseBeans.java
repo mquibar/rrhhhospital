@@ -9,6 +9,9 @@ import DTO.DtoClase;
 import Entidades.Clase;
 import Expertos.ExpAltaClase;
 import Intermediarios.IntermediarioClase;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 
 /**
@@ -27,8 +30,22 @@ public class ExpAltaClaseBeans implements ExpAltaClase{
         Clase nueva = new Clase();
         nueva.setNombre(nombre);
 
-        if(intermediario.findByDto(dto) != null)
-            resultado = intermediario.guardar(nueva);
+        Intermediarios.GestorConeccion.getInstance().beginTransaction();
+        List lista = intermediario.findByDto(dto);
+        if(lista != null && !lista.isEmpty()){
+            try {
+                resultado = intermediario.guardar(nueva);
+                if (resultado) {
+                    Intermediarios.GestorConeccion.getInstance().commitTransaction();
+                }
+                else
+                    Intermediarios.GestorConeccion.getInstance().rollbackTransaction();
+            } catch (Exception ex) {
+                System.out.println("Error de Base de DAtos");
+            }
+        }
+        else
+            resultado = false;
 
         intermediario=null;
         dto=null;

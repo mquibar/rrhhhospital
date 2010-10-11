@@ -11,7 +11,7 @@ package DTO;
  */
 public class DtoClase {
 
-    String _nombre;
+    String _nombre=null;
 
     public String getNombre() {
         return _nombre;

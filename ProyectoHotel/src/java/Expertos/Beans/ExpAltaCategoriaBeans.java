@@ -12,6 +12,7 @@ import Entidades.Tramo;
 import Expertos.ExpAltaCategoria;
 import Intermediarios.IntermediarioCategoria;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 /**
@@ -23,6 +24,8 @@ public class ExpAltaCategoriaBeans implements ExpAltaCategoria {
 
     private Categoria _categoria;
     private boolean _flagSave=false;
+    @EJB
+    Expertos.ExpConsultarCategoria _expertoConsulta;
 
     public ExpAltaCategoriaBeans() {
         _categoria = new Categoria();
@@ -31,11 +34,10 @@ public class ExpAltaCategoriaBeans implements ExpAltaCategoria {
     public List<Clase> iniciarAlta(Tramo tramo, String nombreCategoria, int cupoMaximo) {
         _categoria.setNombre(nombreCategoria);
         _categoria.setCupo(cupoMaximo);
-        ExpConsultarCategoriaBeans experto = new ExpConsultarCategoriaBeans();
-        if(experto.consultarCategoriaByNombre(nombreCategoria)== null)
+        if(_expertoConsulta.consultarCategoriaByNombre(nombreCategoria)== null)
             return null;
-        experto = null;
-        return experto.listarClases();
+        _expertoConsulta = null;
+        return _expertoConsulta.listarClases();
     }
 
     public void agergarClase(Clase clase, int antiguedadMinima, boolean inicial) {

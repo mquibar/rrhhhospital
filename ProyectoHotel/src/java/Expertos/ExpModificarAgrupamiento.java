@@ -22,4 +22,6 @@ public interface ExpModificarAgrupamiento {
 
     public java.util.List<Entidades.Tramo> consultarTramos(Entidades.Agrupamiento agrupamiento);
 
+    public java.util.List<Entidades.Categoria> consultarCategoria(Entidades.Tramo tramo);
+
 }
