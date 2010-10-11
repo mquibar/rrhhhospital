@@ -139,11 +139,11 @@ public class Categoria implements Serializable {
         this.claseContenidaList = claseContenidaList;
     }
 
-    public Tramo getIdTramo() {
+    public Tramo getTramo() {
         return idTramo;
     }
 
-    public void setIdTramo(Tramo idTramo) {
+    public void setTramo(Tramo idTramo) {
         this.idTramo = idTramo;
     }
 

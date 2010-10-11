@@ -32,11 +32,12 @@ public class ExpAltaCategoriaBeans implements ExpAltaCategoria {
     }
 
     public List<Clase> iniciarAlta(Tramo tramo, String nombreCategoria, int cupoMaximo) {
+        nombreCategoria= nombreCategoria.toUpperCase();
+        _categoria.setTramo(tramo);
         _categoria.setNombre(nombreCategoria);
         _categoria.setCupo(cupoMaximo);
-        if(_expertoConsulta.consultarCategoriaByNombre(nombreCategoria)== null)
+        if(_expertoConsulta.consultarCategoriaByNombre(nombreCategoria)!= null)
             return null;
-        _expertoConsulta = null;
         return _expertoConsulta.listarClases();
     }
 

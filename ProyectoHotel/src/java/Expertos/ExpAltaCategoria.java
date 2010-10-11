@@ -8,11 +8,13 @@ package Expertos;
 import Entidades.Clase;
 import Entidades.Tramo;
 import java.util.List;
+import javax.ejb.Remote;
 
 /**
  *
  * @author Manuel
  */
+@Remote
 public interface  ExpAltaCategoria {
 
     public List<Clase> iniciarAlta(Tramo tramo,String nombreCategoria, int cupoMaximo);

@@ -42,7 +42,7 @@ public class ExpConsultarCategoriaBeans implements ExpConsultarCategoria {
         dto.setNombre(nombre);
         try {
             categoria = intermediario.findByDto(dto).get(0);
-        } catch (NullPointerException e) {
+        } catch (Exception e) {
             categoria=null;
         }
         dto=null;
