@@ -19,7 +19,7 @@ public interface ExpAltaProfesional {
     public void agregarProfesional (Entidades.Profesional profesional);
     public void iniciarAlta (String nombre, String apellido, String dni, Date fechaNacimiento,
             long telefono, Domicilio idDomicilio, Pais idPais, Sexo idSexo, String matricula, String titulo);
-    public void iniciarAlta (String nombre, String apellido, String dni, Date fechaNacimiento,
+    public boolean iniciarAlta (String nombre, String apellido, String dni, Date fechaNacimiento,
             long telefono, String barrio, String calle, String numero, String piso, String departamanto,
             String localidad, String provincia, String Pais, String Sexo, String matricula, String titulo );
 

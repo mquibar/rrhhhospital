@@ -10,6 +10,8 @@ import Entidades.Pais;
 import Entidades.Profesional;
 import Entidades.Sexo;
 import Expertos.ExpAltaProfesional;
+import Intermediarios.GestorConeccion;
+import Intermediarios.IntermediarioProfesional;
 import java.util.Date;
 import javax.ejb.Stateless;
 
@@ -35,8 +37,9 @@ public class ExpAltaProfesionalBeans implements ExpAltaProfesional {
        
     }
 
-    public void iniciarAlta(String nombre, String apellido, String dni, Date fechaNacimiento, long telefono, String barrio, String calle, String numero, String piso, String departamanto, String localidad, String provincia, String pais, String sexo, String matricula, String titulo) {
+    public boolean iniciarAlta(String nombre, String apellido, String dni, Date fechaNacimiento, long telefono, String barrio, String calle, String numero, String piso, String departamanto, String localidad, String provincia, String pais, String sexo, String matricula, String titulo) {
         //falta guardar el sexo
+        boolean resultado;
         _profesional.setNombre(nombre);
         _profesional.setApellido(apellido);
         _profesional.setDni(dni);
@@ -45,7 +48,23 @@ public class ExpAltaProfesionalBeans implements ExpAltaProfesional {
         agregarDomicilio(barrio, calle, numero, piso, departamanto, localidad, provincia, pais);
         _profesional.setMatricula(matricula);
         _profesional.setTitulo(titulo);
-        
+        GestorConeccion.getInstance().beginTransaction();
+        try{
+            if( (new IntermediarioProfesional()).guardar(_profesional) ){
+                resultado = true;
+                GestorConeccion.getInstance().commitTransaction();
+            }
+            else{
+                resultado = false;
+                GestorConeccion.getInstance().rollbackTransaction();
+            }
+        }catch(Exception ex){
+            System.out.println("************ <Error en el Experto de Alta de Profesional>");
+            ex.printStackTrace();
+            System.out.println("<\\Error> *****************");
+            resultado = false;
+        }
+        return resultado;
     }
 
     private void agregarDomicilio (String barrio, String calle, String numero,
