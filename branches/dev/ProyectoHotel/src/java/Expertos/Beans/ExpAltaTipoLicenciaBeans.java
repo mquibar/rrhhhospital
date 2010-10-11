@@ -41,6 +41,13 @@ public class ExpAltaTipoLicenciaBeans implements ExpAltaTipoLicencia {
 
         _tipoLicencia.setNombre(nombre);
         _tipoLicencia.setDescripcion(descripcion);
+
+        _flagSave = validar();
+    }
+
+    private boolean validar()
+    {
+        throw new UnsupportedOperationException("Not yet implemented");
     }
 
 }

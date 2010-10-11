@@ -49,6 +49,13 @@ public class ExpAltaTipoHorarioBeans implements ExpAltaTipoHorario {
         _tipoHorario.setDescripcion(descripcion);
         _tipoHorario.setHoraIngreso(horarioEntrada);
         _tipoHorario.setHoraSalida(horarioSalida);
+
+        _flagSave = validar();
+    }
+
+    private boolean validar()
+    {
+        throw new UnsupportedOperationException("Not yet implemented");
     }
 
 }
