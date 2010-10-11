@@ -60,7 +60,7 @@ public abstract class Intermediario<E> {
     public abstract List<E> findByDto(Object dto);
 
     protected Query crearQuery(Map<String, Object> restricciones) {
-        String sql = "SELECT o FROM " + _clase + " o";
+        String sql = "SELECT o FROM " + _clase + " o ";
         
         if (restricciones.isEmpty()) {
             return GestorConeccion.getInstance().getManager().createQuery(sql);
@@ -73,8 +73,6 @@ public abstract class Intermediario<E> {
             sql += "o." + key + "= :" + key + " AND ";
         }
         sql = sql.substring(0, sql.length()-5);
-        System.out.println(sql);
-
         q = GestorConeccion.getInstance().getManager().createQuery(sql);
 
         i = restricciones.keySet().iterator();
