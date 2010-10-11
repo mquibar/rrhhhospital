@@ -35,7 +35,7 @@ public class ExpModificarAgrupamientoBeans implements ExpModificarAgrupamiento{
 
     public boolean cambiarNombre( Agrupamiento agrupamiento, String nombre){
 
-        if( (new ExpConsultarCategoriaBeans()).consultarAgrupamientoByNombre(nombre) !=null )
+        if( _expertoConsulta.consultarAgrupamientoByNombre(nombre) !=null )
             return false;
         agrupamiento.setNombre(nombre);
         try{
@@ -58,7 +58,7 @@ public class ExpModificarAgrupamientoBeans implements ExpModificarAgrupamiento{
 
     public boolean agregarTramo(Agrupamiento agrupamiento, String nombreTramo){
         nombreTramo= nombreTramo.toUpperCase();
-        if( (new ExpConsultarCategoriaBeans()).consultarTramoByNombre(agrupamiento, nombreTramo) != null)
+        if( _expertoConsulta.consultarTramoByNombre(agrupamiento, nombreTramo) != null)
             return false;
         Tramo tramo = new Tramo();
         tramo.setNombre(nombreTramo);
