@@ -51,6 +51,13 @@ public class ExpAltaRegistroPeriodoBeans implements ExpAltaRegistroPeriodo {
         _registroPeriodo.setFechaSalida(fechaSalida);
         _registroPeriodo.setHoraSalida(horaSalida);
         _registroPeriodo.setIdEmpleado(idEmpleado);
+
+        _flagSave = validar();
+    }
+
+    private boolean validar()
+    {
+        throw new UnsupportedOperationException("Not yet implemented");
     }
 
 }
