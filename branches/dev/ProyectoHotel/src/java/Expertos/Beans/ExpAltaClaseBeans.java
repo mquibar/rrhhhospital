@@ -22,6 +22,7 @@ import javax.ejb.Stateless;
 public class ExpAltaClaseBeans implements ExpAltaClase{
 
     public boolean altaClase(String nombre) {
+        nombre=nombre.toUpperCase();
         IntermediarioClase intermediario = new IntermediarioClase();
         boolean resultado = false;
 
@@ -32,7 +33,7 @@ public class ExpAltaClaseBeans implements ExpAltaClase{
 
         Intermediarios.GestorConeccion.getInstance().beginTransaction();
         List lista = intermediario.findByDto(dto);
-        if(lista != null && !lista.isEmpty()){
+        if(lista != null && lista.size()==0 ){
             try {
                 resultado = intermediario.guardar(nueva);
                 if (resultado) {
