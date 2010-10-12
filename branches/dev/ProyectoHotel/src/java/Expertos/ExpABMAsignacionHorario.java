@@ -5,6 +5,7 @@
 
 package Expertos;
 
+import Entidades.AsignacionHorario;
 import Entidades.Licencia;
 import javax.ejb.Remote;
 
@@ -13,7 +14,7 @@ import javax.ejb.Remote;
  * @author Manuel
  */
 @Remote
-public interface ExpABMLicencia {
+public interface ExpABMAsignacionHorario {
 
     /**
      *
@@ -24,7 +25,7 @@ public interface ExpABMLicencia {
      * haciendolo FALSE en los casos que la categoria exista o se produscan errores de base de datos
      *
      */
-    public boolean altaLicencia();
+    public boolean altaAsignacionHorario();
 
     /**
      *
@@ -32,7 +33,7 @@ public interface ExpABMLicencia {
      *
      * @return
      */
-    public boolean bajaLicencia(Licencia licencia);
+    public boolean bajaAsignacionHorario(AsignacionHorario asignacionHorario);
     
     /**
      * 
@@ -40,7 +41,7 @@ public interface ExpABMLicencia {
      * 
      * @return
      */
-    public boolean modificarLicencia(Licencia licencia);
+    public boolean modificarAsignacionHorario(AsignacionHorario asignacionHorario);
 
 
 }
