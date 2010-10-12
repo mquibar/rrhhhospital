@@ -15,6 +15,7 @@ public class DtoCategoria {
 
     private String _nombre;
     private Tramo _tramo;
+    private boolean _eliminada=false;
 
     public String getNombre() {
         return _nombre;
@@ -32,5 +33,14 @@ public class DtoCategoria {
         this._tramo = _tramo;
     }
 
+    public boolean isEliminada() {
+        return _eliminada;
+    }
+
+    public void setEliminada(boolean _eliminada) {
+        this._eliminada = _eliminada;
+    }
+
+    
     
 }

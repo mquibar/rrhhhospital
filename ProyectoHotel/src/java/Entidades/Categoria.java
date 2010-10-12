@@ -47,7 +47,7 @@ public class Categoria implements Serializable {
     @Column(name="Cupo")
     private Integer _cupo;
     @Column(name="Elimininado")
-    private Boolean _eliminado;
+    private Boolean _eliminado=false;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCategoria", fetch = FetchType.LAZY)
     private List<ClaseVigente> claseVigenteList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "_categoria", fetch = FetchType.LAZY)
