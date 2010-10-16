@@ -62,26 +62,20 @@ public class ExpConsultarPersonalBeans implements ExpConsultarPersonal {
         return profesional;
     }
 
-    /*Implementar con findByDni de la Entidad Empleado*/
     public Empleado consultarEmpleadoPorDNI(String dni) {
-        return (new IntermediarioEmpleado().findInOrden("dni").get(0));
+        return (new IntermediarioEmpleado().findByDni(dni));
     }
 
-    /*Implementar con findByDni de la Entidad Profesional*/
     public Profesional consultarProfesionalPorDNI(String dni) {
-        return (new IntermediarioProfesional().findInOrden("dni").get(0));
+        return (new IntermediarioProfesional().findByDni(dni));
     }
 
-    /*Implementar con findByMatricula de la Entidad Profesional*/
     public Profesional consultarProfesionalPorMatricula(String matricula) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return (new IntermediarioProfesional().findByDni(matricula));
     }
 
-    /*Implementar con findByCuil de la Entidad Empleado*/
     public Empleado consultarEmpleadoPorCuil(String cuil) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return (new IntermediarioProfesional().findByDni(cuil));
     }
-
-
 
 }

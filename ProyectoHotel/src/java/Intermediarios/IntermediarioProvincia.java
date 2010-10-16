@@ -34,7 +34,7 @@ public class IntermediarioProvincia extends Intermediario<Provincia> {
 
     public Provincia findProvinciaByNombre (String nombre) {
      try {
-            Query q = GestorConeccion.getInstance().getManager().createNamedQuery(_clase + ".findByNombre");
+            Query q = GestorConeccion.getInstance().getManager().createNamedQuery(_clase + ".findByNombre").setParameter(nombre, this);
             return (Provincia)q.getSingleResult();
      } catch (Exception ex) {
             ex.printStackTrace();

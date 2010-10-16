@@ -11,12 +11,13 @@ import Entidades.Pais;
 import Entidades.Sexo;
 import Expertos.ExpAltaEmpleado;
 import java.util.Date;
+import javax.ejb.Stateless;
 
 /**
  *
  * @author Juan
  */
-
+@Stateless
 public class ExpAltaEmpleadoBeans implements ExpAltaEmpleado {
 
     private Empleado _empleado;

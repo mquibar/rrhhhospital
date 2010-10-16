@@ -9,11 +9,13 @@ import Entidades.Domicilio;
 import Entidades.Pais;
 import Entidades.Sexo;
 import java.util.Date;
+import javax.ejb.Remote;
 
 /**
  *
  * @author Juan
  */
+@Remote
 public interface ExpAltaEmpleado {
 
     public void agregarEmpleado (Entidades.Empleado empleado);

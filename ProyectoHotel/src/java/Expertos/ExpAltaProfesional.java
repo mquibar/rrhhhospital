@@ -9,11 +9,13 @@ import Entidades.Domicilio;
 import Entidades.Pais;
 import Entidades.Sexo;
 import java.util.Date;
+import javax.ejb.Remote;
 
 /**
  *
  * @author MARIANO
  */
+@Remote
 public interface ExpAltaProfesional {
 
     public void agregarProfesional (Entidades.Profesional profesional);

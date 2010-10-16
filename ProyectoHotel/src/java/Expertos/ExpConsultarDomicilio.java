@@ -8,11 +8,13 @@ package Expertos;
 import Entidades.Localidad;
 import Entidades.Pais;
 import Entidades.Provincia;
+import javax.ejb.Remote;
 
 /**
  *
  * @author Juan
  */
+@Remote
 public interface ExpConsultarDomicilio {
 
     public Provincia consultarProvincia (String provincia);
