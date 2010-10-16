@@ -35,7 +35,7 @@ public class IntermediarioLocalidad extends Intermediario <Localidad> {
 
      public Localidad findLocalidadByNombre (String nombre) {
      try {
-            Query q = GestorConeccion.getInstance().getManager().createNamedQuery(_clase + ".findByNombre");
+            Query q = GestorConeccion.getInstance().getManager().createNamedQuery(_clase + ".findByNombre").setParameter(nombre, this);
             return (Localidad)q.getResultList().get(0);
         } catch (Exception ex) {
             ex.printStackTrace();

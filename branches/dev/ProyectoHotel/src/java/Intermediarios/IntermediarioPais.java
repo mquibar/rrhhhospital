@@ -33,10 +33,9 @@ public class IntermediarioPais extends Intermediario <Pais> {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-
     public Pais findPaisByNombre (String nombre) {
      try {
-            Query q = GestorConeccion.getInstance().getManager().createNamedQuery(_clase + ".findByNombre");
+            Query q = GestorConeccion.getInstance().getManager().createNamedQuery(_clase + ".findByNombre").setParameter(nombre, this);
             return (Pais)q.getSingleResult();
         } catch (Exception ex) {
             ex.printStackTrace();
