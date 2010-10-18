@@ -41,7 +41,8 @@ public class ClaseContenida implements Serializable {
     private Integer antiguedadMinima;
     @Column(name = "Inicial")
     private Boolean inicial;
-
+    @Column(name = "numeroIndice")
+    private Integer numeroIndiceOrden;
     @JoinColumn(name = "idCategoria", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Categoria categoria;
@@ -88,6 +89,14 @@ public class ClaseContenida implements Serializable {
 
     public void setCategoria(Categoria categoria) {
         this.categoria=categoria;
+    }
+
+    public Integer getNumeroIndiceOrden() {
+        return numeroIndiceOrden;
+    }
+
+    public void setNumeroIndiceOrden(Integer numeroIndiceOrden) {
+        this.numeroIndiceOrden = numeroIndiceOrden;
     }
 
     @Override

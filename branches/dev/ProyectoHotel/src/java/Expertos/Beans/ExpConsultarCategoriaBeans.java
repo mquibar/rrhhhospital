@@ -92,4 +92,8 @@ public class ExpConsultarCategoriaBeans implements ExpConsultarCategoria {
             return null;
         }
     }
+
+    public List<Categoria> listarCategorias() {
+        return (new IntermediarioCategoria()).findAll();
+    }
 }

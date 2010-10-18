@@ -31,4 +31,6 @@ public interface  ExpConsultarCategoria {
     public List<Entidades.Tramo> consultaTramo(Agrupamiento agrupamiento);
 
     public List<Categoria> consultarCategoria(Tramo tramo);
+
+    public List<Categoria> listarCategorias();
 }

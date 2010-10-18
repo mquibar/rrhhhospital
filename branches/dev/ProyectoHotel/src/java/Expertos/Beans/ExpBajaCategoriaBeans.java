@@ -7,9 +7,11 @@ package Expertos.Beans;
 
 import Entidades.Categoria;
 import Entidades.ClaseVigente;
+import Entidades.Tramo;
 import Intermediarios.GestorConeccion;
 import Intermediarios.IntermediarioCategoria;
 import java.util.List;
+import javax.ejb.EJB;
 
 /**
  *
@@ -17,8 +19,11 @@ import java.util.List;
  */
 public class ExpBajaCategoriaBeans {
 
-    public List<Categoria> iniciarBaja(){
-        return (new IntermediarioCategoria()).findAll();
+    @EJB
+    private Expertos.ExpConsultarCategoria _expConsulta;
+
+    public List<Categoria> iniciarBaja(Tramo tramo){
+        return _expConsulta.consultarCategoria(tramo);
     }
 
     public boolean eliminarCategoria(Categoria categoria)throws ExcepcionBajaCategoria{
