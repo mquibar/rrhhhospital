@@ -23,4 +23,8 @@ public class ExpConsultarTipoHorarioBeans implements ExpConsultarTipoHorario {
         return (new IntermediarioTipoHorario()).findAll();
     }
 
+    public TipoHorario consultarTipoHorarioPorNombre(String nombre) {
+        return (new IntermediarioTipoHorario().findByNombre(nombre));
+    }
+
 }
