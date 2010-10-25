@@ -38,7 +38,7 @@ public class ClaseContenida implements Serializable {
 
 
     @Column(name = "AntiguedadMinima")
-    private Integer antiguedadMinima;
+    private Long antiguedadMinima;
     @Column(name = "Inicial")
     private Boolean inicial;
     @Column(name = "numeroIndice")
@@ -55,11 +55,11 @@ public class ClaseContenida implements Serializable {
     }
 
 
-    public Integer getAntiguedadMinima() {
+    public Long getAntiguedadMinima() {
         return antiguedadMinima;
     }
 
-    public void setAntiguedadMinima(Integer antiguedadMinima) {
+    public void setAntiguedadMinima(Long antiguedadMinima) {
         this.antiguedadMinima = antiguedadMinima;
     }
 

@@ -92,7 +92,7 @@ public class ClaseVigente implements Serializable {
         this.vigente = vigente;
     }
 
-    public Categoria getIdCategoria() {
+    public Categoria getCategoria() {
         return idCategoria;
     }
 
@@ -100,7 +100,7 @@ public class ClaseVigente implements Serializable {
         this.idCategoria = idCategoria;
     }
 
-    public Clase getIdClase() {
+    public Clase getClase() {
         return idClase;
     }
 
