@@ -131,7 +131,7 @@ public class Categoria implements Serializable {
         this.requisitoList = requisitoList;
     }
 
-    public List<ClaseContenida> getClaseContenidaList() {
+    public List<ClaseContenida> getClaseContenida() {
         return claseContenidaList;
     }
 
@@ -172,13 +172,14 @@ public class Categoria implements Serializable {
         return "Entidades.Categoria[id=" + id + "]";
     }
 
-    public void addClase(Clase clase, int antMinima, boolean inicial){
+    public void addClase(Clase clase, long antMinima, boolean inicial){
         if(claseContenidaList==null)
             claseContenidaList = new ArrayList<ClaseContenida>();
         ClaseContenida cc = new ClaseContenida();
         cc.setClase(clase);
         cc.setAntiguedadMinima(antMinima);
         cc.setInicial(inicial);
+        cc.setNumeroIndiceOrden(claseContenidaList.size()-1);
         cc.setCategoria(this);
         claseContenidaList.add(cc);
         cc= null;
