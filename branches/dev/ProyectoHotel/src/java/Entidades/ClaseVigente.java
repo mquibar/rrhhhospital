@@ -96,7 +96,7 @@ public class ClaseVigente implements Serializable {
         return idCategoria;
     }
 
-    public void setIdCategoria(Categoria idCategoria) {
+    public void setCategoria(Categoria idCategoria) {
         this.idCategoria = idCategoria;
     }
 
@@ -104,7 +104,7 @@ public class ClaseVigente implements Serializable {
         return idClase;
     }
 
-    public void setIdClase(Clase idClase) {
+    public void setClase(Clase idClase) {
         this.idClase = idClase;
     }
 
@@ -112,7 +112,7 @@ public class ClaseVigente implements Serializable {
         return idEmpleado;
     }
 
-    public void setIdEmpleado(Empleado idEmpleado) {
+    public void setEmpleado(Empleado idEmpleado) {
         this.idEmpleado = idEmpleado;
     }
 
