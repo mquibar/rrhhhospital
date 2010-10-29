@@ -15,6 +15,7 @@ import Intermediarios.IntermediarioDomicilio;
 import Intermediarios.IntermediarioLocalidad;
 import Intermediarios.IntermediarioPais;
 import Intermediarios.IntermediarioProvincia;
+import java.util.List;
 import javax.ejb.Stateless;
 
 /**
@@ -24,6 +25,7 @@ import javax.ejb.Stateless;
 @Stateless
 public class ExpConsultarDomicilioBeans implements ExpConsultarDomicilio {
 
+    /* Consulta una provincia en particular por nombre */
     public Provincia consultarProvincia(String nombre) {
         IntermediarioProvincia intermediario = new IntermediarioProvincia ();
         Provincia provincia;
@@ -35,6 +37,7 @@ public class ExpConsultarDomicilioBeans implements ExpConsultarDomicilio {
         return provincia;
     }
 
+    /* Consulta una Localidad en particular por nombre */
     public Localidad consultarLocalidad(String nombre) {
         IntermediarioLocalidad intermediario = new IntermediarioLocalidad ();
         Localidad localidad;
@@ -46,6 +49,7 @@ public class ExpConsultarDomicilioBeans implements ExpConsultarDomicilio {
         return localidad;
     }
 
+    /* Consulta un Pais en particular por nombre */
     public Pais consultarPais(String nombre) {
        IntermediarioPais intermediario = new IntermediarioPais ();
         Pais pais;
@@ -56,7 +60,8 @@ public class ExpConsultarDomicilioBeans implements ExpConsultarDomicilio {
         }
         return pais;
     }
-    /*relizar con DTO*/
+
+    /* Consulta Domicilio especifico */
     public Domicilio consultarDomicilio (String calle, String numero, String localidad, String provincia, String pais) {
         IntermediarioDomicilio intermediario = new IntermediarioDomicilio();
         Domicilio domicilio;
@@ -74,9 +79,43 @@ public class ExpConsultarDomicilioBeans implements ExpConsultarDomicilio {
         dto=null;
         intermediario=null;
         return domicilio;
-
-
     }
-     
+
+    /*Devuleve la lista de paises del sistema */
+    public List<Pais> consultarTodosPaises () {
+        IntermediarioPais intermediario = new IntermediarioPais ();
+        List <Pais> pais;
+        try {
+            pais = intermediario.findAll();
+        } catch (NullPointerException e) {
+            pais=null;
+        }
+        return pais;
+     }
+
+    /*Devuleve la lista de localidades del sistema */
+    public List<Localidad> consultarTodasLocalidades () {
+        IntermediarioLocalidad intermediario = new IntermediarioLocalidad ();
+        List <Localidad> localidad;
+        try {
+            localidad = intermediario.findAll();
+        } catch (NullPointerException e) {
+            localidad = null;
+        }
+        return localidad;
+     }
+
+    /*Devuleve la lista de provincias del sistema */
+    public List<Provincia> consultarTodasProvincias () {
+       IntermediarioProvincia intermediario = new IntermediarioProvincia ();
+        List <Provincia> provincia;
+        try {
+            provincia = intermediario.findAll();
+        } catch (NullPointerException e) {
+            provincia=null;
+        }
+        return provincia;
+     }
+    
 
 }
