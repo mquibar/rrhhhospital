@@ -20,7 +20,7 @@ import org.hibernate.criterion.Order;
  *
  * @author MARIANO
  */
-public class IntermediarioEmpleado extends Intermediario <Empleado> {
+public class IntermediarioEmpleado extends Intermediario<Empleado> {
 
     public IntermediarioEmpleado() {
         _clase="Empleado";

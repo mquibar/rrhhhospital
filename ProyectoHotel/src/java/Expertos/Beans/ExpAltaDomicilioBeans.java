@@ -6,7 +6,11 @@
 package Expertos.Beans;
 
 import Entidades.Domicilio;
+import Entidades.Localidad;
+import Entidades.Provincia;
 import Expertos.ExpAltaDomicilio;
+import Intermediarios.GestorConeccion;
+import Intermediarios.IntermediarioDomicilio;
 import javax.ejb.Stateless;
 
 /**
@@ -22,16 +26,35 @@ public class ExpAltaDomicilioBeans implements ExpAltaDomicilio {
         _domicilio = new Domicilio();
     }
 
-    public Domicilio altaDomicilio(String barrio, String calle, String numero, String piso, String departamanto, String localidad, String provincia) {
+    public Domicilio altaDomicilio(String barrio, String calle, String numero,
+            String piso, String departamanto, Localidad localidad, Provincia provincia) {
+        
+        Domicilio resultado;
+
         _domicilio.setBarrio(barrio);
         _domicilio.setCalle(calle);
         _domicilio.setNumero(Integer.parseInt(numero));
         _domicilio.setPiso(piso);
         _domicilio.setDepartamento(departamanto);
-        ExpConsultarDomicilioBeans experto = new ExpConsultarDomicilioBeans();
-        _domicilio.setIdLocalidad(experto.consultarLocalidad(localidad));
-        _domicilio.setIdProvincia(experto.consultarProvincia(provincia));
+        _domicilio.setIdLocalidad(localidad);
+        _domicilio.setIdProvincia(provincia);
 
-        return _domicilio;
+        GestorConeccion.getInstance().beginTransaction();
+        try{
+            if( (new IntermediarioDomicilio()).guardar(_domicilio) ){
+                resultado = _domicilio;
+                GestorConeccion.getInstance().commitTransaction();
+            }
+            else{
+                resultado = null;
+                GestorConeccion.getInstance().rollbackTransaction();
+            }
+        }catch(Exception ex){
+            System.out.println("************ <Error en el Experto de Alta de Domicilio>");
+            ex.printStackTrace();
+            System.out.println("<\\Error> *****************");
+            resultado = null;
+        }
+        return resultado;
     }
 }

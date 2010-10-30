@@ -5,78 +5,38 @@
 
 package Expertos.Beans;
 
-import Entidades.Domicilio;
+import Entidades.Localidad;
 import Entidades.Pais;
 import Entidades.Profesional;
+import Entidades.Provincia;
 import Entidades.Sexo;
 import Expertos.ExpAltaProfesional;
-import Intermediarios.GestorConeccion;
-import Intermediarios.IntermediarioProfesional;
 import java.util.Date;
-import javax.ejb.Stateless;
 
 /**
  *
  * @author MARIANO
  */
-@Stateless
-public class ExpAltaProfesionalBeans implements ExpAltaProfesional {
 
-    private Profesional _profesional;
+public class ExpAltaProfesionalBeans extends ExpAltaEmpleadoBeans implements ExpAltaProfesional {
 
     public ExpAltaProfesionalBeans() {
-        _profesional = new Profesional();
+        _persona = new Profesional();
     }
 
     public void agregarProfesional(Profesional profesional) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    /*Ver si implementar*/ 
-    public void iniciarAlta(String nombre, String apellido, String dni, Date fechaNacimiento, long telefono, Domicilio idDomicilio, Pais idPais, Sexo idSexo, String matricula, String titulo) {
-       
+    public boolean iniciarAlta(String nombre, String apellido, String dni, Date fechaNacimiento,
+            long telefono, String barrio, String calle, String numero, String piso,
+            String departamanto, Localidad localidad, Provincia provincia, Pais pais, Sexo sexo,
+            String cuil, String matricula, String titulo) {
+
+        ((Profesional) _persona).setMatricula(matricula);
+        ((Profesional) _persona).setTitulo(titulo);
+
+        return super.iniciarAlta(nombre, apellido, dni, fechaNacimiento, telefono,
+                barrio, calle, numero, piso, departamanto, localidad, provincia, pais, sexo, cuil);
     }
-
-    public boolean iniciarAlta(String nombre, String apellido, String dni, Date fechaNacimiento, long telefono, String barrio, String calle, String numero, String piso, String departamanto, String localidad, String provincia, String pais, String sexo, String matricula, String titulo) {
-        //falta guardar el sexo
-        boolean resultado;
-        _profesional.setNombre(nombre);
-        _profesional.setApellido(apellido);
-        _profesional.setDni(dni);
-        _profesional.setFechaNacimiento(fechaNacimiento);
-        _profesional.setTelefono(telefono);
-        agregarDomicilio(barrio, calle, numero, piso, departamanto, localidad, provincia, pais);
-        _profesional.setMatricula(matricula);
-        _profesional.setTitulo(titulo);
-        GestorConeccion.getInstance().beginTransaction();
-        try{
-            if( (new IntermediarioProfesional()).guardar(_profesional) ){
-                resultado = true;
-                GestorConeccion.getInstance().commitTransaction();
-            }
-            else{
-                resultado = false;
-                GestorConeccion.getInstance().rollbackTransaction();
-            }
-        }catch(Exception ex){
-            System.out.println("************ <Error en el Experto de Alta de Profesional>");
-            ex.printStackTrace();
-            System.out.println("<\\Error> *****************");
-            resultado = false;
-        }
-        return resultado;
-    }
-
-    private void agregarDomicilio (String barrio, String calle, String numero,
-            String piso, String departamanto, String localidad, String provincia, String pais) {
-
-        ExpAltaDomicilioBeans expertoD = new ExpAltaDomicilioBeans();
-        ExpConsultarDomicilioBeans expertoC = new ExpConsultarDomicilioBeans();
-        _profesional.setIdDomicilio(expertoD.altaDomicilio(barrio, calle, numero, piso, departamanto, localidad, provincia));
-        _profesional.setIdPais(expertoC.consultarPais(pais));
-
-    }
-
-    
-
 }
