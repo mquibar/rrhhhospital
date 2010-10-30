@@ -15,6 +15,6 @@ import javax.ejb.Remote;
 @Remote
 public interface ExpAltaDomicilio {
 
-    public Domicilio altaDomicilio (String barrio, String calle, String numero, String piso, String departamanto, String localidad, String  Provincia);
+    public Entidades.Domicilio altaDomicilio(java.lang.String barrio, java.lang.String calle, java.lang.String numero, java.lang.String piso, java.lang.String departamanto, Entidades.Localidad localidad, Entidades.Provincia provincia);
 
 }

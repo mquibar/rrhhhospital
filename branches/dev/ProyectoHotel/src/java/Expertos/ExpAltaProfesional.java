@@ -5,26 +5,21 @@
 
 package Expertos;
 
-import Entidades.Domicilio;
-import Entidades.Pais;
-import Entidades.Sexo;
 import java.util.Date;
-import javax.ejb.Remote;
+
 
 /**
  *
  * @author MARIANO
  */
-@Remote
-public interface ExpAltaProfesional {
+
+public interface ExpAltaProfesional extends ExpAltaEmpleado {
 
     public void agregarProfesional (Entidades.Profesional profesional);
-    public void iniciarAlta (String nombre, String apellido, String dni, Date fechaNacimiento,
-            long telefono, Domicilio idDomicilio, Pais idPais, Sexo idSexo, String matricula, String titulo);
-    public boolean iniciarAlta (String nombre, String apellido, String dni, Date fechaNacimiento,
-            long telefono, String barrio, String calle, String numero, String piso, String departamanto,
-            String localidad, String provincia, String Pais, String Sexo, String matricula, String titulo );
 
-
+    public boolean iniciarAlta(String nombre, String apellido, String dni, java.util.Date fechaNacimiento,
+            long telefono, String barrio, String calle, String numero, String piso,
+            String departamanto, Entidades.Localidad localidad, Entidades.Provincia provincia, Entidades.Pais pais,
+            Entidades.Sexo sexo, String cuil, String matricula, String titulo);
 
 }

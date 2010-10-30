@@ -5,12 +5,17 @@
 
 package Expertos.Beans;
 
-import Entidades.Domicilio;
 import Entidades.Empleado;
+import Entidades.Localidad;
 import Entidades.Pais;
+import Entidades.Provincia;
 import Entidades.Sexo;
 import Expertos.ExpAltaEmpleado;
+import Intermediarios.IntermediarioEmpleado;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import javax.ejb.Stateless;
 
 /**
@@ -18,44 +23,40 @@ import javax.ejb.Stateless;
  * @author Juan
  */
 @Stateless
-public class ExpAltaEmpleadoBeans implements ExpAltaEmpleado {
-
-    private Empleado _empleado;
+public class ExpAltaEmpleadoBeans extends ExpAltaPersonalBeans implements ExpAltaEmpleado {
 
     public ExpAltaEmpleadoBeans() {
-        _empleado = new Empleado();
+        _persona = new Empleado();
     }
+
+    public Map<String, List> iniciar(){
+        Map<String,List> listas = new HashMap<String, List>();
+        listas.put("TIPO", (new Intermediarios.IntermediarioTipoEmpleado()).findAll());
+        listas.put("PAIS", (new Intermediarios.IntermediarioPais()).findAll());
+        listas.put("LOCALIDAD", (new Intermediarios.IntermediarioLocalidad().findAll()));
+        listas.put("PROVINCIA", (new Intermediarios.IntermediarioProvincia().findAll()));
+        return listas;
+    }
+
 
     public void agregarEmpleado(Empleado empleado) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public void iniciarAlta(String nombre, String apellido, String dni, Date fechaNacimiento,
-            long telefono, Domicilio idDomicilio, Pais idPais, Sexo idSexo, String cuil) {
-
-    }
-
-    public void iniciarAlta(String nombre, String apellido, String dni, Date fechaNacimiento,
+    public boolean iniciarAlta(String nombre, String apellido, String dni, Date fechaNacimiento,
             long telefono, String barrio, String calle, String numero, String piso, String departamanto,
-            String localidad, String provincia, String pais, String Sexo, String cuil) {
-        //falta guardar el sexo
-        _empleado.setNombre(nombre);
-        _empleado.setApellido(apellido);
-        _empleado.setDni(dni);
-        _empleado.setFechaNacimiento(fechaNacimiento);
-        _empleado.setTelefono(telefono);
-        agregarDomicilio(barrio, calle, numero, piso, departamanto, localidad, provincia, pais);
-        _empleado.setCuil(cuil);
+            Localidad localidad, Provincia provincia, Pais pais, Sexo Sexo, String cuil) {
+
+        ((Empleado) _persona).setCuil(cuil);
+        ((Empleado) _persona).setFechaIngreso(new Date());
+        
+        return super.iniciarAlta(nombre, apellido, dni, fechaNacimiento, telefono, barrio,
+                calle, numero, piso, departamanto, localidad, provincia, pais, Sexo);
     }
 
-    private void agregarDomicilio (String barrio, String calle, String numero,
-            String piso, String departamanto, String localidad, String provincia, String pais) {
-
-        ExpAltaDomicilioBeans expertoD = new ExpAltaDomicilioBeans();
-        ExpConsultarDomicilioBeans expertoC = new ExpConsultarDomicilioBeans();
-        _empleado.setIdDomicilio(expertoD.altaDomicilio(barrio, calle, numero, piso, departamanto, localidad, provincia));
-        _empleado.setIdPais(expertoC.consultarPais(pais));
-
+    public boolean agregarLegajo(Empleado empleado, int legajo) {
+        empleado.setLegajo(legajo);
+        return (new IntermediarioEmpleado()).actualizar(empleado);
     }
 
 }

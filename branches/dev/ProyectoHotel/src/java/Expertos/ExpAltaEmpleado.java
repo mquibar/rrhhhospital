@@ -5,10 +5,6 @@
 
 package Expertos;
 
-import Entidades.Domicilio;
-import Entidades.Pais;
-import Entidades.Sexo;
-import java.util.Date;
 import javax.ejb.Remote;
 
 /**
@@ -16,13 +12,17 @@ import javax.ejb.Remote;
  * @author Juan
  */
 @Remote
-public interface ExpAltaEmpleado {
+public interface ExpAltaEmpleado extends ExpAltaPersonal {
 
     public void agregarEmpleado (Entidades.Empleado empleado);
-    public void iniciarAlta (String nombre, String apellido, String dni, Date fechaNacimiento,
-            long telefono, Domicilio idDomicilio, Pais idPais, Sexo idSexo, String cuil);
-    public void iniciarAlta (String nombre, String apellido, String dni, Date fechaNacimiento,
-            long telefono, String barrio, String calle, String numero, String piso, String departamanto,
-            String localidad, String provincia, String pais, String Sexo, String cuil);
+
+    public boolean agregarLegajo(Entidades.Empleado empleado, int legajo);
+
+    public java.util.Map<java.lang.String, java.util.List> iniciar();
+
+    public boolean iniciarAlta(java.lang.String nombre, java.lang.String apellido, java.lang.String dni,
+            java.util.Date fechaNacimiento, long telefono, java.lang.String barrio, java.lang.String calle,
+            java.lang.String numero, java.lang.String piso, java.lang.String departamanto, Entidades.Localidad localidad,
+            Entidades.Provincia provincia, Entidades.Pais pais, Entidades.Sexo Sexo, java.lang.String cuil);
 
 }

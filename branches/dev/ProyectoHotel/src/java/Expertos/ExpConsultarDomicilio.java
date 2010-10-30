@@ -25,9 +25,11 @@ public interface ExpConsultarDomicilio {
 
     public Entidades.Domicilio consultarDomicilio(java.lang.String calle, java.lang.String numero, java.lang.String localidad, java.lang.String provincia, java.lang.String pais);
 
+
     public java.util.List<Entidades.Pais> consultarTodosPaises();
 
     public java.util.List<Entidades.Localidad> consultarTodasLocalidades();
 
     public java.util.List<Entidades.Provincia> consultarTodasProvincias();
+
 }

@@ -11,6 +11,7 @@ import Entidades.Localidad;
 import Entidades.Pais;
 import Entidades.Provincia;
 import Expertos.ExpConsultarDomicilio;
+import Intermediarios.Intermediario;
 import Intermediarios.IntermediarioDomicilio;
 import Intermediarios.IntermediarioLocalidad;
 import Intermediarios.IntermediarioPais;
@@ -62,6 +63,7 @@ public class ExpConsultarDomicilioBeans implements ExpConsultarDomicilio {
     }
 
     /* Consulta Domicilio especifico */
+    /*relizar con DTO*/
     public Domicilio consultarDomicilio (String calle, String numero, String localidad, String provincia, String pais) {
         IntermediarioDomicilio intermediario = new IntermediarioDomicilio();
         Domicilio domicilio;
