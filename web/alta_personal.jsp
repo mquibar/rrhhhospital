@@ -24,7 +24,7 @@ if (request.getParameter("buttonCancel") != null)
 }
 else
 {
-    ctrlAltaProfesional c = new ctrlAltaProfesional();
+    ctrlAltaProfesional c = new ctrlAltaProfesional(true);
 
     String nombre           = getValue(request, "nombre");
     String apellido         = getValue(request, "apellido");
@@ -94,7 +94,7 @@ else
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Home</title>
+        <title>Alta Personal</title>
         <link href="./css/estilos.css" rel="stylesheet" type="text/css" />
         <script src="./tools/datepicker/datepickercontrol.js" type="text/javascript"></script>
         <link  href="./tools/datepicker/datepickercontrol.css" type="text/css" rel="stylesheet" />
@@ -130,7 +130,7 @@ else
 			 TIPO<br />
                         <br />
                         <select name="tipoEmpleado" size="1" id="tipoEmpleado" >
-                            <%= c.getModels("tipo").toString(tipoEmpleado)%>
+                            <%--= c.getModels("tipo").toString(tipoEmpleado)--%>
                         </select>
                         <br />
                         <br />
@@ -210,20 +210,20 @@ else
                         <br />
 		  País<br />
                         <select name="pais" id="pais">
-                            <%= c.getModels("pais").toString(pais)%>
+                            <%--= c.getModels("pais").toString(pais)--%>
                         </select>
                         <br />
                         <br />
 		  Provincia
                         <br />
                         <select name="provincia" id="provincia">
-                            <%= c.getModels("provincia").toString(provincia)%>
+                            <%--= c.getModels("provincia").toString(provincia)--%>
                         </select>
                         <br />
                         <br />
 		  Localidad<br />
                         <select name="localidad" id="localidad" >
-                            <%= c.getModels("localidad").toString(localidad)%>
+                            <%--= c.getModels("localidad").toString(localidad)--%>
                         </select>
                         <br />
                         <br />
