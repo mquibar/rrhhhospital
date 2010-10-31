@@ -54,5 +54,18 @@ public abstract class AbstractModelOptionList<E> {
         return _lista.get(Index - 1);
     }
 
+    public E getSelectedItem(String strIndex) {
+
+        int Index = 0;
+
+        try{Index = Integer.parseInt(strIndex);}
+        catch(Exception ex){Index = 0;}
+
+        if (Index == 0) {
+            return null;
+        }
+        return _lista.get(Index - 1);
+    }
+
     protected abstract String devolverValorCombo(E objeto);
 }
