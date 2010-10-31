@@ -1,4 +1,4 @@
-<%@page import="controllers.ctrlAltaPersonal" %>
+<%@page import="controllers.ctrlAltaProfesional" %>
 
 <%!
 String getValue(ServletRequest request, String varName)
@@ -24,7 +24,7 @@ if (request.getParameter("buttonCancel") != null)
 }
 else
 {
-    ctrlAltaPersonal c = new ctrlAltaPersonal();
+    ctrlAltaProfesional c = new ctrlAltaProfesional();
 
     String nombre           = getValue(request, "nombre");
     String apellido         = getValue(request, "apellido");
@@ -48,31 +48,31 @@ else
 
     if (request.getParameter("buttonSave") != null)
     {
-        c.iniciarAlta
-                (
-                 nombre,
-                 apellido,
-                 fechaNacimiento,
-                 dni,
-                 telefono,
-                 matricula,
-                 cuil,
-                 calle,
-                 numero,
-                 barrio,
-                 piso,
-                 departamento,
+//        c.iniciarAlta
+//                (
+//                 nombre,
+//                 apellido,
+//                 fechaNacimiento,
+//                 dni,
+//                 telefono,
+//                 matricula,
+//                 cuil,
+//                 calle,
+//                 numero,
+//                 barrio,
+//                 piso,
+//                 departamento,
 
-                 tipoEmpleado,
-                 localidad,
-                 provincia,
-                 pais
-                );
+//                 tipoEmpleado,
+//                 localidad,
+//                 provincia,
+//                 pais
+//                );
 
         mensageEstado = c.guardar();
     }
 
-    if (mensageEstado != "" && mensageEstado.indexOf("Error:") == -1)
+    if (mensageEstado != "" && mensageEstado.indexOf("Error") == -1)
     {
 
     %>
@@ -130,7 +130,7 @@ else
 			 TIPO<br />
                         <br />
                         <select name="tipoEmpleado" size="1" id="tipoEmpleado" >
-                            <%= c.getModels("tipo").toString()%>
+                            <%= c.getModels("tipo").toString(tipoEmpleado)%>
                         </select>
                         <br />
                         <br />
@@ -208,23 +208,24 @@ else
                         </label>
                         <br />
                         <br />
-		  Localidad<br />
-                        <select name="localidad" id="localidad" >
-                            <%= c.getModels("localidad").toString()%>
+		  País<br />
+                        <select name="pais" id="pais">
+                            <%= c.getModels("pais").toString(pais)%>
                         </select>
                         <br />
                         <br />
 		  Provincia
                         <br />
                         <select name="provincia" id="provincia">
-                            <%= c.getModels("provicncia").toString()%>
+                            <%= c.getModels("provincia").toString(provincia)%>
                         </select>
                         <br />
                         <br />
-		  País<br />
-                        <select name="pais" id="pais">
-                            <%= c.getModels("pais").toString()%>
+		  Localidad<br />
+                        <select name="localidad" id="localidad" >
+                            <%= c.getModels("localidad").toString(localidad)%>
                         </select>
+                        <br />
                         <br />
                     </div>
                     <div class="guardar">
