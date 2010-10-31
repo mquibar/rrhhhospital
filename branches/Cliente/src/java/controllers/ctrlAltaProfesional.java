@@ -60,6 +60,11 @@ public class ctrlAltaProfesional extends GeneralController{
         
     }
 
+    public String guardar()
+    {
+        return "Guardado con exito";
+    }
+
     public AbstractModelOptionList getModels(String key){
         return models.get(key.toUpperCase());
     }
