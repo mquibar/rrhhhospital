@@ -22,11 +22,17 @@ public class ctrlAltaAsignacionHorario extends GeneralController
     ExpConsultarTipoHorario _expTH;
     ExpConsultarPersonal _expPers;
 
+    ModelOptionProfesional _mpers;
+    ModelOptionTipoHorario _mth;
 
     public ctrlAltaAsignacionHorario() {
         _expAlta = (ExpAltaAsignacionHorario) super.getExpert(ExpAltaAsignacionHorario.class.getName());
         _expTH = (ExpConsultarTipoHorario) super.getExpert(ExpConsultarTipoHorario.class.getName());
         _expPers = (ExpConsultarPersonal) super.getExpert(ExpConsultarPersonal.class.getName());
+
+        _mpers = new ModelOptionProfesional(_expPers.listarProfesionalinOrder());
+        _mth = new ModelOptionTipoHorario(_expTH.listar());
+
     }
 
     public void iniciarAlta(
@@ -41,26 +47,22 @@ public class ctrlAltaAsignacionHorario extends GeneralController
          _expAlta.iniciarAlta(
              ManejaFechas.convertirString(fechaInicio),
              ManejaFechas.convertirString(fechaFin),
-             mpers.getSelectedItem(idEmpleado),
-             mth.getSelectedItem(idTipoHorario),
+             _mpers.getSelectedItem(idEmpleado),
+             _mth.getSelectedItem(idTipoHorario),
              descripcion,
              true);
     }
 
     public String guardar() {return _expAlta.guardar();}
-
-    ModelOptionProfesional mpers;
+    
     public String getOptionsEmpleado(String empleado)
     {
-        mpers = new ModelOptionProfesional(_expPers.listarProfesionalinOrder());
-        return  mpers.toString(empleado);
+        return  _mpers.toString(empleado);
     }
-
-    ModelOptionTipoHorario mth;
+    
     public String getOptionsTipoHorario(String tipoHorario)
     {
-        mth = new ModelOptionTipoHorario(_expTH.listar());
-        return  mth.toString(tipoHorario);
+        return  _mth.toString(tipoHorario);
     }
 
 

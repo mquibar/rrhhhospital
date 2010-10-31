@@ -60,6 +60,8 @@ public class ctrlAltaProfesional extends GeneralController{
         
     }
 
+    public ctrlAltaProfesional(Boolean deMentira){}
+
     public String guardar()
     {
         return "Guardado con exito";
