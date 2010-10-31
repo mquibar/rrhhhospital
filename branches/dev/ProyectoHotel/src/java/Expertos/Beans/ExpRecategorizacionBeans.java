@@ -9,16 +9,19 @@ import Entidades.Clase;
 import Entidades.ClaseContenida;
 import Entidades.ClaseVigente;
 import Entidades.Empleado;
+import Expertos.ExpRecategorizacion;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.ejb.Stateless;
 
 /**
  *
  * @author Manuel
  */
-public class ExpRecategorizacionBeans {
+@Stateless
+public class ExpRecategorizacionBeans implements ExpRecategorizacion {
 
     @EJB
     private Expertos.ExpConsultarCategoria _consultaCategorias;
@@ -38,6 +41,9 @@ public class ExpRecategorizacionBeans {
         int idx = 0;
         //Completa la lista de las categorias que se pueden listar
         for (Categoria c : categorias) {
+            if (c.getCupo() < 1) {
+                continue;
+            }
             contenidas = new ArrayList<ClaseContenida>();
             idx = 0;
             while (c.getClaseContenida().size() > idx &&
@@ -102,12 +108,18 @@ public class ExpRecategorizacionBeans {
             }
         }
         cv.setVigente(true);
+        if(categoria.getCupo()>1)
+            categoria.setCupo(categoria.getCupo() - 1);
         _empleado.getClaseVigenteList().add(cv);
 
         Intermediarios.GestorConeccion.getInstance().beginTransaction();
         try {
             if ((new Intermediarios.IntermediarioEmpleado()).actualizar(_empleado)) {
-                guardado = true;
+                if ((new Intermediarios.IntermediarioCategoria()).actualizar(categoria)) {
+                    guardado = true;
+                }
+            }
+            if (guardado) {
                 Intermediarios.GestorConeccion.getInstance().commitTransaction();
             } else {
                 Intermediarios.GestorConeccion.getInstance().rollbackTransaction();

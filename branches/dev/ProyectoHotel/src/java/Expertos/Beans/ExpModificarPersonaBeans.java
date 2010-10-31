@@ -5,11 +5,13 @@
 
 package Expertos.Beans;
 
+import Entidades.Empleado;
 import Entidades.Localidad;
 import Entidades.Pais;
 import Entidades.Persona;
 import Entidades.Provincia;
 import Expertos.ExpModificarPersona;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -22,6 +24,10 @@ public class ExpModificarPersonaBeans implements ExpModificarPersona {
 
     @EJB
     ExpAltaPersonalBeans expertoPersonal;
+
+    public List<Empleado> listarEmpleados(){
+        return ((new Intermediarios.IntermediarioEmpleado()).findAll());
+    }
     
     public boolean modificarDomicilioPersona (Persona persona, String barrio, String calle, String numero,
             String piso, String departamanto, Localidad localidad, Provincia provincia, Pais pais){
@@ -34,10 +40,6 @@ public class ExpModificarPersonaBeans implements ExpModificarPersona {
         persona.getIdDomicilio().setIdLocalidad(null);
 
         return (new Intermediarios.IntermediarioPersona().actualizar(persona));
-
-
-
-
 
     }
 
