@@ -11,8 +11,13 @@ package controllers;
  */
 public class ctrlLogin
 {
-    public String validar(String user, String pass)
+    public String login(String user, String pass)
     {
         return "Bienvenido al sistema";
+    }
+
+    public String getCurrentUserName()
+    {
+        return "Juan Ciullini";
     }
 }

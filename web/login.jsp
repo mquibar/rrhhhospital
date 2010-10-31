@@ -32,7 +32,7 @@ else
 
     if (request.getParameter("buttonSave") != null)
     {
-        mensageEstado = c.validar(user, pass);
+        mensageEstado = c.login(user, pass);
     }
 
     if (mensageEstado != "" && mensageEstado.indexOf("Error:") == -1)
