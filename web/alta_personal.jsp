@@ -130,7 +130,7 @@ else
 			 TIPO<br />
                         <br />
                         <select name="tipoEmpleado" size="1" id="tipoEmpleado" >
-                            <--%= c.getModels("tipo").toString()%>
+                            <%= c.getModels("tipo").toString()%>
                         </select>
                         <br />
                         <br />
