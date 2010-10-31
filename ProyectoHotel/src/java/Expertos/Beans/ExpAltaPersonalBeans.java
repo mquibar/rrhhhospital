@@ -14,6 +14,9 @@ import Expertos.ExpAltaPersonal;
 import Intermediarios.GestorConeccion;
 import Intermediarios.IntermediarioPersona;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import javax.ejb.EJB;
 
 /**
@@ -30,6 +33,15 @@ public class ExpAltaPersonalBeans implements ExpAltaPersonal {
 
     public ExpAltaPersonalBeans(Persona _personal) {
         this._persona = _personal;
+    }
+
+    public Map<String, List> iniciar(){
+        Map<String,List> listas = new HashMap<String, List>();
+        listas.put("TIPO", (new Intermediarios.IntermediarioTipoEmpleado()).findAll());
+        listas.put("PAIS", (new Intermediarios.IntermediarioPais()).findAll());
+        listas.put("LOCALIDAD", (new Intermediarios.IntermediarioLocalidad().findAll()));
+        listas.put("PROVINCIA", (new Intermediarios.IntermediarioProvincia().findAll()));
+        return listas;
     }
 
     //Inicia a una persona
