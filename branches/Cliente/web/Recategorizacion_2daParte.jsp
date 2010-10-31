@@ -1,4 +1,4 @@
-<%@page import="controllers.ctrlAltaLegajo" %>
+<%@page import="controllers.ctrlRecategorizacion" %>
 
 <%!
 String getValue(ServletRequest request, String varName)
@@ -24,10 +24,9 @@ if (request.getParameter("buttonCancel") != null)
 }
 else
 {
-    ctrlAltaLegajo c = new ctrlAltaLegajo();
+    ctrlRecategorizacion c = new ctrlRecategorizacion();
 
     String empleado         = getValue(request, "empleado");
-    String legajo           = getValue(request, "legajo");
     String categoria        = getValue(request, "categoria");
 
     c.setEmpleadoSeleccionado(empleado);
@@ -39,7 +38,6 @@ else
         c.iniciarModificacion
                 (
                  empleado,
-                 legajo,
                  categoria
                 );
 
@@ -63,7 +61,6 @@ else
     {
 
 %>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -85,31 +82,27 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
     <div class="log_off">LogOff </div>
   </div>
 </div>
-<div class="noticias" id="noticias_2"> Alta Legajo<br />
+<div class="noticias" id="noticias_2"> Recategorización<br />
   <div class="forms">
-    <div class="izquierda">Empleado: <%= c.getNombreEmpleadoSeleccionado()%><br />
+    <div class="izquierda">
+      <p>Empleado: <%= c.getNombreEmpleadoSeleccionado()%></p>
+      <p>Categoria: <%= c.getNombreCategoriaEmpleadoSeleccionado()%><br />
+      </p>
         <%
         if(mensageEstado != "")
         {
             out.println("<p class='error'>" + mensageEstado + "</p>");
         }
         %>
-<form id="form1" name="form1" method="post" action="">
-
-        <p>Legajo - Categoria<br />
-        </p>
+      <form id="form1" name="form1" method="post" action="">
+        <p>&nbsp;</p>
         <input type="hidden" name="empleado" id="empleado" value='<%=empleado%>'/>
-        <p>Legajo<br />
-          <label>
-            <input type="legajo" name="legajo" id="legajo" value='<%=legajo%>'/>
-          </label>
-        </p>
-        <p>Categoria<br />
+        <p>Categorias Posibles<br />
           <select name="categoria" size="1" id="categoria">
                 <%= c.getModels("categoriasElegibles").toString()%>
           </select>
         </p>
-        <p>&nbsp;</p>
+<p>&nbsp;</p>
         <p>
           <input type="submit" name="buttonSave" id="buttonSave" value="Actualizar" />
           <input type="submit" name="buttonCancel" id="buttonCancel" value="Cancelar" />
