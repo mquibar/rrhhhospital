@@ -189,7 +189,7 @@ margin:2px 0px 0px 2px;
 	<ul class="pureCssMenum">
 		<li class="pureCssMenui"><a class="pureCssMenui" href="./gestionar_personal.html">Gestionar personal</a></li>
 		<li class="pureCssMenui"><a class="pureCssMenui" href="./Consultar_Persona.html">Consultar personal</a></li>
-		<li class="pureCssMenui"><a class="pureCssMenui" href="./Alta_Legajo.jsp">Asignar legajo</a></li>
+		<li class="pureCssMenui"><a class="pureCssMenui" href="./Alta_Legajo_Final.jsp">Asignar legajo</a></li>
 	</ul>
 	<!--[if lte IE 6]></td></tr></table></a><![endif]--></li>
 	<li class="pureCssMenui0"><a class="pureCssMenui0" href="#"><span>Horarios</span><![if gt IE 6]></a><![endif]><!--[if lte IE 6]><table><tr><td><![endif]-->
@@ -201,9 +201,9 @@ margin:2px 0px 0px 2px;
 	<!--[if lte IE 6]></td></tr></table></a><![endif]--></li>
 	<li class="pureCssMenui0"><a class="pureCssMenui0" href="#"><span>Seguimiento</span><![if gt IE 6]></a><![endif]><!--[if lte IE 6]><table><tr><td><![endif]-->
 	<ul class="pureCssMenum">
-		<li class="pureCssMenui"><a class="pureCssMenui" href="#">Gestionar categoria</a></li>
+		<li class="pureCssMenui"><a class="pureCssMenui" href="./gestionar_categoria.html">Gestionar categoria</a></li>
 		<li class="pureCssMenui"><a class="pureCssMenui" href="./gestionar_departamento.html">Gestionar departamentos</a></li>
-   		<li class="pureCssMenui"><a class="pureCssMenui" href="./Recategorizacion_1Parte.jsp">Recategorizar Empleado</a></li>
+   		<li class="pureCssMenui"><a class="pureCssMenui" href="./Recategorizacion_Final.jsp">Recategorizar Empleado</a></li>
 		<li class="pureCssMenui"><a class="pureCssMenui" href="#">Consultar categorias</a></li>
 		<li class="pureCssMenui"><a class="pureCssMenui" href="#">Consultar departamento</a></li>
 	</ul>
