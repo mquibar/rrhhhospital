@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Home</title>
-<link href="../css/estilos.css" rel="stylesheet" type="text/css" />
+<link href="./css/estilos.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
 <!--
 function MM_jumpMenu(targ,selObj,restore){ //v3.0
@@ -15,7 +15,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 
 <body>
 <div class="cabecera">
-  <div class="logo">LOGO</div>
+  <div class="logo"></div>
   <div class="user">
     <div class="user_2">User: </div>
     <div class="log_off">LogOff </div>
