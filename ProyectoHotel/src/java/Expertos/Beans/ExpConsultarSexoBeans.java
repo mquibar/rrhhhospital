@@ -6,14 +6,16 @@
 package Expertos.Beans;
 
 import Entidades.Sexo;
-import Expertos.ExpertoConsultarSexo;
+import Expertos.ExpConsultarSexo;
 import Intermediarios.IntermediarioSexo;
+import javax.ejb.Stateless;
 
 /**
  *
  * @author MARIANO
  */
-public class ExpConsultarSexoBeans implements ExpertoConsultarSexo {
+@Stateless
+public class ExpConsultarSexoBeans implements ExpConsultarSexo {
 
     public Sexo listarSexo (String sexo) {
         return ( new IntermediarioSexo().findBySexo(sexo));

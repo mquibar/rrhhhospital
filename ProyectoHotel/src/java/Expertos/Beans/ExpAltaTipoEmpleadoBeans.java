@@ -42,7 +42,7 @@ public class ExpAltaTipoEmpleadoBeans implements ExpAltaTipoEmpleado {
         _tipoEmpleado.setNombre(nombre);
         _tipoEmpleado.setCodigo(codigo);
 
-        _flagSave = validar();
+        _flagSave = true;
     }
 
     private boolean validar()

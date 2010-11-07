@@ -12,6 +12,8 @@ import javax.ejb.Remote;
  * @author MARIANO
  */
 @Remote
-public interface ExpertoConsultarSexo {
+public interface ExpConsultarSexo {
+
+    public Entidades.Sexo listarSexo(java.lang.String sexo);
 
 }
