@@ -25,7 +25,7 @@ import javax.persistence.Table;
  * @author Manuel
  */
 @Entity
-@Table(name = "TipoRegistro", catalog = "hospital", schema = "public")
+@Table(name = "TipoRegistro")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @NamedQueries({@NamedQuery(name = "TipoRegistro.findAll", query = "SELECT t FROM TipoRegistro t"), @NamedQuery(name = "TipoRegistro.findById", query = "SELECT t FROM TipoRegistro t WHERE t.id = :id")})
 public class TipoRegistro implements Serializable {
