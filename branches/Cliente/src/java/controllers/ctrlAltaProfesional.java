@@ -5,18 +5,13 @@
 
 package controllers;
 
-import Entidades.Localidad;
-import Entidades.Pais;
-import Entidades.Provincia;
-import Entidades.Sexo;
 import Expertos.ExpAltaProfesional;
-import java.util.Date;
+import Expertos.ExpConsultarSexo;
+import Expertos.ExpAltaTipoEmpleado;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import models.combos.AbstractModelOptionList;
-import models.combos.ModelOptionPais;
-import models.combos.ModelOptionTipoEmpleado;
+import models.combos.*;
 
 /**
  *
@@ -25,37 +20,53 @@ import models.combos.ModelOptionTipoEmpleado;
 public class ctrlAltaProfesional extends GeneralController{
 
     private ExpAltaProfesional exp;
+    private ExpConsultarSexo expsexo;
+    private ExpAltaTipoEmpleado exptipo;
     private Map<String,AbstractModelOptionList> models;
+    private ModelOptionPais modelpais;
+    private ModelOptionProvincia modelprovincia;
+    private ModelOptionLocalidad modellocalidad;
+
 
     public ctrlAltaProfesional() {
+        exptipo =(ExpAltaTipoEmpleado)getExpert(ExpAltaTipoEmpleado.class.getName());
+        exptipo.iniciarAlta("Empleado", "1");
+        if(exptipo.guardarTipoEmpleado())
+            System.out.println("Todo bien con la DB");
         exp =(ExpAltaProfesional)getExpert(ExpAltaProfesional.class.getName());
+        expsexo =(ExpConsultarSexo)getExpert(ExpConsultarSexo.class.getName());
         Map<String,List> listas;
         listas= exp.iniciar();
         models = new HashMap<String, AbstractModelOptionList>();
+        modellocalidad = new ModelOptionLocalidad(listas.get("LOCALIDAD"));
+        modelprovincia = new ModelOptionProvincia(listas.get("PROVINCIA"));
+        modelpais = new ModelOptionPais(listas.get("PAIS"));
+
         models.put("TIPO", new ModelOptionTipoEmpleado(listas.get("TIPO")));
-        models.put("PAIS", new ModelOptionPais(listas.get("PAIS")));
-        models.put("LOCALIDAD", new ModelOptionPais(listas.get("LOCALIDAD")));
-        models.put("PROVINCIA", new ModelOptionPais(listas.get("PROVINCIA")));
+        models.put("PAIS", modelpais);
+        models.put("LOCALIDAD", modellocalidad);
+        models.put("PROVINCIA", modelprovincia);
     }
 
-    public void iniciarAlta (String nombre, String apellido, String dni,
-            Date fechaNacimiento, long telefono, String barrio,
+    public String iniciarAlta (String nombre, String apellido, String dni,
+            String fechaNacimiento, String telefono, String barrio,
             String calle, String numero, String piso, String departamanto,
-            Localidad localidad, Provincia provincia, Pais pais, Sexo sexo, String cuil, String matricula, String titulo){
+            String localidad, String provincia, String pais, String sexo, String cuil, String matricula, String titulo){
 
         try {
             
-            if(exp.iniciarAlta(nombre,apellido,dni,fechaNacimiento,telefono,barrio,
-                    calle,numero,piso,departamanto,localidad,provincia,pais,sexo,cuil,matricula,titulo)){
-                System.out.println("Guardado");
-                return;
+            if(exp.iniciarAlta(nombre,apellido,dni,java.sql.Date.valueOf(fechaNacimiento),Long.parseLong(telefono),barrio,
+                    calle,numero,piso,departamanto,modellocalidad.getSelectedItem(localidad),modelprovincia.getSelectedItem(provincia),
+                    modelpais.getSelectedItem(pais),expsexo.listarSexo(sexo),cuil,matricula,titulo)){
+                return "Guardado";
+                
             }
             else{
-                System.out.println("Error al Guardar");
-                return;
+                return "Error al Guardar";
+                
             }
         } catch (Exception ex) {
-            System.out.println("Error de conexion con servidor de aplicaciones");
+            return "Error de conexion con servidor de aplicaciones";
         }
         
     }
