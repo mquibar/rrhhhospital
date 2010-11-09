@@ -13,6 +13,6 @@ import system.exception.SystemException;
  * @author Manuel
  */
 @Remote
-public interface ExpLogInRemote {
-    void logIn(String user, String Password) throws SystemException;
+public interface ExpLogIn {
+     void logIn(String user, String Password) throws SystemException;
 }
