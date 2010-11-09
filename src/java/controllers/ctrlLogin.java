@@ -5,14 +5,23 @@
 
 package controllers;
 
+import javax.ejb.EJB;
+import security.ExpLogIn;
+import system.exception.SystemException;
+
 /**
  *
  * @author leoroot
  */
 public class ctrlLogin
 {
-    public String login(String user, String pass)
+    @EJB
+    ExpLogIn _exp;
+
+    public String login(String user, String pass) throws SystemException
     {
+        pass = tools.Encriptador.getStringMessageDigest(pass, "MD5");
+        _exp.logIn(user, pass);
         return "Bienvenido al sistema";
     }
 
@@ -20,4 +29,5 @@ public class ctrlLogin
     {
         return "Juan Ciullini";
     }
+
 }
