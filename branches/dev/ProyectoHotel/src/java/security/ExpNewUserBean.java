@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package system;
+package security;
 
 import DTO.DtoUsuario;
 import Entidades.seguridad.Perfil;
@@ -13,54 +13,51 @@ import Intermediarios.IntermediarioUsuario;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
+import system.exception.DuplicateKeyException;
+import system.exception.GenericException;
+import system.exception.InvalidDataException;
+import system.exception.SystemException;
 
 /**
  *
  * @author Manuel
  */
 @Stateless
-public class ExpUserBean implements ExpNewUser {
+public class ExpNewUserBean implements ExpNewUser {
 
     public List<Perfil> iniciarNewUser() {
         return (new IntermediarioPerfil()).findAll();
     }
 
-    public boolean newUser(String nombre, String password, Perfil... perfiles) {
-        if (!userNameIsValue(nombre)) {
-            return false;
-        }
-        if (!passwordIsValue(password)) {
-            return false;
-        }
+    public void newUser(String nombre, String password, Perfil... perfiles) throws SystemException {
+        userNameVerify(nombre);
+        passwordVerify(password);
         Usuario usuario = new Usuario();
         usuario.setNombre(nombre);
-        usuario.setPassword(Tools.Encriptador.getStringMessageDigest(password, Tools.Encriptador.MD5));
+        usuario.setPassword(Tools.Encriptador.getStringMessageDigest(password,"MD5"));
         usuario.setEliminado(false);
         usuario.setPerfiles(new ArrayList<Perfil>());
         for (Perfil perfil : perfiles) {
             usuario.getPerfiles().add(perfil);
         }
-        boolean guardado= false;
         try {
             GestorConeccion.getInstance().beginTransaction();
             if( (new IntermediarioUsuario()).guardar(usuario) ){
                 GestorConeccion.getInstance().commitTransaction();
-                guardado = true;
             }
             else{
                 GestorConeccion.getInstance().rollbackTransaction();
-                guardado=false;
+                throw new Exception("No se pudo guardar el objeto");
             }
         } catch (Exception e) {
-            return false;
+            throw new GenericException("Error al guardar: "+e.getMessage());
         }
-        return guardado;
     }
 
-    private boolean userNameIsValue(String nombre) {
+    private void userNameVerify(String nombre) throws InvalidDataException, DuplicateKeyException{
 
         if (nombre == null || nombre.length() == 0) {
-            return false;
+            throw new InvalidDataException("usuario", "dato no ingresado");
         }
 
         DtoUsuario dto = new DtoUsuario();
@@ -68,16 +65,14 @@ public class ExpUserBean implements ExpNewUser {
         Usuario user = null;
         try {
             user = (new IntermediarioUsuario()).findByDto(dto).get(0);
-            return false;
+            throw new DuplicateKeyException("usuario", nombre);
         } catch (Exception e) {
-            return true;
         }
     }
 
-    private boolean passwordIsValue(String password) {
+    private void passwordVerify(String password) throws InvalidDataException {
         if (password == null || password.length() == 0) {
-            return false;
+            throw new InvalidDataException("password", "password invalido");
         }
-        return true;
     }
 }
