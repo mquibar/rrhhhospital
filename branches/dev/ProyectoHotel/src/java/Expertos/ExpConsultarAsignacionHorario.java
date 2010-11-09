@@ -15,7 +15,6 @@ import javax.ejb.Remote;
  * @author Desarrollo
  */
 @Remote
-@Local
 public interface  ExpConsultarAsignacionHorario {
 
     public List<AsignacionHorario> listar();

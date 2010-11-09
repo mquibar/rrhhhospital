@@ -20,11 +20,14 @@ public interface  ExpAltaAsignacionHorario {
 
     public void agregarAsignacionHorario (AsignacionHorario asignacionHorario);
     public void iniciarAlta (
-            Date fecha,
+            Date fechaInicio,
+            Date fechaFin,
             Empleado idEmpleado,
             TipoHorario idTipoHorario,
             String descripcion,
             boolean vigente
             );
+
+    public String guardar();
 
 }

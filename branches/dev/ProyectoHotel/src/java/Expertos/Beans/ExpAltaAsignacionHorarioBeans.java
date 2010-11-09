@@ -27,10 +27,24 @@ public class ExpAltaAsignacionHorarioBeans implements ExpAltaAsignacionHorario {
         _asignacionHorario = new AsignacionHorario();
     }
     
-    public boolean guardarAsignacionHorario() {
-        if(!_flagSave)
-            return false;
-        return (new IntermediarioAsignacionHorario()).guardar(_asignacionHorario);
+    public String guardar() {
+        String res = "Error: se produjo un error durante el guardado";
+
+        if(_flagSave)
+        {
+            try
+            {
+                (new IntermediarioAsignacionHorario()).guardar(_asignacionHorario);
+                res = "La asignacion de Horario se guardo correctamente";
+            }
+            catch(Exception ex)
+            {
+                res = "Error: se produjo el siguiente error durante el guardado : "
+                        + ex.getMessage();
+            }
+        }
+
+        return res;
     }
 
     public void agregarAsignacionHorario(AsignacionHorario asignacionHorario) {
@@ -38,15 +52,15 @@ public class ExpAltaAsignacionHorarioBeans implements ExpAltaAsignacionHorario {
     }
 
     public void iniciarAlta(
-            Date fecha,
+            Date fechaInicio,
+            Date fechaFin,
             Empleado idEmpleado,
             TipoHorario idTipoHorario,
             String descripcion,
             boolean vigente
             ) {
 
-
-        _asignacionHorario.setFecha(fecha);
+        _asignacionHorario.setFecha(fechaFin);
         _asignacionHorario.setIdEmpleado(idEmpleado);
         _asignacionHorario.setIdTipoHorario(idTipoHorario);
         _asignacionHorario.setDescripcion(descripcion);
@@ -57,7 +71,7 @@ public class ExpAltaAsignacionHorarioBeans implements ExpAltaAsignacionHorario {
 
     private boolean validar()
     {
-        throw new UnsupportedOperationException("Not yet implemented");
+        return true;
     }
 
 }
