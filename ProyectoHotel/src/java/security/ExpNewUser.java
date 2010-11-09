@@ -3,11 +3,12 @@
  * and open the template in the editor.
  */
 
-package system;
+package security;
 
 import Entidades.seguridad.Perfil;
 import java.util.List;
 import javax.ejb.Remote;
+import system.exception.SystemException;
 
 /**
  *
@@ -16,6 +17,6 @@ import javax.ejb.Remote;
 @Remote
 public interface ExpNewUser {
     public List<Perfil> iniciarNewUser();
-    public boolean newUser(String nombre, String password, Perfil... perfiles);
+    public void newUser(String nombre, String password, Perfil... perfiles)throws SystemException;
     
 }

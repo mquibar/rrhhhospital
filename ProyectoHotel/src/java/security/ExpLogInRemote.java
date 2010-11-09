@@ -3,9 +3,10 @@
  * and open the template in the editor.
  */
 
-package system;
+package security;
 
 import javax.ejb.Remote;
+import system.exception.SystemException;
 
 /**
  *
@@ -13,5 +14,5 @@ import javax.ejb.Remote;
  */
 @Remote
 public interface ExpLogInRemote {
-    public boolean logIn(String user, String Password);
+    void logIn(String user, String Password) throws SystemException;
 }
