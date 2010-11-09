@@ -22,6 +22,6 @@ public interface  ExpAltaTipoHorario {
             Date horaSalida
             );
 
-    public boolean guardarTipoHorario();
+    public String guardar();
 
 }
