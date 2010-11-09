@@ -17,7 +17,7 @@ import system.exception.SystemException;
  * @author Manuel
  */
 @Stateless
-public class ExpLogInBean implements ExpLogInRemote {
+public class ExpLogInBean implements ExpLogIn {
     
     public void logIn(String userName, String password) throws SystemException{
         DtoUsuario dto = new DtoUsuario();
