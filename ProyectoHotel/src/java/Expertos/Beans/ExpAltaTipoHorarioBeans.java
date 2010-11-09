@@ -6,11 +6,8 @@
 package Expertos.Beans;
 
 import Entidades.TipoHorario;
-import Entidades.TipoLicencia;
 import Expertos.ExpAltaTipoHorario;
-import Expertos.ExpAltaTipoLicencia;
 import Intermediarios.IntermediarioTipoHorario;
-import Intermediarios.IntermediarioTipoLicencia;
 import java.util.Date;
 import javax.ejb.Stateless;
 
@@ -55,7 +52,7 @@ public class ExpAltaTipoHorarioBeans implements ExpAltaTipoHorario {
 
     private boolean validar()
     {
-        throw new UnsupportedOperationException("Not yet implemented");
+        return true;
     }
 
 }

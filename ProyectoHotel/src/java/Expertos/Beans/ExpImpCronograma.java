@@ -41,8 +41,8 @@ public class ExpImpCronograma {
             String descripcion = fila[3].toString();
             boolean vigente = (Boolean) fila[4];
 
-            _exp.iniciarAlta(fecha, idEmpleado, idTipoHorario, descripcion, vigente);
-            _exp.guardarAsignacionHorario();
+            _exp.iniciarAlta(fecha, fecha, idEmpleado, idTipoHorario, descripcion, vigente);
+            _exp.guardar();
 
         }
     }
