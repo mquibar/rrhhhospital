@@ -25,10 +25,25 @@ public class ExpAltaTipoHorarioBeans implements ExpAltaTipoHorario {
         _tipoHorario = new TipoHorario();
     }
     
-    public boolean guardarTipoHorario() {
+    public String guardar() {
+
+        String res = "Error: se produjo un error durante el guardado";
+
         if(!_flagSave)
-            return false;
-        return (new IntermediarioTipoHorario()).guardar(_tipoHorario);
+        {
+            try
+            {
+                (new IntermediarioTipoHorario()).guardar(_tipoHorario);
+                res = "La asignacion de Horario se guardo correctamente";
+            }
+            catch(Exception ex)
+            {
+                res = "Error: se produjo el siguiente error durante el guardado : "
+                        + ex.getMessage();
+            }
+        }
+
+        return res;
     }
 
     public void agregarTipoHorario(TipoHorario tipoHorario) {
