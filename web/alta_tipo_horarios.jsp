@@ -1,4 +1,4 @@
-<%@page import="controllers.ctrlAltaAsignacionHorario" %>
+<%@page import="controllers.ctrlAltaTipoHorario" %>
 
 <%!
     String getValue(ServletRequest request, String varName)
@@ -22,27 +22,24 @@ if (request.getParameter("buttonCancel") != null)
 }
 else
 {
-    String fechaInicio = getValue(request, "fechaInicio");
-    String fechaFin = getValue(request, "fechaFin");
-    String empleado = getValue(request, "empleado");
-    String tipoHorario = getValue(request, "tipoHorario");
+    String mensageEstado = "";
+    String horaEntrada = getValue(request, "horaEntrada");
+    String horaSalida = getValue(request, "horaSalida");
+    String nombre = getValue(request, "nombre");
     String descripcion = getValue(request, "descripcion");
     String vigente = getValue(request, "vigente");
 
-    String mensageEstado = "";
-    ctrlAltaAsignacionHorario c = null;
    try
     {
-        c = new ctrlAltaAsignacionHorario();
+        ctrlAltaTipoHorario c = new ctrlAltaTipoHorario();
 
         if (request.getParameter("buttonSave") != null)
         {
             c.iniciarAlta(
-                    fechaInicio,
-                    fechaFin,
-                    empleado,
-                    tipoHorario,
+                    nombre,
                     descripcion,
+                    horaEntrada,
+                    horaSalida,
                     "true");
 
             mensageEstado = c.guardar();
@@ -73,7 +70,7 @@ else
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml"><head>
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-            <title>Asignacion de Horario</title>
+            <title>Alta de Tipo de Horario</title>
             <link href="./css/estilos.css" rel="stylesheet" type="text/css" />
 
             <script src="./js/validaciones.js" type="text/javascript"></script>
@@ -98,7 +95,7 @@ else
                     <div class="log_off">LogOff </div>
                 </div>
             </div>
-            <div class="noticias" id="noticias_2"> ASIGNACION HORARIOS<br />
+            <div class="noticias" id="noticias_2"> ALTA TIPO HORARIO<br />
 <%
     if(mensageEstado != "")
     {
@@ -108,37 +105,29 @@ else
                 <div class="forms">
                     <form id="form1" name="form1" method="post" action="">
                         <div class="izquierda"><br />
-                            EMPLEADO<br />
-                            <br />
-                            <select name="empleado" size="1" id="empleado" >
-                                <%= c.getOptionsEmpleado(empleado)%>
-                            </select>
-                            <br />
-                            <br />
-                            Tipo de horario<br />
-                            <select name="tipoHorario" id="tipoHorario" >
-                                <%= c.getOptionsTipoHorario(tipoHorario)%>
-                            </select>
-                            <br />
-                            <br />
-                            Fecha Inicio<br />
+                            Nombre<br />
                             <label>
-                                <input type="text" name="fechaInicio" id="DPC_edit1"  value='<%=fechaInicio%>' />
-                            </label>
-                            <br />
-                            <br />
-                            Fecha Fin<br />
-                            <label>
-                                <input type="text" name="fechaFin" id="DPC_edit2"  value='<%=fechaFin%>' />
+                                <input name="nombre" id="nombre" value="<%=nombre%>"/>
                             </label>
                             <br />
                             <br />
                             Descripcion<br />
                             <label>
-                                <textarea name="descripcion" id="descripcion" cols="45" rows="5">
-                                <%=descripcion%>
-                                </textarea>
+                                <textarea name="descripcion" id="descripcion" cols="45" rows="5"><%=descripcion%></textarea>
                             </label>
+                            <br />
+                            <br />
+                            Hora Entrada<br />
+                            <label>
+                                <input name="horaEntrada" id="horaEntrada" value="<%=horaEntrada%>"/>
+                            </label>
+                            <br />
+                            <br />
+                            Hora Salida<br />
+                            <label>
+                                <input name="horaSalida" id="horaSalida" value="<%=horaSalida%>"/>
+                            </label>
+                            <br />
                             <br />
                         </div>
                         <div class="derecha"></div>

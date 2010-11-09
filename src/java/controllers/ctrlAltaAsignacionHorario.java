@@ -44,16 +44,16 @@ public class ctrlAltaAsignacionHorario extends GeneralController
             String vigente
             )
     {
-         /*_expAlta.iniciarAlta(
+         _expAlta.iniciarAlta(
              ManejaFechas.convertirString(fechaInicio),
              ManejaFechas.convertirString(fechaFin),
              _mpers.getSelectedItem(idEmpleado),
              _mth.getSelectedItem(idTipoHorario),
              descripcion,
-             true);*/
+             true);
     }
 
-    //public String guardar() {return _expAlta.guardar();}
+    public String guardar() {return _expAlta.guardar();}
     
     public String getOptionsEmpleado(String empleado)
     {
