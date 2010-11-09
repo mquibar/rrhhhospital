@@ -15,7 +15,6 @@ import javax.ejb.Stateless;
  *
  * @author Manuel
  */
-@Stateless
 public class ExpAltaTipoHorarioBeans implements ExpAltaTipoHorario {
 
     private TipoHorario _tipoHorario;
