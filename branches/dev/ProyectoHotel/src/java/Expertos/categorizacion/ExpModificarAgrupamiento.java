@@ -1,0 +1,27 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package Expertos.categorizacion;
+
+import javax.ejb.Remote;
+
+/**
+ *
+ * @author Manuel
+ */
+@Remote
+public interface ExpModificarAgrupamiento {
+
+    public java.util.List<Entidades.Agrupamiento> inicioModificacion();
+
+    public boolean cambiarNombre(Entidades.Agrupamiento agrupamiento, java.lang.String nombre);
+
+    public boolean agregarTramo(Entidades.Agrupamiento agrupamiento, java.lang.String nombreTramo);
+
+    public java.util.List<Entidades.Tramo> consultarTramos(Entidades.Agrupamiento agrupamiento);
+
+    public java.util.List<Entidades.Categoria> consultarCategoria(Entidades.Tramo tramo);
+
+}
