@@ -5,7 +5,6 @@
 
 package Expertos.categorizacion;
 
-import Expertos.Beans.*;
 import Entidades.Categoria;
 import Entidades.ClaseVigente;
 import Entidades.Tramo;
