@@ -5,7 +5,7 @@
 
 package controllers;
 
-import Expertos.ExpAltaAgrupamiento;
+import Expertos.categorizacion.ExpAltaAgrupamiento;
 
 /**
  *
@@ -22,7 +22,7 @@ public class ctrlAltaAgrupamiento {
     public String guardarAgrupamiento(String nombre){
         String mensaje="javascript:alert('";
         try{
-            Expertos.ExpAltaAgrupamiento exp = (ExpAltaAgrupamiento) _controladorGeneral.getExpert(Expertos.ExpAltaAgrupamiento.class.getName());
+            Expertos.categorizacion.ExpAltaAgrupamiento exp = (ExpAltaAgrupamiento) _controladorGeneral.getExpert(Expertos.categorizacion.ExpAltaAgrupamiento.class.getName());
             if(exp.guardarNuevo(nombre))
                 mensaje += "Agrupamiento Guardado Con Exito";
             else

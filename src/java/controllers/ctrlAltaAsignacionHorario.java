@@ -5,9 +5,9 @@
 
 package controllers;
 
-import Expertos.ExpAltaAsignacionHorario;
-import Expertos.ExpConsultarPersonal;
-import Expertos.ExpConsultarTipoHorario;
+import Expertos.horario.ExpAltaAsignacionHorario;
+import Expertos.personal.ExpConsultarPersonal;
+import Expertos.horario.ExpConsultarTipoHorario;
 import Tools.ManejaFechas;
 import models.combos.ModelOptionProfesional;
 import models.combos.ModelOptionTipoHorario;
