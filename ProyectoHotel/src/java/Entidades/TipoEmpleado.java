@@ -27,7 +27,7 @@ import javax.persistence.Table;
  * @author Manuel
  */
 @Entity
-@Table(name = "TipoEmpleado", catalog = "hospital", schema = "public")
+@Table(name = "TipoEmpleado")
 @NamedQueries({
     @NamedQuery(name = "TipoEmpleado.findAll", query = "SELECT t FROM TipoEmpleado t"),
     @NamedQuery(name = "TipoEmpleado.findById", query = "SELECT t FROM TipoEmpleado t WHERE t.id = :id"),

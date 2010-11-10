@@ -12,10 +12,13 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -23,11 +26,13 @@ import javax.persistence.Table;
  * @author Manuel
  */
 @Entity
-@Table(name = "Tarjeta", catalog = "hospital", schema = "public")
+@Table(name = "Tarjeta")
 @NamedQueries({@NamedQuery(name = "Tarjeta.findAll", query = "SELECT t FROM Tarjeta t"), @NamedQuery(name = "Tarjeta.findById", query = "SELECT t FROM Tarjeta t WHERE t.id = :id"), @NamedQuery(name = "Tarjeta.findByNumero", query = "SELECT t FROM Tarjeta t WHERE t.numero = :numero"), @NamedQuery(name = "Tarjeta.findByEliminada", query = "SELECT t FROM Tarjeta t WHERE t.eliminada = :eliminada")})
 public class Tarjeta implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(generator="id_sequence",strategy=GenerationType.SEQUENCE)
+    @SequenceGenerator(name="id_sequence",sequenceName="tarjeta_id_sequence")
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;

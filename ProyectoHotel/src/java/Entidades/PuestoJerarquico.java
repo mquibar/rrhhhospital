@@ -12,12 +12,15 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -25,11 +28,13 @@ import javax.persistence.Table;
  * @author Manuel
  */
 @Entity
-@Table(name = "PuestoJerarquico", catalog = "hospital", schema = "public")
+@Table(name = "PuestoJerarquico")
 @NamedQueries({@NamedQuery(name = "PuestoJerarquico.findAll", query = "SELECT p FROM PuestoJerarquico p"), @NamedQuery(name = "PuestoJerarquico.findById", query = "SELECT p FROM PuestoJerarquico p WHERE p.id = :id"), @NamedQuery(name = "PuestoJerarquico.findByNombre", query = "SELECT p FROM PuestoJerarquico p WHERE p.nombre = :nombre")})
 public class PuestoJerarquico implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(generator="id_sequence",strategy=GenerationType.SEQUENCE)
+    @SequenceGenerator(name="id_sequence",sequenceName="puesto_gerarquico_id_sequence")
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
