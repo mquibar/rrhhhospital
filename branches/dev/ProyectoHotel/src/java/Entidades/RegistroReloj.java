@@ -11,11 +11,14 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -25,11 +28,13 @@ import javax.persistence.TemporalType;
  * @author Manuel
  */
 @Entity
-@Table(name = "RegistroReloj", catalog = "hospital", schema = "public")
+@Table(name = "RegistroReloj")
 @NamedQueries({@NamedQuery(name = "RegistroReloj.findAll", query = "SELECT r FROM RegistroReloj r"), @NamedQuery(name = "RegistroReloj.findById", query = "SELECT r FROM RegistroReloj r WHERE r.id = :id"), @NamedQuery(name = "RegistroReloj.findByFecha", query = "SELECT r FROM RegistroReloj r WHERE r.fecha = :fecha"), @NamedQuery(name = "RegistroReloj.findByHora", query = "SELECT r FROM RegistroReloj r WHERE r.hora = :hora"), @NamedQuery(name = "RegistroReloj.findByNumero", query = "SELECT r FROM RegistroReloj r WHERE r.numero = :numero"), @NamedQuery(name = "RegistroReloj.findByIdEmpleado", query = "SELECT r FROM RegistroReloj r WHERE r.idEmpleado = :idEmpleado"), @NamedQuery(name = "RegistroReloj.findByEliminado", query = "SELECT r FROM RegistroReloj r WHERE r.eliminado = :eliminado")})
 public class RegistroReloj implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(generator="id_sequence",strategy=GenerationType.SEQUENCE)
+    @SequenceGenerator(name="id_sequence",sequenceName="registro_reloj_id_sequence")
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;

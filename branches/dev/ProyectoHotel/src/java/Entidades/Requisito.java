@@ -25,7 +25,7 @@ import javax.persistence.Table;
  * @author Manuel
  */
 @Entity
-@Table(name = "Requisito", catalog = "hospital", schema = "public")
+@Table(name = "Requisito")
 @NamedQueries({@NamedQuery(name = "Requisito.findAll", query = "SELECT r FROM Requisito r"), @NamedQuery(name = "Requisito.findByDescripcion", query = "SELECT r FROM Requisito r WHERE r.descripcion = :descripcion"), @NamedQuery(name = "Requisito.findByNumero", query = "SELECT r FROM Requisito r WHERE r.numero = :numero"), @NamedQuery(name = "Requisito.findById", query = "SELECT r FROM Requisito r WHERE r.id = :id")})
 public class Requisito implements Serializable {
     private static final long serialVersionUID = 1L;

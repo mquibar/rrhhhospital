@@ -13,10 +13,13 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,7 +29,7 @@ import javax.persistence.TemporalType;
  * @author Manuel
  */
 @Entity
-@Table(name = "TipoHorario", catalog = "hospital", schema = "public")
+@Table(name = "TipoHorario")
 @NamedQueries({
     @NamedQuery(name = "TipoHorario.findAll", query = "SELECT t FROM TipoHorario t"),
     @NamedQuery(name = "TipoHorario.findById", query = "SELECT t FROM TipoHorario t WHERE t.id = :id"),
@@ -38,6 +41,8 @@ import javax.persistence.TemporalType;
 public class TipoHorario implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(generator="id_sequence", strategy=GenerationType.SEQUENCE)
+    @SequenceGenerator(name="id_sequence",sequenceName="tipoHorario_id_sequence")
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
