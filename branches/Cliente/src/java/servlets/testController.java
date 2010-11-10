@@ -5,7 +5,7 @@
 
 package servlets;
 
-import Expertos.ExpModificarAgrupamiento;
+import Expertos.categorizacion.ExpModificarAgrupamiento;
 import controllers.GeneralController;
 import models.combos.AbstractModelOptionList;
 import models.combos.ModelOptionAgrupamiento;

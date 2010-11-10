@@ -5,9 +5,9 @@
 
 package controllers;
 
-import Expertos.ExpAltaProfesional;
-import Expertos.ExpConsultarSexo;
-import Expertos.ExpAltaTipoEmpleado;
+import Expertos.personal.ExpAltaProfesional;
+import Expertos.personal.ExpConsultarSexo;
+import Expertos.personal.ExpAltaTipoEmpleado;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

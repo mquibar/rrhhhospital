@@ -10,7 +10,7 @@ import Entidades.Localidad;
 import Entidades.Pais;
 import Entidades.Persona;
 import Entidades.Provincia;
-import Expertos.ExpModificarPersona;
+import Expertos.personal.ExpModificarPersona;
 import models.tables.AbstractModelTable;
 import models.tables.ModelTablaEmpleado;
 
