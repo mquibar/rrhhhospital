@@ -6,7 +6,7 @@
 package controllers;
 
 import javax.ejb.EJB;
-import security.ExpLogIn;
+import security.ExpLogInBean;
 import system.exception.SystemException;
 
 /**
@@ -16,11 +16,11 @@ import system.exception.SystemException;
 public class ctrlLogin
 {
     @EJB
-    ExpLogIn _exp;
+    ExpLogInBean _exp;
 
     public String login(String user, String pass) throws SystemException
     {
-        pass = tools.Encriptador.getStringMessageDigest(pass, "MD5");
+        pass = Tools.Encriptador.getStringMessageDigest(pass, "MD5");
         _exp.logIn(user, pass);
         return "Bienvenido al sistema";
     }

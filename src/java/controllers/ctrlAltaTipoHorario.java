@@ -39,8 +39,8 @@ public class ctrlAltaTipoHorario extends GeneralController
          _expAlta.iniciarAlta(
              nombre,
              descripcion,
-             ManejaFechas.convertirString(horaEntrada),
-             ManejaFechas.convertirString(horaSalida)
+             ManejaFechas.getHour(horaEntrada),
+             ManejaFechas.getHour(horaSalida)
              );
     }
 
