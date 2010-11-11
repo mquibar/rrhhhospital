@@ -3,9 +3,7 @@
  * and open the template in the editor.
  */
 
-package Expertos.personal;
-
-import java.util.Date;
+package Expertos;
 
 
 /**
@@ -21,5 +19,7 @@ public interface ExpAltaProfesional extends ExpAltaEmpleado {
             long telefono, String barrio, String calle, String numero, String piso,
             String departamanto, Entidades.Localidad localidad, Entidades.Provincia provincia, Entidades.Pais pais,
             Entidades.Sexo sexo, String cuil, String matricula, String titulo);
+
+    public java.util.Map<java.lang.String, java.util.List> iniciarProfesional();
 
 }
