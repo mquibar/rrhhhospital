@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package Expertos.Beans;
+package Expertos.personal;
 
 import Entidades.Empleado;
 import Entidades.Localidad;
@@ -11,7 +11,7 @@ import Entidades.Pais;
 import Entidades.Persona;
 import Entidades.Provincia;
 import Entidades.Sexo;
-import Expertos.ExpModificarPersona;
+import Expertos.personal.ExpModificarPersona;
 
 
 /**

@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package Expertos.Beans;
+package Expertos.personal;
 
 import Entidades.Profesional;
 import Entidades.Localidad;
@@ -16,7 +16,7 @@ import Entidades.Sexo;
  * @author Juan
  */
 
-public class ExpModificarProfesionalBeans extends ExpModificarEmpleadoBeans implements Expertos.ExpModificarProfesional {
+public class ExpModificarProfesionalBeans extends ExpModificarEmpleadoBeans implements ExpModificarProfesional {
 
     public boolean modificarProfesional (Profesional profesional, String nombre, String apellido, String dni, String fechaNacimiento,
             String telefono, String barrio, String calle, String numero, String piso, String departamanto,

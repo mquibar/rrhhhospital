@@ -3,14 +3,14 @@
  * and open the template in the editor.
  */
 
-package Expertos.Beans;
+package Expertos.personal;
 
 import Entidades.Empleado;
 import Entidades.Localidad;
 import Entidades.Pais;
 import Entidades.Provincia;
 import Entidades.Sexo;
-import Expertos.ExpModificarEmpleado;
+import Expertos.personal.ExpModificarEmpleado;
 import java.util.List;
 import javax.ejb.Stateless;
 
