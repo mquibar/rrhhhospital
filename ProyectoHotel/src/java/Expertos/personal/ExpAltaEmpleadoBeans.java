@@ -3,16 +3,19 @@
  * and open the template in the editor.
  */
 
-package Expertos.personal;
+package Expertos.Beans;
 
 import Entidades.Empleado;
 import Entidades.Localidad;
 import Entidades.Pais;
 import Entidades.Provincia;
 import Entidades.Sexo;
-import Expertos.personal.ExpAltaEmpleado;
+import Expertos.ExpAltaEmpleado;
 import Intermediarios.IntermediarioEmpleado;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import javax.ejb.Stateless;
 
 /**
@@ -28,6 +31,15 @@ public class ExpAltaEmpleadoBeans extends ExpAltaPersonalBeans implements ExpAlt
 
     public void agregarEmpleado(Empleado empleado) {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public Map<String, List> iniciar(){
+        Map<String,List> listas = new HashMap<String, List>();
+        listas.put("TIPO", (new Intermediarios.IntermediarioTipoEmpleado()).findAll());
+        listas.put("PAIS", (new Intermediarios.IntermediarioPais()).findAll());
+        listas.put("LOCALIDAD", (new Intermediarios.IntermediarioLocalidad().findAll()));
+        listas.put("PROVINCIA", (new Intermediarios.IntermediarioProvincia().findAll()));
+        return listas;
     }
 
     public boolean iniciarAlta(String nombre, String apellido, String dni, Date fechaNacimiento,
