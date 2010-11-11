@@ -3,11 +3,11 @@
  * and open the template in the editor.
  */
 
-package Expertos.horario;
+package Expertos;
 
 import Entidades.TipoHorario;
-import java.util.Date;
 import javax.ejb.Remote;
+import java.util.Date;
 
 /**
  *

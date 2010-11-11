@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Entidades;
 
 import java.io.Serializable;
@@ -34,10 +33,11 @@ import javax.persistence.Table;
     @NamedQuery(name = "TipoEmpleado.findByNombre", query = "SELECT t FROM TipoEmpleado t WHERE t.nombre = :nombre"),
     @NamedQuery(name = "TipoEmpleado.findByCodigo", query = "SELECT t FROM TipoEmpleado t WHERE t.codigo = :codigo")})
 public class TipoEmpleado implements Serializable {
+
     private static final long serialVersionUID = 1L;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_sequence")
+    @SequenceGenerator(name = "id_sequence", sequenceName = "tipoempleado_id_sequence")
     @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="id_sequence")
-    @SequenceGenerator(name="id_sequence",sequenceName="tipoempleado_id_sequence")
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
@@ -48,7 +48,7 @@ public class TipoEmpleado implements Serializable {
     private String codigo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTipoEmpleado", fetch = FetchType.LAZY)
     private List<Empleado> empleadoList;
-    @ManyToMany(fetch=FetchType.EAGER,mappedBy="tipoEmpleadoList")
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "tipoEmpleadoList")
     private List<TipoLicencia> tipolicenciaList;
 
     public TipoEmpleado() {
@@ -133,5 +133,4 @@ public class TipoEmpleado implements Serializable {
     public void setTipolicenciaList(List<TipoLicencia> tipolicenciaList) {
         this.tipolicenciaList = tipolicenciaList;
     }
-
 }

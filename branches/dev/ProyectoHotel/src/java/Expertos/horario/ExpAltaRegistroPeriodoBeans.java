@@ -6,13 +6,10 @@
 package Expertos.horario;
 
 import Entidades.RegistroPeriodo;
-import Entidades.Clase;
-import Entidades.Requisito;
-import Entidades.Tramo;
 import Expertos.horario.ExpAltaRegistroPeriodo;
+import Intermediarios.GestorConeccion;
 import Intermediarios.IntermediarioRegistroPeriodo;
 import java.util.Date;
-import java.util.List;
 import javax.ejb.Stateless;
 
 /**
@@ -29,10 +26,33 @@ public class ExpAltaRegistroPeriodoBeans implements ExpAltaRegistroPeriodo {
         _registroPeriodo = new RegistroPeriodo();
     }
     
-    public boolean guardarRegistroPeriodo() {
-        if(!_flagSave)
-            return false;
-        return (new IntermediarioRegistroPeriodo()).guardar(_registroPeriodo);
+    public String guardar() {
+        String res = "Error: se produjo un error durante la validacion";
+
+        if(_flagSave)
+        {
+            GestorConeccion.getInstance().beginTransaction();
+            try
+            {
+                if( (new IntermediarioRegistroPeriodo()).guardar(_registroPeriodo) )
+                {
+                    GestorConeccion.getInstance().commitTransaction();
+                    res = "El Registro de Periodo se guardo correctamente";
+                }
+                else
+                {
+                    GestorConeccion.getInstance().rollbackTransaction();
+                    res = "Error durante el guardado, Rolling Back";
+                }
+            }
+            catch(Exception ex)
+            {
+                    res = "Error: se produjo el siguiente error durante el guardado : "
+                            + ex.toString();
+            }
+        }
+
+        return res;
     }
 
     public void agregarRegistroPeriodo(RegistroPeriodo registroPeriodo) {
@@ -57,7 +77,7 @@ public class ExpAltaRegistroPeriodoBeans implements ExpAltaRegistroPeriodo {
 
     private boolean validar()
     {
-        throw new UnsupportedOperationException("Not yet implemented");
+        return true;
     }
 
 }

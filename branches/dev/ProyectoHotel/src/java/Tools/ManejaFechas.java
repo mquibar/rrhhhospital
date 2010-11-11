@@ -42,4 +42,12 @@ public class ManejaFechas {
         String fechaString = sdf.format(fecha);
         return fechaString;
     }
+
+    public static Date getHour(String hora)
+    {
+        String[] comp = hora.split(":");
+        Date fechaDate = new Date(1900, 1, 1, Integer.parseInt(comp[0]), Integer.parseInt(comp[1]));
+        
+        return fechaDate;
+    }
 }
