@@ -3,14 +3,14 @@
  * and open the template in the editor.
  */
 
-package Expertos.Beans;
+package Expertos.personal;
 
 import Entidades.Empleado;
 import Entidades.Localidad;
 import Entidades.Pais;
 import Entidades.Provincia;
 import Entidades.Sexo;
-import Expertos.ExpAltaEmpleado;
+import Expertos.personal.ExpAltaEmpleado;
 import Intermediarios.IntermediarioEmpleado;
 import java.util.Date;
 import java.util.HashMap;
@@ -22,6 +22,7 @@ import javax.ejb.Stateless;
  *
  * @author Juan
  */
+
 @Stateless
 public class ExpAltaEmpleadoBeans extends ExpAltaPersonalBeans implements ExpAltaEmpleado {
 

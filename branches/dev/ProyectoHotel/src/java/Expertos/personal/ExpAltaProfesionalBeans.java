@@ -3,18 +3,19 @@
  * and open the template in the editor.
  */
 
-package Expertos.Beans;
+package Expertos.personal;
 
 import Entidades.Localidad;
 import Entidades.Pais;
 import Entidades.Profesional;
 import Entidades.Provincia;
 import Entidades.Sexo;
-import Expertos.ExpAltaProfesional;
+import Expertos.personal.ExpAltaProfesional;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.ejb.Stateless;
 
 /**
  *
