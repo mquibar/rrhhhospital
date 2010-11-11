@@ -5,11 +5,7 @@
 
 package Expertos.horario;
 
-import Entidades.Clase;
-import Entidades.RegistroPeriodo;
-import Entidades.Tramo;
 import java.util.Date;
-import java.util.List;
 
 /**
  *
@@ -17,7 +13,7 @@ import java.util.List;
  */
 public interface  ExpAltaRegistroPeriodo {
 
-    public void agregarRegistroPeriodo (RegistroPeriodo registroPeriodo);
+    public String guardar ();
     public void iniciarAlta (
             Date fechaEntrada,
             Date horaEntrada,

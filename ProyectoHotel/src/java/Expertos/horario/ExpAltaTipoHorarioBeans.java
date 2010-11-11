@@ -6,7 +6,7 @@
 package Expertos.horario;
 
 import Entidades.TipoHorario;
-import Expertos.horario.ExpAltaTipoHorario;
+import Intermediarios.GestorConeccion;
 import Intermediarios.IntermediarioTipoHorario;
 import java.util.Date;
 import javax.ejb.Stateless;
@@ -15,6 +15,7 @@ import javax.ejb.Stateless;
  *
  * @author Manuel
  */
+@Stateless
 public class ExpAltaTipoHorarioBeans implements ExpAltaTipoHorario {
 
     private TipoHorario _tipoHorario;
@@ -26,19 +27,28 @@ public class ExpAltaTipoHorarioBeans implements ExpAltaTipoHorario {
     
     public String guardar() {
 
-        String res = "Error: se produjo un error durante el guardado";
+        String res = "Error: se produjo un error durante la validacion";
 
-        if(!_flagSave)
+        if(_flagSave)
         {
+            GestorConeccion.getInstance().beginTransaction();
             try
             {
-                (new IntermediarioTipoHorario()).guardar(_tipoHorario);
-                res = "La asignacion de Horario se guardo correctamente";
+                if( (new IntermediarioTipoHorario()).guardar(_tipoHorario) )
+                {
+                    GestorConeccion.getInstance().commitTransaction();
+                    res = "La Asignacion de Horario se guardo correctamente";
+                }
+                else
+                {
+                    GestorConeccion.getInstance().rollbackTransaction();
+                    res = "Error durante el guardado, Rolling Back";
+                }
             }
             catch(Exception ex)
             {
-                res = "Error: se produjo el siguiente error durante el guardado : "
-                        + ex.getMessage();
+                    res = "Error: se produjo el siguiente error durante el guardado : "
+                            + ex.toString();
             }
         }
 

@@ -6,7 +6,7 @@
 package Expertos.horario;
 
 import Entidades.Empleado;
-import Entidades.Licencia;
+import Entidades.TipoLicencia;
 import java.util.Date;
 
 /**
@@ -15,10 +15,10 @@ import java.util.Date;
  */
 public interface  ExpAltaLicencia {
 
-    public void agregarLicencia (Licencia licencia);
+    public String guardar();
     public void iniciarAlta (
-            Empleado idEmpleado,
-            int idTipoLicencia,
+            Empleado Empleado,
+            TipoLicencia TipoLicencia,
             Date FechaInicio,
             Date FechaFin,
             String motivo

@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Entidades;
 
 import java.io.Serializable;
@@ -39,10 +38,13 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "TipoHorario.findByDescripcion", query = "SELECT t FROM TipoHorario t WHERE t.descripcion = :descripcion"),
     @NamedQuery(name = "TipoHorario.findByEliminado", query = "SELECT t FROM TipoHorario t WHERE t.eliminado = :eliminado")})
 public class TipoHorario implements Serializable {
+
     private static final long serialVersionUID = 1L;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_sequence")
+    @SequenceGenerator(name = "id_sequence", sequenceName = "tipohorario_id_sequence",initialValue=1)
     @Id
-    @GeneratedValue(generator="id_sequence", strategy=GenerationType.SEQUENCE)
-    @SequenceGenerator(name="id_sequence",sequenceName="tipoHorario_id_sequence")
+//    @GeneratedValue(generator="id_sequence", strategy=GenerationType.SEQUENCE)
+//    @SequenceGenerator(name="id_sequence",sequenceName="tipoHorario_id_sequence")
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
@@ -158,5 +160,4 @@ public class TipoHorario implements Serializable {
     public String toString() {
         return "Entidades.TipoHorario[id=" + id + "]";
     }
-
 }

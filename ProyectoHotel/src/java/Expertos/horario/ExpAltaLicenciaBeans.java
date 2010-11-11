@@ -9,6 +9,7 @@ import Entidades.Empleado;
 import Entidades.Licencia;
 import Entidades.TipoLicencia;
 import Expertos.horario.ExpAltaTipoLicencia;
+import Intermediarios.GestorConeccion;
 import Intermediarios.IntermediarioLicencia;
 import Intermediarios.IntermediarioTipoLicencia;
 import java.util.Date;
@@ -28,10 +29,33 @@ public class ExpAltaLicenciaBeans implements ExpAltaLicencia {
         _licencia = new Licencia();
     }
     
-    public boolean guardarTipoLicencia() {
-        if(!_flagSave)
-            return false;
-        return (new IntermediarioLicencia()).guardar(_licencia);
+    public String guardar() {
+        String res = "Error: se produjo un error durante la validacion";
+
+        if(_flagSave)
+        {
+            GestorConeccion.getInstance().beginTransaction();
+            try
+            {
+                if( (new IntermediarioLicencia()).guardar(_licencia) )
+                {
+                    GestorConeccion.getInstance().commitTransaction();
+                    res = "La Licenia se guardo correctamente";
+                }
+                else
+                {
+                    GestorConeccion.getInstance().rollbackTransaction();
+                    res = "Error durante el guardado, Rolling Back";
+                }
+            }
+            catch(Exception ex)
+            {
+                    res = "Error: se produjo el siguiente error durante el guardado : "
+                            + ex.toString();
+            }
+        }
+
+        return res;
     }
 
     public void agregarLicencia(Licencia licencia) {
@@ -39,15 +63,15 @@ public class ExpAltaLicenciaBeans implements ExpAltaLicencia {
     }
 
     public void iniciarAlta(
-            Empleado idEmpleado,
-            int idTipoLicencia,
+            Empleado Empleado,
+            TipoLicencia TipoLicencia,
             Date FechaInicio,
             Date FechaFin,
             String motivo
             ) {
 
-        _licencia.setIdEmpleado(idEmpleado);
-        _licencia.setIdTipoLicencia(idTipoLicencia);
+        _licencia.setIdEmpleado(Empleado);
+        _licencia.setIdTipoLicencia(TipoLicencia.getId());
         _licencia.setFechaInicio(FechaInicio);
         _licencia.setFechaFin(FechaFin);
         _licencia.setMotivo(motivo);
@@ -57,7 +81,7 @@ public class ExpAltaLicenciaBeans implements ExpAltaLicencia {
 
     private boolean validar()
     {
-        throw new UnsupportedOperationException("Not yet implemented");
+        return true;
     }
 
 }
