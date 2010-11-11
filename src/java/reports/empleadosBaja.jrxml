@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="empleadosBaja" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0000000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+  "Empleado"."Legajo",
+  "TipoEmpleado"."Nombre" AS "EmpleadoTipo",
+  "Persona"."Apellido",
+  "Persona"."Nombre",
+  "Empleado"."FechaIngreso",
+  "Empleado"."Eliminado"
+FROM
+  public."Persona",
+  public."Empleado",
+  public."TipoEmpleado"
+WHERE
+  "Empleado"."idEmpleado" = "Persona".id AND
+  "Empleado"."idTipoEmpleado" = "TipoEmpleado".id AND
+  "Empleado"."Eliminado" = false
+ORDER BY
+  "Persona"."Apellido" ASC,
+  "Persona"."Nombre" ASC;]]>
+	</queryString>
+	<field name="Legajo" class="java.lang.Integer"/>
+	<field name="EmpleadoTipo" class="java.lang.String"/>
+	<field name="Apellido" class="java.lang.String"/>
+	<field name="Nombre" class="java.lang.String"/>
+	<field name="FechaIngreso" class="java.sql.Date"/>
+	<field name="Eliminado" class="java.lang.Boolean"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<image scaleImage="FillFrame">
+				<reportElement mode="Transparent" x="0" y="0" width="150" height="72" backcolor="#00FF33"/>
+				<imageExpression class="java.lang.String"><![CDATA["C:\\Documents and Settings\\Manuel\\Escritorio\\reportes\\1fcnyf.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="150" y="0" width="405" height="43" forecolor="#006699"/>
+				<textElement>
+					<font size="34" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Personal de Baja]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="75" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Legajo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="82" y="0" width="108" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="201" y="0" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Apellido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="324" y="0" width="119" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="451" y="0" width="103" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Ingreso]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="75" height="20"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{Legajo}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="82" y="0" width="108" height="20"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{EmpleadoTipo}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="201" y="0" width="111" height="20"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Apellido}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="324" y="0" width="119" height="20"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Nombre}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="451" y="0" width="103" height="20"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{FechaIngreso}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>
