@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="listadoCategoria" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.3310000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     agrupamiento."nombre" AS agrupamiento,
+     categoria."nombre" AS categoria,
+     clasecontenida."antiguedadminima" AS antiguedadminima,
+     clase."nombre" AS clase
+FROM
+     "public"."agrupamiento" agrupamiento left JOIN "public"."tramo" tramo ON agrupamiento."id" = tramo."idagrupamiento"
+     left JOIN "public"."categoria" categoria ON tramo."id" = categoria."idtramo"
+     LEFT JOIN "public"."clasecontenida" clasecontenida ON categoria."id" = clasecontenida."idcategoria"
+     LEFT JOIN "public"."clase" clase ON clasecontenida."idclase" = clase."id"
+Order by
+agrupamiento asc, categoria asc, clase asc;]]>
+	</queryString>
+	<field name="agrupamiento" class="java.lang.String"/>
+	<field name="categoria" class="java.lang.String"/>
+	<field name="antiguedadminima" class="java.lang.Integer"/>
+	<field name="clase" class="java.lang.String"/>
+	<group name="agrupamiento">
+		<groupExpression><![CDATA[$F{agrupamiento}]]></groupExpression>
+		<groupHeader>
+			<band height="58">
+				<staticText>
+					<reportElement mode="Opaque" x="0" y="24" width="117" height="32" forecolor="#666666" backcolor="#E6E6E6"/>
+					<textElement>
+						<font size="16"/>
+					</textElement>
+					<text><![CDATA[Agrupamiento]]></text>
+				</staticText>
+				<textField>
+					<reportElement mode="Opaque" x="117" y="24" width="438" height="32" forecolor="#006699" backcolor="#E6E6E6"/>
+					<textElement>
+						<font size="16" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{agrupamiento}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="-20" y="57" width="595" height="1" forecolor="#666666"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="categoria">
+		<groupExpression><![CDATA[$F{categoria}]]></groupExpression>
+		<groupHeader>
+			<band height="44">
+				<textField>
+					<reportElement x="124" y="0" width="397" height="20" forecolor="#006699"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{categoria}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="46" y="0" width="78" height="20" forecolor="#666666"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<text><![CDATA[Categoria]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="117" y="22" width="207" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+					<textElement textAlignment="Center">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Clase]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="338" y="22" width="217" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+					<textElement textAlignment="Center">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Antiguedad minima requerida]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="74">
+			<staticText>
+				<reportElement positionType="Float" mode="Transparent" x="151" y="0" width="404" height="43" forecolor="#006699" backcolor="#3E1D1D"/>
+				<textElement textAlignment="Left">
+					<font size="34" isBold="true"/>
+				</textElement>
+				<text><![CDATA[  Categorias]]></text>
+			</staticText>
+			<image scaleImage="FillFrame">
+				<reportElement mode="Transparent" x="0" y="2" width="150" height="72" backcolor="#00FF33"/>
+				<imageExpression class="java.lang.String"><![CDATA["1fcnyf.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="6"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="8"/>
+	</columnHeader>
+	<detail>
+		<band height="18">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="338" y="0" width="217" height="14"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{antiguedadminima}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="161" y="0" width="163" height="14"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{clase}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Pág. "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd-MM-yyyy">
+				<reportElement x="0" y="4" width="100" height="13"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>
