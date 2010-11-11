@@ -13,7 +13,7 @@ if (request.getParameter("buttonCancel") != null)
 {
 %>
 
-    <jsp:forward page="./tools/messageBox.jsp">
+    <jsp:forward page="../tools/messageBox.jsp">
     <jsp:param name="msg" value="Operacion cancelada por el usuario" />
     <jsp:param name="target" value="home.html" />
     </jsp:forward>
@@ -58,7 +58,7 @@ else
 
 %>
 
-        <jsp:forward page="./tools/messageBox.jsp">
+        <jsp:forward page="../tools/messageBox.jsp">
             <jsp:param name="msg" value="<%=mensageEstado%>" />
             <jsp:param name="target" value="home.html" />
         </jsp:forward>
@@ -74,11 +74,11 @@ else
     <html xmlns="http://www.w3.org/1999/xhtml"><head>
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
             <title>Asignacion de Horario</title>
-            <link href="./css/estilos.css" rel="stylesheet" type="text/css" />
+            <link href="../css/estilos.css" rel="stylesheet" type="text/css" />
 
-            <script src="./js/validaciones.js" type="text/javascript"></script>
-            <script src="./tools/datepicker/datepickercontrol.js" type="text/javascript"></script>
-            <link  href="./tools/datepicker/datepickercontrol.css" type="text/css" rel="stylesheet" />
+            <script src="../js/validaciones/validaciones.js" type="text/javascript"></script>
+            <script src="../js/validaciones/validacionesAsignacionHorario.js" type="text/javascript"></script>
+            <link  href="../tools/datepicker/datepickercontrol.css" type="text/css" rel="stylesheet" />
 
             <script type="text/javascript">
                 <!--
@@ -98,7 +98,7 @@ else
                     <div class="log_off">LogOff </div>
                 </div>
             </div>
-            <div class="noticias" id="noticias_2"> ASIGNACION HORARIOS<br />
+            <div class="noticias" id="noticias_2">ASIGNACION HORARIOS<br />
 <%
     if(mensageEstado != "")
     {
@@ -135,9 +135,7 @@ else
                             <br />
                             Descripcion<br />
                             <label>
-                                <textarea name="descripcion" id="descripcion" cols="45" rows="5">
-                                <%=descripcion%>
-                                </textarea>
+                                <textarea name="descripcion" id="descripcion" cols="45" rows="5"><%=descripcion%></textarea>
                             </label>
                             <br />
                         </div>
