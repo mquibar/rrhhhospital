@@ -30,8 +30,15 @@ public class ctrlAltaLicencia extends GeneralController
         _expTL = (ExpConsultarTipoLicencia) super.getExpert(ExpConsultarTipoLicencia.class.getName());
         _expPers = (ExpConsultarPersonal) super.getExpert(ExpConsultarPersonal.class.getName());
 
-        _mpers = new ModelOptionProfesional(_expPers.listarProfesionalinOrder());
-        _mtl = new ModelOptionTipoLicencia(_expTL.listar());
+        try
+        {
+            _mpers = new ModelOptionProfesional(_expPers.listarProfesionalinOrder());
+            _mtl = new ModelOptionTipoLicencia(_expTL.listar());
+        }
+        catch(Exception ex)
+        {
+            System.out.println("ctrlAltaAsignacionHorario: Error creando modelos: " + ex.toString());
+        }
 
     }
 
@@ -57,12 +64,26 @@ public class ctrlAltaLicencia extends GeneralController
     
     public String getOptionsEmpleado(String empleado)
     {
-        return  _mpers.toString(empleado);
+        String opt = "<option>No Hay opciones disponibles</option>\n";
+
+        if(_mpers != null)
+        {
+            opt = _mpers.toString(empleado);
+        }
+
+        return  opt;
     }
     
     public String getOptionsTipoLicencia(String tipoLicencia)
     {
-        return  _mtl.toString(tipoLicencia);
+        String opt = "<option>No Hay opciones disponibles</option>\n";
+
+        if(_mtl != null)
+        {
+            opt = _mtl.toString(tipoLicencia);
+        }
+
+        return  opt;
     }
 
 

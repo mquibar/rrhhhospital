@@ -26,12 +26,19 @@ public class ctrlAltaAsignacionHorario extends GeneralController
     ModelOptionTipoHorario _mth;
 
     public ctrlAltaAsignacionHorario() {
-        _expAlta = (ExpAltaAsignacionHorario) super.getExpert(ExpAltaAsignacionHorario.class.getName());
-        _expTH = (ExpConsultarTipoHorario) super.getExpert(ExpConsultarTipoHorario.class.getName());
-        _expPers = (ExpConsultarPersonal) super.getExpert(ExpConsultarPersonal.class.getName());
+            _expAlta = (ExpAltaAsignacionHorario) super.getExpert(ExpAltaAsignacionHorario.class.getName());
+            _expTH = (ExpConsultarTipoHorario) super.getExpert(ExpConsultarTipoHorario.class.getName());
+            _expPers = (ExpConsultarPersonal) super.getExpert(ExpConsultarPersonal.class.getName());
 
-        _mpers = new ModelOptionProfesional(_expPers.listarProfesionalinOrder());
-        _mth = new ModelOptionTipoHorario(_expTH.listar());
+        try
+        {
+            _mpers = new ModelOptionProfesional(_expPers.listarProfesionalinOrder());
+            _mth = new ModelOptionTipoHorario(_expTH.listar());
+        }
+        catch(Exception ex)
+        {
+            System.out.println("ctrlAltaAsignacionHorario: Error creando modelos: " + ex.toString());
+        }
 
     }
 
@@ -57,12 +64,26 @@ public class ctrlAltaAsignacionHorario extends GeneralController
     
     public String getOptionsEmpleado(String empleado)
     {
-        return  _mpers.toString(empleado);
+        String opt = "<option>No Hay opciones disponibles</option>\n";
+        
+        if(_mpers != null)
+        {
+            opt = _mpers.toString(empleado);
+        }
+        
+        return  opt;
     }
     
     public String getOptionsTipoHorario(String tipoHorario)
     {
-        return  _mth.toString(tipoHorario);
+        String opt = "<option>No Hay opciones disponibles</option>\n";
+
+        if(_mth != null)
+        {
+            opt = _mth.toString(tipoHorario);
+        }
+
+        return  opt;
     }
 
 
