@@ -8,10 +8,8 @@ package Expertos.horario;
 import Entidades.Empleado;
 import Entidades.Licencia;
 import Entidades.TipoLicencia;
-import Expertos.horario.ExpAltaTipoLicencia;
 import Intermediarios.GestorConeccion;
 import Intermediarios.IntermediarioLicencia;
-import Intermediarios.IntermediarioTipoLicencia;
 import java.util.Date;
 import javax.ejb.Stateless;
 

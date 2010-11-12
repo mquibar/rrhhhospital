@@ -5,6 +5,7 @@
 
 package Expertos.horario;
 
+import Entidades.Empleado;
 import Entidades.RegistroPeriodo;
 import Expertos.horario.ExpAltaRegistroPeriodo;
 import Intermediarios.GestorConeccion;
@@ -60,17 +61,19 @@ public class ExpAltaRegistroPeriodoBeans implements ExpAltaRegistroPeriodo {
     }
 
     public void iniciarAlta(
+            Empleado empleado,
             Date fechaEntrada,
             Date horaEntrada,
             Date fechaSalida,
             Date horaSalida,
-            int idEmpleado) {
+            Boolean vigente
+            ) {
 
         _registroPeriodo.setFechaEntrada(fechaEntrada);
         _registroPeriodo.setHoraEntrada(horaEntrada);
-        _registroPeriodo.setFechaSalida(fechaSalida);
+        _registroPeriodo.setFechaSalida(fechaEntrada);
         _registroPeriodo.setHoraSalida(horaSalida);
-        _registroPeriodo.setIdEmpleado(idEmpleado);
+        _registroPeriodo.setIdEmpleado(empleado.getIdEmpleado());
 
         _flagSave = validar();
     }
