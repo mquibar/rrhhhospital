@@ -17,13 +17,14 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.ejb.EJB;
+import javax.ejb.Stateless;
 
 /**
  *
  * @author MARIANO
  */
 
+@Stateless
 public class ExpAltaPersonalBeans implements ExpAltaPersonal {
 
     protected Persona _persona;
@@ -33,6 +34,16 @@ public class ExpAltaPersonalBeans implements ExpAltaPersonal {
 
     public ExpAltaPersonalBeans(Persona _personal) {
         this._persona = _personal;
+    }
+
+    public Map<String, List> iniciarPersonal(){
+        Map<String,List> listas = new HashMap<String, List>();
+        listas.put("TIPO", (new Intermediarios.IntermediarioTipoEmpleado()).findAll());
+        listas.put("TARJETA", (new Intermediarios.IntermediarioTarjeta()).findAll());
+        listas.put("PAIS", (new Intermediarios.IntermediarioPais()).findAll());
+        listas.put("LOCALIDAD", (new Intermediarios.IntermediarioLocalidad().findAll()));
+        listas.put("PROVINCIA", (new Intermediarios.IntermediarioProvincia().findAll()));
+        return listas;
     }
 
     //Inicia a una persona
@@ -68,7 +79,7 @@ public class ExpAltaPersonalBeans implements ExpAltaPersonal {
     }
 
     //Agrega el domicilio a la persona
-    public void agregarDomicilio (String barrio, String calle, String numero,
+    private void agregarDomicilio (String barrio, String calle, String numero,
             String piso, String departamanto, Localidad localidad, Provincia provincia, Pais pais) {
 
         _persona.setIdDomicilio((new ExpAltaDomicilioBeans()).altaDomicilio(barrio, calle, numero, piso, departamanto, localidad, provincia));

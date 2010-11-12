@@ -49,12 +49,12 @@ public class IntermediarioProfesional extends Intermediario <Profesional> {
     @Override
     public List<Profesional> findInOrden(String orden) {
         Criteria criterio = ((Session)GestorConeccion.getInstance().getManager().getDelegate()).createCriteria(_clase).addOrder(Order.asc(orden));
-        return criterio.list();
+         try{return criterio.list();}catch(Exception ex){ex.printStackTrace();return null;}
     }
 
     public Profesional findByDni (String dni) {
             try {
-            Query q = GestorConeccion.getInstance().getManager().createNamedQuery(super._clase + ".findByDni").setParameter(dni, this);
+            Query q = GestorConeccion.getInstance().getManager().createNamedQuery(super._clase + ".findByDni").setParameter("dni", dni);
             return (Profesional)q.getSingleResult();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -65,7 +65,7 @@ public class IntermediarioProfesional extends Intermediario <Profesional> {
 
      public Profesional findByMatricula (String matricula) {
             try {
-            Query q = GestorConeccion.getInstance().getManager().createNamedQuery(_clase + ".findByMatricula").setParameter(matricula, this);
+            Query q = GestorConeccion.getInstance().getManager().createNamedQuery(_clase + ".findByMatricula").setParameter("matricula", matricula);
             return (Profesional)q.getSingleResult();
         } catch (Exception ex) {
             ex.printStackTrace();

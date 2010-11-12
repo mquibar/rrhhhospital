@@ -20,4 +20,8 @@ public class ExpConsultarSexoBeans implements ExpConsultarSexo {
     public Sexo listarSexo (String sexo) {
         return ( new IntermediarioSexo().findBySexo(sexo));
     }
+
+    public Sexo listarPorId (int id) {
+        return ( new IntermediarioSexo().findById(id));
+    }
 }
