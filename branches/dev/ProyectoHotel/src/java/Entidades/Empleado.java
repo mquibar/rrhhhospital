@@ -12,6 +12,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -27,9 +29,14 @@ import javax.persistence.TemporalType;
  * @author Manuel
  */
 @Entity
+@Inheritance(strategy=InheritanceType.JOINED)
 @Table(name = "Empleado")
 @PrimaryKeyJoinColumn(name="idEmpleado",referencedColumnName="id")
-@NamedQueries({@NamedQuery(name = "Empleado.findAll", query = "SELECT e FROM Empleado e"), @NamedQuery(name = "Empleado.findByCuil", query = "SELECT e FROM Empleado e WHERE e.cuil = :cuil"), @NamedQuery(name = "Empleado.findByFechaIngreso", query = "SELECT e FROM Empleado e WHERE e.fechaIngreso = :fechaIngreso"), @NamedQuery(name = "Empleado.findByLegajo", query = "SELECT e FROM Empleado e WHERE e.legajo = :legajo"), @NamedQuery(name = "Empleado.findByEliminado", query = "SELECT e FROM Empleado e WHERE e.eliminado = :eliminado")})
+@NamedQueries({@NamedQuery(name = "Empleado.findAll", query = "SELECT e FROM Empleado e"),
+@NamedQuery(name = "Empleado.findByCuil", query = "SELECT e FROM Empleado e WHERE e.cuil = :cuil"),
+@NamedQuery(name = "Empleado.findByFechaIngreso", query = "SELECT e FROM Empleado e WHERE e.fechaIngreso = :fechaIngreso"),
+@NamedQuery(name = "Empleado.findByLegajo", query = "SELECT e FROM Empleado e WHERE e.legajo = :legajo"),
+@NamedQuery(name = "Empleado.findByEliminado", query = "SELECT e FROM Empleado e WHERE e.eliminado = :eliminado")})
 public class Empleado extends Persona{
     private static final long serialVersionUID = 1L;
     @Column(name = "Cuil")

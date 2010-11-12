@@ -27,7 +27,10 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "Tarjeta")
-@NamedQueries({@NamedQuery(name = "Tarjeta.findAll", query = "SELECT t FROM Tarjeta t"), @NamedQuery(name = "Tarjeta.findById", query = "SELECT t FROM Tarjeta t WHERE t.id = :id"), @NamedQuery(name = "Tarjeta.findByNumero", query = "SELECT t FROM Tarjeta t WHERE t.numero = :numero"), @NamedQuery(name = "Tarjeta.findByEliminada", query = "SELECT t FROM Tarjeta t WHERE t.eliminada = :eliminada")})
+@NamedQueries({@NamedQuery(name = "Tarjeta.findAll", query = "SELECT t FROM Tarjeta t"),
+@NamedQuery(name = "Tarjeta.findById", query = "SELECT t FROM Tarjeta t WHERE t.id = :id"),
+@NamedQuery(name = "Tarjeta.findByNumero", query = "SELECT t FROM Tarjeta t WHERE t.numero = :numero"),
+@NamedQuery(name = "Tarjeta.findByEliminada", query = "SELECT t FROM Tarjeta t WHERE t.eliminada = :eliminada")})
 public class Tarjeta implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

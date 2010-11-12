@@ -12,10 +12,8 @@ import javax.ejb.Remote;
  * @author MARIANO
  */
 @Remote
-public interface ExpConsultarSexo {
+public interface ExpConsultarTarjeta {
 
-    public Entidades.Sexo listarSexo(java.lang.String sexo);
-
-    public Entidades.Sexo listarPorId(int id);
+    public Entidades.Tarjeta listarTarjetas(long numero);
 
 }

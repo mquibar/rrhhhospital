@@ -32,7 +32,13 @@ import javax.persistence.TemporalType;
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
 @Table(name = "Persona")
-@NamedQueries({@NamedQuery(name = "Persona.findAll", query = "SELECT p FROM Persona p"), @NamedQuery(name = "Persona.findById", query = "SELECT p FROM Persona p WHERE p.id = :id"), @NamedQuery(name = "Persona.findByApellido", query = "SELECT p FROM Persona p WHERE p.apellido = :apellido"), @NamedQuery(name = "Persona.findByNombre", query = "SELECT p FROM Persona p WHERE p.nombre = :nombre"), @NamedQuery(name = "Persona.findByDni", query = "SELECT p FROM Persona p WHERE p.dni = :dni"), @NamedQuery(name = "Persona.findByFechaNacimiento", query = "SELECT p FROM Persona p WHERE p.fechaNacimiento = :fechaNacimiento"), @NamedQuery(name = "Persona.findByTelefono", query = "SELECT p FROM Persona p WHERE p.telefono = :telefono")})
+@NamedQueries({@NamedQuery(name = "Persona.findAll", query = "SELECT p FROM Persona p"),
+@NamedQuery(name = "Persona.findById", query = "SELECT p FROM Persona p WHERE p.id = :id"),
+@NamedQuery(name = "Persona.findByApellido", query = "SELECT p FROM Persona p WHERE p.apellido = :apellido"),
+@NamedQuery(name = "Persona.findByNombre", query = "SELECT p FROM Persona p WHERE p.nombre = :nombre"),
+@NamedQuery(name = "Persona.findByDni", query = "SELECT p FROM Persona p WHERE p.dni = :dni"),
+@NamedQuery(name = "Persona.findByFechaNacimiento", query = "SELECT p FROM Persona p WHERE p.fechaNacimiento = :fechaNacimiento"),
+@NamedQuery(name = "Persona.findByTelefono", query = "SELECT p FROM Persona p WHERE p.telefono = :telefono")})
 public abstract class Persona implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

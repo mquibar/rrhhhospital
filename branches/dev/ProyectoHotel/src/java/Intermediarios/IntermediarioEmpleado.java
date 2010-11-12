@@ -54,7 +54,7 @@ public class IntermediarioEmpleado extends Intermediario<Empleado> {
 
     public Empleado findByDni (String dni) {
             try {
-            Query q = GestorConeccion.getInstance().getManager().createNamedQuery(super._clase + ".findByDni").setParameter(dni, this);
+            Query q = GestorConeccion.getInstance().getManager().createNamedQuery(super._clase + ".findByDni").setParameter("dni", dni);
             return (Empleado)q.getSingleResult();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -65,7 +65,7 @@ public class IntermediarioEmpleado extends Intermediario<Empleado> {
 
      public Empleado findByCuil (String cuil) {
             try {
-            Query q = GestorConeccion.getInstance().getManager().createNamedQuery(_clase + ".findByCuil").setParameter(cuil, this);
+            Query q = GestorConeccion.getInstance().getManager().createNamedQuery(_clase + ".findByCuil").setParameter("cuil", cuil);
             return (Empleado)q.getSingleResult();
         } catch (Exception ex) {
             ex.printStackTrace();
