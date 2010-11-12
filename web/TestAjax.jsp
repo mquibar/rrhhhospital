@@ -10,19 +10,19 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-    <script language="javascript" type="text/javascript" src="./js/preguntar.js">
-    </script>
-</head>
+    </head>
 
-<body onload="iniciar()">
-    <h1>Hello World!</h1>
-    <form>
-        <a>Agrupamiento</a><select id="agrupamiento" onchange="listarTramo()">
-        </select>
+    <body>
+        <h1>Hello World!</h1>
+        <form>
+            <a>Agrupamiento</a><select id="agrupamiento"">
+                                       <option>algo</option>
+            </select>
 
-        <a>Tramo</a><select id="tramo">
-        </select>
-        <input type="text" id="te" value="" readonly="readonly" />
-    </form>
-</body>
+            <a>Tramo</a><select id="tramo">
+                <option>algo</option>
+            </select>
+            <input type="text" id="te" value="" readonly="readonly" />
+        </form>
+    </body>
 </html>

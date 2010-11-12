@@ -3,6 +3,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Home</title>
 <link href="./css/estilos.css" rel="stylesheet" type="text/css" />
+<script language="javascript" type="text/javascript" src="./js/createRequestJs.js"></script>
+<script language="javascript" type="text/javascript" src="./js/esperar.js"></script>
+<script language="javascript" type="text/javascript" src="./js/menuJavaScript.js"></script>
 </head>
 
 <body>
@@ -187,9 +190,9 @@ margin:2px 0px 0px 2px;
 <ul class="pureCssMenu pureCssMenum0">
 	<li class="pureCssMenui0"><a class="pureCssMenui0" href="#"><span>Personal</span><![if gt IE 6]></a><![endif]><!--[if lte IE 6]><table><tr><td><![endif]-->
 	<ul class="pureCssMenum">
-		<li class="pureCssMenui"><a class="pureCssMenui" href="./gestionar_personal.html">Gestionar personal</a></li>
-		<li class="pureCssMenui"><a class="pureCssMenui" href="./Consultar_Persona.html">Consultar personal</a></li>
-		<li class="pureCssMenui"><a class="pureCssMenui" href="./Alta_Legajo_Final.jsp">Asignar legajo</a></li>
+            <li class="pureCssMenui"><a id="Personal_mnu1" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Gestionar personal</a></li>
+                <li class="pureCssMenui"><a id="Personal_mnu2" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Consultar personal</a></li>
+		<li class="pureCssMenui"><a id="Personal_mnu3" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Asignar legajo</a></li>
 	</ul>
 	<!--[if lte IE 6]></td></tr></table></a><![endif]--></li>
 	<li class="pureCssMenui0"><a class="pureCssMenui0" href="#"><span>Horarios</span><![if gt IE 6]></a><![endif]><!--[if lte IE 6]><table><tr><td><![endif]-->
@@ -220,6 +223,6 @@ margin:2px 0px 0px 2px;
 </ul>
 <a id="pcm" href="http://www.purecssmenu.com/">CSS Drop Down Menu by PureCSSMenu.com</a>
 <!-- End PureCSSMenu.com MENU --></div>
- <div class="noticias">NOTICIAS</div>
+ <div id="noticias" class="noticias">NOTICIAS</div>
 </body>
 </html>

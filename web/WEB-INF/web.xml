@@ -8,6 +8,10 @@
         <servlet-name>reporteRequest</servlet-name>
         <servlet-class>servlets.reporteRequest</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>menuServlet</servlet-name>
+        <servlet-class>servlets.menuServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>testLocalidades</servlet-name>
         <url-pattern>/testLocalidades</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>reporteRequest</servlet-name>
         <url-pattern>/reporteRequest</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>menuServlet</servlet-name>
+        <url-pattern>/menuServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
