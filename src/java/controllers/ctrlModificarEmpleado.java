@@ -26,10 +26,10 @@ public class ctrlModificarEmpleado extends GeneralController{
         _exp = (ExpModificarProfesional) super.getExpert(ExpModificarProfesional.class.getName());
     }
 
-    public String crearTabla(){
+    /*public String crearTabla(){
         _tabla = new ModelTablaEmpleado(_exp.listarEmpleados());
         return _tabla.toString();
-    }
+    }*/
 
     public Empleado getSelected(int Index){
         return _tabla.getRow(Index);
