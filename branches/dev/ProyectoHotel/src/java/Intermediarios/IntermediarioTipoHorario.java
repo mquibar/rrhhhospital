@@ -36,7 +36,7 @@ public class IntermediarioTipoHorario extends Intermediario<TipoHorario> {
 
     public TipoHorario findByNombre(String nombre) {
         try {
-            Query q = GestorConeccion.getInstance().getManager().createNamedQuery(super._clase + ".findByNombre").setParameter(nombre, this);
+            Query q = GestorConeccion.getInstance().getManager().createNamedQuery(super._clase + ".findByNombre").setParameter("nombre", nombre);
             return (TipoHorario) q.getSingleResult();
         } catch (Exception ex) {
             ex.printStackTrace();

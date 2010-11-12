@@ -8,11 +8,13 @@ package Expertos.horario;
 import Entidades.Empleado;
 import Entidades.TipoLicencia;
 import java.util.Date;
+import javax.ejb.Remote;
 
 /**
  *
  * @author Manuel
  */
+@Remote
 public interface  ExpAltaLicencia {
 
     public String guardar();
