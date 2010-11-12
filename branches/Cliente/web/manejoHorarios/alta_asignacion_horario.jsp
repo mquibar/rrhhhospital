@@ -78,6 +78,7 @@ else
 
             <script src="../js/validaciones/validaciones.js" type="text/javascript"></script>
             <script src="../js/validaciones/validacionesAsignacionHorario.js" type="text/javascript"></script>
+            <script src="../tools/datepicker/datepickercontrol.js" type="text/javascript"></script>
             <link  href="../tools/datepicker/datepickercontrol.css" type="text/css" rel="stylesheet" />
 
             <script type="text/javascript">

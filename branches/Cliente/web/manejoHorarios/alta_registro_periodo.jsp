@@ -22,11 +22,11 @@ if (request.getParameter("buttonCancel") != null)
 }
 else
 {
-    String fechaInicio = getValue(request, "fechaInicio");
-    String fechaFin = getValue(request, "fechaFin");
     String empleado = getValue(request, "empleado");
-    String tipoHorario = getValue(request, "tipoHorario");
-    String descripcion = getValue(request, "descripcion");
+    String fechaEntrada = getValue(request, "fechaEntrada");
+    String fechaSalida = getValue(request, "fechaSalida");
+    String horaEntrada = getValue(request, "horaEntrada");
+    String horaSalida = getValue(request, "horaSalida");
     String vigente = getValue(request, "vigente");
 
     String mensageEstado = "";
@@ -38,12 +38,13 @@ else
         if (request.getParameter("buttonSave") != null)
         {
             c.iniciarAlta(
-                    fechaInicio,
-                    fechaFin,
-                    empleado,
-                    tipoHorario,
-                    descripcion,
-                    "true");
+                empleado,
+                fechaEntrada,
+                horaEntrada,
+                fechaSalida,
+                horaSalida,
+                vigente
+                    );
 
             mensageEstado = c.guardar();
         }
@@ -78,6 +79,7 @@ else
 
             <script src="../js/validaciones/validaciones.js" type="text/javascript"></script>
             <script src="../js/validaciones/validacionesRegistroPeriodo.js" type="text/javascript"></script>
+            <script src="../tools/datepicker/datepickercontrol.js" type="text/javascript"></script>
             <link  href="../tools/datepicker/datepickercontrol.css" type="text/css" rel="stylesheet" />
 
             <script type="text/javascript">
@@ -115,30 +117,23 @@ else
                             </select>
                             <br />
                             <br />
-                            Tipo de horario<br />
-                            <select name="tipoHorario" id="tipoHorario" >
-                                <%= c.getOptionsTipoHorario(tipoHorario)%>
-                            </select>
-                            <br />
-                            <br />
-                            Fecha Inicio<br />
+                           Fecha<br />
                             <label>
-                                <input type="text" name="fechaInicio" id="DPC_edit1"  value='<%=fechaInicio%>' />
+                                <input type="text" name="fechaEntrada" id="DPC_edit1"  value='<%=fechaEntrada%>' />
                             </label>
                             <br />
                             <br />
-                            Fecha Fin<br />
+                            Hora Entrada<br />
                             <label>
-                                <input type="text" name="fechaFin" id="DPC_edit2"  value='<%=fechaFin%>' />
+                                <input name="horaEntrada" id="horaEntrada" value="<%=horaEntrada%>"/>
                             </label>
                             <br />
                             <br />
-                            Descripcion<br />
+                            Hora Salida<br />
                             <label>
-                                <textarea name="descripcion" id="descripcion" cols="45" rows="5">
-                                <%=descripcion%>
-                                </textarea>
+                                <input name="horaSalida" id="horaSalida" value="<%=horaSalida%>"/>
                             </label>
+                            <br />
                             <br />
                         </div>
                         <div class="derecha"></div>
