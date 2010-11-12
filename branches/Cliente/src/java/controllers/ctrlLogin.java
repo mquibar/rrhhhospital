@@ -20,7 +20,7 @@ public class ctrlLogin
 
     public String login(String user, String pass) throws SystemException
     {
-        pass = Tools.Encriptador.getStringMessageDigest(pass, "MD5");
+        pass = tools.Encriptador.getStringMessageDigest(pass, "MD5");
         _exp.logIn(user, pass);
         return "Bienvenido al sistema";
     }

@@ -197,9 +197,9 @@ margin:2px 0px 0px 2px;
 	<!--[if lte IE 6]></td></tr></table></a><![endif]--></li>
 	<li class="pureCssMenui0"><a class="pureCssMenui0" href="#"><span>Horarios</span><![if gt IE 6]></a><![endif]><!--[if lte IE 6]><table><tr><td><![endif]-->
 	<ul class="pureCssMenum">
-		<li class="pureCssMenui"><a class="pureCssMenui" href="./manejoHorarios/alta_asignacion_horario.jsp">Asignacion horarios</a></li>
-		<li class="pureCssMenui"><a class="pureCssMenui" href="./manejoHorarios/manejo_de_licencias.jsp">Manejo de licencias</a></li>
-		<li class="pureCssMenui"><a class="pureCssMenui" href="#">Registro de periodo</a></li>
+            <li class="pureCssMenui"><a id="Horario_mnu1" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Asignacion horarios</a></li>
+		<li class="pureCssMenui"><a id="Horario_mnu2" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Manejo de licencias</a></li>
+		<li class="pureCssMenui"><a id="Horario_mnu3" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Registro de periodo</a></li>
 	</ul>
 	<!--[if lte IE 6]></td></tr></table></a><![endif]--></li>
 	<li class="pureCssMenui0"><a class="pureCssMenui0" href="#"><span>Seguimiento</span><![if gt IE 6]></a><![endif]><!--[if lte IE 6]><table><tr><td><![endif]-->
