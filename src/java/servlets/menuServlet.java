@@ -45,13 +45,45 @@ public class menuServlet extends HttpServlet {
             String url = "underContruction.html";
             switch (optionsMenu.valueOf(option)) {
                 case PERSONAL_MNU1:
-                    url="gestionar_categoria.html";
+                    url="gestionar_personal.html";
                     break;
                 case PERSONAL_MNU2:
-                    System.out.println("menu d");
+                    url="Consultar_Persona.html";
+                    break;
+                case PERSONAL_MNU3:
+                case HORARIO_MNU1:
+                case HORARIO_MNU2:
+                case HORARIO_MNU3:
+                    break;
+                case SEGUIMIENTO_MNU1:
+                    url="gestionar_categoria.html";
+                    break;
+                case SEGUIMIENTO_MNU2:
+                    url="gestionar_departamento.html";
+                    break;
+                case SEGUIMIENTO_MNU3:
+                    url="Recategorizacion_Final.jsp";
+                    break;
+                case SEGUIMIENTO_MNU4:
+                case SEGUIMIENTO_MNU5:
+                    break;
+                case REPORTE_MNU1:
+                    url="Reportes_Personal.html";
+                    break;
+                case REPORTE_MNU2:
+                    url="Reportes_Horarios.html";
+                    break;
+                case REPORTE_MNU3:
+                    url="Reportes_Seguimiento.html";
+                    break;
+                case REPORTE_MNU4:
+                    url="Reportes_Departamento.html";
+                    break;
+                case REPORTE_MNU5:
+                    url="Reportes_Usuarios.html";
                     break;
                 default:
-                    System.out.println(" nada");
+                    url="underContruction.html";
             }
             response.sendRedirect(url);
         } catch (Exception e) {
