@@ -20,49 +20,55 @@ import models.combos.ModelOptionTipoHorario;
 public class ctrlAltaRegistroPeriodo extends GeneralController
 {
     ExpAltaRegistroPeriodo _expAlta;
-    ExpConsultarTipoHorario _expTH;
     ExpConsultarPersonal _expPers;
 
     ModelOptionProfesional _mpers;
-    ModelOptionTipoHorario _mth;
 
     public ctrlAltaRegistroPeriodo() {
         _expAlta = (ExpAltaRegistroPeriodo) super.getExpert(ExpAltaRegistroPeriodo.class.getName());
-        _expTH = (ExpConsultarTipoHorario) super.getExpert(ExpConsultarTipoHorario.class.getName());
         _expPers = (ExpConsultarPersonal) super.getExpert(ExpConsultarPersonal.class.getName());
 
-        _mpers = new ModelOptionProfesional(_expPers.listarProfesionalinOrder());
-        _mth = new ModelOptionTipoHorario(_expTH.listar());
+       try
+       {
+            _mpers = new ModelOptionProfesional(_expPers.listarProfesionalinOrder());
+       }
+       catch(Exception ex)
+       {
+           System.out.println("ctrlAltaRegistroPeriodo: Error creando modelos: " + ex.toString());
+       }
 
     }
 
     public void iniciarAlta(
-            String fechaInicio,
-            String fechaFin,
-            String idEmpleado,
-            String idTipoHorario,
-            String descripcion,
+            String empleado,
+            String fechaEntrada,
+            String horaEntrada,
+            String fechaSalida,
+            String horaSalida,
             String vigente
             )
     {
-//         _expAlta.iniciarAlta(
-//             ManejaFechas.convertirString(fechaInicio),
-//             ManejaFechas.convertirString(fechaFin),
-//             _mpers.getSelectedItem(idEmpleado),
-//             descripcion,
-//             true);
+         _expAlta.iniciarAlta(
+             _mpers.getSelectedItem(empleado),
+             ManejaFechas.convertirString(fechaEntrada),
+             ManejaFechas.getHour(horaEntrada),
+             ManejaFechas.convertirString(fechaSalida),
+             ManejaFechas.getHour(horaSalida),
+             true);
     }
 
     public String guardar() {return _expAlta.guardar();}
     
     public String getOptionsEmpleado(String empleado)
     {
-        return  _mpers.toString(empleado);
-    }
-    
-    public String getOptionsTipoHorario(String tipoHorario)
-    {
-        return  _mth.toString(tipoHorario);
+        String opt = "<option>No Hay opciones disponibles</option>\n";
+
+        if(_mpers != null)
+        {
+            opt = _mpers.toString(empleado);
+        }
+
+        return  opt;
     }
 
 
