@@ -42,23 +42,20 @@ public class menuServlet extends HttpServlet {
         PrintWriter outw = response.getWriter();
         try {
             String option = request.getParameter("opMenu").toUpperCase();
+            String url = "underContruction.html";
             switch (optionsMenu.valueOf(option)) {
                 case PERSONAL_MNU1:
-
-                    // Get the absolute path of the image
-                    ServletContext sc = getServletContext();
-                    response.sendRedirect("TestAjax.jsp");
+                    url="gestionar_categoria.html";
                     break;
                 case PERSONAL_MNU2:
-                    outw.println("SE OPRIMIO EL MENU 2 DE PERSONAL");
                     System.out.println("menu d");
                     break;
                 default:
-                    outw.println("nada");
                     System.out.println(" nada");
             }
+            response.sendRedirect(url);
         } catch (Exception e) {
-            outw.println("error");
+            response.sendRedirect("underContruction.jsp");
             outw.close();
         }
     }

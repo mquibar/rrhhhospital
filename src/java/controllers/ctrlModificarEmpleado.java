@@ -10,7 +10,7 @@ import Entidades.Localidad;
 import Entidades.Pais;
 import Entidades.Persona;
 import Entidades.Provincia;
-import Expertos.personal.ExpModificarPersona;
+import Expertos.personal.ExpModificarProfesional;
 import models.tables.AbstractModelTable;
 import models.tables.ModelTablaEmpleado;
 
@@ -20,10 +20,10 @@ import models.tables.ModelTablaEmpleado;
  */
 public class ctrlModificarEmpleado extends GeneralController{
 
-    ExpModificarPersona _exp;
+    ExpModificarProfesional _exp;
     AbstractModelTable<Empleado> _tabla;
     public ctrlModificarEmpleado() {
-        _exp = (ExpModificarPersona) super.getExpert(ExpModificarPersona.class.getName());
+        _exp = (ExpModificarProfesional) super.getExpert(ExpModificarProfesional.class.getName());
     }
 
     public String crearTabla(){
