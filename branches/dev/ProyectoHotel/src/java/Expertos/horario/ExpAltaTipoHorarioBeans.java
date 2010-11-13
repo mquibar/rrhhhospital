@@ -33,9 +33,10 @@ public class ExpAltaTipoHorarioBeans implements ExpAltaTipoHorario {
 
         if(_flagSave)
         {
-            GestorConeccion.getInstance().beginTransaction();
             try
             {
+                GestorConeccion gc = GestorConeccion.getInstance();
+                gc.beginTransaction();
                 if( persistir() )
                 {
                     GestorConeccion.getInstance().commitTransaction();

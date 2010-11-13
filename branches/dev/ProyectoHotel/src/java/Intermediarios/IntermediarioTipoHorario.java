@@ -7,6 +7,7 @@ package Intermediarios;
 import Configuraciones.LogAdmin;
 import Entidades.TipoHorario;
 import java.util.List;
+import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -36,7 +37,7 @@ public class IntermediarioTipoHorario extends Intermediario<TipoHorario> {
 
     public TipoHorario findByNombre(String nombre) {
         try {
-            Query q = GestorConeccion.getInstance().getManager().createNamedQuery(super._clase + ".findByNombre").setParameter("nombre", nombre);
+            Query q = GestorConeccion.getInstance().getManager().createNamedQuery(_clase + ".findByNombre").setParameter("nombre", nombre);
             return (TipoHorario) q.getSingleResult();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -46,8 +47,10 @@ public class IntermediarioTipoHorario extends Intermediario<TipoHorario> {
     }
     
     public TipoHorario findById(int id) {
-        try {
-            Query q = GestorConeccion.getInstance().getManager().createNamedQuery(super._clase + ".findById").setParameter("id", id);
+        try
+        {
+            EntityManager em = GestorConeccion.getInstance().getManager();
+            Query q = em.createNamedQuery(_clase + ".findById").setParameter("id", id);
             return (TipoHorario) q.getSingleResult();
         } catch (Exception ex) {
             ex.printStackTrace();
