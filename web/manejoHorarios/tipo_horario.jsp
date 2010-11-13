@@ -1,4 +1,4 @@
-<%@page import="controllers.ctrlAltaRegistroPeriodo" %>
+<%@page import="controllers.ctrlAltaTipoHorario" %>
 
 <%!
     String getValue(ServletRequest request, String varName)
@@ -22,31 +22,43 @@ if (request.getParameter("buttonCancel") != null)
 }
 else
 {
-    String empleado = getValue(request, "empleado");
-    String fechaEntrada = getValue(request, "fechaEntrada");
-    String fechaSalida = getValue(request, "fechaSalida");
+    String mensageEstado = "";
+    String action = getValue(request, "action");
+    String idEntidad = getValue(request, "idEntidad");
+    String esRecarga = getValue(request, "esRecarga");
+    boolean esBorrado = (action == "delete");
+    String deshabilitar = (esBorrado) ? "readonly" : "";
+    boolean cargarEntidad = !idEntidad.equals("") && !esRecarga.equals("Si");
+
     String horaEntrada = getValue(request, "horaEntrada");
     String horaSalida = getValue(request, "horaSalida");
+    String nombre = getValue(request, "nombre");
+    String descripcion = getValue(request, "descripcion");
     String vigente = getValue(request, "vigente");
 
-    String mensageEstado = "";
-    ctrlAltaRegistroPeriodo c = null;
    try
     {
-        c = new ctrlAltaRegistroPeriodo();
+        ctrlAltaTipoHorario c = new ctrlAltaTipoHorario();
+
+        if(cargarEntidad)
+        {
+            horaEntrada = c.getHoraIngreso(idEntidad);
+            horaSalida = c.getHoraSalida(idEntidad);
+            nombre = c.getNombre(idEntidad);
+            descripcion = c.getDescripcion(idEntidad);
+            
+            esRecarga = "Si";
+        }
 
         if (request.getParameter("buttonSave") != null)
         {
-            c.iniciarAlta(
-                empleado,
-                fechaEntrada,
-                horaEntrada,
-                fechaSalida,
-                horaSalida,
-                vigente
-                    );
-
-            mensageEstado = c.guardar();
+            mensageEstado = c.guardar(
+                    idEntidad,
+                    nombre,
+                    descripcion,
+                    horaEntrada,
+                    horaSalida,
+                    "true");
         }
     }
     catch(Exception ex)
@@ -74,11 +86,11 @@ else
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml"><head>
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-            <title>Asignacion de Horario</title>
+            <title>Alta de Tipo de Horario</title>
             <link href="../css/estilos.css" rel="stylesheet" type="text/css" />
 
             <script src="../js/validaciones/validaciones.js" type="text/javascript"></script>
-            <script src="../js/validaciones/validacionesRegistroPeriodo.js" type="text/javascript"></script>
+            <script src="../js/validaciones/validacionesTipoHorario.js" type="text/javascript"></script>
             <script src="../tools/datepicker/datepickercontrol.js" type="text/javascript"></script>
             <link  href="../tools/datepicker/datepickercontrol.css" type="text/css" rel="stylesheet" />
 
@@ -100,7 +112,8 @@ else
                     <div class="log_off">LogOff </div>
                 </div>
             </div>
-            <div class="noticias" id="noticias_2"> ASIGNACION HORARIOS<br />
+            <div class="noticias" id="noticias_2"> 
+                <%=(idEntidad == "")?"ALTA":"MODIFICACION"%> TIPO HORARIO<br />
 <%
     if(mensageEstado != "")
     {
@@ -110,28 +123,30 @@ else
                 <div class="forms">
                     <form id="form1" name="form1" method="post" action="">
                         <div class="izquierda"><br />
-                            EMPLEADO<br />
-                            <br />
-                            <select name="empleado" size="1" id="empleado" >
-                                <%= c.getOptionsEmpleado(empleado)%>
-                            </select>
-                            <br />
-                            <br />
-                           Fecha<br />
+                                <input type="hidden" name="idEntidad" id="idEntidad" value="<%=idEntidad%>"/>
+                                <input type="hidden" name="esRecarga" id="esRecarga" value="<%=esRecarga%>"/>
+                                <input type="hidden" name="action" id="action" value="<%=action%>"/>
+                            Nombre<br />
                             <label>
-                                <input type="text" name="fechaEntrada" id="DPC_edit1"  value='<%=fechaEntrada%>' />
+                                <input name="nombre" id="nombre" <%=deshabilitar%> value="<%=nombre%>"/>
+                            </label>
+                            <br />
+                            <br />
+                            Descripcion<br />
+                            <label>
+                                <textarea name="descripcion" id="descripcion" cols="45" rows="5" <%=deshabilitar%> ><%=descripcion%></textarea>
                             </label>
                             <br />
                             <br />
                             Hora Entrada<br />
                             <label>
-                                <input name="horaEntrada" id="horaEntrada" value="<%=horaEntrada%>"/>
+                                <input name="horaEntrada" id="horaEntrada" <%=deshabilitar%> value="<%=horaEntrada%> "/>
                             </label>
                             <br />
                             <br />
                             Hora Salida<br />
                             <label>
-                                <input name="horaSalida" id="horaSalida" value="<%=horaSalida%>"/>
+                                <input name="horaSalida" id="horaSalida" <%=deshabilitar%> value="<%=horaSalida%>" />
                             </label>
                             <br />
                             <br />

@@ -42,7 +42,8 @@ public class ctrlAltaAsignacionHorario extends GeneralController
 
     }
 
-    public void iniciarAlta(
+    public String guardar(
+            String idEntidad,
             String fechaInicio,
             String fechaFin,
             String idEmpleado,
@@ -52,16 +53,17 @@ public class ctrlAltaAsignacionHorario extends GeneralController
             )
     {
          _expAlta.iniciarAlta(
+             idEntidad,
              ManejaFechas.convertirString(fechaInicio),
              ManejaFechas.convertirString(fechaFin),
              _mpers.getSelectedItem(idEmpleado),
              _mth.getSelectedItem(idTipoHorario),
              descripcion,
              true);
+
+             return _expAlta.guardar();
     }
 
-    public String guardar() {return _expAlta.guardar();}
-    
     public String getOptionsEmpleado(String empleado)
     {
         String opt = "<option>No Hay opciones disponibles</option>\n";

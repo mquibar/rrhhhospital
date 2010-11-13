@@ -1,4 +1,4 @@
-<%@page import="controllers.ctrlAltaAsignacionHorario" %>
+<%@page import="controllers.ctrlAltaRegistroPeriodo" %>
 
 <%!
     String getValue(ServletRequest request, String varName)
@@ -22,30 +22,31 @@ if (request.getParameter("buttonCancel") != null)
 }
 else
 {
-    String fechaInicio = getValue(request, "fechaInicio");
-    String fechaFin = getValue(request, "fechaFin");
+    String idEntidad = getValue(request, "idEntidad");
     String empleado = getValue(request, "empleado");
-    String tipoHorario = getValue(request, "tipoHorario");
-    String descripcion = getValue(request, "descripcion");
+    String fechaEntrada = getValue(request, "fechaEntrada");
+    String fechaSalida = getValue(request, "fechaSalida");
+    String horaEntrada = getValue(request, "horaEntrada");
+    String horaSalida = getValue(request, "horaSalida");
     String vigente = getValue(request, "vigente");
 
     String mensageEstado = "";
-    ctrlAltaAsignacionHorario c = null;
+    ctrlAltaRegistroPeriodo c = null;
    try
     {
-        c = new ctrlAltaAsignacionHorario();
+        c = new ctrlAltaRegistroPeriodo();
 
         if (request.getParameter("buttonSave") != null)
         {
-            c.iniciarAlta(
-                    fechaInicio,
-                    fechaFin,
-                    empleado,
-                    tipoHorario,
-                    descripcion,
-                    "true");
-
-            mensageEstado = c.guardar();
+            mensageEstado = c.guardar(
+                idEntidad,
+                empleado,
+                fechaEntrada,
+                horaEntrada,
+                fechaSalida,
+                horaSalida,
+                vigente
+                    );
         }
     }
     catch(Exception ex)
@@ -77,7 +78,7 @@ else
             <link href="../css/estilos.css" rel="stylesheet" type="text/css" />
 
             <script src="../js/validaciones/validaciones.js" type="text/javascript"></script>
-            <script src="../js/validaciones/validacionesAsignacionHorario.js" type="text/javascript"></script>
+            <script src="../js/validaciones/validacionesRegistroPeriodo.js" type="text/javascript"></script>
             <script src="../tools/datepicker/datepickercontrol.js" type="text/javascript"></script>
             <link  href="../tools/datepicker/datepickercontrol.css" type="text/css" rel="stylesheet" />
 
@@ -99,7 +100,7 @@ else
                     <div class="log_off">LogOff </div>
                 </div>
             </div>
-            <div class="noticias" id="noticias_2">ASIGNACION HORARIOS<br />
+            <div class="noticias" id="noticias_2"> ASIGNACION HORARIOS<br />
 <%
     if(mensageEstado != "")
     {
@@ -109,6 +110,7 @@ else
                 <div class="forms">
                     <form id="form1" name="form1" method="post" action="">
                         <div class="izquierda"><br />
+                                <input type="hidden" name="idEntidad" id="idEntidad" value="<%=idEntidad%>"/>
                             EMPLEADO<br />
                             <br />
                             <select name="empleado" size="1" id="empleado" >
@@ -116,28 +118,23 @@ else
                             </select>
                             <br />
                             <br />
-                            Tipo de horario<br />
-                            <select name="tipoHorario" id="tipoHorario" >
-                                <%= c.getOptionsTipoHorario(tipoHorario)%>
-                            </select>
-                            <br />
-                            <br />
-                            Fecha Inicio<br />
+                           Fecha<br />
                             <label>
-                                <input type="text" name="fechaInicio" id="DPC_edit1"  value='<%=fechaInicio%>' />
+                                <input type="text" name="fechaEntrada" id="DPC_edit1"  value='<%=fechaEntrada%>' />
                             </label>
                             <br />
                             <br />
-                            Fecha Fin<br />
+                            Hora Entrada<br />
                             <label>
-                                <input type="text" name="fechaFin" id="DPC_edit2"  value='<%=fechaFin%>' />
+                                <input name="horaEntrada" id="horaEntrada" value="<%=horaEntrada%>"/>
                             </label>
                             <br />
                             <br />
-                            Descripcion<br />
+                            Hora Salida<br />
                             <label>
-                                <textarea name="descripcion" id="descripcion" cols="45" rows="5"><%=descripcion%></textarea>
+                                <input name="horaSalida" id="horaSalida" value="<%=horaSalida%>"/>
                             </label>
+                            <br />
                             <br />
                         </div>
                         <div class="derecha"></div>
