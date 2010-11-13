@@ -4,12 +4,8 @@
  */
 package servlets;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.PrintWriter;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -85,7 +81,7 @@ public class menuServlet extends HttpServlet {
                 default:
                     url="underContruction.html";
             }
-            response.sendRedirect(url);
+            outw.println(url);
         } catch (Exception e) {
             response.sendRedirect("underContruction.jsp");
             outw.close();

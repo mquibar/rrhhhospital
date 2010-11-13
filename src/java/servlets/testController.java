@@ -6,9 +6,11 @@
 package servlets;
 
 import Expertos.categorizacion.ExpModificarAgrupamiento;
+import Expertos.personal.ExpAltaEmpleado;
 import controllers.GeneralController;
 import models.combos.AbstractModelOptionList;
 import models.combos.ModelOptionAgrupamiento;
+import models.combos.ModelOptionTipoEmpleado;
 import models.combos.ModelOptionTramo;
 
 /**
@@ -18,7 +20,10 @@ import models.combos.ModelOptionTramo;
 public class testController extends GeneralController {
 
     ExpModificarAgrupamiento _exp;
+    ExpAltaEmpleado _expemple;
     ModelOptionAgrupamiento agrup=null;
+    ModelOptionTipoEmpleado emple=null;
+
     public testController() {
         _exp = (ExpModificarAgrupamiento) super.getExpert(ExpModificarAgrupamiento.class.getName());
     }

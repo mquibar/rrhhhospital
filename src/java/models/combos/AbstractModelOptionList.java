@@ -25,9 +25,13 @@ public abstract class AbstractModelOptionList<E> {
             return options;
         }
         options = "<option value=0>Selecciones un elemento</option>\n";
-        for (int idx = 0; idx < _lista.size(); idx++) {
-            options += "<option value=" + (idx + 1) + ">" + devolverValorCombo(_lista.get(idx)) + "</option>\n";
+        try {
+            for (int idx = 0; idx < _lista.size(); idx++) {
+                options += "<option value=" + (idx + 1) + ">" + devolverValorCombo(_lista.get(idx)) + "</option>\n";
 
+            }
+        } catch (Exception e) {
+            options+= "<option disabled>Sin Elementos</option>\n";
         }
         return options;
     }
