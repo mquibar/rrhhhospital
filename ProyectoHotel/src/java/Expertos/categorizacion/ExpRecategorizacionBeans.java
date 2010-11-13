@@ -4,12 +4,13 @@
  */
 package Expertos.categorizacion;
 
+import Entidades.Agrupamiento;
 import Entidades.Categoria;
 import Entidades.Clase;
 import Entidades.ClaseContenida;
 import Entidades.ClaseVigente;
 import Entidades.Empleado;
-import Expertos.categorizacion.ExpRecategorizacion;
+import Entidades.Tramo;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -25,6 +26,7 @@ public class ExpRecategorizacionBeans implements ExpRecategorizacion {
 
     @EJB
     private Expertos.categorizacion.ExpConsultarCategoria _consultaCategorias;
+    @EJB
     private Expertos.personal.ExpConsultarPersonal _consultaPersonal;
     private Empleado _empleado;
 
@@ -46,8 +48,8 @@ public class ExpRecategorizacionBeans implements ExpRecategorizacion {
             }
             contenidas = new ArrayList<ClaseContenida>();
             idx = 0;
-            while (c.getClaseContenida().size() > idx &&
-                    antiguedad >= c.getClaseContenida().get(idx).getAntiguedadMinima()) {
+            while (c.getClaseContenida().size() > idx
+                    && antiguedad >= c.getClaseContenida().get(idx).getAntiguedadMinima()) {
                 contenidas.add(c.getClaseContenida().get(idx));
                 idx++;
             }
@@ -108,8 +110,9 @@ public class ExpRecategorizacionBeans implements ExpRecategorizacion {
             }
         }
         cv.setVigente(true);
-        if(categoria.getCupo()>1)
+        if (categoria.getCupo() > 1) {
             categoria.setCupo(categoria.getCupo() - 1);
+        }
         _empleado.getClaseVigenteList().add(cv);
 
         Intermediarios.GestorConeccion.getInstance().beginTransaction();
@@ -130,5 +133,85 @@ public class ExpRecategorizacionBeans implements ExpRecategorizacion {
         }
 
         return guardado;
+    }
+
+    public List<Agrupamiento> listarAgrupamientos() {
+        return _consultaCategorias.listarAgrupamientos();
+    }
+
+    public List<Tramo> listarTramo(Agrupamiento agrupamiento) {
+        return _consultaCategorias.consultaTramo(agrupamiento);
+    }
+
+    public List<Categoria> listarCategoria(Empleado e, Tramo t) {
+        _empleado = e;
+        List<Categoria> posibles, categorias = _consultaCategorias.consultarCategoria(t);
+        posibles = new ArrayList<Categoria>();
+        List<ClaseContenida> contenidas = null;
+        long antiguedad = Tools.ManejaFechas.difencia(e.getFechaIngreso());
+        int idx = 0;
+
+
+        //COMPLETA LA LISTA DE LAS CATEGORIAS QUE SE VAN A MOSTRAR
+        for (Categoria cat : categorias) {
+            if (cat.getCupo() < 1) {      //SI LA CATEGORIA NO LE QUEDAN CUPOS NO SE PUEDE LISTAR
+                continue;
+            }
+            contenidas = new ArrayList<ClaseContenida>();
+            idx = 0;
+
+            //EN ESTA LINEA REVISO CUAL ES LA CLASE MAXIMA QUE SE PUEDE ALCANZAR SEGUN LA ANTIGÜEDAD
+            while (cat.getClaseContenida().size() > idx
+                    && antiguedad >= cat.getClaseContenida().get(idx).getAntiguedadMinima()) {
+                contenidas.add(cat.getClaseContenida().get(idx));
+                cat.getClaseContenida().get(idx).getClase();
+                idx++;
+            }
+
+            cat.setClaseContenidaList(contenidas);
+
+            //SI PARA ESTA CATEGORIA NO PUEDO ALCANZAR CLASES NO LA LISTO
+            if (!contenidas.isEmpty()) {
+                posibles.add(cat);
+            }
+        }
+
+
+        // SI LA EL TRAMO NO ES EL MISMO QUE EL VIGENTE DEVUELVO TODAS LAS CLASES DE ARRIBA
+        for (ClaseVigente clasv : e.getClaseVigenteList())
+            if(clasv.getVigente()&& clasv.getCategoria().getTramo()!=t)
+                return posibles;
+        
+
+        // SI ME ENCUENTRO EN EL MISMO TRAMO BORRO LA CATEGORIA Y LISTO LAS CLASES
+        // A PARTIR DE LA CLASE VIGENTE DEL EMPLEADO
+        Clase clas = null;
+        Categoria cat = null;
+        for (ClaseVigente cv : e.getClaseVigenteList()) { //BUSCO LA CATEGORIA Y CLASE VIGENTE
+            if (cv.getVigente()) {
+                cat = cv.getCategoria();
+                clas = cv.getClase();
+                break;
+            }
+        }
+        if (cat != null) {
+            posibles.remove(cat);
+            contenidas = new ArrayList<ClaseContenida>();
+            idx = cat.getClaseContenida().get(cat.getClaseContenida().indexOf(clas)).getNumeroIndiceOrden();
+            for (ClaseContenida cC : cat.getClaseContenida()) {
+                if (cC.getNumeroIndiceOrden() == idx + 1) {
+                    contenidas.add(cC);
+                    break;
+                }
+            }
+            cat.setClaseContenidaList(contenidas);
+            posibles.add(0, cat);
+        }
+
+        return posibles;
+    }
+
+    public List<Categoria> listarCategoria(Tramo t){
+        return _consultaCategorias.consultarCategoria(t);
     }
 }
