@@ -16,6 +16,7 @@ public interface  ExpAltaRegistroPeriodo {
 
     public String guardar ();
     public void iniciarAlta (
+            String idEntidad,
             Empleado empleado,
             Date fechaEntrada,
             Date horaEntrada,

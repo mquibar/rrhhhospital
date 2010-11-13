@@ -44,4 +44,15 @@ public class IntermediarioTipoHorario extends Intermediario<TipoHorario> {
             return null;
         }
     }
+    
+    public TipoHorario findById(int id) {
+        try {
+            Query q = GestorConeccion.getInstance().getManager().createNamedQuery(super._clase + ".findById").setParameter("id", id);
+            return (TipoHorario) q.getSingleResult();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            _log.error(ex.getMessage());
+            return null;
+        }
+    }
 }

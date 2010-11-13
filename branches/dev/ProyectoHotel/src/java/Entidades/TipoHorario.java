@@ -158,6 +158,10 @@ public class TipoHorario implements Serializable {
 
     @Override
     public String toString() {
-        return "Entidades.TipoHorario[id=" + id + "]";
+        return "Entidades.TipoHorario[id=" + id + "]" + "\n"
+                + "Nombre: " + nombre + "\n"
+                + "Descipcion: " + descripcion + "\n"
+                + "Hora Ingreso: " + horaIngreso + "\n"
+                + "Hora Salida: " + horaSalida;
     }
 }

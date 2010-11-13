@@ -20,6 +20,8 @@ public class ExpAltaTipoHorarioBeans implements ExpAltaTipoHorario {
 
     private TipoHorario _tipoHorario;
     private boolean _flagSave=false;
+    private boolean _esAlta = true;
+
 
     public ExpAltaTipoHorarioBeans() {
         _tipoHorario = new TipoHorario();
@@ -34,10 +36,10 @@ public class ExpAltaTipoHorarioBeans implements ExpAltaTipoHorario {
             GestorConeccion.getInstance().beginTransaction();
             try
             {
-                if( (new IntermediarioTipoHorario()).guardar(_tipoHorario) )
+                if( persistir() )
                 {
                     GestorConeccion.getInstance().commitTransaction();
-                    res = "La Asignacion de Horario se guardo correctamente";
+                    res = "El Tipo de Horario se guardo correctamente";
                 }
                 else
                 {
@@ -55,16 +57,47 @@ public class ExpAltaTipoHorarioBeans implements ExpAltaTipoHorario {
         return res;
     }
 
+    Boolean persistir()
+    {
+        if(_esAlta)
+        {
+            System.out.println("Iniciando Alta...\n" + _tipoHorario);
+            return (new IntermediarioTipoHorario()).guardar(_tipoHorario);
+        }
+        else
+        {
+            System.out.println("Iniciando Modificacion...\n" + _tipoHorario);
+            return (new IntermediarioTipoHorario()).actualizar(_tipoHorario);
+        }
+    }
+
     public void agregarTipoHorario(TipoHorario tipoHorario) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     public void iniciarAlta(
+            String idEntidad,
             String nombre,
             String descripcion,
             Date horarioEntrada,
             Date horarioSalida
             ) {
+        if(idEntidad != null && !idEntidad.equals(""))
+        {
+            try
+            {
+                _tipoHorario.setId(Integer.parseInt(idEntidad));
+                _esAlta = false;
+                _tipoHorario = getEntidad(idEntidad);
+                System.out.println("Modificando entidad con id '" + _tipoHorario.getId() + "'...");
+            }
+            catch(Exception ex)
+            {
+                System.out.println(
+                        "Error al tratar de modificar, agregando entidad nueva: " +
+                        ex.toString());
+            }
+        }
 
         _tipoHorario.setNombre(nombre);
         _tipoHorario.setDescripcion(descripcion);
@@ -78,5 +111,25 @@ public class ExpAltaTipoHorarioBeans implements ExpAltaTipoHorario {
     {
         return true;
     }
+
+    TipoHorario _th = null;
+    public TipoHorario getEntidad(String idEntidad)
+    {
+        if(_th == null)
+        {
+            try
+            {
+                int idE = Integer.parseInt(idEntidad);
+                _th = new ExpConsultarTipoHorarioBeans().consultarTipoHorarioPorId(idE);
+            }
+            catch(Exception ex)
+            {
+                _th = new TipoHorario();
+            }
+        }
+
+        return _th;
+    }
+
 
 }

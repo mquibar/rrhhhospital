@@ -22,6 +22,7 @@ public class ExpAltaLicenciaBeans implements ExpAltaLicencia {
 
     private Licencia _licencia;
     private boolean _flagSave=false;
+    private boolean _esAlta = true;
 
     public ExpAltaLicenciaBeans() {
         _licencia = new Licencia();
@@ -35,7 +36,7 @@ public class ExpAltaLicenciaBeans implements ExpAltaLicencia {
             GestorConeccion.getInstance().beginTransaction();
             try
             {
-                if( (new IntermediarioLicencia()).guardar(_licencia) )
+                if( persistir() )
                 {
                     GestorConeccion.getInstance().commitTransaction();
                     res = "La Licenia se guardo correctamente";
@@ -56,17 +57,46 @@ public class ExpAltaLicenciaBeans implements ExpAltaLicencia {
         return res;
     }
 
-    public void agregarLicencia(Licencia licencia) {
+     Boolean persistir()
+    {
+        if(_esAlta)
+        {
+            return (new IntermediarioLicencia()).guardar(_licencia);
+        }
+        else
+        {
+            return (new IntermediarioLicencia()).actualizar(_licencia);
+        }
+    }
+
+   public void agregarLicencia(Licencia licencia) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     public void iniciarAlta(
+            String idEntidad,
             Empleado Empleado,
             TipoLicencia TipoLicencia,
             Date FechaInicio,
             Date FechaFin,
             String motivo
             ) {
+
+        if(idEntidad != null && idEntidad != "")
+        {
+            try
+            {
+                _licencia.setId(Integer.parseInt(idEntidad));
+                _esAlta = false;
+            }
+            catch(Exception ex)
+            {
+                System.out.println(
+                        "Error al tratar de modificar, agregando entidad nueva: " +
+                        ex.toString());
+            }
+        }
+
 
         _licencia.setIdEmpleado(Empleado);
         _licencia.setIdTipoLicencia(TipoLicencia.getId());

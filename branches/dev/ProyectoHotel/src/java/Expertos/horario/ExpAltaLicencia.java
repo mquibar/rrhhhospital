@@ -19,6 +19,7 @@ public interface  ExpAltaLicencia {
 
     public String guardar();
     public void iniciarAlta (
+            String idEntidad,
             Empleado Empleado,
             TipoLicencia TipoLicencia,
             Date FechaInicio,

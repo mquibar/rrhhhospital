@@ -50,4 +50,11 @@ public class ManejaFechas {
         
         return fechaDate;
     }
+
+    public static String getHour(Date hora)
+    {
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+        String fechaString = sdf.format(hora);
+        return fechaString;
+    }
 }
