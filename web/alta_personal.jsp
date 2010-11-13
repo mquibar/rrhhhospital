@@ -1,4 +1,5 @@
 <%@page import="controllers.ctrlAltaProfesional" %>
+<%@page import="controllers.ctrlAltaEmpleado" %>
 
 <%!
 String getValue(ServletRequest request, String varName)
@@ -16,7 +17,7 @@ if (request.getParameter("buttonCancel") != null)
 
     <jsp:forward page="./tools/messageBox.jsp">
         <jsp:param name="msg" value="Operacion cancelada por el usuario" />
-        <jsp:param name="target" value="home.html" />
+        <jsp:param name="target" value="home.jsp" />
     </jsp:forward>
 
     <%
@@ -24,7 +25,7 @@ if (request.getParameter("buttonCancel") != null)
 }
 else
 {
-    ctrlAltaProfesional c = new ctrlAltaProfesional();
+    ctrlAltaEmpleado c = new ctrlAltaEmpleado();
 
     String nombre           = getValue(request, "nombre");
     String apellido         = getValue(request, "apellido");
@@ -39,6 +40,7 @@ else
     String piso             = getValue(request, "piso");
     String departamento     = getValue(request, "departamento");
 
+    String numerotarjeta    = getValue(request, "ntarjeta");
     String tipoEmpleado     = getValue(request, "tipoEmpleado");
     String localidad        = getValue(request, "localidad");
     String provincia        = getValue(request, "provincia");
@@ -50,6 +52,7 @@ else
     {
         mensageEstado = c.iniciarAlta
                             (
+                             tipoEmpleado,
                              nombre,
                              apellido,
                              dni,
@@ -65,11 +68,9 @@ else
                              pais,
                              "Masculino",
                              cuil,
-                             matricula,
-                             "Doctor"
+                             numerotarjeta
                             );
 
-         
     }
 
     if (mensageEstado != "" && mensageEstado.indexOf("Error") == -1)
@@ -224,6 +225,11 @@ else
 		  Localidad<br />
                         <select name="localidad" id="localidad" >
                             <%= c.getModels("LOCALIDAD").toString()%>
+                        </select>
+                        <br />
+                  Numero Tarjeta<br />
+                        <select name="ntarjeta" id="ntarjeta" >
+                            <%= c.getModels("TARJETA").toString()%>
                         </select>
                         <br />
                         <br />
