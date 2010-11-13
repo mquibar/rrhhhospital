@@ -1,4 +1,4 @@
-<%@page import="controllers.ctrlAltaProfesional" %>
+<%@page import="controllers.ctrlModificarEmpleado" %>
 
 <%!
 String getValue(ServletRequest request, String varName)
@@ -16,7 +16,7 @@ if (request.getParameter("buttonCancel") != null)
 
     <jsp:forward page="./tools/messageBox.jsp">
         <jsp:param name="msg" value="Operacion cancelada por el usuario" />
-        <jsp:param name="target" value="home.html" />
+        <jsp:param name="target" value="home.jsp" />
     </jsp:forward>
 
     <%
@@ -24,7 +24,7 @@ if (request.getParameter("buttonCancel") != null)
 }
 else
 {
-    ctrlAltaProfesional c = new ctrlAltaProfesional();
+    ctrlModificarEmpleado c = new ctrlModificarEmpleado();
 
     String nombre           = getValue(request, "nombre");
     String apellido         = getValue(request, "apellido");
@@ -39,7 +39,7 @@ else
     String piso             = getValue(request, "piso");
     String departamento     = getValue(request, "departamento");
 
-    String tipoEmpleado     = getValue(request, "tipoEmpleado");
+    String empleado         = getValue(request, "empleados");
     String localidad        = getValue(request, "localidad");
     String provincia        = getValue(request, "provincia");
     String pais             = getValue(request, "pais");
@@ -48,8 +48,9 @@ else
 
     if (request.getParameter("buttonSave") != null)
     {
-        mensageEstado = c.iniciarAlta
+        mensageEstado = c.modificarEmpleado
                             (
+                             empleado,
                              nombre,
                              apellido,
                              dni,
@@ -64,11 +65,9 @@ else
                              provincia,
                              pais,
                              "Masculino",
-                             cuil,
-                             matricula,
-                             "Doctor"
+                             cuil
                             );
-
+        mensageEstado = "algo";
 
     }
 
@@ -90,7 +89,7 @@ else
 
 %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Home</title>
@@ -114,57 +113,61 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
   </div>
 </div>
 <div class="noticias" id="noticias_2"> Modificar Personal<br />
-  <div class="forms">
+   <%
+        if(mensageEstado != "")
+        {
+            out.println("<p class='error'>" + mensageEstado + "</p>");
+        }
+        %>
+        <div class="forms">
 	<form id="form1" name="form1" method="post" action="">
 		<div class="izquierda"><br />
 			 EMPLEADO<br />
 			 <br />
-			<select name="jumpMenu" size="1" id="jumpMenu" onchange="MM_jumpMenu('parent',this,0)">
-			  <option>elemento ejemplo 1</option>
-			  <option>elemento2</option>
-			  <option>elemento3</option>
+			<select name="empleados" size="1" id="empleados" >
+			  <%--= c.getModels("EMPLEADO").toString()--%>
 			</select>
 			<br />
 			<br />
 			Nombre<br />
 			<label>
-			  <input type="text" name="textfield" id="textfield" />
+			  <input type="text" name="nombre" id="nombre" />
 			</label>
 			<br />
 			<br />
 			Apellido<br />
 			<label>
-			  <input type="text" name="textfield2" id="textfield2" />
+			  <input type="text" name="apellido" id="apellido" />
 			</label>
 			<br />
 			<br />
 			DNI<br />
 			<label>
-			  <input type="text" name="textfield3" id="textfield3" />
+			  <input type="text" name="dni" id="dni" />
 			</label>
 			<br />
 			<br />
 			Fecha de nacimiento<br />
 			<label>
-			  <input type="text" name="textfield4" id="textfield4" />
+			  <input type="text" name="fechaNacimiento" id="fechaNacimiento" />
 			</label>
 			<br />
 			<br />
 			Teléfono<br />
 			<label>
-			  <input type="text" name="textfield5" id="textfield5" />
+			  <input type="text" name="telefono" id="telefono" />
 			</label>
 			<br />
 			<br />
 			Matricula<br />
 			<label>
-			  <input type="text" name="textfield8" id="textfield8" />
+			  <input type="text" name="matricula" id="matricula" />
 			</label>
 			<br />
 			<br />
 			Cuil<br />
 			<label>
-			  <input type="text" name="textfield9" id="textfield9" />
+			  <input type="text" name="cuil" id="cuil" />
 			</label>
 		</div>
 		<div class="derecha"><br />
@@ -172,66 +175,59 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 		  <br />
 		  Calle<br />
 			<label>
-			  <input type="text" name="textfield6" id="textfield6" />
+			  <input type="text" name="calle" id="calle" />
 			</label>
 			<br />
 			<br />
 		  Numero<br />
 		  <label>
-			<input type="text" name="textfield7" id="textfield7" />
+			<input type="text" name="numero" id="numero" />
 		  </label>
 		  <br />
 		  <br />
 		  Barrio<br />
 		  <label>
-			<input type="text" name="textfield10" id="textfield10" />
+			<input type="text" name="barrio" id="barrio" />
 		  </label>
 		  <br />
 		  <br />
 		  Piso<br />
 		  <label>
-			<input type="text" name="textfield11" id="textfield11" />
+			<input type="text" name="piso" id="piso" />
 		  </label>
 		  <br />
 		  <br />
 		  Departamento<br />
 		  <label>
-			<input type="text" name="textfield12" id="textfield12" />
+			<input type="text" name="departamento" id="departamento" />
 		  </label>
 		  <br />
 		  <br />
 		  Localidad<br />
-		  <select name="jumpMenu2" id="jumpMenu2" onchange="MM_jumpMenu('parent',this,0)">
-			<option>elemento1</option>
-			<option>elemento2</option>
-			<option>elemento3</option>
-			<option>elemento4</option>
+		  <select name="localidad" id="localidad" >
+			<%--= c.getModels("LOCALIDAD").toString()--%>
 		  </select>
 		  <br />
 		  <br />
 		  Provincia
 		  <br />
-		  <select name="jumpMenu3" id="jumpMenu3" onchange="MM_jumpMenu('parent',this,0)">
-			<option>elemento1</option>
-			<option>elemento2</option>
-			<option>elemento3</option>
+		  <select name="provincia" id="provincia" >
+			<%--= c.getModels("PROVINCIA").toString()--%>
 		  </select>
 		  <br />
 		  <br />
 		  País<br />
-		  <select name="jumpMenu4" id="jumpMenu4" onchange="MM_jumpMenu('parent',this,0)">
-			<option>elemento1</option>
-			<option>elemento2</option>
-			<option>elemento3</option>
+		  <select name="pais" id="pais" >
+                        <%--= c.getModels("PROVINCIA").toString()--%>
 		  </select>
 		  <br />
 		</div>
 		<div class="guardar">
 			<label>
-			  <input type="submit" name="button" id="button" value="Guardar" />
+			  <input type="submit" name="buttonSave" id="buttonSave" value="Guardar" />
 			</label>
 			<label>
-			  <input type="submit" name="button2" id="button2" value="Cancelar" />
+			  <input type="submit" name="buttonCancel" id="buttonCancel" value="Cancelar" />
 			</label>
 		</div>
 	</form>
@@ -240,3 +236,6 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 </div>
 </body>
 </html>
+<%
+    }
+}%>
