@@ -14,7 +14,7 @@ function iniciar(){
             }
         }
     };
-    obj.open("GET", "testLocalidades?tipo=agrupamiento" , true);
+    obj.open("GET", "testAgrupamiento?tipo=agrupamiento" , true);
     obj.send(null);
 
     return (true);
@@ -33,7 +33,7 @@ function listarTramo(){
             }
         }
     };
-    obj.open("GET", "testLocalidades?tipo=tramo&agrupamiento=" + document.getElementById("agrupamiento").value , true);
+    obj.open("GET", "testAgrupamiento?tipo=tramo&agrupamiento=" + document.getElementById("agrupamiento").value , true);
     obj.send(null);
 
     return (true);

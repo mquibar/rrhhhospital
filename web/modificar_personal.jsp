@@ -1,4 +1,94 @@
+<%@page import="controllers.ctrlAltaProfesional" %>
 
+<%!
+String getValue(ServletRequest request, String varName)
+{
+    String varVal = request.getParameter(varName);
+    return (varVal) == null ? "" : varVal;
+}
+%>
+
+<%
+if (request.getParameter("buttonCancel") != null)
+{
+
+    %>
+
+    <jsp:forward page="./tools/messageBox.jsp">
+        <jsp:param name="msg" value="Operacion cancelada por el usuario" />
+        <jsp:param name="target" value="home.html" />
+    </jsp:forward>
+
+    <%
+
+}
+else
+{
+    ctrlAltaProfesional c = new ctrlAltaProfesional();
+
+    String nombre           = getValue(request, "nombre");
+    String apellido         = getValue(request, "apellido");
+    String fechaNacimiento  = getValue(request, "fechaNacimiento");
+    String dni              = getValue(request, "dni");
+    String telefono         = getValue(request, "telefono");
+    String matricula        = getValue(request, "matricula");
+    String cuil             = getValue(request, "cuil");
+    String calle            = getValue(request, "calle");
+    String numero           = getValue(request, "numero");
+    String barrio           = getValue(request, "barrio");
+    String piso             = getValue(request, "piso");
+    String departamento     = getValue(request, "departamento");
+
+    String tipoEmpleado     = getValue(request, "tipoEmpleado");
+    String localidad        = getValue(request, "localidad");
+    String provincia        = getValue(request, "provincia");
+    String pais             = getValue(request, "pais");
+
+    String mensageEstado = "";
+
+    if (request.getParameter("buttonSave") != null)
+    {
+        mensageEstado = c.iniciarAlta
+                            (
+                             nombre,
+                             apellido,
+                             dni,
+                             fechaNacimiento,
+                             telefono,
+                             barrio,
+                             calle,
+                             numero,
+                             piso,
+                             departamento,
+                             localidad,
+                             provincia,
+                             pais,
+                             "Masculino",
+                             cuil,
+                             matricula,
+                             "Doctor"
+                            );
+
+
+    }
+
+    if (mensageEstado != "" && mensageEstado.indexOf("Error") == -1)
+    {
+
+    %>
+
+    <jsp:forward page="./tools/messageBox.jsp">
+        <jsp:param name="msg" value="<%=mensageEstado%>" />
+        <jsp:param name="target" value="home.html" />
+    </jsp:forward>
+
+    <%
+
+    }
+    else
+    {
+
+%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
