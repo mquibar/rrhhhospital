@@ -10,6 +10,7 @@ import Entidades.Categoria;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.persistence.Query;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
@@ -50,4 +51,15 @@ public class IntermediarioCategoria extends Intermediario<Categoria> {
         Criteria criterio = ((Session) GestorConeccion.getInstance().getManager().getDelegate()).createCriteria(Categoria.class).addOrder(Order.asc(orden));
         return criterio.list();
     }
+
+    public Categoria findById(Categoria c){
+        try {
+            Query q = GestorConeccion.getInstance().getManager().createQuery("SELECT c FROM " + _clase + " c WHERE c.id = :id");
+            q.setParameter("id", c.getId());
+            return (Categoria) q.getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
 }
