@@ -5,6 +5,7 @@
 
 package Expertos.personal;
 
+
 import javax.ejb.Remote;
 
 /**
@@ -13,7 +14,7 @@ import javax.ejb.Remote;
  */
 
 @Remote
-public interface ExpModificarEmpleado extends ExpModificarPersona {
+public interface ExpModificarEmpleado {
 
     public boolean modificarEmpleado(Entidades.Empleado empleado, java.lang.String nombre, 
             java.lang.String apellido, java.lang.String dni, java.lang.String fechaNacimiento,
@@ -21,5 +22,7 @@ public interface ExpModificarEmpleado extends ExpModificarPersona {
             java.lang.String piso, java.lang.String departamanto, Entidades.Localidad localidad, Entidades.Provincia provincia,
             Entidades.Pais pais, Entidades.Sexo Sexo, java.lang.String cuil);
 
-    public java.util.List<Entidades.Empleado> listarEmpleados();
+    public java.util.Map<java.lang.String, java.util.List> listarEmpleados();
+
+
 }
