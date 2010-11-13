@@ -140,7 +140,7 @@ else
                             <br />
                             Hora Entrada<br />
                             <label>
-                                <input name="horaEntrada" id="horaEntrada" <%=deshabilitar%> value="<%=horaEntrada%> "/>
+                                <input name="horaEntrada" id="horaEntrada" <%=deshabilitar%> value="<%=horaEntrada%>"/>
                             </label>
                             <br />
                             <br />
