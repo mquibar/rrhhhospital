@@ -5,13 +5,10 @@
 
 package controllers;
 
-import Expertos.horario.ExpAltaAsignacionHorario;
 import Expertos.horario.ExpAltaRegistroPeriodo;
 import Expertos.personal.ExpConsultarPersonal;
-import Expertos.horario.ExpConsultarTipoHorario;
 import Tools.ManejaFechas;
 import models.combos.ModelOptionProfesional;
-import models.combos.ModelOptionTipoHorario;
 
 /**
  *
@@ -39,7 +36,8 @@ public class ctrlAltaRegistroPeriodo extends GeneralController
 
     }
 
-    public void iniciarAlta(
+    public String guardar(
+            String idEntidad,
             String empleado,
             String fechaEntrada,
             String horaEntrada,
@@ -49,16 +47,17 @@ public class ctrlAltaRegistroPeriodo extends GeneralController
             )
     {
          _expAlta.iniciarAlta(
+             idEntidad,
              _mpers.getSelectedItem(empleado),
              ManejaFechas.convertirString(fechaEntrada),
              ManejaFechas.getHour(horaEntrada),
              ManejaFechas.convertirString(fechaSalida),
              ManejaFechas.getHour(horaSalida),
              true);
+
+            return _expAlta.guardar();
     }
 
-    public String guardar() {return _expAlta.guardar();}
-    
     public String getOptionsEmpleado(String empleado)
     {
         String opt = "<option>No Hay opciones disponibles</option>\n";

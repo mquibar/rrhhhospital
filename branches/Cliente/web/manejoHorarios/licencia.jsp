@@ -22,6 +22,7 @@ if (request.getParameter("buttonCancel") != null)
 }
 else
 {
+    String idEntidad = getValue(request, "idEntidad");
     String empleado = getValue(request, "empleado");
     String tipoLicencia = getValue(request, "tipoLicencia");
     String fechaInicio = getValue(request, "fechaInicio");
@@ -37,15 +38,14 @@ else
 
         if (request.getParameter("buttonSave") != null)
         {
-            c.iniciarAlta(
+            mensageEstado = c.guardar(
+                    idEntidad,
                     empleado,
                     tipoLicencia,
                     fechaInicio,
                     fechaFin,
                     motivo,
                     "true");
-
-            mensageEstado = c.guardar();
         }
     }
     catch(Exception ex)
@@ -109,6 +109,7 @@ else
                 <div class="forms">
                     <form id="form1" name="form1" method="post" action="">
                         <div class="izquierda"><br />
+                                <input type="hidden" name="idEntidad" id="idEntidad" value="<%=idEntidad%>"/>
                             Empleado<br />
                             <br />
                             <select name="empleado" size="1" id="empleado" >

@@ -35,6 +35,7 @@ public class GeneralController {
             return _ctx.lookup(experto);
         } catch (Exception ex) {
             ex.printStackTrace();
+            System.err.println("Error en lookup");
             return null;
         }
     }

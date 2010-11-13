@@ -3,6 +3,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>SISTEMA PERSONAL</title>
 <link href="./css/estilos.css" rel="stylesheet" type="text/css" />
+<script language="javascript" type="text/javascript" src="./js/tools.js"></script>
 <script language="javascript" type="text/javascript" src="./js/createRequestJs.js"></script>
 <script language="javascript" type="text/javascript" src="./js/esperar.js"></script>
 <script language="javascript" type="text/javascript" src="./js/menuJavaScript.js"></script>
@@ -197,9 +198,14 @@ margin:2px 0px 0px 2px;
 	<!--[if lte IE 6]></td></tr></table></a><![endif]--></li>
 	<li class="pureCssMenui0"><a class="pureCssMenui0" href="#"><span>Horarios</span><![if gt IE 6]></a><![endif]><!--[if lte IE 6]><table><tr><td><![endif]-->
 	<ul class="pureCssMenum">
-            <li class="pureCssMenui"><a id="Horario_mnu1" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Asignacion horarios</a></li>
-		<li class="pureCssMenui"><a id="Horario_mnu2" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Manejo de licencias</a></li>
-		<li class="pureCssMenui"><a id="Horario_mnu3" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Registro de periodo</a></li>
+            <li class="pureCssMenui"><a id="Horario_mnu1" class="pureCssMenui"
+                    href="#" onclick="cargarNoticias('./manejoHorarios/gestionar.jsp?nombreEntidad=tipo_horario');">Gestionar Tipo de Horario</a></li>
+            <li class="pureCssMenui"><a id="Horario_mnu1" class="pureCssMenui"
+                    href="#" onclick="cargarNoticias('./manejoHorarios/gestionar.jsp?nombreEntidad=asignacion_horario');">Asignacion horarios</a></li>
+            <li class="pureCssMenui"><a id="Horario_mnu3" class="pureCssMenui"
+                     href="#" onclick="cargarNoticias('./manejoHorarios/gestionar.jsp?nombreEntidad=registro_periodo');">Registro de periodo</a></li>
+            <li class="pureCssMenui"><a id="Horario_mnu2" class="pureCssMenui"
+                     href="#" onclick="cargarNoticias('./manejoHorarios/gestionar.jsp?nombreEntidad=licencia');">Manejo de licencias</a></li>
 	</ul>
 	<!--[if lte IE 6]></td></tr></table></a><![endif]--></li>
 	<li class="pureCssMenui0"><a class="pureCssMenui0" href="#"><span>Seguimiento</span><![if gt IE 6]></a><![endif]><!--[if lte IE 6]><table><tr><td><![endif]-->
@@ -223,6 +229,8 @@ margin:2px 0px 0px 2px;
 </ul>
 <a id="pcm" href="http://www.purecssmenu.com/">CSS Drop Down Menu by PureCSSMenu.com</a>
 <!-- End PureCSSMenu.com MENU --></div>
- <div id="noticias" class="noticias">NOTICIAS</div>
+    <iframe id="ifnoticias" src="#" class="noticias">
+ <!--div id="noticias" class="noticias">NOTICIAS</div-->
+    </iframe>
 </body>
 </html>

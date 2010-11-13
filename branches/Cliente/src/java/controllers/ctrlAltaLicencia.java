@@ -42,7 +42,8 @@ public class ctrlAltaLicencia extends GeneralController
 
     }
 
-    public void iniciarAlta(
+    public String guardar(
+            String idEntidad,
             String idEmpleado,
             String idTipoLicencia,
             String fechaInicio,
@@ -52,16 +53,17 @@ public class ctrlAltaLicencia extends GeneralController
             )
     {
          _expAlta.iniciarAlta(
+              idEntidad,
              _mpers.getSelectedItem(idEmpleado),
              _mtl.getSelectedItem(idTipoLicencia),
              ManejaFechas.convertirString(fechaInicio),
              ManejaFechas.convertirString(fechaFin),
              descripcion
              );
+
+            return _expAlta.guardar();
     }
 
-    public String guardar() {return _expAlta.guardar();}
-    
     public String getOptionsEmpleado(String empleado)
     {
         String opt = "<option>No Hay opciones disponibles</option>\n";
