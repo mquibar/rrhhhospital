@@ -22,6 +22,7 @@ public class ExpAltaRegistroPeriodoBeans implements ExpAltaRegistroPeriodo {
 
     private RegistroPeriodo _registroPeriodo;
     private boolean _flagSave=false;
+    private boolean _esAlta = true;
 
     public ExpAltaRegistroPeriodoBeans() {
         _registroPeriodo = new RegistroPeriodo();
@@ -35,7 +36,7 @@ public class ExpAltaRegistroPeriodoBeans implements ExpAltaRegistroPeriodo {
             GestorConeccion.getInstance().beginTransaction();
             try
             {
-                if( (new IntermediarioRegistroPeriodo()).guardar(_registroPeriodo) )
+                if( persistir() )
                 {
                     GestorConeccion.getInstance().commitTransaction();
                     res = "El Registro de Periodo se guardo correctamente";
@@ -56,11 +57,25 @@ public class ExpAltaRegistroPeriodoBeans implements ExpAltaRegistroPeriodo {
         return res;
     }
 
+    Boolean persistir()
+    {
+        if(_esAlta)
+        {
+            return (new IntermediarioRegistroPeriodo()).guardar(_registroPeriodo);
+        }
+        else
+        {
+            return (new IntermediarioRegistroPeriodo()).actualizar(_registroPeriodo);
+        }
+    }
+
+
     public void agregarRegistroPeriodo(RegistroPeriodo registroPeriodo) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     public void iniciarAlta(
+            String idEntidad,
             Empleado empleado,
             Date fechaEntrada,
             Date horaEntrada,
@@ -68,6 +83,21 @@ public class ExpAltaRegistroPeriodoBeans implements ExpAltaRegistroPeriodo {
             Date horaSalida,
             Boolean vigente
             ) {
+
+        if(idEntidad != null && idEntidad != "")
+        {
+            try
+            {
+                _registroPeriodo.setId(Integer.parseInt(idEntidad));
+                _esAlta = false;
+            }
+            catch(Exception ex)
+            {
+                System.out.println(
+                        "Error al tratar de modificar, agregando entidad nueva: " +
+                        ex.toString());
+            }
+        }
 
         _registroPeriodo.setFechaEntrada(fechaEntrada);
         _registroPeriodo.setHoraEntrada(horaEntrada);

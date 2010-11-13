@@ -18,6 +18,7 @@ public interface  ExpAltaTipoHorario {
 
     public void agregarTipoHorario (TipoHorario tipoHorario);
     public void iniciarAlta (
+            String idEntidad,
             String nombre,
             String descripcion,
             Date horaIngreso,
@@ -25,5 +26,8 @@ public interface  ExpAltaTipoHorario {
             );
 
     public String guardar();
+
+    public TipoHorario getEntidad(String idEntidad);
+
 
 }
