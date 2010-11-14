@@ -24,4 +24,16 @@ public class ModelOptionPais extends AbstractModelOptionList<Pais>{
         return objeto.getPais();
     }
 
+    protected String toStringPais(String pais){
+        try {
+            if (options == null)
+                toString();
+            String nuevoString = options.replaceAll(">" + pais, " selected=\"selected\" >"+pais);
+            options = null;
+            return nuevoString;
+        } catch (Exception e) {
+            return toString();
+        }
+    }
+
 }
