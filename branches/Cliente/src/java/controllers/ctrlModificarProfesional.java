@@ -5,8 +5,6 @@
 
 package controllers;
 
-import Entidades.Domicilio;
-import Expertos.personal.ExpConsultarDomicilio;
 import Expertos.personal.ExpConsultarPersonal;
 import Expertos.personal.ExpModificarProfesional;
 import models.combos.AbstractModelOptionList;
@@ -20,18 +18,18 @@ import models.combos.ModelOptionProfesional;
 public class ctrlModificarProfesional extends GeneralController{
 
     private ExpModificarProfesional _exp;
-    private ExpConsultarDomicilio _expdomicilio;
     private ModelOptionProfesional model = null;
     private ExpConsultarPersonal _expcons;
 
     public ctrlModificarProfesional() {
         _exp = (ExpModificarProfesional) super.getExpert(ExpModificarProfesional.class.getName());
+        _expcons = (ExpConsultarPersonal) super.getExpert(ExpConsultarPersonal.class.getName());
     }
 
     public AbstractModelOptionList getProfesionales(){
         if(model ==null)
-            model = new ModelOptionProfesional(_exp.listarProfesional().get("PROFESIONAL"));
-            //model = new ModelOptionProfesional(_expcons.listarProfesionalinOrder());
+            //model = new ModelOptionProfesional(_exp.listarProfesional().get("PROFESIONAL"));
+            model = new ModelOptionProfesional(_expcons.listarProfesionalinOrder());
         return model;
     }
 
@@ -44,20 +42,12 @@ public class ctrlModificarProfesional extends GeneralController{
                "telefono="+Long.toString(model.getSelectedItem(valor).getTelefono())+"&"+
                "matricula="+model.getSelectedItem(valor).getMatricula()+"&"+
                "cuil="+model.getSelectedItem(valor).getCuil()+"&"+
-               "calle="+model.getSelectedItem(valor).getIdDomicilio().getCalle();
-
-        //recupararDomicilio(model.getSelectedItem(valor).getIdDomicilio().getId())
+               "calle="+model.getSelectedItem(valor).getIdDomicilio().getCalle()+"&"+
+               "numero="+model.getSelectedItem(valor).getIdDomicilio().getNumero()+"&"+
+               "barrio="+model.getSelectedItem(valor).getIdDomicilio().getBarrio()+"&"+
+               "piso="+model.getSelectedItem(valor).getIdDomicilio().getPiso()+"&"+
+               "departamento="+model.getSelectedItem(valor).getIdDomicilio().getDepartamento();
 
     }
 
-    private String recupararDomicilio (int id) {
-        Domicilio domicilio = _expdomicilio.consultaDomicilioporId(id);
-        return "calle="+domicilio.getCalle()+"&"+
-               "numero="+domicilio.getNumero()+"&"+
-               "barrio="+domicilio.getBarrio()+"&"+
-               "piso="+domicilio.getPiso()+"&"+
-               "departamento="+domicilio.getDepartamento();
-               
-    }
-   
 }
