@@ -19,9 +19,8 @@ public class ModelOptionEmpleado extends AbstractModelOptionList<Empleado>{
     }
 
     @Override
-    protected String devolverValorCombo(Empleado objeto) {
+    public String devolverValorCombo(Empleado objeto) {
         return objeto.getNombre() + " " + objeto.getApellido();
     }
-
 
 }

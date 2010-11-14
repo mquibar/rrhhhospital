@@ -22,7 +22,19 @@ if (request.getParameter("buttonCancel") != null)
 }
 else
 {
+    String mensageEstado = "";
     String idEntidad = getValue(request, "idEntidad");
+    String action = getValue(request, "action");
+    String esRecarga = getValue(request, "esRecarga");
+    String eliminado = getValue(request, "eliminado");
+    boolean esBorrado = (action == "delete");
+    String deshabilitar = (esBorrado) ? "readonly" : "";
+    boolean cargarEntidad = !idEntidad.equals("") && !esRecarga.equals("Si");
+    if(esBorrado)
+    {
+        eliminado = "true";
+    }
+
     String empleado = getValue(request, "empleado");
     String fechaEntrada = getValue(request, "fechaEntrada");
     String fechaSalida = getValue(request, "fechaSalida");
@@ -30,13 +42,23 @@ else
     String horaSalida = getValue(request, "horaSalida");
     String vigente = getValue(request, "vigente");
 
-    String mensageEstado = "";
     ctrlAltaRegistroPeriodo c = null;
-   try
+    try
     {
         c = new ctrlAltaRegistroPeriodo();
 
-        if (request.getParameter("buttonSave") != null)
+        if(cargarEntidad)
+        {
+            empleado = c.getEmpleado(idEntidad);
+            fechaEntrada = c.getFechaEntrada(idEntidad);
+            fechaSalida = c.getFechaSalida(idEntidad);
+            horaEntrada = c.getHoraEntrada(idEntidad);
+            horaSalida = c.getHoraSalida(idEntidad);
+
+            esRecarga = "Si";
+        }
+
+       if (request.getParameter("buttonSave") != null)
         {
             mensageEstado = c.guardar(
                 idEntidad,
@@ -74,7 +96,7 @@ else
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml"><head>
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-            <title>Asignacion de Horario</title>
+            <title>Registro Periodo</title>
             <link href="../css/estilos.css" rel="stylesheet" type="text/css" />
 
             <script src="../js/validaciones/validaciones.js" type="text/javascript"></script>
@@ -100,7 +122,8 @@ else
                     <div class="log_off">LogOff </div>
                 </div>
             </div>
-            <div class="noticias" id="noticias_2"> ASIGNACION HORARIOS<br />
+            <div class="noticias" id="noticias_2"> 
+                <%=(idEntidad == "")?"ALTA":"MODIFICACION"%> REGISTRO PERIODO<br />
 <%
     if(mensageEstado != "")
     {
@@ -111,28 +134,31 @@ else
                     <form id="form1" name="form1" method="post" action="">
                         <div class="izquierda"><br />
                                 <input type="hidden" name="idEntidad" id="idEntidad" value="<%=idEntidad%>"/>
+                                <input type="hidden" name="esRecarga" id="esRecarga" value="<%=esRecarga%>"/>
+                                <input type="hidden" name="action" id="action" value="<%=action%>"/>
+                                <input type="hidden" name="eliminado" id="eliminado" value="<%=eliminado%>"/>
                             EMPLEADO<br />
                             <br />
-                            <select name="empleado" size="1" id="empleado" >
+                            <select name="empleado" <%=deshabilitar%> size="1" id="empleado" >
                                 <%= c.getOptionsEmpleado(empleado)%>
                             </select>
                             <br />
                             <br />
                            Fecha<br />
                             <label>
-                                <input type="text" name="fechaEntrada" id="DPC_edit1"  value='<%=fechaEntrada%>' />
+                                <input type="text" name="fechaEntrada" <%=deshabilitar%> id="DPC_edit1"  value='<%=fechaEntrada%>' />
                             </label>
                             <br />
                             <br />
                             Hora Entrada<br />
                             <label>
-                                <input name="horaEntrada" id="horaEntrada" value="<%=horaEntrada%>"/>
+                                <input name="horaEntrada" id="horaEntrada" <%=deshabilitar%> value="<%=horaEntrada%>"/>
                             </label>
                             <br />
                             <br />
                             Hora Salida<br />
                             <label>
-                                <input name="horaSalida" id="horaSalida" value="<%=horaSalida%>"/>
+                                <input name="horaSalida" id="horaSalida" <%=deshabilitar%> value="<%=horaSalida%>"/>
                             </label>
                             <br />
                             <br />

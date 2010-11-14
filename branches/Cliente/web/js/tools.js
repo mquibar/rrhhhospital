@@ -9,3 +9,7 @@ function cargarNoticias(target)
     cargarSource('ifnoticias', target)
 }
 
+function cargar(target)
+{
+    window.location = target;
+}

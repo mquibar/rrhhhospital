@@ -6,6 +6,38 @@
         String varVal = request.getParameter(varName);
         return (varVal) == null ? "" : varVal;
     }
+
+    String getTitle(Boolean esBorrado, String idEntidad)
+    {
+        if(esBorrado)
+        {
+            return "ELIMINACION";
+        }
+        else if(!idEntidad.equals(""))
+        {
+            return "MODIFICACION";
+        }
+        else
+        {
+            return "ALTA";
+        }
+    }
+
+    String getAction(Boolean esBorrado, String idEntidad)
+    {
+        if(esBorrado)
+        {
+            return "Eliminar";
+        }
+        else if(!idEntidad.equals(""))
+        {
+            return "Modificar";
+        }
+        else
+        {
+            return "Agregar";
+        }
+    }
 %>
 
 <%
@@ -15,7 +47,7 @@ if (request.getParameter("buttonCancel") != null)
 
     <jsp:forward page="../tools/messageBox.jsp">
     <jsp:param name="msg" value="Operacion cancelada por el usuario" />
-    <jsp:param name="target" value="home.html" />
+    <jsp:param name="target" value="PanelNoticias.html" />
     </jsp:forward>
 
 <%
@@ -23,22 +55,24 @@ if (request.getParameter("buttonCancel") != null)
 else
 {
     String mensageEstado = "";
-    String action = getValue(request, "action");
     String idEntidad = getValue(request, "idEntidad");
+    String action = getValue(request, "action");
     String esRecarga = getValue(request, "esRecarga");
-    boolean esBorrado = (action == "delete");
+    String eliminado = getValue(request, "eliminado");
+    Boolean esBorrado = (action.equals("delete"));
     String deshabilitar = (esBorrado) ? "readonly" : "";
     boolean cargarEntidad = !idEntidad.equals("") && !esRecarga.equals("Si");
-
+    eliminado = esBorrado.toString();
+    
     String horaEntrada = getValue(request, "horaEntrada");
     String horaSalida = getValue(request, "horaSalida");
     String nombre = getValue(request, "nombre");
     String descripcion = getValue(request, "descripcion");
-    String vigente = getValue(request, "vigente");
 
-   try
+    ctrlAltaTipoHorario c = null;
+    try
     {
-        ctrlAltaTipoHorario c = new ctrlAltaTipoHorario();
+        c = new ctrlAltaTipoHorario();
 
         if(cargarEntidad)
         {
@@ -58,7 +92,7 @@ else
                     descripcion,
                     horaEntrada,
                     horaSalida,
-                    "true");
+                    eliminado);
         }
     }
     catch(Exception ex)
@@ -113,7 +147,7 @@ else
                 </div>
             </div>
             <div class="noticias" id="noticias_2"> 
-                <%=(idEntidad == "")?"ALTA":"MODIFICACION"%> TIPO HORARIO<br />
+                <%=getTitle(esBorrado, idEntidad)%> TIPO HORARIO<br />
 <%
     if(mensageEstado != "")
     {
@@ -126,9 +160,10 @@ else
                                 <input type="hidden" name="idEntidad" id="idEntidad" value="<%=idEntidad%>"/>
                                 <input type="hidden" name="esRecarga" id="esRecarga" value="<%=esRecarga%>"/>
                                 <input type="hidden" name="action" id="action" value="<%=action%>"/>
+                                <input type="hidden" name="eliminado" id="eliminado" value="<%=eliminado%>"/>
                             Nombre<br />
                             <label>
-                                <input name="nombre" id="nombre" <%=deshabilitar%> value="<%=nombre%>"/>
+                                <input name="nombre" id="nombre" <%=deshabilitar%> value="<%=nombre%>" />
                             </label>
                             <br />
                             <br />
@@ -154,7 +189,7 @@ else
                         <div class="derecha"></div>
                         <div class="guardar">
                             <label>
-                                <input type="submit" name="buttonSave" id="buttonSave" value="Guardar" />
+                                <input type="submit" name="buttonSave" id="buttonSave" value="<%=getAction(esBorrado, idEntidad)%>" />
                             </label>
                             <label>
                                 <input type="submit" name="buttonCancel" id="buttonCancel" value="Cancelar" />

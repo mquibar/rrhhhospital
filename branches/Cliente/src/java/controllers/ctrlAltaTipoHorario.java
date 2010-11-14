@@ -35,31 +35,34 @@ public class ctrlAltaTipoHorario extends GeneralController
             String descripcion,
             String horaEntrada,
             String horaSalida,
-            String vigente
+            String eliminado
             ) 
     {
          _expAlta.iniciarAlta(
-             idEntidad,
+             idNegocio(idEntidad),
              nombre,
              descripcion,
              ManejaFechas.getHour(horaEntrada),
-             ManejaFechas.getHour(horaSalida)
+             ManejaFechas.getHour(horaSalida),
+             Boolean.parseBoolean(eliminado)
              );
         
         return _expAlta.guardar();
     }
-    
-    TipoHorario _th = null;
-    public TipoHorario getEntidad(String idEntidad)
+
+    String idNegocio(String idCombo)
     {
-        if(_th == null)
+        TipoHorario th = getEntidad(idCombo);
+        if(th == null)
         {
-            _th = _expAlta.getEntidad(idEntidad);
+            return "";
         }
-
-        return _th;
+        else
+        {
+            return th.getId().toString();
+        }
     }
-
+    
     public String getHoraIngreso(String idEntidad)
     {
         return ManejaFechas.getHour(getEntidad(idEntidad).getHoraIngreso());
@@ -80,6 +83,20 @@ public class ctrlAltaTipoHorario extends GeneralController
         return getEntidad(idEntidad).getDescripcion();
     }
 
+    public String getCombo()
+    {
+        return new ctrlAltaAsignacionHorario().getOptionsTipoHorario("");
+    }
 
+    TipoHorario _th = null;
+    public TipoHorario getEntidad(String idEntidad)
+    {
+        if(_th == null)
+        {
+            _th = new ctrlAltaAsignacionHorario().getTipoHorarioSeleccionado(idEntidad);
+        }
+
+        return _th;
+    }
 
 }

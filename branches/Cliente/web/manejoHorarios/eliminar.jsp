@@ -1,3 +1,4 @@
+<%@page import="controllers.ctrlComboSeleccion" %>
 <%-- 
     Document   : eliminar
     Created on : 13/11/2010, 17:17:07
@@ -38,8 +39,7 @@
     <body>
         Elija <%=nombreImprimible(request)%> a eliminar
         <select onchange="cargarSource('abm', '<%=getValue(request, "pathEntidad")%><%=getValue(request, "nombreEntidad")%>.jsp?idEntidad=' + this.value + '&action=delete');">Seleccionar
-        <option value="100">opcion</option>
-        <option value="100">opcion2</option>
+            <%=ctrlComboSeleccion.getCombo(getValue(request, "nombreEntidad"))%>
         </select>
         <iframe class="noticias" id="abm" src="#"></iframe>
     </body>

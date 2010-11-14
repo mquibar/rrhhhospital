@@ -1,3 +1,4 @@
+<%@page import="controllers.ctrlComboSeleccion" %>
 <%-- 
     Document   : modificar
     Created on : 13/11/2010, 16:24:17
@@ -38,8 +39,7 @@
     <body>
         Elija <%=nombreImprimible(request)%> a modificar: 
         <select onchange="cargarSource('abm', '<%=getValue(request, "pathEntidad")%><%=getValue(request, "nombreEntidad")%>.jsp?idEntidad=' + this.value);">Seleccionar
-        <option value="100">opcion</option>
-        <option value="100">opcion2</option>
+            <%=ctrlComboSeleccion.getCombo(getValue(request, "nombreEntidad"))%>
         </select>
         <iframe class="noticias" id="abm" src="#"></iframe>
     </body>
