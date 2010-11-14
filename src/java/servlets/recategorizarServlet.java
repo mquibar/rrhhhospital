@@ -58,7 +58,7 @@ public class recategorizarServlet extends HttpServlet {
                 default:
                     response.sendError(404);
             }
-        } finally { 
+        } finally {
             out.close();
         }
     } 

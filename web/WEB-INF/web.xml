@@ -13,10 +13,6 @@
         <servlet-class>servlets.menuServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>altaPersonServlet</servlet-name>
-        <servlet-class>servlets.altaPersonServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>recategorizarServlet</servlet-name>
         <servlet-class>servlets.recategorizarServlet</servlet-class>
     </servlet>
@@ -31,10 +27,6 @@
     <servlet-mapping>
         <servlet-name>menuServlet</servlet-name>
         <url-pattern>/menuServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>altaPersonServlet</servlet-name>
-        <url-pattern>/altaPersonServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>recategorizarServlet</servlet-name>
