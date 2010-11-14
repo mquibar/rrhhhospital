@@ -98,4 +98,11 @@ public class ctrlModificarEmpleado extends GeneralController{
          
 
     }
+
+    public AbstractModelOptionList getEmpleado(){
+        /*if(model ==null)
+            model = new ModelOptionProfesional(_exp.listarProfesional().get("PROFESIONAL"));
+        return model;*/
+        return models.get("EMPLEADO");
+    }
 }
