@@ -112,4 +112,23 @@ public class ExpAltaLicenciaBeans implements ExpAltaLicencia {
         return true;
     }
 
+    Licencia _th = null;
+    public Licencia getEntidad(String idEntidad)
+    {
+        if(_th == null)
+        {
+            try
+            {
+                int idE = Integer.parseInt(idEntidad);
+                _th = new ExpConsultarLicenciaBeans().consultarLicenciaPorId(idE);
+            }
+            catch(Exception ex)
+            {
+                _th = new Licencia();
+            }
+        }
+
+        return _th;
+    }
+
 }

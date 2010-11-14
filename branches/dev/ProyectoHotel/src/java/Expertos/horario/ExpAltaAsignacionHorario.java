@@ -31,4 +31,6 @@ public interface  ExpAltaAsignacionHorario {
 
     public String guardar();
 
+    public AsignacionHorario getEntidad(String idEntidad);
+
 }

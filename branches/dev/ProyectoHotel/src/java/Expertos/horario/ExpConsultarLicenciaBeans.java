@@ -23,4 +23,7 @@ public class ExpConsultarLicenciaBeans implements ExpConsultarLicencia {
         return (new IntermediarioLicencia()).findAll();
     }
 
+    public Licencia consultarLicenciaPorId(int id) {
+        return (new IntermediarioLicencia().findById(id));
+    }
 }
