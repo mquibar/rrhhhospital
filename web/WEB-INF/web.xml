@@ -5,24 +5,32 @@
         <servlet-class>servlets.testAgrupamiento</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ServletPersonal</servlet-name>
-        <servlet-class>servlets.ServletPersonal</servlet-class>
+        <servlet-name>reportes</servlet-name>
+        <servlet-class>servlets.reporteRequest</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>menuServlet</servlet-name>
         <servlet-class>servlets.menuServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ServletModificarPersonal</servlet-name>
+        <servlet-class>servlets.ServletModificarPersonal</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>recategorizarServlet</servlet-name>
         <servlet-class>servlets.recategorizarServlet</servlet-class>
     </servlet>
-    <servlet-mapping>
+    <servlet>
+        <servlet-name>servletConsultarDomicilio</servlet-name>
+        <servlet-class>servlets.servletConsultarDomicilio</servlet-class>
+    </servlet>
+    <servlet><servlet-name>ServletConsultarPersonal</servlet-name><servlet-class>servlets.ServletConsultarPersonal</servlet-class></servlet><servlet-mapping>
         <servlet-name>testAgrupamiento</servlet-name>
         <url-pattern>/testAgrupamiento</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ServletPersonal</servlet-name>
-        <url-pattern>/ServletPersonal</url-pattern>
+        <servlet-name>reportes</servlet-name>
+        <url-pattern>/reportes</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>menuServlet</servlet-name>
@@ -31,6 +39,18 @@
     <servlet-mapping>
         <servlet-name>recategorizarServlet</servlet-name>
         <url-pattern>/recategorizarServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletModificarPersonal</servlet-name>
+        <url-pattern>/ServletModificarPersonal</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>servletConsultarDomicilio</servlet-name>
+        <url-pattern>/servletConsultarDomicilio</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletConsultarPersonal</servlet-name>
+        <url-pattern>/ServletConsultarPersonal</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
