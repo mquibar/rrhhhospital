@@ -48,6 +48,8 @@ public class menuServlet extends HttpServlet {
                     break;
                 case PERSONAL_MNU3:
                 case HORARIO_MNU1:
+                    url="manejoHorarios/gestionar.jsp?nombreEntidad=tipo_horario";
+                    break;
                 case HORARIO_MNU2:
                 case HORARIO_MNU3:
                     break;

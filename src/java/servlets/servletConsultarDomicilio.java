@@ -5,9 +5,7 @@
 
 package servlets;
 
-
-import controllers.ctrlModificarEmpleado;
-import controllers.ctrlModificarProfesional;
+import controllers.ctrlConsultarDomicilio;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -19,14 +17,19 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author MARIANO
  */
-public class ServletModificarPersonal extends HttpServlet {
+public class servletConsultarDomicilio extends HttpServlet {
    
-    private ctrlModificarProfesional _control;
-    private ctrlModificarEmpleado _control2;
+    /** 
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+        private ctrlConsultarDomicilio _control;
 
-    public ServletModificarPersonal() {
-        _control = new ctrlModificarProfesional();
-        _control2 = new ctrlModificarEmpleado();
+    public servletConsultarDomicilio() {
+        _control = new ctrlConsultarDomicilio();
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -34,17 +37,15 @@ public class ServletModificarPersonal extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            if(request.getParameter("valor")!=null){
-                response.sendRedirect("personal_modificado.jsp?"+_control.recuperarDato(request.getParameter("valor")));
+            if(request.getParameter("tipo")!=null){
+                out.println(_control.getLocalidades(request.getParameter("tipo")).toString());
             }
-            else {
-            out.println(_control.getProfesionales().toString());
-            }
+            else
+                out.println(_control.getProvincia().toString());
         } catch(Exception e) {
             out.println("<option> algo no anda </option>");
         }
-    } 
-
+    }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 
      * Handles the HTTP <code>GET</code> method.

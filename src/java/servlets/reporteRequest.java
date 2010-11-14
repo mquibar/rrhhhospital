@@ -37,7 +37,7 @@ public class reporteRequest extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet reporteRequest at " + request.getContextPath() + "</h1>");
-            (new ctrlReporte()).armarReporte();
+            //(new ctrlReporte()).armarReporte();
             out.println("</body>");
             out.println("</html>");
 
