@@ -62,7 +62,7 @@ public abstract class Persona implements Serializable {
     @Column(name = "Telefono")
     protected long telefono;
     @JoinColumn(name = "idDomicilio", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     protected Domicilio idDomicilio;
     @JoinColumn(name = "idPais", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
