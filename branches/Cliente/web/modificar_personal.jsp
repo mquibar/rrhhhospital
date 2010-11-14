@@ -67,7 +67,7 @@ else
                              "Masculino",
                              cuil
                             );
-        mensageEstado = "algo";
+        
 
     }
 
@@ -125,7 +125,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 			 EMPLEADO<br />
 			 <br />
 			<select name="empleados" size="1" id="empleados" >
-			  <%--= c.getModels("EMPLEADO").toString()--%>
+			  <%= c.getModels("EMPLEADO").toString()%>
 			</select>
 			<br />
 			<br />
@@ -205,20 +205,20 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 		  <br />
 		  Localidad<br />
 		  <select name="localidad" id="localidad" >
-			<%--= c.getModels("LOCALIDAD").toString()--%>
+			<%= c.getModels("LOCALIDAD").toString()%>
 		  </select>
 		  <br />
 		  <br />
 		  Provincia
 		  <br />
 		  <select name="provincia" id="provincia" >
-			<%--= c.getModels("PROVINCIA").toString()--%>
+			<%= c.getModels("PROVINCIA").toString()%>
 		  </select>
 		  <br />
 		  <br />
 		  País<br />
 		  <select name="pais" id="pais" >
-                        <%--= c.getModels("PROVINCIA").toString()--%>
+                        <%= c.getModels("PAIS").toString()%>
 		  </select>
 		  <br />
 		</div>

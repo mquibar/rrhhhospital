@@ -32,18 +32,19 @@
                         <hr color="#E3E3E3"/>
                         <p>Agrupamiento </p>
                         <p>
-                            <select name="agrupamiento" size="1" id="agrupamiento" onchange="">
+                            <select name="agrupamiento" size="1" id="agrupamiento" onclick="js_lista_Tramo()">
                             </select>
                         </p>
                         <p>Tramo</p>
                         <p>
-                            <select name="tramo" size="1" id="tramo" onchange="">
+                            <select name="tramo" size="1" id="tramo" onclick="js_cat_posibles()">
                             </select>
                         </p>
                         <p>Categoria</p>
                         <p>
                             <select name="categoria" size="1" id="categoria">
                             </select>
+                            <input id="btnListAll" type="button" value="Listar Todas" onclick="js_cat_all()" style="display: none"/>
                         </p>
                         <p>&nbsp;</p>
                         <p>

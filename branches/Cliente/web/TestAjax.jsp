@@ -15,7 +15,7 @@
     <body>
         <h1>Hello World!</h1>
         <form>
-            <a>Agrupamiento</a><select id="agrupamiento"">
+            <a>Agrupamiento</a><select id="agrupamiento">
                                        <option>algo</option>
             </select>
 

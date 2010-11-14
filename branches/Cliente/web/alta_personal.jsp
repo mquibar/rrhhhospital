@@ -98,18 +98,14 @@ else
         <title>Alta Personal</title>
         <link href="./css/estilos.css" rel="stylesheet" type="text/css" />
         <script src="./tools/datepicker/datepickercontrol.js" type="text/javascript"></script>
+        <script language="javascript" type="text/javascript" src="./js/createRequestJs.js"></script>
+        <script language="javascript" type="text/javascript" src="./js/esperar.js"></script>
+        <script language="javascript" type="text/javascript" src="./js/Personal.js"></script>
         <link  href="./tools/datepicker/datepickercontrol.css" type="text/css" rel="stylesheet" />
-        <script type="text/javascript">
-            <!--
-            function MM_jumpMenu(targ,selObj,restore){ //v3.0
-                eval(targ+".location='"+selObj.options[selObj.selectedIndex].value+"'");
-                if (restore) selObj.selectedIndex=0;
-            }
-            //-->
-        </script>
+        
     </head>
 
-    <body>
+    <body onload="loadProvincia()">
         <div class="cabecera">
             <div class="logo"></div>
             <div class="user">
@@ -217,14 +213,14 @@ else
                         <br />
 		  Provincia
                         <br />
-                        <select name="provincia" id="provincia">
-                            <%= c.getModels("PROVINCIA").toString()%>
+                        <select name="provincia" id="provincia" onchange="loadLocalidad()">
+                            <%--= c.getModels("PROVINCIA").toString()--%>
                         </select>
                         <br />
                         <br />
 		  Localidad<br />
                         <select name="localidad" id="localidad" >
-                            <%= c.getModels("LOCALIDAD").toString()%>
+                            <%--= c.getModels("LOCALIDAD").toString()--%>
                         </select>
                         <br />
                   Numero Tarjeta<br />

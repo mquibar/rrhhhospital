@@ -56,11 +56,10 @@ if (mensageEstado != "" && mensageEstado.indexOf("Error:") == -1) {
 <title>Home</title>
 <link href="./css/estilos.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
-function MM_jumpMenu(targ,selObj,restore){ //v3.0
-  eval(targ+".location='"+selObj.options[selObj.selectedIndex].value+"'");
-  if (restore) selObj.selectedIndex=0;
-}
 </script>
+<script language="javascript" type="text/javascript" src="./js/createRequestJs.js"></script>
+<script language="javascript" type="text/javascript" src="./js/esperar.js"></script>
+<script language="javascript" type="text/javascript" src="./js/Personal.js"></script>
 <script language="javascript" type="text/javascript" src="./js/Funciones.js"></script>
 </head>
 
@@ -80,12 +79,12 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
         <p>Empleado<br />
         </p>
         <p>
-          <select name="empleado" size="1" id="empleado" >
+          <select name="empleados" size="1" id="empleados" >
             <%--=c.getOptionsTipoEmpleado(empleado)--%>
           </select>
         </p>
         <p>
-          <input type="button" name="button" id="button" value="Seleccionar" onclick="agre()"/>
+          <input type="button" name="button" id="button" value="Seleccionar" onclick="loadPersonas()"/>
         </p>
         <p>Legajo        </p>
         <p>
