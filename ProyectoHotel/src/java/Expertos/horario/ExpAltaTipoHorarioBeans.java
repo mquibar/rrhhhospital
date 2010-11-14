@@ -39,18 +39,20 @@ public class ExpAltaTipoHorarioBeans implements ExpAltaTipoHorario {
                 gc.beginTransaction();
                 if( persistir() )
                 {
+                    res = "El Tipo de Horario se guardo correctamente. Confirmado.";
+                    System.out.println(res);
                     GestorConeccion.getInstance().commitTransaction();
-                    res = "El Tipo de Horario se guardo correctamente";
                 }
                 else
                 {
-                    GestorConeccion.getInstance().rollbackTransaction();
                     res = "Error durante el guardado, Rolling Back";
+                    System.out.println(res);
+                    GestorConeccion.getInstance().rollbackTransaction();
                 }
             }
             catch(Exception ex)
             {
-                    res = "Error: se produjo el siguiente error durante el guardado : "
+                    res = "Error: se produjo el siguiente error durante el guardado : <br />"
                             + ex.toString();
             }
         }
@@ -81,7 +83,8 @@ public class ExpAltaTipoHorarioBeans implements ExpAltaTipoHorario {
             String nombre,
             String descripcion,
             Date horarioEntrada,
-            Date horarioSalida
+            Date horarioSalida,
+            Boolean eliminado
             ) {
         if(idEntidad != null && !idEntidad.equals(""))
         {
@@ -104,6 +107,7 @@ public class ExpAltaTipoHorarioBeans implements ExpAltaTipoHorario {
         _tipoHorario.setDescripcion(descripcion);
         _tipoHorario.setHoraIngreso(horarioEntrada);
         _tipoHorario.setHoraSalida(horarioSalida);
+        _tipoHorario.setEliminado(eliminado);
 
         _flagSave = validar();
     }

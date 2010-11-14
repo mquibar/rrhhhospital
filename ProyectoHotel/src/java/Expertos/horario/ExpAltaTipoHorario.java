@@ -22,7 +22,8 @@ public interface  ExpAltaTipoHorario {
             String nombre,
             String descripcion,
             Date horaIngreso,
-            Date horaSalida
+            Date horaSalida,
+            Boolean eliminado
             );
 
     public String guardar();

@@ -6,6 +6,7 @@
 package Expertos.horario;
 
 import Entidades.Empleado;
+import Entidades.RegistroPeriodo;
 import java.util.Date;
 
 /**
@@ -24,5 +25,7 @@ public interface  ExpAltaRegistroPeriodo {
             Date horaSalida,
             Boolean vigente
             );
+
+    public RegistroPeriodo getEntidad(String idEntidad);
 
 }

@@ -113,4 +113,23 @@ public class ExpAltaRegistroPeriodoBeans implements ExpAltaRegistroPeriodo {
         return true;
     }
 
+    RegistroPeriodo _th = null;
+    public RegistroPeriodo getEntidad(String idEntidad)
+    {
+        if(_th == null)
+        {
+            try
+            {
+                int idE = Integer.parseInt(idEntidad);
+                _th = new ExpConsultarRegistroPeriodoBeans().consultarAsignacionHorarioPorId(idE);
+            }
+            catch(Exception ex)
+            {
+                _th = new RegistroPeriodo();
+            }
+        }
+
+        return _th;
+    }
+
 }

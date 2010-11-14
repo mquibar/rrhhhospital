@@ -6,6 +6,7 @@
 package Expertos.horario;
 
 import Entidades.Empleado;
+import Entidades.Licencia;
 import Entidades.TipoLicencia;
 import java.util.Date;
 import javax.ejb.Remote;
@@ -26,5 +27,7 @@ public interface  ExpAltaLicencia {
             Date FechaFin,
             String motivo
             );
+
+    public Licencia getEntidad(String idEntidad);
 
 }

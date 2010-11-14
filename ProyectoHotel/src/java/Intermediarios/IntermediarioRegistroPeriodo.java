@@ -10,6 +10,8 @@ import DTO.DtoRegistroPeriodo;
 import Entidades.RegistroPeriodo;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
@@ -60,6 +62,19 @@ public class IntermediarioRegistroPeriodo extends Intermediario<RegistroPeriodo>
     {
         Criteria criterio = ((Session) GestorConeccion.getInstance().getManager().getDelegate()).createCriteria(RegistroPeriodo.class).addOrder(Order.asc(orden));
         return criterio.list();
+    }
+
+    public RegistroPeriodo findById(int id) {
+        try
+        {
+            EntityManager em = GestorConeccion.getInstance().getManager();
+            Query q = em.createNamedQuery(_clase + ".findById").setParameter("id", id);
+            return (RegistroPeriodo) q.getSingleResult();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            _log.error(ex.getMessage());
+            return null;
+        }
     }
 
 }

@@ -76,4 +76,9 @@ public class ExpConsultarRegistroPeriodoBeans implements ExpConsultarRegistroPer
 
         return registroPeriodo;
     }
+
+    public RegistroPeriodo consultarAsignacionHorarioPorId(int id) {
+        return (new IntermediarioRegistroPeriodo().findById(id));
+    }
+
 }

@@ -53,13 +53,15 @@ public class ExpAltaAsignacionHorarioBeans implements ExpAltaAsignacionHorario {
             {
                 if( persistir(a) )
                 {
+                    res = "La Asignacion de Horario se guardo correctamente. Confirmado.<br />";
+                    System.out.println(res);
                     GestorConeccion.getInstance().commitTransaction();
-                    res = "La Asignacion de Horario se guardo correctamente";
                 }
                 else
                 {
-                    GestorConeccion.getInstance().rollbackTransaction();
                     res = "Error durante el guardado, Rolling Back";
+                    System.out.println(res);
+                    GestorConeccion.getInstance().rollbackTransaction();
                 }
             }
             catch(Exception ex)
@@ -106,7 +108,7 @@ public class ExpAltaAsignacionHorarioBeans implements ExpAltaAsignacionHorario {
             {
                 idEnt = Integer.parseInt(idEntidad);
                 _esAlta = false;
-                fechaInicio = fechaFin;
+                fechaFin = fechaInicio;
             }
             catch(Exception ex)
             {
@@ -116,8 +118,9 @@ public class ExpAltaAsignacionHorarioBeans implements ExpAltaAsignacionHorario {
             }
         }
 
-        int difDias = fechaFin.compareTo(fechaInicio);
+        int difDias = diferencia(fechaInicio, fechaFin);
 
+        System.out.println("Comenzando seteo de " + difDias + " asignaciones.");
         for(int i=0; i < difDias; i++)
         {
             AsignacionHorario ah = new AsignacionHorario();
@@ -148,4 +151,27 @@ public class ExpAltaAsignacionHorarioBeans implements ExpAltaAsignacionHorario {
         return true;
     }
 
+    AsignacionHorario _th = null;
+    public AsignacionHorario getEntidad(String idEntidad)
+    {
+        if(_th == null)
+        {
+            try
+            {
+                int idE = Integer.parseInt(idEntidad);
+                _th = new ExpConsultarAsignacionHorarioBeans().consultarAsignacionHorarioPorId(idE);
+            }
+            catch(Exception ex)
+            {
+                _th = new AsignacionHorario();
+            }
+        }
+
+        return _th;
+    }
+
+    int diferencia(Date inicio, Date fin)
+    {
+        return (int)(Math.floor(fin.getTime() - inicio.getTime())/ (1000 * 60 * 60 * 24)) + 1;
+    }
 }

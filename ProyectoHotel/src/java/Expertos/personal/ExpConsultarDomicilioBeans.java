@@ -6,6 +6,7 @@
 package Expertos.personal;
 
 import DTO.DTODomicilio;
+//import DTO.DtoLocalidades;
 import DTO.DtoLocalidades;
 import Entidades.Domicilio;
 import Entidades.Localidad;

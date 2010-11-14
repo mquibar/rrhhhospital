@@ -23,4 +23,7 @@ public class ExpConsultarAsignacionHorarioBeans implements ExpConsultarAsignacio
         return (new IntermediarioAsignacionHorario()).findAll();
     }
 
+    public AsignacionHorario consultarAsignacionHorarioPorId(int id) {
+        return (new IntermediarioAsignacionHorario().findById(id));
+    }
 }

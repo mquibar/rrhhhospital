@@ -10,6 +10,8 @@ import DTO.DtoAsignacionHorario;
 import Entidades.AsignacionHorario;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
@@ -65,6 +67,19 @@ public class IntermediarioAsignacionHorario extends Intermediario<AsignacionHora
     {
         Criteria criterio = ((Session) GestorConeccion.getInstance().getManager().getDelegate()).createCriteria(AsignacionHorario.class).addOrder(Order.asc(orden));
         return criterio.list();
+    }
+
+    public AsignacionHorario findById(int id) {
+        try
+        {
+            EntityManager em = GestorConeccion.getInstance().getManager();
+            Query q = em.createNamedQuery(_clase + ".findById").setParameter("id", id);
+            return (AsignacionHorario) q.getSingleResult();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            _log.error(ex.getMessage());
+            return null;
+        }
     }
 
 }
