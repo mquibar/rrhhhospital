@@ -6,6 +6,38 @@
         String varVal = request.getParameter(varName);
         return (varVal) == null ? "" : varVal;
     }
+
+    String getTitle(Boolean esBorrado, String idEntidad)
+    {
+        if(esBorrado)
+        {
+            return "ELIMINACION";
+        }
+        else if(!idEntidad.equals(""))
+        {
+            return "MODIFICACION";
+        }
+        else
+        {
+            return "ALTA";
+        }
+    }
+
+    String getAction(Boolean esBorrado, String idEntidad)
+    {
+        if(esBorrado)
+        {
+            return "Eliminar";
+        }
+        else if(!idEntidad.equals(""))
+        {
+            return "Modificar";
+        }
+        else
+        {
+            return "Agregar";
+        }
+    }
 %>
 
 <%
@@ -22,7 +54,16 @@ if (request.getParameter("buttonCancel") != null)
 }
 else
 {
+    String mensageEstado = "";
     String idEntidad = getValue(request, "idEntidad");
+    String action = getValue(request, "action");
+    String esRecarga = getValue(request, "esRecarga");
+    String eliminado = getValue(request, "eliminado");
+    Boolean esBorrado = (action.equals("delete"));
+    String deshabilitar = (esBorrado) ? "readonly" : "";
+    boolean cargarEntidad = !idEntidad.equals("") && !esRecarga.equals("Si");
+    eliminado = esBorrado.toString();
+
     String fechaInicio = getValue(request, "fechaInicio");
     String fechaFin = getValue(request, "fechaFin");
     String empleado = getValue(request, "empleado");
@@ -30,11 +71,21 @@ else
     String descripcion = getValue(request, "descripcion");
     String vigente = getValue(request, "vigente");
 
-    String mensageEstado = "";
     ctrlAltaAsignacionHorario c = null;
    try
     {
         c = new ctrlAltaAsignacionHorario();
+
+        if(cargarEntidad)
+        {
+            fechaInicio = c.getFechaInicio(idEntidad);
+            fechaFin = c.getFechaFin(idEntidad);
+            empleado = c.getEmpleado(idEntidad);
+            tipoHorario = c.getTipoHorario(idEntidad);
+            descripcion = c.getDescripcion(idEntidad);
+
+            esRecarga = "Si";
+        }
 
         if (request.getParameter("buttonSave") != null)
         {
@@ -45,7 +96,7 @@ else
                     empleado,
                     tipoHorario,
                     descripcion,
-                    "true");
+                    eliminado);
         }
     }
     catch(Exception ex)
@@ -99,7 +150,8 @@ else
                     <div class="log_off">LogOff </div>
                 </div>
             </div>
-            <div class="noticias" id="noticias_2">ASIGNACION HORARIOS<br />
+            <div class="noticias" id="noticias_2">
+                <%=getTitle(esBorrado, idEntidad)%> ASIGNACION HORARIO<br />
 <%
     if(mensageEstado != "")
     {
@@ -110,22 +162,25 @@ else
                     <form id="form1" name="form1" method="post" action="">
                         <div class="izquierda"><br />
                                 <input type="hidden" name="idEntidad" id="idEntidad" value="<%=idEntidad%>"/>
+                                <input type="hidden" name="esRecarga" id="esRecarga" value="<%=esRecarga%>"/>
+                                <input type="hidden" name="action" id="action" value="<%=action%>"/>
+                                <input type="hidden" name="eliminado" id="eliminado" value="<%=eliminado%>"/>
                             EMPLEADO<br />
                             <br />
-                            <select name="empleado" size="1" id="empleado" >
+                            <select name="empleado"  <%=deshabilitar%> size="1" id="empleado" >
                                 <%= c.getOptionsEmpleado(empleado)%>
                             </select>
                             <br />
                             <br />
                             Tipo de horario<br />
-                            <select name="tipoHorario" id="tipoHorario" >
+                            <select name="tipoHorario"  <%=deshabilitar%> id="tipoHorario" >
                                 <%= c.getOptionsTipoHorario(tipoHorario)%>
                             </select>
                             <br />
                             <br />
                             Fecha Inicio<br />
                             <label>
-                                <input type="text" name="fechaInicio" id="DPC_edit1"  value='<%=fechaInicio%>' />
+                                <input type="text" name="fechaInicio"  <%=deshabilitar%> id="DPC_edit1"  value='<%=fechaInicio%>' />
                             </label>
                             <br />
                             <br />
@@ -133,21 +188,21 @@ else
 <% if(idEntidad == ""){%>
                             Fecha Fin<br />
                             <label>
-                                <input type="text" name="fechaFin" id="DPC_edit2"  value='<%=fechaFin%>' />
+                                <input type="text" name="fechaFin"  <%=deshabilitar%> id="DPC_edit2"  value='<%=fechaFin%>' />
                             </label>
                             <br />
                             <br />
 <% }%>
                             Descripcion<br />
                             <label>
-                                <textarea name="descripcion" id="descripcion" cols="45" rows="5"><%=descripcion%></textarea>
+                                <textarea name="descripcion" id="descripcion"  <%=deshabilitar%> cols="45" rows="5"><%=descripcion%></textarea>
                             </label>
                             <br />
                         </div>
                         <div class="derecha"></div>
                         <div class="guardar">
                             <label>
-                                <input type="submit" name="buttonSave" id="buttonSave" value="Guardar" />
+                                <input type="submit" name="buttonSave" id="buttonSave" value="<%=getAction(esBorrado, idEntidad)%>" />
                             </label>
                             <label>
                                 <input type="submit" name="buttonCancel" id="buttonCancel" value="Cancelar" />

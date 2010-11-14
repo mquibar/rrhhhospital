@@ -199,13 +199,13 @@ margin:2px 0px 0px 2px;
 	<li class="pureCssMenui0"><a class="pureCssMenui0" href="#"><span>Horarios</span><![if gt IE 6]></a><![endif]><!--[if lte IE 6]><table><tr><td><![endif]-->
 	<ul class="pureCssMenum">
             <li class="pureCssMenui"><a id="Horario_mnu1" class="pureCssMenui"
-                    href="#" onclick="cargarNoticias('./manejoHorarios/gestionar.jsp?nombreEntidad=tipo_horario');">Gestionar Tipo de Horario</a></li>
+                    href="#" onclick="cargarNoticias('./manejoHorarios/gestionar.jsp?nombreEntidad=tipo_horario');">Tipo de Horario</a></li>
             <li class="pureCssMenui"><a id="Horario_mnu1" class="pureCssMenui"
                     href="#" onclick="cargarNoticias('./manejoHorarios/gestionar.jsp?nombreEntidad=asignacion_horario');">Asignacion horarios</a></li>
             <li class="pureCssMenui"><a id="Horario_mnu3" class="pureCssMenui"
                      href="#" onclick="cargarNoticias('./manejoHorarios/gestionar.jsp?nombreEntidad=registro_periodo');">Registro de periodo</a></li>
             <li class="pureCssMenui"><a id="Horario_mnu2" class="pureCssMenui"
-                     href="#" onclick="cargarNoticias('./manejoHorarios/gestionar.jsp?nombreEntidad=licencia');">Manejo de licencias</a></li>
+                     href="#" onclick="cargarNoticias('./manejoHorarios/gestionar.jsp?nombreEntidad=licencia');">Licencias</a></li>
 	</ul>
 	<!--[if lte IE 6]></td></tr></table></a><![endif]--></li>
 	<li class="pureCssMenui0"><a class="pureCssMenui0" href="#"><span>Seguimiento</span><![if gt IE 6]></a><![endif]><!--[if lte IE 6]><table><tr><td><![endif]-->

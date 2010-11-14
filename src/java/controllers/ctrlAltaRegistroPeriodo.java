@@ -5,6 +5,7 @@
 
 package controllers;
 
+import Entidades.RegistroPeriodo;
 import Expertos.horario.ExpAltaRegistroPeriodo;
 import Expertos.personal.ExpConsultarPersonal;
 import Tools.ManejaFechas;
@@ -68,6 +69,42 @@ public class ctrlAltaRegistroPeriodo extends GeneralController
         }
 
         return  opt;
+    }
+
+    RegistroPeriodo _ah = null;
+    public RegistroPeriodo getEntidad(String idEntidad)
+    {
+        if(_ah == null)
+        {
+            _ah = _expAlta.getEntidad(idEntidad);
+        }
+
+        return _ah;
+    }
+
+    public String getFechaEntrada(String idEntidad)
+    {
+        return ManejaFechas.convertirDate(getEntidad(idEntidad).getFechaEntrada());
+    }
+
+    public String getFechaSalida(String idEntidad)
+    {
+        return ManejaFechas.convertirDate(getEntidad(idEntidad).getFechaSalida());
+    }
+
+    public String getHoraEntrada(String idEntidad)
+    {
+        return ManejaFechas.getHour(getEntidad(idEntidad).getHoraEntrada());
+    }
+
+    public String getHoraSalida(String idEntidad)
+    {
+        return ManejaFechas.getHour(getEntidad(idEntidad).getHoraSalida());
+    }
+
+    public String getEmpleado(String idEntidad)
+    {
+        return Integer.toString(getEntidad(idEntidad).getIdEmpleado());
     }
 
 

@@ -5,6 +5,7 @@
 
 package controllers;
 
+import Entidades.Licencia;
 import Expertos.horario.ExpAltaLicencia;
 import Expertos.personal.ExpConsultarPersonal;
 import Expertos.horario.ExpConsultarTipoLicencia;
@@ -86,6 +87,42 @@ public class ctrlAltaLicencia extends GeneralController
         }
 
         return  opt;
+    }
+
+    Licencia _ah = null;
+    public Licencia getEntidad(String idEntidad)
+    {
+        if(_ah == null)
+        {
+            _ah = _expAlta.getEntidad(idEntidad);
+        }
+
+        return _ah;
+    }
+
+    public String getFechaInicio(String idEntidad)
+    {
+        return ManejaFechas.convertirDate(getEntidad(idEntidad).getFechaInicio());
+    }
+
+    public String getFechaFin(String idEntidad)
+    {
+        return ManejaFechas.convertirDate(getEntidad(idEntidad).getFechaFin());
+    }
+
+    public String getEmpleado(String idEntidad)
+    {
+        return Integer.toString(getEntidad(idEntidad).getIdEmpleado().getIdEmpleado());
+    }
+
+    public String getTipoLicencia(String idEntidad)
+    {
+        return Integer.toString(getEntidad(idEntidad).getIdTipoLicencia());
+    }
+
+    public String getMotivo(String idEntidad)
+    {
+        return getEntidad(idEntidad).getMotivo();
     }
 
 

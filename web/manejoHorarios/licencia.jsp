@@ -22,7 +22,19 @@ if (request.getParameter("buttonCancel") != null)
 }
 else
 {
+    String mensageEstado = "";
     String idEntidad = getValue(request, "idEntidad");
+    String action = getValue(request, "action");
+    String esRecarga = getValue(request, "esRecarga");
+    String eliminado = getValue(request, "eliminado");
+    boolean esBorrado = (action == "delete");
+    String deshabilitar = (esBorrado) ? "readonly" : "";
+    boolean cargarEntidad = !idEntidad.equals("") && !esRecarga.equals("Si");
+    if(esBorrado)
+    {
+        eliminado = "true";
+    }
+
     String empleado = getValue(request, "empleado");
     String tipoLicencia = getValue(request, "tipoLicencia");
     String fechaInicio = getValue(request, "fechaInicio");
@@ -30,11 +42,21 @@ else
     String motivo = getValue(request, "motivo");
     String vigente = getValue(request, "vigente");
 
-    String mensageEstado = "";
     ctrlAltaLicencia c = null;
    try
     {
         c = new ctrlAltaLicencia();
+
+        if(cargarEntidad)
+        {
+            empleado = c.getEmpleado(idEntidad);
+            tipoLicencia = c.getTipoLicencia(idEntidad);
+            fechaInicio = c.getFechaInicio(idEntidad);
+            fechaFin = c.getFechaFin(idEntidad);
+            motivo = c.getMotivo(idEntidad);
+
+            esRecarga = "Si";
+        }
 
         if (request.getParameter("buttonSave") != null)
         {
@@ -73,7 +95,7 @@ else
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml"><head>
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-            <title>Asignacion de Horario</title>
+            <title>Asignacion de Licencia</title>
             <link href="../css/estilos.css" rel="stylesheet" type="text/css" />
 
             <script src="../js/validaciones/validaciones.js" type="text/javascript"></script>
@@ -99,7 +121,8 @@ else
                     <div class="log_off">LogOff </div>
                 </div>
             </div>
-            <div class="noticias" id="noticias_2">ASIGNACION LICENCIA<br />
+            <div class="noticias" id="noticias_2">
+                <%=(idEntidad == "")?"ALTA":"MODIFICACION"%> LICENCIA<br />
 <%
     if(mensageEstado != "")
     {
@@ -110,34 +133,37 @@ else
                     <form id="form1" name="form1" method="post" action="">
                         <div class="izquierda"><br />
                                 <input type="hidden" name="idEntidad" id="idEntidad" value="<%=idEntidad%>"/>
+                                <input type="hidden" name="esRecarga" id="esRecarga" value="<%=esRecarga%>"/>
+                                <input type="hidden" name="action" id="action" value="<%=action%>"/>
+                                <input type="hidden" name="eliminado" id="eliminado" value="<%=eliminado%>"/>
                             Empleado<br />
                             <br />
-                            <select name="empleado" size="1" id="empleado" >
+                            <select name="empleado"  <%=deshabilitar%> size="1" id="empleado" >
                                 <%= c.getOptionsEmpleado(empleado)%>
                             </select>
                             <br />
                             <br />
                             Tipo de Licencia<br />
-                            <select name="tipoLicencia" id="tipoLicencia" >
+                            <select name="tipoLicencia"  <%=deshabilitar%> id="tipoLicencia" >
                                 <%= c.getOptionsTipoLicencia(tipoLicencia)%>
                             </select>
                             <br />
                             <br />
                             Fecha Inicio<br />
                             <label>
-                                <input type="text" name="fechaInicio" id="DPC_edit1"  value='<%=fechaInicio%>' />
+                                <input type="text" name="fechaInicio"  <%=deshabilitar%> id="DPC_edit1"  value='<%=fechaInicio%>' />
                             </label>
                             <br />
                             <br />
                             Fecha Fin<br />
                             <label>
-                                <input type="text" name="fechaFin" id="DPC_edit2"  value='<%=fechaFin%>' />
+                                <input type="text" name="fechaFin"  <%=deshabilitar%> id="DPC_edit2"  value='<%=fechaFin%>' />
                             </label>
                             <br />
                             <br />
                             Motivo<br />
                             <label>
-                                <textarea name="motivo" id="motivo" cols="45" rows="5"><%=motivo%></textarea>
+                                <textarea name="motivo" id="motivo"  <%=deshabilitar%> cols="45" rows="5"><%=motivo%></textarea>
                             </label>
                             <br />
                         </div>

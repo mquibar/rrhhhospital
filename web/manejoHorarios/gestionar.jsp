@@ -35,12 +35,22 @@
         <title>Gestion de <%=nombreImprimible(request)%></title>
     </head>
     <body>
-        <h1>Gestion de <%=nombreImprimible(request)%></h1>
-        <button onclick="cargarSource('abm', '<%=getValue(request, "pathEntidad")%><%=getValue(request, "nombreEntidad")%>.jsp');">Agregar</button>
-        <button onclick="cargarSource('abm', '<%=getValue(request, "pathEntidad")%>modificar.jsp?nombreEntidad=<%=getValue(request, "nombreEntidad")%>');">Modificar</button>
-        <button onclick="cargarSource('abm', '<%=getValue(request, "pathEntidad")%>eliminar.jsp?nombreEntidad=<%=getValue(request, "nombreEntidad")%>');">Eliminar</button>
-
-        <iframe class="noticias" id="abm" src="#"></iframe>
-
+        <div class="noticias" id="noticias_2"> GESTIONAR <%=nombreImprimible(request).toUpperCase()%> <br />
+          <div class="forms">
+            <div class="izquierda"><br />
+              <br />
+              <a href="<%=getValue(request, "pathEntidad")%><%=getValue(request, "nombreEntidad")%>.jsp">Alta <%=nombreImprimible(request)%></a> <br />
+              <br />
+              <br />
+              <a href="<%=getValue(request, "pathEntidad")%>modificar.jsp?nombreEntidad=<%=getValue(request, "nombreEntidad")%>">Modificar <%=nombreImprimible(request)%></a> <br />
+              <br />
+              <br />
+              <a href="<%=getValue(request, "pathEntidad")%>eliminar.jsp?nombreEntidad=<%=getValue(request, "nombreEntidad")%>">Baja <%=nombreImprimible(request)%></a> <br />
+              <br />
+              <br />
+            </div>
+            <div class="derecha"></div>
+          </div>
+        </div>
     </body>
 </html>

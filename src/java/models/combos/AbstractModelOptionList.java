@@ -72,4 +72,35 @@ public abstract class AbstractModelOptionList<E> {
     }
 
     protected abstract String devolverValorCombo(E objeto);
+
+    public  String getIdPresentacion(String valorPresentacion)
+    {
+        String i = "0";
+
+        String combo = toString();
+        System.out.println("Buscando '" + valorPresentacion + "' en '" + combo + "'");
+        int pos = combo.indexOf(valorPresentacion);
+        if(pos != -1)
+        {
+            int fin = combo.lastIndexOf(">", pos);
+            int inicio = combo.lastIndexOf("=", pos);
+
+            if(inicio < fin -1)
+            {
+                i = combo.substring(inicio + 1, fin);
+            }
+            
+            System.out.println(
+                    "Encontrado '" + valorPresentacion + "' en '" + pos +
+                    "' e id '" + i + "' entre " + inicio + " y " + fin + ".");
+        }
+
+        return i;
+    }
+
+    public  String getIdPresentacion(E objeto)
+    {
+        return getIdPresentacion(devolverValorCombo(objeto));
+    }
+
 }
