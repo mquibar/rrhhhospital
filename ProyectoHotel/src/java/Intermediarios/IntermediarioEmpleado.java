@@ -48,8 +48,10 @@ public class IntermediarioEmpleado extends Intermediario<Empleado> {
 
     @Override
     public List<Empleado> findInOrden(String orden) {
-        Criteria criterio = ((Session)GestorConeccion.getInstance().getManager().getDelegate()).createCriteria(_clase).addOrder(Order.asc(orden));
-        return criterio.list();
+        /*Criteria criterio = ((Session)GestorConeccion.getInstance().getManager().getDelegate()).createCriteria(_clase).addOrder(Order.asc(orden));
+        return criterio.list();*/
+        Query q = GestorConeccion.getInstance().getManager().createQuery("SELECT e FROM Empleado e ORDER by e."+orden);
+        return q.getResultList();
     }
 
     public Empleado findByDni (String dni) {

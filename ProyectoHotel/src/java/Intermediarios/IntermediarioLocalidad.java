@@ -6,8 +6,11 @@
 package Intermediarios;
 
 import Configuraciones.LogAdmin;
+import DTO.DtoLocalidades;
 import Entidades.Localidad;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.persistence.Query;
 
 /**
@@ -30,7 +33,13 @@ public class IntermediarioLocalidad extends Intermediario <Localidad> {
 
     @Override
     public List<Localidad> findByDto(Object dto) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        DtoLocalidades dtolocalidades = (DtoLocalidades) dto;
+        Map<String,Object> restricciones = new HashMap<String, Object>();
+        if (dtolocalidades.getProvincia() != null) {
+            restricciones.put("idPovincia", dtolocalidades.getProvincia());
+        }
+        return crearQuery(restricciones).getResultList();
+
     }
 
      public Localidad findLocalidadByNombre (String nombre) {

@@ -24,9 +24,13 @@ import javax.ejb.Stateless;
 public class ExpModificarProfesionalBeans implements ExpModificarProfesional {
 
 
-    public List <Profesional> listarProfesional(){
-        
-        return new ArrayList<Profesional> ((new Intermediarios.IntermediarioProfesional()).findAll());
+    public Map<String, List> listarProfesional(){
+        Map<String,List> lista = new HashMap<String, List>();
+        lista.put("PROFESIONAL", (new Intermediarios.IntermediarioProfesional()).findAll());
+        lista.put("PAIS", (new Intermediarios.IntermediarioPais()).findAll());
+        lista.put("LOCALIDAD", (new Intermediarios.IntermediarioLocalidad().findAll()));
+        lista.put("PROVINCIA", (new Intermediarios.IntermediarioProvincia().findAll()));
+        return lista;
     }
 
     public boolean modificarProfesional (Profesional profesional, String nombre, String apellido, String dni, String fechaNacimiento,
@@ -38,7 +42,7 @@ public class ExpModificarProfesionalBeans implements ExpModificarProfesional {
             profesional.setNombre(nombre);
             profesional.setApellido(apellido);
             profesional.setDni(dni);
-            profesional.setFechaNacimiento(java.sql.Date.valueOf(fechaNacimiento));
+            profesional.setFechaNacimiento(Tools.ManejaFechas.convertirString(fechaNacimiento));
             profesional.setTelefono(Long.getLong(telefono));
             profesional.setIdSexo(sexo);
             profesional.setCuil(cuil);
@@ -66,6 +70,5 @@ public class ExpModificarProfesionalBeans implements ExpModificarProfesional {
         return profesional;
 
     }
-    
 
 }

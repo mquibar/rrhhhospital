@@ -6,6 +6,7 @@
 package Expertos.personal;
 
 import DTO.DTODomicilio;
+import DTO.DtoLocalidades;
 import Entidades.Domicilio;
 import Entidades.Localidad;
 import Entidades.Pais;
@@ -83,6 +84,17 @@ public class ExpConsultarDomicilioBeans implements ExpConsultarDomicilio {
         return domicilio;
     }
 
+    public Domicilio consultaDomicilioporId (int id) {
+        IntermediarioDomicilio intermediario = new IntermediarioDomicilio ();
+        Domicilio domicilio;
+        try {
+            domicilio = intermediario.findById(Integer.toString(id));
+        } catch (NullPointerException e) {
+            domicilio = null;
+        }
+        return domicilio;
+    }
+
     /*Devuleve la lista de paises del sistema */
     public List<Pais> consultarTodosPaises () {
         IntermediarioPais intermediario = new IntermediarioPais ();
@@ -118,6 +130,22 @@ public class ExpConsultarDomicilioBeans implements ExpConsultarDomicilio {
         }
         return provincia;
      }
-    
+
+    /*Devuelve las localidades de una provincia*/
+
+    public List <Localidad> consultarLocalidadesProvincia (Provincia provincia) {
+        IntermediarioLocalidad intermediario = new IntermediarioLocalidad ();
+        DtoLocalidades dto = new DtoLocalidades();
+        dto.setProvincia(provincia);
+        List <Localidad> localidad = null;
+        try {
+            localidad = intermediario.findByDto(dto);
+        } catch (NullPointerException e) {
+            provincia=null;
+        }
+        return localidad;
+     }
 
 }
+
+
