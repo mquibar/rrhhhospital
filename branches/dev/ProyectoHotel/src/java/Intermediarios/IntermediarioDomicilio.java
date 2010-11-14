@@ -11,6 +11,7 @@ import Entidades.Domicilio;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.persistence.Query;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
@@ -47,6 +48,17 @@ public class IntermediarioDomicilio extends Intermediario <Domicilio>{
         try {
             return crearQuery(restricciones).getResultList();
         } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public Domicilio findById (String id) {
+        try {
+            Query q = GestorConeccion.getInstance().getManager().createNamedQuery(_clase + ".findById").setParameter("id", id);
+            return (Domicilio)q.getSingleResult();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            _log.error(ex.getMessage());
             return null;
         }
     }

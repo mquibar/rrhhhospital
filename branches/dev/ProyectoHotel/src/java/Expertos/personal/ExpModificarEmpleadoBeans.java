@@ -42,7 +42,7 @@ public class ExpModificarEmpleadoBeans implements ExpModificarEmpleado {
             empleado.setNombre(nombre);
             empleado.setApellido(apellido);
             empleado.setDni(dni);
-            empleado.setFechaNacimiento(java.sql.Date.valueOf(fechaNacimiento));
+            empleado.setFechaNacimiento(Tools.ManejaFechas.convertirString(fechaNacimiento));
             empleado.setTelefono(Long.getLong(telefono));
             empleado.setIdSexo(sexo);
             empleado.setCuil(cuil);

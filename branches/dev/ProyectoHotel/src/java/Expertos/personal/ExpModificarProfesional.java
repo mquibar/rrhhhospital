@@ -15,7 +15,7 @@ import javax.ejb.Remote;
 @Remote
 public interface ExpModificarProfesional {
 
-    public java.util.List <Entidades.Profesional> listarProfesional();
+    public java.util.Map<java.lang.String, java.util.List> listarProfesional();
 
     public boolean modificarProfesional(Entidades.Profesional profesional, 
             java.lang.String nombre, java.lang.String apellido, java.lang.String dni,
