@@ -33,4 +33,7 @@ public interface  ExpConsultarCategoria {
     public List<Categoria> consultarCategoria(Tramo tramo);
 
     public List<Categoria> listarCategorias();
+
+    public Categoria consultarCategoria(Categoria categoria);
+    public Tramo consultarTramo(Categoria categoria);
 }
