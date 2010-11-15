@@ -46,10 +46,10 @@ public class ClaseVigente implements Serializable {
     @Column(name = "Vigente")
     private boolean vigente;
     @JoinColumn(name = "idCategoria", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Categoria idCategoria;
     @JoinColumn(name = "idClase", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Clase idClase;
     @JoinColumn(name = "idEmpleado", referencedColumnName = "idEmpleado")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)

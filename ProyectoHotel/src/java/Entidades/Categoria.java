@@ -52,7 +52,7 @@ public class Categoria implements Serializable {
     private List<ClaseVigente> claseVigenteList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "_categoria", fetch = FetchType.LAZY)
     private List<Requisito> requisitoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoria", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoria", fetch = FetchType.EAGER)
     private List<ClaseContenida> claseContenidaList;
     @JoinColumn(name = "idTramo", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
