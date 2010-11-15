@@ -65,10 +65,10 @@ public abstract class Persona implements Serializable {
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     protected Domicilio idDomicilio;
     @JoinColumn(name = "idPais", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     protected Pais idPais;
     @JoinColumn(name = "idSexo", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     protected Sexo idSexo;
 
     public Persona() {

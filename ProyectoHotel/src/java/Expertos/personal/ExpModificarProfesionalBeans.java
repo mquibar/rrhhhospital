@@ -10,20 +10,29 @@ import Entidades.Localidad;
 import Entidades.Pais;
 import Entidades.Provincia;
 import Entidades.Sexo;
-import java.util.ArrayList;
+import Intermediarios.GestorConeccion;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.ejb.Stateless;
 
 /**
+ * Clase que implementa la interfaz ExpModificarProfesional
+ *
+ * Experto que realiza todas las tareas necesarias para modificar el profesional
  *
  * @author Juan
  */
+
 @Stateless
 public class ExpModificarProfesionalBeans implements ExpModificarProfesional {
 
 
+    /**
+     * Lista los profesionales del hospital, las provincias, paises y localidades
+     *
+     * @return: Hash map de los empleados del hospital los paises, provincias y localidades
+     */
     public Map<String, List> listarProfesional(){
         Map<String,List> lista = new HashMap<String, List>();
         lista.put("PROFESIONAL", (new Intermediarios.IntermediarioProfesional()).findAll());
@@ -33,6 +42,30 @@ public class ExpModificarProfesionalBeans implements ExpModificarProfesional {
         return lista;
     }
 
+    /**
+     * Realiza la modificacion del profesional con todos los datos que se le envian como parametro
+     *
+     * @param profesional
+     * @param nombre
+     * @param apellido
+     * @param dni
+     * @param fechaNacimiento
+     * @param telefono
+     * @param barrio
+     * @param calle
+     * @param numero
+     * @param piso
+     * @param departamanto
+     * @param localidad
+     * @param provincia
+     * @param pais
+     * @param sexo
+     * @param cuil
+     * @param matricula
+     * @param titulo
+     *
+     * @return true: si el profesional fue guardado con exito
+     */
     public boolean modificarProfesional (Profesional profesional, String nombre, String apellido, String dni, String fechaNacimiento,
             String telefono, String barrio, String calle, String numero, String piso, String departamanto,
             Localidad localidad, Provincia provincia, Pais pais, Sexo sexo, String cuil,
@@ -46,15 +79,45 @@ public class ExpModificarProfesionalBeans implements ExpModificarProfesional {
             profesional.setTelefono(Long.getLong(telefono));
             profesional.setIdSexo(sexo);
             profesional.setCuil(cuil);
-            profesional = modificarDomicilioProfesional (profesional, barrio, calle,
+            modificarDomicilioProfesional (profesional, barrio, calle,
                      numero, piso, departamanto, localidad, provincia, pais);
             profesional.setTitulo(titulo);
             profesional.setMatricula(matricula);
 
-            return new Intermediarios.IntermediarioEmpleado().actualizar(profesional);
-    }
+            /*Comienza una transaccion con la base de datos para actulizar el contenido*/
+            try{
+            GestorConeccion.getInstance().beginTransaction();
+            if( (new Intermediarios.IntermediarioProfesional()).actualizar(profesional) ){
+                GestorConeccion.getInstance().commitTransaction();
+                return true;
+            }
+            else{
+                GestorConeccion.getInstance().rollbackTransaction();
+                return false;
+            }
 
-    private Profesional modificarDomicilioProfesional (Profesional profesional, String barrio,
+        }catch(Exception ex){
+            ex.printStackTrace();
+            return false;
+        }
+
+    }
+    /**
+     * Metodo privado el cual modifica el domicilio del profesional
+     *
+     * @param profesional
+     * @param barrio
+     * @param calle
+     * @param numero
+     * @param piso
+     * @param departamanto
+     * @param localidad
+     * @param provincia
+     * @param pais
+     *
+     * @return: modifica la instancia del objeto profesional que se le envia como parametro
+     */
+    private void modificarDomicilioProfesional (Profesional profesional, String barrio,
             String calle, String numero, String piso, String departamanto,
             Localidad localidad, Provincia provincia, Pais pais){
 
@@ -66,9 +129,6 @@ public class ExpModificarProfesionalBeans implements ExpModificarProfesional {
             profesional.getIdDomicilio().setIdLocalidad(localidad);
             profesional.getIdDomicilio().setIdProvincia(provincia);
             profesional.setIdPais(pais);
-
-        return profesional;
-
     }
 
 }

@@ -10,12 +10,16 @@ import Entidades.Localidad;
 import Entidades.Pais;
 import Entidades.Provincia;
 import Entidades.Sexo;
+import Intermediarios.GestorConeccion;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.ejb.Stateless;
 
 /**
+ * Clase que implementa la interfaz ExpModificarProfesional
+ *
+ * Experto que realiza todas las tareas necesarias para modificar el profesional
  *
  * @author Juan
  */
@@ -25,7 +29,12 @@ public class ExpModificarEmpleadoBeans implements ExpModificarEmpleado {
 
     public ExpModificarEmpleadoBeans() {
     }
-    
+
+    /**
+     * Lista los empleado del hospital, las provincias, paises y localidades
+     *
+     * @return: Hash map de los empleados del hospital los paises, provincias y localidades
+     */
     public Map<String, List> listarEmpleados(){
         Map<String,List> lista = new HashMap<String, List>();
         lista.put("EMPLEADO", (new Intermediarios.IntermediarioEmpleado()).findAll());
@@ -34,7 +43,27 @@ public class ExpModificarEmpleadoBeans implements ExpModificarEmpleado {
         lista.put("PROVINCIA", (new Intermediarios.IntermediarioProvincia().findAll()));
         return lista;
     }
-    
+    /**
+     * Realiza la modificacion del empleado con todos los datos que se le envian como parametro
+     *
+     * @param empleado
+     * @param nombre
+     * @param apellido
+     * @param dni
+     * @param fechaNacimiento
+     * @param telefono
+     * @param barrio
+     * @param calle
+     * @param numero
+     * @param piso
+     * @param departamanto
+     * @param localidad
+     * @param provincia
+     * @param pais
+     * @param sexo
+     * @param cuil
+     * @return true: si el empleado fue guardado con exito
+     */
     public boolean modificarEmpleado (Empleado empleado, String nombre, String apellido, String dni, String fechaNacimiento,
             String telefono, String barrio, String calle, String numero, String piso, String departamanto,
             Localidad localidad, Provincia provincia, Pais pais, Sexo sexo, String cuil) {
@@ -46,13 +75,43 @@ public class ExpModificarEmpleadoBeans implements ExpModificarEmpleado {
             empleado.setTelefono(Long.getLong(telefono));
             empleado.setIdSexo(sexo);
             empleado.setCuil(cuil);
-            empleado = modificarDomicilioEmpleado(empleado, barrio, calle,
+            modificarDomicilioEmpleado(empleado, barrio, calle,
                      numero, piso, departamanto, localidad, provincia, pais);
 
-            return new Intermediarios.IntermediarioEmpleado().actualizar(empleado);
+            /*Comienza una transaccion con la base de datos para actulizar el contenido*/
+            try{
+                GestorConeccion.getInstance().beginTransaction();
+            if( (new Intermediarios.IntermediarioEmpleado()).actualizar(empleado) ){
+                GestorConeccion.getInstance().commitTransaction();
+                return true;
+            }
+            else{
+                GestorConeccion.getInstance().rollbackTransaction();
+                return false;
+            }
+
+        }catch(Exception ex){
+            ex.printStackTrace();
+            return false;
+        }
     }
 
-    private Empleado modificarDomicilioEmpleado (Empleado empleado, String barrio,
+   /**
+     * Metodo privado el cual modifica el domicilio del empleado
+     *
+     * @param empleado
+     * @param barrio
+     * @param calle
+     * @param numero
+     * @param piso
+     * @param departamanto
+     * @param localidad
+     * @param provincia
+     * @param pais
+     *
+     * @return: modifica la instancia del objeto empleado que se le envia como parametro
+     */
+    private void modificarDomicilioEmpleado (Empleado empleado, String barrio,
             String calle, String numero, String piso, String departamanto,
             Localidad localidad, Provincia provincia, Pais pais){
 
@@ -64,9 +123,7 @@ public class ExpModificarEmpleadoBeans implements ExpModificarEmpleado {
             empleado.getIdDomicilio().setIdLocalidad(localidad);
             empleado.getIdDomicilio().setIdProvincia(provincia);
             empleado.setIdPais(pais);
-
-        return empleado;
-    
+  
     }
 
 }
