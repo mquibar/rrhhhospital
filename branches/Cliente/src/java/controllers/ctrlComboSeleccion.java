@@ -23,6 +23,14 @@ public class ctrlComboSeleccion
         {
             combo = new ctrlAltaAsignacionHorario().getCombo();
         }
+        else if(entidad.equals("registro_periodo"))
+        {
+            combo = new ctrlAltaRegistroPeriodo().getCombo();
+        }
+        else if(entidad.equals("licencia"))
+        {
+            combo = new ctrlAltaLicencia().getCombo();
+        }
 
         return combo;
     }
