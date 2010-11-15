@@ -24,7 +24,12 @@
         <servlet-name>servletConsultarDomicilio</servlet-name>
         <servlet-class>servlets.servletConsultarDomicilio</servlet-class>
     </servlet>
-    <servlet><servlet-name>ServletConsultarPersonal</servlet-name><servlet-class>servlets.ServletConsultarPersonal</servlet-class></servlet><servlet-mapping>
+    <servlet><servlet-name>ServletConsultarPersonal</servlet-name><servlet-class>servlets.ServletConsultarPersonal</servlet-class></servlet>
+    <servlet>
+        <servlet-name>ServletBajaPersonal</servlet-name>
+        <servlet-class>servlets.ServletBajaPersonal</servlet-class>
+    </servlet>
+    <servlet-mapping>
         <servlet-name>testAgrupamiento</servlet-name>
         <url-pattern>/testAgrupamiento</url-pattern>
     </servlet-mapping>
@@ -51,6 +56,10 @@
     <servlet-mapping>
         <servlet-name>ServletConsultarPersonal</servlet-name>
         <url-pattern>/ServletConsultarPersonal</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletBajaPersonal</servlet-name>
+        <url-pattern>/ServletBajaPersonal</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
