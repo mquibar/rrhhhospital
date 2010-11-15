@@ -6,7 +6,7 @@
 package controllers;
 
 import Entidades.Empleado;
-import Entidades.Profesional;
+import Expertos.personal.ExpBajaEmpleado;
 import Expertos.personal.ExpConsultarPersonal;
 import java.util.List;
 import models.combos.AbstractModelOptionList;
@@ -16,31 +16,22 @@ import models.combos.ModelOptionEmpleado;
  *
  * @author MARIANO
  */
-public class ctrlConsultarPersona extends GeneralController {
+public class ctrlBajaPersonal extends GeneralController {
 
-    private ExpConsultarPersonal _exp;
-    private ModelOptionEmpleado model = null;
+    private ExpBajaEmpleado _exp;
+    private ExpConsultarPersonal _expcons;
+    private ModelOptionEmpleado model=null;
 
-    /*Constructor del experto de consultar*/
-    public ctrlConsultarPersona() {
-        _exp = (ExpConsultarPersonal) super.getExpert(ExpConsultarPersonal.class.getName());
+    /*Genera un Controlador de Baja personal para administrar las bajas*/
+    public ctrlBajaPersonal() {
+        _exp = (ExpBajaEmpleado) getExpert(ExpBajaEmpleado.class.getName());
+        _expcons = (ExpConsultarPersonal) getExpert(ExpConsultarPersonal.class.getName());
     }
 
-    /*Lista a todos los profesionales del hospital*/
-    public List <Profesional> listarPersonal () {
-        return _exp.listarProfesionalinOrder();
-    }
-
-    /*Lista a todos los empleados del hospital*/
-    public List <Empleado> listarEmpleado () {
-        return _exp.listarEmpleadoinOrder();
-    }
-
-    /*Consulta a un empleado por nombre y apellido*/
-    public AbstractModelOptionList consultarPorNombre (String nombre, String apellido) {
+    /*Carga todos los empleados del Hospital*/
+    public AbstractModelOptionList getEmpleados () {
         try {
-            model = new ModelOptionEmpleado( _exp.consultarEmpleadoPorNombreyApellido(nombre, apellido));
-            //model = new ModelOptionProfesional(_expcons.listarProfesionalinOrder());
+            model = new ModelOptionEmpleado(_expcons.listarEmpleadoinOrder());
         }
         catch (Exception e){
             System.out.println("exepcion controlador"+e.toString());
@@ -49,7 +40,7 @@ public class ctrlConsultarPersona extends GeneralController {
 
     }
 
-    /*Escribe en forma sencilla los datos de un empleado*/
+    /*Recupera los datos del empleado seleccionado para una previsualizacion */
     public String recuperarDato (String valor) {
 
         return "Nombre: "+model.getSelectedItem(valor).getNombre()+"\n"+
@@ -67,4 +58,12 @@ public class ctrlConsultarPersona extends GeneralController {
 
     }
 
+    /*Da de Baja a un Empleado*/
+    public String darBaja (String valor) {
+        if (_exp.darBajaEmpleado(model.getSelectedItem(valor)))
+            return "Empleado de Baja"+model.getSelectedItem(valor).getApellido();
+        else
+            return "error";
+    }
+    
 }

@@ -24,8 +24,9 @@ import models.combos.ModelOptionPais;
 import models.combos.ModelOptionProvincia;
 
 /**
+ *  Controlador especifico que se encarga de modificar un empleado
  *
- * @author MARIANO
+ * @author Juan
  */
 public class ctrlModificarEmpleado extends GeneralController{
 
@@ -33,14 +34,15 @@ public class ctrlModificarEmpleado extends GeneralController{
     private ModelOptionEmpleado listaempleado;
     private ExpConsultarSexo expsexo;
     private Map<String, AbstractModelOptionList> models;
-    private ExpConsultarPersonal _expconsultar;
     private ModelOptionPais modelpais;
     private ModelOptionProvincia modelprovincia;
     private ModelOptionLocalidad modellocalidad;
 
+    /**
+     * Crea e inicializa el controlador especifico que modificará al empleado
+     */
     public ctrlModificarEmpleado() {
         _exp = (ExpModificarEmpleado) getExpert(ExpModificarEmpleado.class.getName());
-        _expconsultar = (ExpConsultarPersonal) getExpert(ExpConsultarPersonal.class.getName());
         expsexo = (ExpConsultarSexo) getExpert(ExpConsultarSexo.class.getName());
 
         Map<String, List> listas;
@@ -57,11 +59,12 @@ public class ctrlModificarEmpleado extends GeneralController{
         models.put("PROVINCIA", modelprovincia);
     }
 
-    /*public String crearTabla(){
-        _tabla = new ModelTablaEmpleado(_exp.listarEmpleados());
-        return _tabla.toString();
-    }*/
-
+    /**
+     * Envia a pantalla un combo dependiendo de los parametros
+     * @param key : parametro que indica que combo envia a pantalla
+     * @return : retorna un AbstractModelOptionList que contiene la informacion
+     *           que se mostrara en el combo
+     */
     public AbstractModelOptionList getModels(String key) {
         try {
             return models.get(key.toUpperCase());
@@ -70,12 +73,32 @@ public class ctrlModificarEmpleado extends GeneralController{
         }
     }
 
-    public String modificarDomicilioPersona (Persona persona, String barrio, String calle, String numero,
-            String piso, String departamanto, Localidad localidad, Provincia provincia, Pais pais){
-        return "";
-    }
+    /**
+     * Metodo que dispara la modificacion del empleado con los parametros
+     * correctos para la entidad
+     * @param empleado
+     * @param nombre
+     * @param apellido
+     * @param dni
+     * @param fechaNacimiento
+     * @param telefono
+     * @param barrio
+     * @param calle
+     * @param numero
+     * @param piso
+     * @param departamanto
+     * @param localidad
+     * @param provincia
+     * @param pais
+     * @param sexo
+     * @param cuil
+     * @return string dependiendo de lo que suceda
+     *      * "Empleado Actualizado" : el empleado se actualizo
+     *      * "Error al Actualizar al empleado" : el empleado no se pudo guardar
+     *      * "Error: Error de conexion con servidor de aplicaciones"+ex.toString(): exepcion
+     */
 
-    public String modificarEmpleado (String empleado, String nombre, String apellido, String dni, String fechaNacimiento,
+    public  String modificarEmpleado (String empleado, String nombre, String apellido, String dni, String fechaNacimiento,
             String telefono, String barrio, String calle, String numero, String piso, String departamanto,
             String localidad, String provincia, String pais, String sexo, String cuil) {
 
@@ -86,23 +109,15 @@ public class ctrlModificarEmpleado extends GeneralController{
                     departamanto, modellocalidad.getSelectedItem(localidad),
                     modelprovincia.getSelectedItem(provincia), modelpais.getSelectedItem(pais), 
                     expsexo.listarSexo(sexo), cuil)){
-                return "Error: Actualizado";
+                return "Empleado: Actualizado";
 
             } else {
-                return "Error: Error al Actualizar";
+                return "Error:  al Actualizar el Empleado";
 
             }
         } catch (Exception ex) {
             return "Error: Error de conexion con servidor de aplicaciones"+ex.toString();
         }
-         
-
     }
 
-    public AbstractModelOptionList getEmpleado(){
-        /*if(model ==null)
-            model = new ModelOptionProfesional(_exp.listarProfesional().get("PROFESIONAL"));
-        return model;*/
-        return models.get("EMPLEADO");
-    }
 }

@@ -5,7 +5,7 @@
 
 package servlets;
 
-import controllers.ctrlConsultarPersona;
+import controllers.ctrlBajaPersonal;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -15,34 +15,37 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Juan
+ * @author MARIANO
  */
-public class ServletConsultarPersonal extends HttpServlet {
+public class ServletBajaPersonal extends HttpServlet {
    
-    private ctrlConsultarPersona _control;
+    private ctrlBajaPersonal _control;
 
-    public ServletConsultarPersonal() {
-        _control = new ctrlConsultarPersona();
-        System.out.println("aca creo");
+    public ServletBajaPersonal() {
+        _control = new ctrlBajaPersonal();
     }
 
-    /* Servlet que realiza toda la logica de la pantalla de consultar_personal.jsp
-     * para la correcta consulta del empleado
+    /* Servlet que realiza toda la logica de la pantalla de baja_personal.jsp
+     * para la correcta eliminacion del empleado
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            if(request.getParameter("empleado")!= null){
-                out.println(_control.recuperarDato(request.getParameter("empleado")));
+            if (request.getParameter("darbaja") != null) {
+                out.println(_control.darBaja(request.getParameter("darbaja")));
+            }   else {
+                    if(request.getParameter("mostrardatos")!=null){
+                        out.println(_control.recuperarDato(request.getParameter("mostrardatos")));
+                    }   else {
+                           out.println(_control.getEmpleados().toString());
+                        }
             }
-            else
-                out.println(_control.consultarPorNombre(request.getParameter("nombre"), request.getParameter("apellido")).toString());
         } catch(Exception e) {
             out.println("<option> algo no anda </option>");
         }
-    }
+    } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 

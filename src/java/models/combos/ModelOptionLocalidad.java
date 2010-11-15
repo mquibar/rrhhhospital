@@ -23,4 +23,16 @@ public class ModelOptionLocalidad extends AbstractModelOptionList<Localidad> {
         return objeto.getLocalidad();
     }
 
+    public String toStringLocalidad(String localidad){
+        try {
+            if (options == null)
+                toString();
+            String nuevoString = options.replaceAll(">" + localidad, " selected=\"selected\" >"+localidad);
+            options = null;
+            return nuevoString;
+        } catch (Exception e) {
+            return toString();
+        }
+    }
+
 }

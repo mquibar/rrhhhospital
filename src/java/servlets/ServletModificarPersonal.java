@@ -7,7 +7,7 @@ package servlets;
 
 
 import controllers.ctrlModificarEmpleado;
-import controllers.ctrlModificarProfesional;
+import controllers.ctrlModificarPersona;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -21,27 +21,66 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ServletModificarPersonal extends HttpServlet {
    
-    private ctrlModificarProfesional _control;
-    private ctrlModificarEmpleado _control2;
-
-    public ServletModificarPersonal() {
-        _control = new ctrlModificarProfesional();
-        _control2 = new ctrlModificarEmpleado();
+    private ctrlModificarPersona _control;
+    private enum operaciones {
+        LOAD,NUEVO,GUARDAREMP,GUARDARPROF
     }
 
+    public ServletModificarPersonal() {
+        _control = new ctrlModificarPersona();
+    }
+
+    /* Servlet que realiza toda la logica de la pantalla de modificar_personal
+     * para la correcta modificacion del empleado
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            if(request.getParameter("valor")!=null){
-                response.sendRedirect("personal_modificado.jsp?"+_control.recuperarDato(request.getParameter("valor")));
-            }
-            else {
-            out.println(_control.getProfesionales().toString());
+            String option = request.getParameter("operacion").toUpperCase();
+            switch (operaciones.valueOf(option)) {
+                case LOAD:
+                    out.println(_control.getEmpleados().toString());
+                case NUEVO:
+                    response.sendRedirect(_control.recuperarDato(request.getParameter("valor")));
+                case GUARDAREMP:
+                    _control.guardarEmpleado(request.getParameter("nombre"),
+                                    request.getParameter("apellido"),
+                                    request.getParameter("dni"),
+                                    request.getParameter("fechaNacimiento"),
+                                    request.getParameter("telefono"),
+                                    request.getParameter("barrio"),
+                                    request.getParameter("calle"),
+                                    request.getParameter("numero"),
+                                    request.getParameter("piso"),
+                                    request.getParameter("departamento"),
+                                    request.getParameter("localidad"),
+                                    request.getParameter("provincia"),
+                                    request.getParameter("pais"),
+                                    request.getParameter("cuil"));
+                case GUARDARPROF:
+                    _control.guardarProfesional(request.getParameter("nombre"),
+                                    request.getParameter("apellido"),
+                                    request.getParameter("dni"),
+                                    request.getParameter("fechaNacimiento"),
+                                    request.getParameter("telefono"),
+                                    request.getParameter("barrio"),
+                                    request.getParameter("calle"),
+                                    request.getParameter("numero"),
+                                    request.getParameter("piso"),
+                                    request.getParameter("departamento"),
+                                    request.getParameter("localidad"),
+                                    request.getParameter("provincia"),
+                                    request.getParameter("pais"),
+                                    request.getParameter("cuil"),
+                                    request.getParameter("matricula"),
+                                    request.getParameter("titulo"));
             }
         } catch(Exception e) {
-            out.println("<option> algo no anda </option>");
+
+              out.println("Error: " +e.getMessage());
+              response.sendError(409);
         }
     } 
 
