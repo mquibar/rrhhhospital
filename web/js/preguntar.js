@@ -47,7 +47,7 @@ function generarReporte(){
         } else {
             if(obj.readyState==1){
                 ocultarEspera();
-            }
+}
         }
     };
     obj.open("GET", "reporteRequest", true);
