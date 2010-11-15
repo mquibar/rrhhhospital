@@ -22,9 +22,12 @@ public class ExpLogInBean implements ExpLogIn {
     public void logIn(String userName, String password) throws SystemException{
         DtoUsuario dto = new DtoUsuario();
         dto.setNombre(userName);
-        Usuario user = (Usuario) (new IntermediarioUsuario()).findByDto(dto);
-        if(user==null)
+
+        Usuario user=null;
+        try{user= (Usuario) (new IntermediarioUsuario()).findByDto(dto).get(0);}catch(Exception e){System.out.println("Erro al buscar " + e.getMessage());}
+        if(user==null){
             throw new InvalidDataException("usuario", userName);
+        }
 
         password = Tools.Encriptador.getStringMessageDigest(password,"MD5");
         String pass = Tools.Encriptador.getStringMessageDigest(user.getPassword(),"MD5");
