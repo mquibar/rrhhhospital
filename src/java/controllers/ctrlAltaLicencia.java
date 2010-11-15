@@ -7,10 +7,12 @@ package controllers;
 
 import Entidades.Licencia;
 import Expertos.horario.ExpAltaLicencia;
+import Expertos.horario.ExpConsultarLicencia;
 import Expertos.personal.ExpConsultarPersonal;
 import Expertos.horario.ExpConsultarTipoLicencia;
 import Tools.ManejaFechas;
-import models.combos.ModelOptionProfesional;
+import models.combos.ModelOptionEmpleado;
+import models.combos.ModelOptionLicencia;
 import models.combos.ModelOptionTipoLicencia;
 
 /**
@@ -22,19 +24,23 @@ public class ctrlAltaLicencia extends GeneralController
     ExpAltaLicencia _expAlta;
     ExpConsultarTipoLicencia _expTL;
     ExpConsultarPersonal _expPers;
+    ExpConsultarLicencia _expL;
 
-    ModelOptionProfesional _mpers;
+    ModelOptionEmpleado _mpers;
     ModelOptionTipoLicencia _mtl;
+    ModelOptionLicencia _ml;
 
     public ctrlAltaLicencia() {
         _expAlta = (ExpAltaLicencia) super.getExpert(ExpAltaLicencia.class.getName());
         _expTL = (ExpConsultarTipoLicencia) super.getExpert(ExpConsultarTipoLicencia.class.getName());
         _expPers = (ExpConsultarPersonal) super.getExpert(ExpConsultarPersonal.class.getName());
+        _expL = (ExpConsultarLicencia) super.getExpert(ExpConsultarLicencia.class.getName());
 
         try
         {
-            _mpers = new ModelOptionProfesional(_expPers.listarProfesionalinOrder());
+            _mpers = new ModelOptionEmpleado(_expPers.listarEmpleadoinOrder());
             _mtl = new ModelOptionTipoLicencia(_expTL.listar());
+            _ml = new ModelOptionLicencia(_expL.listar());
         }
         catch(Exception ex)
         {
@@ -50,19 +56,39 @@ public class ctrlAltaLicencia extends GeneralController
             String fechaInicio,
             String fechaFin,
             String descripcion,
-            String vigente
+            String eliminada
             )
     {
          _expAlta.iniciarAlta(
-              idEntidad,
+             idNegocio(idEntidad),
              _mpers.getSelectedItem(idEmpleado),
              _mtl.getSelectedItem(idTipoLicencia),
              ManejaFechas.convertirString(fechaInicio),
              ManejaFechas.convertirString(fechaFin),
-             descripcion
-             );
+             descripcion, 
+             Boolean.parseBoolean(eliminada));
 
             return _expAlta.guardar();
+    }
+
+    String idNegocio(String idCombo)
+    {
+        if(!idCombo.equals(""))
+        {
+            Licencia th = getEntidad(idCombo);
+            if(th == null)
+            {
+                return "";
+            }
+            else
+            {
+                return th.getId().toString();
+            }
+        }
+        else
+        {
+            return "";
+        }
     }
 
     public String getOptionsEmpleado(String empleado)
@@ -94,10 +120,27 @@ public class ctrlAltaLicencia extends GeneralController
     {
         if(_ah == null)
         {
-            _ah = _expAlta.getEntidad(idEntidad);
+            _ah = _ml.getSelectedItem(idEntidad);
         }
 
         return _ah;
+    }
+
+    public String getOptionsLicencia(String Licencia)
+    {
+        String opt = "<option>No Hay opciones disponibles</option>\n";
+
+        if(_ml != null)
+        {
+            opt = _ml.toString(Licencia);
+        }
+
+        return  opt;
+    }
+
+    public String getCombo()
+    {
+        return getOptionsLicencia("");
     }
 
     public String getFechaInicio(String idEntidad)
@@ -112,12 +155,12 @@ public class ctrlAltaLicencia extends GeneralController
 
     public String getEmpleado(String idEntidad)
     {
-        return Integer.toString(getEntidad(idEntidad).getIdEmpleado().getIdEmpleado());
+        return _mpers.getIdPresentacion(getEntidad(idEntidad).getIdEmpleado());
     }
 
     public String getTipoLicencia(String idEntidad)
     {
-        return Integer.toString(getEntidad(idEntidad).getIdTipoLicencia());
+        return _mtl.getIdPresentacion(getEntidad(idEntidad).getIdTipoLicencia());
     }
 
     public String getMotivo(String idEntidad)

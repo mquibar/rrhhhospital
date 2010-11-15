@@ -6,6 +6,38 @@
         String varVal = request.getParameter(varName);
         return (varVal) == null ? "" : varVal;
     }
+
+    String getTitle(Boolean esBorrado, String idEntidad)
+    {
+        if(esBorrado)
+        {
+            return "ELIMINACION";
+        }
+        else if(!idEntidad.equals(""))
+        {
+            return "MODIFICACION";
+        }
+        else
+        {
+            return "ALTA";
+        }
+    }
+
+    String getAction(Boolean esBorrado, String idEntidad)
+    {
+        if(esBorrado)
+        {
+            return "Eliminar";
+        }
+        else if(!idEntidad.equals(""))
+        {
+            return "Modificar";
+        }
+        else
+        {
+            return "Agregar";
+        }
+    }
 %>
 
 <%
@@ -27,21 +59,17 @@ else
     String action = getValue(request, "action");
     String esRecarga = getValue(request, "esRecarga");
     String eliminado = getValue(request, "eliminado");
-    boolean esBorrado = (action == "delete");
+    Boolean esBorrado = (action.equals("delete"));
     String deshabilitar = (esBorrado) ? "readonly" : "";
     boolean cargarEntidad = !idEntidad.equals("") && !esRecarga.equals("Si");
-    if(esBorrado)
-    {
-        eliminado = "true";
-    }
+    eliminado = esBorrado.toString();
 
     String empleado = getValue(request, "empleado");
     String tipoLicencia = getValue(request, "tipoLicencia");
     String fechaInicio = getValue(request, "fechaInicio");
     String fechaFin = getValue(request, "fechaFin");
     String motivo = getValue(request, "motivo");
-    String vigente = getValue(request, "vigente");
-
+ 
     ctrlAltaLicencia c = null;
    try
     {
@@ -67,7 +95,7 @@ else
                     fechaInicio,
                     fechaFin,
                     motivo,
-                    "true");
+                    eliminado);
         }
     }
     catch(Exception ex)
@@ -122,7 +150,7 @@ else
                 </div>
             </div>
             <div class="noticias" id="noticias_2">
-                <%=(idEntidad == "")?"ALTA":"MODIFICACION"%> LICENCIA<br />
+                <%=getTitle(esBorrado, idEntidad)%> LICENCIA<br />
 <%
     if(mensageEstado != "")
     {
@@ -170,7 +198,7 @@ else
                         <div class="derecha"></div>
                         <div class="guardar">
                             <label>
-                                <input type="submit" name="buttonSave" id="buttonSave" value="Guardar" />
+                                <input type="submit" name="buttonSave" id="buttonSave" value="<%=getAction(esBorrado, idEntidad)%>" />
                             </label>
                             <label>
                                 <input type="submit" name="buttonCancel" id="buttonCancel" value="Cancelar" />

@@ -7,9 +7,11 @@ package controllers;
 
 import Entidades.RegistroPeriodo;
 import Expertos.horario.ExpAltaRegistroPeriodo;
+import Expertos.horario.ExpConsultarRegistroPeriodo;
 import Expertos.personal.ExpConsultarPersonal;
 import Tools.ManejaFechas;
-import models.combos.ModelOptionProfesional;
+import models.combos.ModelOptionEmpleado;
+import models.combos.ModelOptionRegistroPeriodo;
 
 /**
  *
@@ -19,16 +21,28 @@ public class ctrlAltaRegistroPeriodo extends GeneralController
 {
     ExpAltaRegistroPeriodo _expAlta;
     ExpConsultarPersonal _expPers;
+    ExpConsultarRegistroPeriodo _expRP;
 
-    ModelOptionProfesional _mpers;
+    ModelOptionEmpleado _mpers;
+    ModelOptionRegistroPeriodo _mrp;
 
     public ctrlAltaRegistroPeriodo() {
         _expAlta = (ExpAltaRegistroPeriodo) super.getExpert(ExpAltaRegistroPeriodo.class.getName());
         _expPers = (ExpConsultarPersonal) super.getExpert(ExpConsultarPersonal.class.getName());
+        _expRP = (ExpConsultarRegistroPeriodo) super.getExpert(ExpConsultarRegistroPeriodo.class.getName());
 
        try
        {
-            _mpers = new ModelOptionProfesional(_expPers.listarProfesionalinOrder());
+            _mpers = new ModelOptionEmpleado(_expPers.listarEmpleadoinOrder());
+
+            if(_expRP != null)
+            {
+                _mrp = new ModelOptionRegistroPeriodo(_expRP.listar());
+            }
+            else
+            {
+                System.out.println("ctrlAltaRegistroPeriodo: no se creo ExpConsultarRegistroPeriodo");
+            }
        }
        catch(Exception ex)
        {
@@ -44,19 +58,39 @@ public class ctrlAltaRegistroPeriodo extends GeneralController
             String horaEntrada,
             String fechaSalida,
             String horaSalida,
-            String vigente
+            String eliminado
             )
     {
          _expAlta.iniciarAlta(
-             idEntidad,
+             idNegocio(idEntidad),
              _mpers.getSelectedItem(empleado),
              ManejaFechas.convertirString(fechaEntrada),
              ManejaFechas.getHour(horaEntrada),
              ManejaFechas.convertirString(fechaSalida),
              ManejaFechas.getHour(horaSalida),
-             true);
+             Boolean.parseBoolean(eliminado));
 
             return _expAlta.guardar();
+    }
+
+    String idNegocio(String idCombo)
+    {
+        if(!idCombo.equals(""))
+        {
+            RegistroPeriodo th = getEntidad(idCombo);
+            if(th == null)
+            {
+                return "";
+            }
+            else
+            {
+                return th.getId().toString();
+            }
+        }
+        else
+        {
+            return "";
+        }
     }
 
     public String getOptionsEmpleado(String empleado)
@@ -76,7 +110,7 @@ public class ctrlAltaRegistroPeriodo extends GeneralController
     {
         if(_ah == null)
         {
-            _ah = _expAlta.getEntidad(idEntidad);
+            _ah = _mrp.getSelectedItem(idEntidad);
         }
 
         return _ah;
@@ -104,8 +138,24 @@ public class ctrlAltaRegistroPeriodo extends GeneralController
 
     public String getEmpleado(String idEntidad)
     {
-        return Integer.toString(getEntidad(idEntidad).getIdEmpleado());
+        return _mpers.getIdPresentacion(getEntidad(idEntidad).getIdEmpleado());
     }
 
+    public String getOptionsRegistroPeriodo(String RegistroPeriodo)
+    {
+        String opt = "<option>No Hay opciones disponibles</option>\n";
+
+        if(_mrp != null)
+        {
+            opt = _mrp.toString(RegistroPeriodo);
+        }
+
+        return  opt;
+    }
+
+    public String getCombo()
+    {
+        return getOptionsRegistroPeriodo("");
+    }
 
 }
