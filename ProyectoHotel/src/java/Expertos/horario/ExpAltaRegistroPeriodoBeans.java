@@ -37,13 +37,15 @@ public class ExpAltaRegistroPeriodoBeans implements ExpAltaRegistroPeriodo {
             {
                 if( persistir() )
                 {
-                    GestorConeccion.getInstance().commitTransaction();
                     res = "El Registro de Periodo se guardo correctamente";
+                    System.out.println(res);
+                    GestorConeccion.getInstance().commitTransaction();
                 }
                 else
                 {
-                    GestorConeccion.getInstance().rollbackTransaction();
                     res = "Error durante el guardado, Rolling Back";
+                    System.out.println(res);
+                    GestorConeccion.getInstance().rollbackTransaction();
                 }
             }
             catch(Exception ex)
