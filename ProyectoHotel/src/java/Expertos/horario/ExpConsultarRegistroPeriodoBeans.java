@@ -5,19 +5,10 @@
 
 package Expertos.horario;
 
-import DTO.DtoAgrupamiento;
 import DTO.DtoRegistroPeriodo;
-import DTO.DtoTramo;
-import Entidades.Agrupamiento;
 import Entidades.Empleado;
 import Entidades.RegistroPeriodo;
-import Entidades.Clase;
-import Entidades.Tramo;
-import Expertos.horario.ExpConsultarRegistroPeriodo;
-import Intermediarios.IntermediarioAgrupamiento;
 import Intermediarios.IntermediarioRegistroPeriodo;
-import Intermediarios.IntermediarioClase;
-import Intermediarios.IntermediarioTramo;
 import java.util.List;
 import javax.ejb.Stateless;
 
@@ -29,7 +20,8 @@ import javax.ejb.Stateless;
 public class ExpConsultarRegistroPeriodoBeans implements ExpConsultarRegistroPeriodo {
 
 
-    public List<RegistroPeriodo> listar() {
+    public List<RegistroPeriodo> listar()
+    {
         return (new IntermediarioRegistroPeriodo()).findAll();
     }
 
@@ -77,7 +69,7 @@ public class ExpConsultarRegistroPeriodoBeans implements ExpConsultarRegistroPer
         return registroPeriodo;
     }
 
-    public RegistroPeriodo consultarAsignacionHorarioPorId(int id) {
+    public RegistroPeriodo consultarRegistroPeriodoPorId(int id) {
         return (new IntermediarioRegistroPeriodo().findById(id));
     }
 

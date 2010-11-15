@@ -38,13 +38,15 @@ public class ExpAltaLicenciaBeans implements ExpAltaLicencia {
             {
                 if( persistir() )
                 {
+                    res = "La Licencia se guardo correctamente";
+                    System.out.println(res);
                     GestorConeccion.getInstance().commitTransaction();
-                    res = "La Licenia se guardo correctamente";
                 }
                 else
                 {
-                    GestorConeccion.getInstance().rollbackTransaction();
                     res = "Error durante el guardado, Rolling Back";
+                    System.out.println(res);
+                    GestorConeccion.getInstance().rollbackTransaction();
                 }
             }
             catch(Exception ex)
@@ -79,7 +81,8 @@ public class ExpAltaLicenciaBeans implements ExpAltaLicencia {
             TipoLicencia TipoLicencia,
             Date FechaInicio,
             Date FechaFin,
-            String motivo
+            String motivo,
+            Boolean eliminada
             ) {
 
         if(idEntidad != null && idEntidad != "")
@@ -99,10 +102,11 @@ public class ExpAltaLicenciaBeans implements ExpAltaLicencia {
 
 
         _licencia.setIdEmpleado(Empleado);
-        _licencia.setIdTipoLicencia(TipoLicencia.getId());
+        _licencia.setIdTipoLicencia(TipoLicencia);
         _licencia.setFechaInicio(FechaInicio);
         _licencia.setFechaFin(FechaFin);
         _licencia.setMotivo(motivo);
+        _licencia.setEliminada(eliminada);
 
         _flagSave = validar();
     }

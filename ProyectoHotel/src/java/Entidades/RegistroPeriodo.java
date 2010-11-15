@@ -10,9 +10,12 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
@@ -27,13 +30,7 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "RegistroPeriodo")
 @NamedQueries({
-    @NamedQuery(name = "RegistroPeriodo.findAll", query = "SELECT r FROM RegistroPeriodo r"),
-    @NamedQuery(name = "RegistroPeriodo.findById", query = "SELECT r FROM RegistroPeriodo r WHERE r.id = :id"),
-    @NamedQuery(name = "RegistroPeriodo.findByFecha", query = "SELECT r FROM RegistroPeriodo r WHERE r.fecha = :fecha"),
-    @NamedQuery(name = "RegistroPeriodo.findByHora", query = "SELECT r FROM RegistroPeriodo r WHERE r.hora = :hora"),
-    @NamedQuery(name = "RegistroPeriodo.findByNumero", query = "SELECT r FROM RegistroPeriodo r WHERE r.numero = :numero"),
-    @NamedQuery(name = "RegistroPeriodo.findByIdEmpleado", query = "SELECT r FROM RegistroPeriodo r WHERE r.idEmpleado = :idEmpleado"),
-    @NamedQuery(name = "RegistroPeriodo.findByEliminado", query = "SELECT r FROM RegistroPeriodo r WHERE r.eliminado = :eliminado")})
+    @NamedQuery(name = "RegistroPeriodo.findAll", query = "SELECT r FROM RegistroPeriodo r")})
 public class RegistroPeriodo implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -63,9 +60,9 @@ public class RegistroPeriodo implements Serializable {
     @Temporal(TemporalType.TIME)
     private Date horaSalida;
 
-    @Basic(optional = false)
-    @Column(name = "idEmpleado")
-    private int idEmpleado;
+    @JoinColumn(name = "idEmpleado", referencedColumnName = "idEmpleado")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Empleado idEmpleado;
 
     @Basic(optional = false)
     @Column(name = "Eliminado")
@@ -84,7 +81,7 @@ public class RegistroPeriodo implements Serializable {
             Date horaEntrada,
             Date fechaSalida, 
             Date horaSalida, 
-            int idEmpleado,
+            Empleado idEmpleado,
             boolean eliminado
             ) {
         this.id = id;
@@ -136,11 +133,11 @@ public class RegistroPeriodo implements Serializable {
         this.horaSalida = hora;
     }
 
-    public int getIdEmpleado() {
+    public Empleado getIdEmpleado() {
         return idEmpleado;
     }
 
-    public void setIdEmpleado(int idEmpleado) {
+    public void setIdEmpleado(Empleado idEmpleado) {
         this.idEmpleado = idEmpleado;
     }
 
