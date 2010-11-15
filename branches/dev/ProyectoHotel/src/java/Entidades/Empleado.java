@@ -57,7 +57,7 @@ public class Empleado extends Persona{
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     protected Tarjeta idTarjeta;
     @JoinColumn(name = "idTipoEmpleado", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     protected TipoEmpleado idTipoEmpleado;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEmpleado", fetch = FetchType.LAZY)
     protected List<Licencia> licenciaList;

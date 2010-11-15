@@ -36,9 +36,16 @@ public class IntermediarioProfesional extends Intermediario <Profesional> {
         if (dtoPro.getNombre() != null) {
             restricciones.put("nombre", dtoPro.getNombre());
         }
+        if (dtoPro.getApellido() != null) {
+            restricciones.put("apellido", dtoPro.getApellido());
+        }
         if (dtoPro.getDni() != null) {
             restricciones.put("dni", dtoPro.getDni());
         }
+        if (dtoPro.getMatricula() != null) {
+            restricciones.put("matricula", dtoPro.getMatricula());
+        }
+        
         try {
             return crearQuery(restricciones).getResultList();
         } catch (Exception e) {
@@ -48,8 +55,10 @@ public class IntermediarioProfesional extends Intermediario <Profesional> {
 
     @Override
     public List<Profesional> findInOrden(String orden) {
-        Criteria criterio = ((Session)GestorConeccion.getInstance().getManager().getDelegate()).createCriteria(_clase).addOrder(Order.asc(orden));
-         try{return criterio.list();}catch(Exception ex){ex.printStackTrace();return null;}
+        /*Criteria criterio = ((Session)GestorConeccion.getInstance().getManager().getDelegate()).createCriteria("Persona").addOrder(Order.asc(orden));
+         try{return criterio.list();}catch(Exception ex){ex.printStackTrace();return null;}*/
+        Query q = GestorConeccion.getInstance().getManager().createQuery("SELECT e FROM Profesional e WHERE e.eliminado is null ORDER by e."+orden);
+        return q.getResultList();
     }
 
     public Profesional findByDni (String dni) {
@@ -67,6 +76,18 @@ public class IntermediarioProfesional extends Intermediario <Profesional> {
             try {
             Query q = GestorConeccion.getInstance().getManager().createNamedQuery(_clase + ".findByMatricula").setParameter("matricula", matricula);
             return (Profesional)q.getSingleResult();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            _log.error(ex.getMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public List<Profesional> findAll() {
+        try {
+            Query q = GestorConeccion.getInstance().getManager().createQuery("SELECT e FROM Profesional e WHERE e.eliminado is null");
+            return q.getResultList();
         } catch (Exception ex) {
             ex.printStackTrace();
             _log.error(ex.getMessage());

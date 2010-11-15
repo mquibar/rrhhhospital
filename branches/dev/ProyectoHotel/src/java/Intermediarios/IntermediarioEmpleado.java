@@ -36,8 +36,17 @@ public class IntermediarioEmpleado extends Intermediario<Empleado> {
         if (dtoEmp.getNombre() != null) {
             restricciones.put("nombre", dtoEmp.getNombre());
         }
+        if (dtoEmp.getApellido() != null) {
+            restricciones.put("apellido", dtoEmp.getApellido());
+        }
         if (dtoEmp.getDni() != null) {
-            restricciones.put("cuil", dtoEmp.getDni());
+            restricciones.put("dni", dtoEmp.getDni());
+        }
+        if (dtoEmp.getCuil() != null) {
+            restricciones.put("cuil", dtoEmp.getCuil());
+        }
+        if (dtoEmp.getFechaIngreso() != null) {
+            restricciones.put("fechaIngreso", dtoEmp.getFechaIngreso());
         }
         try {
             return crearQuery(restricciones).getResultList();
@@ -48,10 +57,22 @@ public class IntermediarioEmpleado extends Intermediario<Empleado> {
 
     @Override
     public List<Empleado> findInOrden(String orden) {
-        /*Criteria criterio = ((Session)GestorConeccion.getInstance().getManager().getDelegate()).createCriteria(_clase).addOrder(Order.asc(orden));
+        /*Criteria criterio = ((Session)GestorConeccion.getInstance().getManager().getDelegate()).createCriteria("Persona").addOrder(Order.asc(orden));
         return criterio.list();*/
-        Query q = GestorConeccion.getInstance().getManager().createQuery("SELECT e FROM Empleado e ORDER by e."+orden);
+        Query q = GestorConeccion.getInstance().getManager().createQuery("SELECT e FROM Empleado e WHERE e.eliminado is null ORDER by e."+orden);
         return q.getResultList();
+    }
+
+    @Override
+    public List<Empleado> findAll() {
+        try {
+            Query q = GestorConeccion.getInstance().getManager().createQuery("SELECT e FROM Empleado e WHERE e.eliminado is null");
+            return q.getResultList();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            _log.error(ex.getMessage());
+            return null;
+        }
     }
 
     public Empleado findByDni (String dni) {

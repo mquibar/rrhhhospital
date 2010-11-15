@@ -22,7 +22,7 @@ import Expertos.personal.ExpModificarPersona;
 public class ExpModificarPersonaBeans implements ExpModificarPersona {
 
   
-    public Persona modificarDomicilioPersona (Persona persona, String barrio, String calle, String numero,
+    private Persona modificarDomicilioPersona (Persona persona, String barrio, String calle, String numero,
             String piso, String departamanto, Localidad localidad, Provincia provincia, Pais pais){
 
         persona.getIdDomicilio().setCalle(calle);

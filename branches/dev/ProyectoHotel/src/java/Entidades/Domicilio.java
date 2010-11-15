@@ -55,10 +55,10 @@ public class Domicilio implements Serializable {
     @Column(name = "Departamento")
     private String departamento;
     @JoinColumn(name = "IdLocalidad", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Localidad idLocalidad;
     @JoinColumn(name = "IdProvincia", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Provincia idProvincia;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idDomicilio", fetch = FetchType.LAZY)
     private List<Persona> personaList;
