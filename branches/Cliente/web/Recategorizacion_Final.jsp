@@ -9,21 +9,12 @@
     </head>
 
     <body onload="js_recategor()">
-        <div class="cabecera">
-            <div class="logo"></div>
-            <div class="user">
-                <div class="user_2">User: </div>
-                <div class="log_off">LogOff </div>
-            </div>
-        </div>
         <div class="noticias" id="noticias_2"> Recategorización<br />
             <div class="forms">
                 <div class="izquierda"><br />
                     <form id="form1" name="form1" method="post" action="" >
-                        <p>Seleccionar Empleado<br />
-                            <br />
+                        <p>Seleccionar Empleado
                             <select name="empleado" size="1" id="empleado" >
-
                             </select>
                         </p>
                         <p>
@@ -32,26 +23,32 @@
                         <hr color="#E3E3E3"/>
                         <p>Agrupamiento </p>
                         <p>
-                            <select name="agrupamiento" size="1" id="agrupamiento" onclick="js_lista_Tramo()">
+                            <select name="agrupamiento" size="1" id="agrupamiento" onchange="js_lista_tramo()">
                             </select>
                         </p>
                         <p>Tramo</p>
                         <p>
-                            <select name="tramo" size="1" id="tramo" onclick="js_cat_posibles()">
+                            <select name="tramo" size="1" id="tramo" onchange="js_lista_catPosible()">
                             </select>
                         </p>
                         <p>Categoria</p>
                         <p>
-                            <select name="categoria" size="1" id="categoria">
+                            <select name="categoria" size="1" id="categoria"  onchange="js_lista_clase()">
                             </select>
-                            <input id="btnListAll" type="button" value="Listar Todas" onclick="js_cat_all()" style="display: none"/>
+                        </p>
+                        
+                        <input id="btnListAll" type="button" value="Mostrar Todas" style="display: none" onclick="js_lista_catAll()"/>
+                        <p>Clase</p>
+                        <p>
+                            <select name="clase" size="1" id="clase">
+                            </select>
                         </p>
                         <p>&nbsp;</p>
                         <p>
-                            <input type="submit" name="buttonActualizar" id="buttonActualizar" value="Actualizar" onclick="sleep(5000)"/>
+                            <input type="button" name="buttonActualizar" id="buttonActualizar" value="Actualizar" onclick="js_save_recat()"/>
                         </p>
                         <p>
-                            <input type="submit" name="buttonCancel" id="buttonCancel" value="Cancelar" />
+                            <input type="button" name="buttonCancel" id="buttonCancel" value="Cancelar" onclick="js_cancel_recat()"/>
                         </p>
                     </form>
                 </div>
