@@ -48,7 +48,7 @@ public class ClaseContenida implements Serializable {
     private Categoria categoria;
 
     @JoinColumn(name = "idClase", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Clase clase;
 
     public ClaseContenida() {

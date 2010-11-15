@@ -29,7 +29,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "RegistroReloj")
-@NamedQueries({@NamedQuery(name = "RegistroReloj.findAll", query = "SELECT r FROM RegistroReloj r"), @NamedQuery(name = "RegistroReloj.findById", query = "SELECT r FROM RegistroReloj r WHERE r.id = :id"), @NamedQuery(name = "RegistroReloj.findByFecha", query = "SELECT r FROM RegistroReloj r WHERE r.fecha = :fecha"), @NamedQuery(name = "RegistroReloj.findByHora", query = "SELECT r FROM RegistroReloj r WHERE r.hora = :hora"), @NamedQuery(name = "RegistroReloj.findByNumero", query = "SELECT r FROM RegistroReloj r WHERE r.numero = :numero"), @NamedQuery(name = "RegistroReloj.findByIdEmpleado", query = "SELECT r FROM RegistroReloj r WHERE r.idEmpleado = :idEmpleado"), @NamedQuery(name = "RegistroReloj.findByEliminado", query = "SELECT r FROM RegistroReloj r WHERE r.eliminado = :eliminado")})
+@NamedQueries({@NamedQuery(name = "RegistroReloj.findAll", query = "SELECT r FROM RegistroReloj r")})
 public class RegistroReloj implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
