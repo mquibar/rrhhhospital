@@ -8,15 +8,12 @@ import Expertos.reports.GeneraReporte;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.util.HashMap;
 import java.util.Map;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.JasperRunManager;
-import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -64,10 +61,11 @@ public class ctrlReporte extends GeneralController {
 //        _report = (GeneraReporte) getExpert(GeneraReporte.class.getName());
     }
 
-    public byte[] armarReporte() {
+    public byte[] armarReporte(String reporte) {
         try {
-            //JasperViewer.viewReport(printReport(null, null));
-            return JasperExportManager.exportReportToPdf(printReport(new HashMap(), "test.jrxml"));
+            _report = (GeneraReporte) super.getExpert(GeneraReporte.class.getName());
+
+            return JasperExportManager.exportReportToPdf(_report.printReport(null, reporte));//printReport(new HashMap(), "test.jrxml"));
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;
