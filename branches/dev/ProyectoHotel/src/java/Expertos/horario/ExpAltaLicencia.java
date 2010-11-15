@@ -25,7 +25,8 @@ public interface  ExpAltaLicencia {
             TipoLicencia TipoLicencia,
             Date FechaInicio,
             Date FechaFin,
-            String motivo
+            String motivo,
+            Boolean eliminada
             );
 
     public Licencia getEntidad(String idEntidad);

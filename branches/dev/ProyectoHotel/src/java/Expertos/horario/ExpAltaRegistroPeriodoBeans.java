@@ -7,7 +7,6 @@ package Expertos.horario;
 
 import Entidades.Empleado;
 import Entidades.RegistroPeriodo;
-import Expertos.horario.ExpAltaRegistroPeriodo;
 import Intermediarios.GestorConeccion;
 import Intermediarios.IntermediarioRegistroPeriodo;
 import java.util.Date;
@@ -103,7 +102,7 @@ public class ExpAltaRegistroPeriodoBeans implements ExpAltaRegistroPeriodo {
         _registroPeriodo.setHoraEntrada(horaEntrada);
         _registroPeriodo.setFechaSalida(fechaEntrada);
         _registroPeriodo.setHoraSalida(horaSalida);
-        _registroPeriodo.setIdEmpleado(empleado.getIdEmpleado());
+        _registroPeriodo.setIdEmpleado(empleado);
 
         _flagSave = validar();
     }
@@ -121,7 +120,7 @@ public class ExpAltaRegistroPeriodoBeans implements ExpAltaRegistroPeriodo {
             try
             {
                 int idE = Integer.parseInt(idEntidad);
-                _th = new ExpConsultarRegistroPeriodoBeans().consultarAsignacionHorarioPorId(idE);
+                _th = new ExpConsultarRegistroPeriodoBeans().consultarRegistroPeriodoPorId(idE);
             }
             catch(Exception ex)
             {

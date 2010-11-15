@@ -8,11 +8,13 @@ package Expertos.horario;
 import Entidades.Empleado;
 import Entidades.RegistroPeriodo;
 import java.util.Date;
+import javax.ejb.Remote;
 
 /**
  *
  * @author Manuel
  */
+@Remote
 public interface  ExpAltaRegistroPeriodo {
 
     public String guardar ();

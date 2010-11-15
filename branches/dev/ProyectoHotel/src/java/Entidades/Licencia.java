@@ -29,7 +29,16 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "Licencia")
-@NamedQueries({@NamedQuery(name = "Licencia.findAll", query = "SELECT l FROM Licencia l"), @NamedQuery(name = "Licencia.findById", query = "SELECT l FROM Licencia l WHERE l.id = :id"), @NamedQuery(name = "Licencia.findByFechaInicio", query = "SELECT l FROM Licencia l WHERE l.fechaInicio = :fechaInicio"), @NamedQuery(name = "Licencia.findByFechaFin", query = "SELECT l FROM Licencia l WHERE l.fechaFin = :fechaFin"), @NamedQuery(name = "Licencia.findByMotivo", query = "SELECT l FROM Licencia l WHERE l.motivo = :motivo"), @NamedQuery(name = "Licencia.findByEliminada", query = "SELECT l FROM Licencia l WHERE l.eliminada = :eliminada"), @NamedQuery(name = "Licencia.findByIdTipoLicencia", query = "SELECT l FROM Licencia l WHERE l.idTipoLicencia = :idTipoLicencia")})
+@NamedQueries({@NamedQuery(name = "Licencia.findAll", query = "SELECT l FROM Licencia l")
+/*
+,@NamedQuery(name = "Licencia.findById", query = "SELECT l FROM Licencia l WHERE l.id = :id"),
+@NamedQuery(name = "Licencia.findByFechaInicio", query = "SELECT l FROM Licencia l WHERE l.fechaInicio = :fechaInicio"),
+@NamedQuery(name = "Licencia.findByFechaFin", query = "SELECT l FROM Licencia l WHERE l.fechaFin = :fechaFin"),
+@NamedQuery(name = "Licencia.findByMotivo", query = "SELECT l FROM Licencia l WHERE l.motivo = :motivo"),
+@NamedQuery(name = "Licencia.findByEliminada", query = "SELECT l FROM Licencia l WHERE l.eliminada = :eliminada"),
+@NamedQuery(name = "Licencia.findByIdTipoLicencia", query = "SELECT l FROM Licencia l WHERE l.idTipoLicencia = :idTipoLicencia")
+*/
+})
 public class Licencia implements Serializable {
     private static final long serialVersionUID = 1L;
     @GeneratedValue(generator="id_sequence",strategy=GenerationType.SEQUENCE)
@@ -50,9 +59,11 @@ public class Licencia implements Serializable {
     private String motivo;
     @Column(name = "Eliminada")
     private Boolean eliminada;
-    @Basic(optional = false)
-    @Column(name = "idTipoLicencia")
-    private int idTipoLicencia;
+    
+    @JoinColumn(name = "idTipoLicencia", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private TipoLicencia idTipoLicencia;
+
     @JoinColumn(name = "idEmpleado", referencedColumnName = "idEmpleado")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Empleado idEmpleado;
@@ -64,7 +75,7 @@ public class Licencia implements Serializable {
         this.id = id;
     }
 
-    public Licencia(Integer id, Date fechaInicio, Date fechaFin, int idTipoLicencia) {
+    public Licencia(Integer id, Date fechaInicio, Date fechaFin, TipoLicencia idTipoLicencia) {
         this.id = id;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
@@ -111,11 +122,11 @@ public class Licencia implements Serializable {
         this.eliminada = eliminada;
     }
 
-    public int getIdTipoLicencia() {
+    public TipoLicencia getIdTipoLicencia() {
         return idTipoLicencia;
     }
 
-    public void setIdTipoLicencia(int idTipoLicencia) {
+    public void setIdTipoLicencia(TipoLicencia idTipoLicencia) {
         this.idTipoLicencia = idTipoLicencia;
     }
 
