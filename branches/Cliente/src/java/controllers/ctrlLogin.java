@@ -4,8 +4,7 @@
  */
 package controllers;
 
-import Entidades.seguridad.Perfil;
-import security.ExpNewUser;
+import security.ExpLogIn;
 import system.exception.SystemException;
 
 /**
@@ -14,19 +13,15 @@ import system.exception.SystemException;
  */
 public class ctrlLogin {
 
-    ExpNewUser _exp;
+    ExpLogIn _exp;
 
     public ctrlLogin() {
-        _exp = (ExpNewUser) (new GeneralController()).getExpert(ExpNewUser.class.getName());
+        _exp = (ExpLogIn) (new GeneralController()).getExpert(ExpLogIn.class.getName());
     }
 
-    public String login(String user, String pass) throws SystemException {
-        try {
-            _exp.newUser(user, pass, new Perfil[0]);
-            return "Bienvenido al sistema";
-        } catch (Exception e) {
-            return e.getMessage();
-        }
+    public void login(String user, String pass) throws SystemException {
+            pass = tools.EncriptadorCliente.getStringMessageDigest(pass, "MD5");
+            _exp.logIn(user, pass);
     }
 
     public String getCurrentUserName() {
