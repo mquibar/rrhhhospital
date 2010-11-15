@@ -12,7 +12,6 @@ import Entidades.Agrupamiento;
 import Entidades.Categoria;
 import Entidades.Clase;
 import Entidades.Tramo;
-import Expertos.categorizacion.ExpConsultarCategoria;
 import Intermediarios.IntermediarioAgrupamiento;
 import Intermediarios.IntermediarioCategoria;
 import Intermediarios.IntermediarioClase;
@@ -96,4 +95,19 @@ public class ExpConsultarCategoriaBeans implements ExpConsultarCategoria {
     public List<Categoria> listarCategorias() {
         return (new IntermediarioCategoria()).findAll();
     }
+
+    public Categoria consultarCategoria(Categoria categoria) {
+        return (new IntermediarioCategoria()).findById(categoria);
+    }
+
+    public Tramo consultarTramo(Categoria categoria) {
+        DtoTramo dto = new DtoTramo();
+        dto.setCategoria(categoria);
+        try{
+            return (new IntermediarioTramo()).findByDto(dto).get(0);
+        }catch(Exception ex){
+            return null;
+        }
+    }
+
 }

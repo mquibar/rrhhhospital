@@ -16,6 +16,8 @@ import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import org.hibernate.proxy.HibernateProxy;
+import org.hibernate.proxy.HibernateProxyHelper;
 
 /**
  *
@@ -100,7 +102,7 @@ public class ExpRecategorizacionBeans implements ExpRecategorizacion {
         ClaseVigente cv = new ClaseVigente();
 
         cv.setFechaVigencia(new Date());
-        cv.setCategoria(categoria);
+        cv.setCategoria(_consultaCategorias.consultarCategoria(categoria));
         cv.setClase(clase);
         cv.setEmpleado(_empleado);
 
@@ -174,14 +176,21 @@ public class ExpRecategorizacionBeans implements ExpRecategorizacion {
             if (!contenidas.isEmpty()) {
                 posibles.add(cat);
             }
+            System.out.println("*************** coontenidas =" + contenidas.size());
         }
+        System.out.println("******************* posibles = "+posibles.size());
 
 
+        Tramo tv=null;
+        List<ClaseVigente> lista = (new Intermediarios.IntermediarioClaseVigente()).findByDto(e);
         // SI LA EL TRAMO NO ES EL MISMO QUE EL VIGENTE DEVUELVO TODAS LAS CLASES DE ARRIBA
-        for (ClaseVigente clasv : e.getClaseVigenteList())
-            if(clasv.getVigente()&& clasv.getCategoria().getTramo()!=t)
+        for (ClaseVigente clasv : lista){
+            tv = _consultaCategorias.consultarTramo(clasv.getCategoria());
+            if(clasv.getVigente()&& tv!=t){
+                System.out.println("*********** perimer salida");
                 return posibles;
-        
+            }
+        }
 
         // SI ME ENCUENTRO EN EL MISMO TRAMO BORRO LA CATEGORIA Y LISTO LAS CLASES
         // A PARTIR DE LA CLASE VIGENTE DEL EMPLEADO
@@ -191,10 +200,13 @@ public class ExpRecategorizacionBeans implements ExpRecategorizacion {
             if (cv.getVigente()) {
                 cat = cv.getCategoria();
                 clas = cv.getClase();
+                System.out.println("******************** por aca pasa");
                 break;
             }
+            System.out.println("************* por aca da vueltas");
         }
         if (cat != null) {
+            System.out.println("**************************** a este if entra");
             posibles.remove(cat);
             contenidas = new ArrayList<ClaseContenida>();
             idx = cat.getClaseContenida().get(cat.getClaseContenida().indexOf(clas)).getNumeroIndiceOrden();
@@ -206,6 +218,11 @@ public class ExpRecategorizacionBeans implements ExpRecategorizacion {
             }
             cat.setClaseContenidaList(contenidas);
             posibles.add(0, cat);
+        }
+
+        System.out.println("******************** segunda salida posibilidades = "+posibles.size());
+        for (Categoria categoria : posibles) {
+            System.out.println("****----- "+categoria.getClaseContenida().size());
         }
 
         return posibles;
