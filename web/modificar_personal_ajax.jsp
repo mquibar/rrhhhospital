@@ -18,15 +18,13 @@
   </div>
 </div>
 <div class="noticias" id="noticias_2"> Modificar Personal<br />
-
         <div class="forms">
 	<form id="form1" name="form1" method="post" action="">
 		<div class="izquierda"><br />
 			 EMPLEADO<br />
-			 <br />
-                         <select name="empleados" size="1" id="empleados" onchange="loadNuevaPagina()">
-			  <%--= c.getModels("EMPLEADO").toString()--%>
-			</select>
+			<br />
+                        <select name="empleados" size="1" id="empleados" onchange="loadNuevaPagina()">
+                        </select>
 			<br />
                         <label>
                             <input type="button" name="buttonSave" id="buttonTraer" value="buttonTraer" onclick="loadPersonas()" />
@@ -56,7 +54,7 @@
 			</label>
 			<br />
 			<br />
-			TelÃ©fono<br />
+			Teléfono<br />
 			<label>
 			  <input type="text" name="telefono" id="telefono" />
 			</label>
@@ -108,20 +106,17 @@
 		  <br />
 		  Localidad<br />
 		  <select name="localidad" id="localidad" >
-			<%--= c.getModels("LOCALIDAD").toString()--%>
 		  </select>
 		  <br />
 		  <br />
 		  Provincia
 		  <br />
 		  <select name="provincia" id="provincia" >
-			<%--= c.getModels("PROVINCIA").toString()--%>
 		  </select>
 		  <br />
 		  <br />
-		  PaÃ­s<br />
+		  País<br />
 		  <select name="pais" id="pais" >
-                        <%--= c.getModels("PAIS").toString()--%>
 		  </select>
 		  <br />
 		</div>

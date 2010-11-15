@@ -25,8 +25,8 @@ function changecontent(){
     if (index >= fcontent.length)
         index=0;
     if (DOM2){
-        document.getElementById("noticias").style.color="rgb(255,255,255)";
-        document.getElementById("noticias").innerHTML=begintag+fcontent[index]+closetag;
+        document.getElementById("panel").style.color="rgb(255,255,255)";
+        document.getElementById("panel").innerHTML=begintag+fcontent[index]+closetag;
         colorfade();
     }
     else if (ie4)
@@ -46,12 +46,12 @@ function colorfade() {
     // 20 frames fading process
     if(frame>0) {
         hex-=12; // increase color value
-        document.getElementById("noticias").style.color="rgb("+hex+","+hex+","+hex+")"; // Set color value.
+        document.getElementById("panel").style.color="rgb("+hex+","+hex+","+hex+")"; // Set color value.
         frame--;
         setTimeout("colorfade()",20);
     }
     else{
-        document.getElementById("noticias").style.color="rgb(0,0,0)";
+        document.getElementById("panel").style.color="rgb(0,0,0)";
         frame=20;
         hex=255
     }
