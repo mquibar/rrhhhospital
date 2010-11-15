@@ -31,8 +31,6 @@
                         <img src="img/Logo.jpg" alt="logo" width="402" height="316" align="absmiddle" />
                     </div>
                     <div class="datos">
-                        <div align="center">User
-                        </div>
                         <form id="form1" name="form1">
                             <!--<H1>LOGIN FORM</H1>-->
                             <table>
