@@ -69,7 +69,6 @@ else
     String fechaSalida = getValue(request, "fechaSalida");
     String horaEntrada = getValue(request, "horaEntrada");
     String horaSalida = getValue(request, "horaSalida");
-    String vigente = getValue(request, "vigente");
 
     ctrlAltaRegistroPeriodo c = null;
     try
@@ -96,7 +95,7 @@ else
                 horaEntrada,
                 fechaSalida,
                 horaSalida,
-                vigente
+                eliminado
                     );
         }
     }
