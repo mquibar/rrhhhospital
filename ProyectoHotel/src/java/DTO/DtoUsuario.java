@@ -11,8 +11,8 @@ package DTO;
  */
 public class DtoUsuario {
 
-    private String nombre;
-    private String password;
+    private String nombre=null;
+    private String password=null;
 
     public String getNombre() {
         return nombre;

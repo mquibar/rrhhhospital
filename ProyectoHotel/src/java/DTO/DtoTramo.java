@@ -6,6 +6,7 @@
 package DTO;
 
 import Entidades.Agrupamiento;
+import Entidades.Categoria;
 
 /**
  *
@@ -15,6 +16,7 @@ public class DtoTramo {
 
     private String nombre=null;
     private Agrupamiento agrupamiento=null;
+    private Categoria categoria = null;
 
     public Agrupamiento getAgrupamiento() {
         return agrupamiento;
@@ -30,6 +32,14 @@ public class DtoTramo {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 
     
