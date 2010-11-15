@@ -22,7 +22,7 @@ public class menuServlet extends HttpServlet {
         PERSONAL_MNU1, PERSONAL_MNU2, PERSONAL_MNU3,
         HORARIO_MNU1, HORARIO_MNU2, HORARIO_MNU3,
         SEGUIMIENTO_MNU1, SEGUIMIENTO_MNU2, SEGUIMIENTO_MNU3, SEGUIMIENTO_MNU4, SEGUIMIENTO_MNU5,
-        REPORTE_MNU1, REPORTE_MNU2, REPORTE_MNU3, REPORTE_MNU4, REPORTE_MNU5
+        REPORTE_MNU1, REPORTE_MNU2, REPORTE_MNU3, REPORTE_MNU4, REPORTE_MNU5,GOHOME
     }
 
     /**
@@ -35,7 +35,7 @@ public class menuServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter outw = response.getWriter();
+        PrintWriter out = response.getWriter();
         try {
             String option = request.getParameter("opMenu").toUpperCase();
             String url = "underContruction.html";
@@ -80,13 +80,17 @@ public class menuServlet extends HttpServlet {
                 case REPORTE_MNU5:
                     url="Reportes_Usuarios.html";
                     break;
+                case GOHOME:
+                    System.out.println("ACa Entro");
+                    url="undeContruction.html";
+                    break;
                 default:
                     url="underContruction.html";
             }
-            outw.println(url);
+            out.println(url);
         } catch (Exception e) {
             response.sendRedirect("underContruction.jsp");
-            outw.close();
+            out.close();
         }
     }
 
