@@ -23,4 +23,16 @@ public class ModelOptionProvincia extends AbstractModelOptionList<Provincia>{
         return objeto.getProvincia();
     }
 
+    public String toStringProvincia(String provincia){
+        try {
+            if (options == null)
+                toString();
+            String nuevoString = options.replaceAll(">" + provincia, " selected=\"selected\" >"+provincia);
+            options = null;
+            return nuevoString;
+        } catch (Exception e) {
+            return toString();
+        }
+    }
+
 }

@@ -24,4 +24,16 @@ public class ModelOptionProfesional extends AbstractModelOptionList<Profesional>
         return objeto.getNombre() + " " + objeto.getApellido();
     }
 
+    public String toStringProfesional(String profesional){
+        try {
+            if (options == null)
+                toString();
+            String nuevoString = options.replaceAll(">" + profesional, " selected=\"selected\" >"+ profesional);
+            options = null;
+            return nuevoString;
+        } catch (Exception e) {
+            return toString();
+        }
+    }
+
 }
