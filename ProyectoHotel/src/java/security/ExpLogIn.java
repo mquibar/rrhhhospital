@@ -15,4 +15,6 @@ import system.exception.SystemException;
 @Remote
 public interface ExpLogIn {
      void logIn(String user, String Password) throws SystemException;
+
+     public void logOff();
 }

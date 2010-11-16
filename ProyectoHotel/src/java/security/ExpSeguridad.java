@@ -8,7 +8,7 @@ package security;
 import Entidades.seguridad.Operacion;
 import Entidades.seguridad.Perfil;
 import Entidades.seguridad.Usuario;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -22,7 +22,7 @@ public class ExpSeguridad {
     private Map operaciones;
 
     private ExpSeguridad(){
-
+        operaciones = new HashMap();
     }
     public static ExpSeguridad getInstance(){
         if(_instance== null)
@@ -45,6 +45,11 @@ public class ExpSeguridad {
 
     public boolean isOperationValid(Operacion operacion){
         return operaciones.containsKey(operacion.hashCode());
+    }
+
+    public void logOff(){
+        user=null;
+        operaciones.clear();
     }
 
 }

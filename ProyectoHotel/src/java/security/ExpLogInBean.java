@@ -8,6 +8,7 @@ package security;
 import DTO.DtoUsuario;
 import Entidades.seguridad.Usuario;
 import Intermediarios.IntermediarioUsuario;
+import Tools.Encriptador;
 import javax.ejb.Stateless;
 import system.exception.InvalidDataException;
 import system.exception.SystemException;
@@ -29,13 +30,17 @@ public class ExpLogInBean implements ExpLogIn {
             throw new InvalidDataException("usuario", userName);
         }
 
-        password = Tools.Encriptador.getStringMessageDigest(password,"MD5");
-        String pass = Tools.Encriptador.getStringMessageDigest(user.getPassword(),"MD5");
+        password = Encriptador.getStringMessageDigest(password,"MD5");
+        String pass = Encriptador.getStringMessageDigest(user.getPassword(),"MD5");
 
         if(!pass.equals(password))
             throw new InvalidDataException("password", "password incorrecto");
         ExpSeguridad.getInstance().setUser(user);
         
+    }
+
+    public void logOff() {
+        ExpSeguridad.getInstance().logOff();
     }
  
 }
