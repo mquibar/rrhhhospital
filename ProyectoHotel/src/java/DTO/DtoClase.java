@@ -5,6 +5,8 @@
 
 package DTO;
 
+import Entidades.ClaseVigente;
+
 /**
  *
  * @author Desarrollo
@@ -12,6 +14,7 @@ package DTO;
 public class DtoClase {
 
     String _nombre=null;
+    ClaseVigente _claseVigente = null;
 
     public String getNombre() {
         return _nombre;
@@ -19,6 +22,14 @@ public class DtoClase {
 
     public void setNombre(String _nombre) {
         this._nombre = _nombre;
+    }
+
+    public ClaseVigente getClaseVigente() {
+        return _claseVigente;
+    }
+
+    public void setClaseVigente(ClaseVigente _claseVigente) {
+        this._claseVigente = _claseVigente;
     }
     
 }
