@@ -39,13 +39,17 @@ public class ServletModificarPersonal extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             String option = request.getParameter("operacion").toUpperCase();
+            System.out.println(option);
             switch (operaciones.valueOf(option)) {
                 case LOAD:
                     out.println(_control.getEmpleados().toString());
+                    break;
                 case NUEVO:
                     response.sendRedirect(_control.recuperarDato(request.getParameter("valor")));
+                    break;
                 case GUARDAREMP:
-                    _control.guardarEmpleado(request.getParameter("nombre"),
+                    _control.guardarEmpleado(
+                                    request.getParameter("nombre"),
                                     request.getParameter("apellido"),
                                     request.getParameter("dni"),
                                     request.getParameter("fechaNacimiento"),
@@ -59,8 +63,10 @@ public class ServletModificarPersonal extends HttpServlet {
                                     request.getParameter("provincia"),
                                     request.getParameter("pais"),
                                     request.getParameter("cuil"));
+                    break;
                 case GUARDARPROF:
-                    _control.guardarProfesional(request.getParameter("nombre"),
+                    _control.guardarProfesional(
+                                    request.getParameter("nombre"),
                                     request.getParameter("apellido"),
                                     request.getParameter("dni"),
                                     request.getParameter("fechaNacimiento"),
@@ -76,6 +82,11 @@ public class ServletModificarPersonal extends HttpServlet {
                                     request.getParameter("cuil"),
                                     request.getParameter("matricula"),
                                     request.getParameter("titulo"));
+                    break;
+                default:
+                    out.println("algo");
+                    break;
+
             }
         } catch(Exception e) {
 

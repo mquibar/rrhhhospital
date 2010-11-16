@@ -24,6 +24,8 @@ public class ctrlModificarPersona extends GeneralController {
     private ModelOptionEmpleado model = null;
     private ModelOptionProfesional model2 = null;
     private ExpConsultarPersonal _expcons;
+    private Empleado empleado;
+    private Profesional profesional;
     private enum TipoEmpleado {
         EMPLEADO,PROFESIONAL
     }
@@ -43,8 +45,7 @@ public class ctrlModificarPersona extends GeneralController {
 
     /*Obtiene los empleados del sitio, para realizar la modificacion*/
     public AbstractModelOptionList getEmpleados(){
-        if(model == null)
-           model = new ModelOptionEmpleado(_expcons.listarEmpleadoinOrder());
+        model = new ModelOptionEmpleado(_expcons.listarEmpleadoinOrder());
         return model;
     }
 
@@ -57,7 +58,7 @@ public class ctrlModificarPersona extends GeneralController {
         try {
         switch (TipoEmpleado.valueOf(option)) {
                 case EMPLEADO:
-                    Empleado empleado = model.getSelectedItem(valor);
+                    empleado = model.getSelectedItem(valor);
                     url="empleado_modificado.jsp?nombre="+empleado.getNombre()+"&"+
                            "apellido="+empleado.getApellido()+"&"+
                            "dni="+empleado.getDni()+"&"+
@@ -75,7 +76,7 @@ public class ctrlModificarPersona extends GeneralController {
                            "empleado="+valor;
                     break;
                 case PROFESIONAL:
-                    Profesional profesional = (Profesional)model.getSelectedItem(valor);
+                    profesional = (Profesional)model.getSelectedItem(valor);
                     url="profesional_modificado.jsp?nombre="+profesional.getNombre()+"&"+
                            "apellido="+profesional.getApellido()+"&"+
                            "dni="+profesional.getDni()+"&"+
@@ -107,21 +108,23 @@ public class ctrlModificarPersona extends GeneralController {
     public void guardarEmpleado (String nombre, String apellido, String dni, String fechaNacimiento,
             String telefono, String barrio, String calle, String numero, String piso, String departamanto,
             String localidad, String provincia, String pais, String cuil) throws Exception {
-
+            
             ctrlModificarEmpleado controlador = new ctrlModificarEmpleado();
-            controlador.modificarEmpleado(apellido, nombre, apellido, dni, fechaNacimiento, telefono,
-                    barrio, calle, numero, piso, departamanto, localidad, provincia, pais, piso, cuil);
+            System.out.println(controlador.modificarEmpleado(empleado, nombre, apellido, dni, fechaNacimiento, telefono,
+                    barrio, calle, numero, piso, departamanto, localidad, provincia, pais, "Masculino", cuil));
     
     }
 
     public void guardarProfesional (String nombre, String apellido, String dni, String fechaNacimiento,
             String telefono, String barrio, String calle, String numero, String piso, String departamanto,
             String localidad, String provincia, String pais, String cuil, String matricula, String titulo) throws Exception {
-
+            System.out.println(telefono);
+            System.out.println(calle);
+            System.out.println("Telefono del profesional: "+profesional.getTelefono());
             ctrlModificarProfesional controlador = new ctrlModificarProfesional();
-            controlador.modificarProfesional(provincia, nombre, apellido, dni, fechaNacimiento,
+            System.out.println(controlador.modificarProfesional(profesional, nombre, apellido, dni, fechaNacimiento,
                     telefono, barrio, calle, numero, piso, departamanto, localidad, provincia, pais,
-                    piso, cuil, matricula, titulo);
+                    "Masculino", cuil, matricula, titulo));
     }
 
 }
