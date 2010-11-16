@@ -1,6 +1,6 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Servlet encargado de la comunicacion con ajax, entre
+ * los distintos controladores y la pantalla de modificar personal
  */
 
 package servlets;
@@ -41,12 +41,15 @@ public class ServletModificarPersonal extends HttpServlet {
             String option = request.getParameter("operacion").toUpperCase();
             System.out.println(option);
             switch (operaciones.valueOf(option)) {
+                //Función que carga en pantalla los empleado del hospital
                 case LOAD:
                     out.println(_control.getEmpleados().toString());
                     break;
+                //Escribe en la pagina los datos del empleado seleccionado
                 case NUEVO:
                     response.sendRedirect(_control.recuperarDato(request.getParameter("valor")));
                     break;
+                //Le dice al controlador que actualice al empleado que estaba cargado en la pagina
                 case GUARDAREMP:
                     _control.guardarEmpleado(
                                     request.getParameter("nombre"),
@@ -64,6 +67,7 @@ public class ServletModificarPersonal extends HttpServlet {
                                     request.getParameter("pais"),
                                     request.getParameter("cuil"));
                     break;
+                //Le dice al controlador que actualice al profesional que estaba cargado en la pagina
                 case GUARDARPROF:
                     _control.guardarProfesional(
                                     request.getParameter("nombre"),
