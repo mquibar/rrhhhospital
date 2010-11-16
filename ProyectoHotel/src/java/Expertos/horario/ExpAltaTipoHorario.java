@@ -28,7 +28,4 @@ public interface  ExpAltaTipoHorario {
 
     public String guardar();
 
-    public TipoHorario getEntidad(String idEntidad);
-
-
 }

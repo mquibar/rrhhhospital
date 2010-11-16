@@ -102,7 +102,7 @@ public class ExpAltaAsignacionHorarioBeans implements ExpAltaAsignacionHorario {
             ) {
 
         int idEnt = 0;
-        if(idEntidad != null && idEntidad != "")
+        if(idEntidad != null && !idEntidad.isEmpty())
         {
             try
             {
@@ -152,7 +152,7 @@ public class ExpAltaAsignacionHorarioBeans implements ExpAltaAsignacionHorario {
     }
 
     AsignacionHorario _th = null;
-    public AsignacionHorario getEntidad(String idEntidad)
+    AsignacionHorario getEntidad(String idEntidad)
     {
         if(_th == null)
         {
