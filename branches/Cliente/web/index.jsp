@@ -11,6 +11,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Ingreso al Sistema</title>
         <link href="./css/estilos.css" rel="stylesheet" type="text/css" />
+        <link href="./js/jqueryjs/jquery.alerts.css" rel="stylesheet" type="text/css" media="screen" />
+        <script type="text/javascript" src="./js/jqueryjs/js/jquery-1.4.2.min.js"></script>
+        <script type="text/javascript" src="./js/jqueryjs/jquery.alerts.js"></script>)
         <style type="text/css">
             bodyLogin
             {

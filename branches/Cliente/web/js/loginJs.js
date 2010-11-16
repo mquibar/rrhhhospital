@@ -4,10 +4,13 @@ function js_logIn(){
     req.onreadystatechange = function () {
         if ( req.readyState == 4){
             if(req.status == 200 || window.location.href.indexOf ("http")==- 1) {
-                open("home.jsp?user="+req.responseText,"_self");
+                //open("home.jsp?user="+req.responseText,"_self");
+                jAlert('Bienvenido', 'Sistema Personal', function(r) {
+                    if( r )  location="home.jsp?user="+req.responseText;
+                });
             }
             else{
-                alert("Nombre de usuario o contraseña Incorrecta");
+                jAlert("Nombre de usuario o contraseña Incorrecta","Sistema Personal");
             }
             ocultarEspera();
         } else {
