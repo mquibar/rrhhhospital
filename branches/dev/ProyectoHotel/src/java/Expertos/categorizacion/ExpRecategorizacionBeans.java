@@ -16,8 +16,8 @@ import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import org.hibernate.proxy.HibernateProxy;
-import org.hibernate.proxy.HibernateProxyHelper;
+import system.exception.GenericException;
+import system.exception.SystemException;
 
 /**
  *
@@ -178,15 +178,15 @@ public class ExpRecategorizacionBeans implements ExpRecategorizacion {
             }
             System.out.println("*************** coontenidas =" + contenidas.size());
         }
-        System.out.println("******************* posibles = "+posibles.size());
+        System.out.println("******************* posibles = " + posibles.size());
 
 
-        Tramo tv=null;
+        Tramo tv = null;
         List<ClaseVigente> lista = (new Intermediarios.IntermediarioClaseVigente()).findByDto(e);
         // SI LA EL TRAMO NO ES EL MISMO QUE EL VIGENTE DEVUELVO TODAS LAS CLASES DE ARRIBA
-        for (ClaseVigente clasv : lista){
+        for (ClaseVigente clasv : lista) {
             tv = _consultaCategorias.consultarTramo(clasv.getCategoria());
-            if(clasv.getVigente()&& tv!=t){
+            if (clasv.getVigente() && tv != t) {
                 System.out.println("*********** perimer salida");
                 return posibles;
             }
@@ -196,7 +196,7 @@ public class ExpRecategorizacionBeans implements ExpRecategorizacion {
         // A PARTIR DE LA CLASE VIGENTE DEL EMPLEADO
         Clase clas = null;
         Categoria cat = null;
-        for (ClaseVigente cv : e.getClaseVigenteList()) { //BUSCO LA CATEGORIA Y CLASE VIGENTE
+        for (ClaseVigente cv : lista) { //BUSCO LA CATEGORIA Y CLASE VIGENTE
             if (cv.getVigente()) {
                 cat = cv.getCategoria();
                 clas = cv.getClase();
@@ -220,15 +220,57 @@ public class ExpRecategorizacionBeans implements ExpRecategorizacion {
             posibles.add(0, cat);
         }
 
-        System.out.println("******************** segunda salida posibilidades = "+posibles.size());
+        System.out.println("******************** segunda salida posibilidades = " + posibles.size());
         for (Categoria categoria : posibles) {
-            System.out.println("****----- "+categoria.getClaseContenida().size());
+            System.out.println("****----- " + categoria.getClaseContenida().size());
         }
 
         return posibles;
     }
 
-    public List<Categoria> listarCategoria(Tramo t){
+    public List<Categoria> listarCategoria(Tramo t) {
         return _consultaCategorias.consultarCategoria(t);
+    }
+
+    public void recategorizar(Empleado e, Categoria cat, Clase cl) throws SystemException {
+
+        ClaseVigente cv = new ClaseVigente();
+
+        cv.setFechaVigencia(new Date());
+        cv.setCategoria(_consultaCategorias.consultarCategoria(cat));
+        cv.setClase(cl);
+        cv.setEmpleado(e);
+
+        //REVISA QUE NO TENGA NINGUNA CATEGORIA ASIGNADA Y LA PONE EN FALSE
+        List<ClaseVigente> lista = (new Intermediarios.IntermediarioClaseVigente()).findByDto(e);
+        for (ClaseVigente claseVigente : lista) {
+            if (claseVigente.getVigente()) {
+                claseVigente.setVigente(false);
+            }
+        }
+        cv.setVigente(true);
+        lista.add(cv);
+
+        if (cat.getCupo() > 1) {
+            cat.setCupo(cat.getCupo() - 1);
+        }
+
+        e.setClaseVigenteList(lista);
+
+        Intermediarios.GestorConeccion.getInstance().beginTransaction();
+        try {
+            if ((new Intermediarios.IntermediarioEmpleado()).actualizar(e)) {
+                if ((new Intermediarios.IntermediarioCategoria()).actualizar(cat)) {
+                    Intermediarios.GestorConeccion.getInstance().commitTransaction();
+                } else {
+                    Intermediarios.GestorConeccion.getInstance().rollbackTransaction();
+                    throw new Exception();
+                }
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            throw new GenericException("Error al intentar actualizar el empleado");
+        }
+
     }
 }

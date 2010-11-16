@@ -30,4 +30,6 @@ public interface ExpRecategorizacion {
     public List<Tramo> listarTramo(Agrupamiento agrupamiento);
     public List<Categoria> listarCategoria(Empleado e, Tramo t);
     public List<Categoria> listarCategoria(Tramo t);
+
+    public void recategorizar(Entidades.Empleado e, Entidades.Categoria cat, Entidades.Clase cl) throws system.exception.SystemException;
 }
