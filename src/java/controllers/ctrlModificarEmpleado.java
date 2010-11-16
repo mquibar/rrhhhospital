@@ -98,13 +98,13 @@ public class ctrlModificarEmpleado extends GeneralController{
      *      * "Error: Error de conexion con servidor de aplicaciones"+ex.toString(): exepcion
      */
 
-    public  String modificarEmpleado (String empleado, String nombre, String apellido, String dni, String fechaNacimiento,
+    public  String modificarEmpleado (Empleado empleado, String nombre, String apellido, String dni, String fechaNacimiento,
             String telefono, String barrio, String calle, String numero, String piso, String departamanto,
             String localidad, String provincia, String pais, String sexo, String cuil) {
 
          try {
 
-            if(_exp.modificarEmpleado(listaempleado.getSelectedItem(empleado), nombre, apellido, dni,
+            if(_exp.modificarEmpleado(empleado, nombre, apellido, dni,
                     fechaNacimiento, telefono, barrio, calle, numero, piso,
                     departamanto, modellocalidad.getSelectedItem(localidad),
                     modelprovincia.getSelectedItem(provincia), modelpais.getSelectedItem(pais), 

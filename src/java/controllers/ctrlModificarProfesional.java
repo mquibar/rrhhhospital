@@ -5,6 +5,7 @@
 
 package controllers;
 
+import Entidades.Profesional;
 import Expertos.personal.ExpConsultarSexo;
 import Expertos.personal.ExpModificarProfesional;
 import java.util.HashMap;
@@ -92,13 +93,13 @@ public class ctrlModificarProfesional extends GeneralController {
      *      * "Error: Error de conexion con servidor de aplicaciones"+ex.toString(): exepcion
      *
      */
-    public  String modificarProfesional (String profesional, String nombre, String apellido, String dni, String fechaNacimiento,
+    public  String modificarProfesional (Profesional profesional, String nombre, String apellido, String dni, String fechaNacimiento,
             String telefono, String barrio, String calle, String numero, String piso, String departamanto,
             String localidad, String provincia, String pais, String sexo, String cuil, String matricula, String titulo) {
 
          try {
 
-            if(_exp.modificarProfesional(modelprofesional.getSelectedItem(profesional), nombre, apellido, dni,
+            if(_exp.modificarProfesional(profesional, nombre, apellido, dni,
                     fechaNacimiento, telefono, barrio, calle, numero, piso,
                     departamanto, modellocalidad.getSelectedItem(localidad),
                     modelprovincia.getSelectedItem(provincia), modelpais.getSelectedItem(pais),
