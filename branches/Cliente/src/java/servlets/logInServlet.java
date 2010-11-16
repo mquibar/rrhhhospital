@@ -24,7 +24,12 @@ public class logInServlet extends HttpServlet {
         _control = new ctrlLogin();
     }
 
-    /** 
+    private enum option {
+
+        LOGIN, LOGOFF
+    }
+
+    /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
      * @param response servlet response
@@ -36,9 +41,17 @@ public class logInServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            String userName = request.getParameter("userName");
-            _control.login(userName, request.getParameter("pass"));
-            out.println(userName.toUpperCase());
+            String opt = request.getParameter("segurityOption").toUpperCase();
+            switch (option.valueOf(opt)) {
+                case LOGIN:
+                    String userName = request.getParameter("userName");
+                    _control.login(userName, request.getParameter("pass"));
+                    out.println(userName.toUpperCase());
+                    return;
+                case LOGOFF:
+                    _control.logoff();
+                    return;
+            }
         } catch (Exception e) {
             response.sendError(401);
         }

@@ -100,7 +100,7 @@ agrupamiento asc, categoria asc, clase asc;]]>
 			</staticText>
 			<image scaleImage="FillFrame">
 				<reportElement mode="Transparent" x="0" y="2" width="150" height="72" backcolor="#00FF33"/>
-				<imageExpression class="java.lang.String"><![CDATA["1fcnyf.jpg"]]></imageExpression>
+				<imageExpression class="java.lang.String"><![CDATA["./1fcnyf.jpg"]]></imageExpression>
 			</image>
 		</band>
 	</title>

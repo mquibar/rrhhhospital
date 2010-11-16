@@ -5,8 +5,7 @@
 
 package controllers;
 
-import Expertos.personal.ExpAltaEmpleado;
-import Expertos.personal.ExpAltaProfesional;
+import Expertos.personal.ExpAltaPersonal;
 import Expertos.personal.ExpConsultarSexo;
 import java.util.HashMap;
 import java.util.List;
@@ -21,8 +20,7 @@ import models.combos.*;
  */
 public class ctrlAltaPersonal extends GeneralController {
 
-        private ExpAltaProfesional expprof;
-        private ExpAltaEmpleado expemp;
+        private ExpAltaPersonal exp;
         private ExpConsultarSexo expsexo;
         private ctrlAltaEmpleado controladorEmpleado;
         private ctrlAltaProfesional controladorProfesional;
@@ -38,15 +36,14 @@ public class ctrlAltaPersonal extends GeneralController {
 
 
     public ctrlAltaPersonal() {
-        expprof = (ExpAltaProfesional) getExpert(ExpAltaProfesional.class.getName());
-        expemp = (ExpAltaEmpleado) getExpert(ExpAltaEmpleado.class.getName());
-        expsexo = (ExpConsultarSexo) getExpert(ExpConsultarSexo.class.getName());
+        exp = (ExpAltaPersonal) super.getExpert(ExpAltaPersonal.class.getName());
+        expsexo = (ExpConsultarSexo) super.getExpert(ExpConsultarSexo.class.getName());
         controladorProfesional = new ctrlAltaProfesional();
         controladorEmpleado = new ctrlAltaEmpleado();
 
         models = new HashMap<String, AbstractModelOptionList>();
         Map<String, List> listas;
-        listas = expprof.iniciarProfesional();
+        listas = exp.iniciarPersonal();
         modelotarjeta = new ModelOptionTarjeta(listas.get("TARJETA"));
         modeltipo = new ModelOptionTipoEmpleado(listas.get("TIPO"));
         modelpais = new ModelOptionPais(listas.get("PAIS"));

@@ -27,4 +27,8 @@ public class ctrlLogin {
     public String getCurrentUserName() {
         return "Juan Ciullini";
     }
+
+    public void logoff(){
+        _exp.logOff();
+    }
 }

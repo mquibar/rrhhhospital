@@ -1,27 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="listadoEmpleados" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.zoom" value="1.771561000000001"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<queryString language="SQL">
-		<![CDATA[SELECT
-  "Empleado"."Legajo",
-  "TipoEmpleado"."Nombre" AS "EmpleadoTipo",
-  "Persona"."Apellido",
-  "Persona"."Nombre",
-  "Empleado"."FechaIngreso",
-  "Empleado"."Eliminado"
+	<queryString>
+		<![CDATA[SELECT DISTINCT
+  "empleado"."legajo" as "Legajo",
+  "tipoempleado"."nombre" AS "EmpleadoTipo",
+  "persona"."apellido" as "Apellido",
+  "persona"."nombre" as "Nombre",
+  "empleado"."fechaingreso" as "FechaIngreso",
+  "empleado"."eliminado" as "Eliminado"
 FROM
-  public."Persona",
-  public."Empleado",
-  public."TipoEmpleado"
+  public."persona"
+  inner join public."empleado" on "empleado"."idempleado" = "persona".id
+  inner join public."tipoempleado" on "empleado"."idtipoempleado" = "tipoempleado".id
 WHERE
-  "Empleado"."idEmpleado" = "Persona".id AND
-  "Empleado"."idTipoEmpleado" = "TipoEmpleado".id AND
-  "Empleado"."Eliminado" =true
+  "empleado"."eliminado" = false or "empleado"."eliminado" is null
 ORDER BY
-  "Persona"."Apellido" ASC,
-  "Persona"."Nombre" ASC;]]>
+  "persona"."apellido" ASC,
+  "persona"."nombre" ASC;]]>
 	</queryString>
 	<field name="Legajo" class="java.lang.Integer"/>
 	<field name="EmpleadoTipo" class="java.lang.String"/>
@@ -36,18 +34,11 @@ ORDER BY
 		<band height="72">
 			<image scaleImage="FillFrame">
 				<reportElement mode="Transparent" x="0" y="0" width="150" height="72" backcolor="#00FF33"/>
-				<imageExpression class="java.lang.String"><![CDATA["C:\\Documents and Settings\\Manuel\\Escritorio\\reportes\\1fcnyf.jpg"]]></imageExpression>
+				<imageExpression class="java.lang.String"><![CDATA["./1fcnyf.jpg"]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement positionType="Float" isPrintRepeatedValues="false" x="150" y="0" width="329" height="43" forecolor="#006699"/>
-				<box>
-					<pen lineColor="#FFFFFF"/>
-					<topPen lineColor="#FFFFFF"/>
-					<leftPen lineColor="#FFFFFF"/>
-					<bottomPen lineColor="#FFFFFF"/>
-					<rightPen lineColor="#FFFFFF"/>
-				</box>
-				<textElement>
+				<reportElement positionType="Float" mode="Transparent" x="151" y="0" width="404" height="43" forecolor="#006699" backcolor="#3E1D1D"/>
+				<textElement textAlignment="Left">
 					<font size="34" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Listado de Personal]]></text>
@@ -105,14 +96,14 @@ ORDER BY
 				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1"/>
 			</line>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="0" y="0" width="92" height="20"/>
+				<reportElement x="10" y="0" width="82" height="20"/>
 				<textElement>
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{Legajo}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="98" y="0" width="92" height="20"/>
+				<reportElement x="100" y="0" width="90" height="20"/>
 				<textElement>
 					<font size="14"/>
 				</textElement>
