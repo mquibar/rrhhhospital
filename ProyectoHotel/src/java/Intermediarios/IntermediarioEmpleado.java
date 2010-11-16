@@ -97,5 +97,14 @@ public class IntermediarioEmpleado extends Intermediario<Empleado> {
         }
     }
 
+    public List<Empleado> findNotLegajo() {
+        try{
+            String query = "SELECT e FROM Empleado WHERE e.legajo = 0";
+            return GestorConeccion.getInstance().getManager().createQuery(query).getResultList();
+        }catch(Exception e){
+            return null;
+        }
+    }
+
 
 }
