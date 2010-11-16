@@ -7,7 +7,6 @@ package Expertos.horario;
 
 import Entidades.TipoHorario;
 import java.util.List;
-import javax.ejb.Local;
 import javax.ejb.Remote;
 
 /**

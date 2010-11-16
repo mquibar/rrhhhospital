@@ -26,7 +26,7 @@ public interface  ExpAltaAsignacionHorario {
             Empleado idEmpleado,
             TipoHorario idTipoHorario,
             String descripcion,
-            boolean vigente
+            boolean eliminado
             );
 
     public String guardar();

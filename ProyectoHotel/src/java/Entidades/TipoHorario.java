@@ -30,7 +30,9 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "TipoHorario")
 @NamedQueries({
-    @NamedQuery(name = "TipoHorario.findAll", query = "SELECT t FROM TipoHorario t")})
+    @NamedQuery(name = "TipoHorario.findAll", query = "SELECT t FROM TipoHorario t WHERE t.eliminado = false"),
+    @NamedQuery(name = "TipoHorario.findById", query = "SELECT t FROM TipoHorario t WHERE t.id = :id")
+})
 public class TipoHorario implements Serializable {
 
     private static final long serialVersionUID = 1L;

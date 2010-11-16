@@ -98,7 +98,7 @@ public class ExpAltaAsignacionHorarioBeans implements ExpAltaAsignacionHorario {
             Empleado idEmpleado,
             TipoHorario idTipoHorario,
             String descripcion,
-            boolean vigente
+            boolean eliminado
             ) {
 
         int idEnt = 0;
@@ -139,7 +139,7 @@ public class ExpAltaAsignacionHorarioBeans implements ExpAltaAsignacionHorario {
             ah.setIdEmpleado(idEmpleado);
             ah.setIdTipoHorario(idTipoHorario);
             ah.setDescripcion(descripcion);
-            ah.setVigente(vigente);
+            ah.setVigente(!eliminado);
             
             _asignacionesHorario.add(ah);
             _flagsSave.add(validar(ah));
