@@ -1,6 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Controlador de Modificación de Profesional es el nexo entre la pantalla de modificación y
+ * el experto de modificación que es el encargado de modificar la entidad profesional
  */
 
 package controllers;
@@ -114,5 +114,4 @@ public class ctrlModificarProfesional extends GeneralController {
             return "Error: Error de conexion con servidor de aplicaciones"+ex.toString();
         }
     }
-
 }

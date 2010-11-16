@@ -1,17 +1,10 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Controlador de Modificación de Empleado es el nexo entre la pantalla de modificación y
+ * el experto de modificación que es el encargado de modificar la entidad empleado
  */
-
 package controllers;
 
 import Entidades.Empleado;
-import Entidades.Localidad;
-import Entidades.Pais;
-import Entidades.Persona;
-import Entidades.Provincia;
-import Entidades.Sexo;
-import Expertos.personal.ExpConsultarPersonal;
 import Expertos.personal.ExpConsultarSexo;
 import Expertos.personal.ExpModificarEmpleado;
 import java.util.HashMap;
