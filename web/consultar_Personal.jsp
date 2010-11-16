@@ -94,16 +94,10 @@ else
 <script language="javascript" type="text/javascript" src="./js/createRequestJs.js"></script>
 <script language="javascript" type="text/javascript" src="./js/esperar.js"></script>
 <script language="javascript" type="text/javascript" src="./js/Personal.js"></script>
+<script language="javascript" type="text/javascript" src="./js/tools.js"></script>
 </head>
 
 <body>
-<div class="cabecera">
-  <div class="logo"></div>
-  <div class="user">
-    <div class="user_2">User: </div>
-    <div class="log_off">LogOff </div>
-  </div>
-</div>
         <div class="noticias" id="noticias_2"> CONSULTAR PERSONA<br />
             <div class="forms">
                 <div align="left"></div>
@@ -123,10 +117,10 @@ else
                         </p>
                         <p align="left">
                             <label>
-                                <input type="button" name="buttonConsultar" id="buttonConsultar" onclick="consultarEmpleado()" />
+                                <input type="button" name="buttonConsultar" id="buttonConsultar" onclick="consultarEmpleado()" value="Buscar"/>
                             </label>
                             <label>
-                                <input type="submit" name="buttonCancelar" id="buttonCancelar" value="Cancelar" />
+                                <input type="button" name="buttonCancelar" id="buttonCancelar" value="Cancelar" onclick="js_cancel_operacion()" />
                             </label>
                         </p>
                         <p align="left">Empleado/s<br />

@@ -1,12 +1,10 @@
 <%
 
-if( request.getParameter("user") == null)
-{
+            if (request.getParameter("user") == null) {
 %>
 <jsp:forward page="index.jsp"/>
-<%
-}
-String user = request.getParameter("user");
+<%            }
+            String user = request.getParameter("user");
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
@@ -19,6 +17,7 @@ String user = request.getParameter("user");
         <script language="javascript" type="text/javascript" src="./js/createRequestJs.js"></script>
         <script language="javascript" type="text/javascript" src="./js/esperar.js"></script>
         <script language="javascript" type="text/javascript" src="./js/menuJavaScript.js"></script>
+        <script language="javascript" type="text/javascript" src="./js/loginJs.js"></script>
     </head>
 
     <body>
@@ -26,7 +25,7 @@ String user = request.getParameter("user");
             <div class="logo"></div>
             <div class="user">
                 <div class="user_2">User: <%=user%></div>
-                <div class="log_off">LogOff </div>
+                <div class="log_off" onclick="js_logOff()" href="#">LogOff </div>
             </div>
         </div>
         <div>
@@ -210,14 +209,10 @@ String user = request.getParameter("user");
                     <!--[if lte IE 6]></td></tr></table></a><![endif]--></li>
                 <li class="pureCssMenui0"><a class="pureCssMenui0" href="#"><span>Horarios</span><![if gt IE 6]></a><![endif]><!--[if lte IE 6]><table><tr><td><![endif]-->
                     <ul class="pureCssMenum">
-                        <li class="pureCssMenui"><a id="Horario_mnu1" class="pureCssMenui"
-                                                    href="#" onclick="cargarNoticias('./manejoHorarios/gestionar.jsp?nombreEntidad=tipo_horario');">Gestionar Tipo de Horario</a></li>
-                        <li class="pureCssMenui"><a id="Horario_mnu1" class="pureCssMenui"
-                                                    href="#" onclick="cargarNoticias('./manejoHorarios/gestionar.jsp?nombreEntidad=asignacion_horario');">Asignacion horarios</a></li>
-                        <li class="pureCssMenui"><a id="Horario_mnu3" class="pureCssMenui"
-                                                    href="#" onclick="cargarNoticias('./manejoHorarios/gestionar.jsp?nombreEntidad=registro_periodo');">Registro de periodo</a></li>
-                        <li class="pureCssMenui"><a id="Horario_mnu2" class="pureCssMenui"
-                                                    href="#" onclick="cargarNoticias('./manejoHorarios/gestionar.jsp?nombreEntidad=licencia');">Manejo de licencias</a></li>
+                        <li class="pureCssMenui"><a id="Horario_mnu1" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Gestionar Tipo de Horario</a></li>
+                        <li class="pureCssMenui"><a id="Horario_mnu2" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Asignacion horarios</a></li>
+                        <li class="pureCssMenui"><a id="Horario_mnu3" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Registro de periodo</a></li>
+                        <li class="pureCssMenui"><a id="Horario_mnu4" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Manejo de licencias</a></li>
                     </ul>
                     <!--[if lte IE 6]></td></tr></table></a><![endif]--></li>
                 <li class="pureCssMenui0"><a class="pureCssMenui0" href="#"><span>Seguimiento</span><![if gt IE 6]></a><![endif]><!--[if lte IE 6]><table><tr><td><![endif]-->
@@ -241,6 +236,6 @@ String user = request.getParameter("user");
             </ul>
             <a id="pcm" href="http://www.purecssmenu.com/">CSS Drop Down Menu by PureCSSMenu.com</a>
             <!-- End PureCSSMenu.com MENU --></div>
-        <iframe id="noticias" class="noticias">NOTICIAS</iframe>
+        <iframe id="noticias" class="noticias" src="PanelNoticias.html"></iframe>
     </body>
 </html>

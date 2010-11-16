@@ -107,7 +107,7 @@ else
         <div class="forms">
 	<form id="form1" name="form1" method="post" action="">
 		<div class="izquierda"><br />
-			Empleado: <%=empleado%> <br />
+			Empleado <br />
 			<br />
                         <br />
 			Nombre<br />
