@@ -20,9 +20,9 @@ public class menuServlet extends HttpServlet {
     private enum optionsMenu {
 
         PERSONAL_MNU1, PERSONAL_MNU2, PERSONAL_MNU3,
-        HORARIO_MNU1, HORARIO_MNU2, HORARIO_MNU3,
+        HORARIO_MNU1, HORARIO_MNU2, HORARIO_MNU3, HORARIO_MNU4,
         SEGUIMIENTO_MNU1, SEGUIMIENTO_MNU2, SEGUIMIENTO_MNU3, SEGUIMIENTO_MNU4, SEGUIMIENTO_MNU5,
-        REPORTE_MNU1, REPORTE_MNU2, REPORTE_MNU3, REPORTE_MNU4, REPORTE_MNU5,GOHOME
+        REPORTE_MNU1, REPORTE_MNU2, REPORTE_MNU3, REPORTE_MNU4, REPORTE_MNU5, GOHOME
     }
 
     /**
@@ -41,51 +41,61 @@ public class menuServlet extends HttpServlet {
             String url = "underContruction.html";
             switch (optionsMenu.valueOf(option)) {
                 case PERSONAL_MNU1:
-                    url="gestionar_personal.html";
+                    url = "gestionar_personal.html";
                     break;
                 case PERSONAL_MNU2:
-                    url="Consultar_Persona.html";
+                    url = "consultar_Personal.jsp";
                     break;
                 case PERSONAL_MNU3:
+                    url = "Alta_Legajo_Final.jsp";
+                    break;
                 case HORARIO_MNU1:
-                    url="manejoHorarios/gestionar.jsp?nombreEntidad=tipo_horario";
+                    url = "./manejoHorarios/gestionar.jsp?nombreEntidad=tipo_horario";
                     break;
                 case HORARIO_MNU2:
+                    url = "./manejoHorarios/gestionar.jsp?nombreEntidad=asignacion_horario";
+                    break;
                 case HORARIO_MNU3:
+                    url = "./manejoHorarios/gestionar.jsp?nombreEntidad=registro_periodo";
+                    break;
+                case HORARIO_MNU4:
+                    url = "./manejoHorarios/gestionar.jsp?nombreEntidad=licencia";
                     break;
                 case SEGUIMIENTO_MNU1:
-                    url="gestionar_categoria.html";
+                    //url = "gestionar_categoria.html";
                     break;
                 case SEGUIMIENTO_MNU2:
-                    url="gestionar_departamento.html";
+                    //url = "gestionar_departamento.html";
                     break;
                 case SEGUIMIENTO_MNU3:
-                    url="Recategorizacion_Final.jsp";
+                    url = "Recategorizacion_Final.jsp";
                     break;
                 case SEGUIMIENTO_MNU4:
+                    //url = "Consultar_Persona.html";
+                    break;
                 case SEGUIMIENTO_MNU5:
                     break;
                 case REPORTE_MNU1:
-                    url="Reportes_Personal.html";
+                    url = "Reportes_Personal.html";
                     break;
                 case REPORTE_MNU2:
-                    url="Reportes_Horarios.html";
+                    url = "Reportes_Horarios.html";
                     break;
                 case REPORTE_MNU3:
-                    url="Reportes_Seguimiento.html";
+                    url = "Reportes_Seguimiento.html";
                     break;
                 case REPORTE_MNU4:
-                    url="Reportes_Departamento.html";
+                    url = "Reportes_Departamento.html";
                     break;
                 case REPORTE_MNU5:
-                    url="Reportes_Usuarios.html";
+                    url = "Reportes_Usuarios.html";
                     break;
                 case GOHOME:
                     System.out.println("ACa Entro");
-                    url="undeContruction.html";
+                    url = "undeContruction.html";
                     break;
                 default:
-                    url="underContruction.html";
+                    url = "underContruction.html";
             }
             out.println(url);
         } catch (Exception e) {

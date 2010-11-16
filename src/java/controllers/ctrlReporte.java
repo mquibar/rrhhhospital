@@ -30,7 +30,7 @@ public class ctrlReporte extends GeneralController {
         }
         try {
             Class.forName("org.postgresql.Driver");
-            String urlConexion = "jdbc:postgresql://192.168.7.190:5432/hospital"; //System.getProperties().getProperty("hibernate.connection.url");
+            String urlConexion = "jdbc:postgresql://localhost:5432/hospital"; //System.getProperties().getProperty("hibernate.connection.url");
             String usr = "postgres";// System.getProperties().getProperty("hibernate.connection.username");
             String pass = "postgres";//System.getProperties().getProperty("hibernate.connection.password");
             _con = DriverManager.getConnection(urlConexion, usr, pass);

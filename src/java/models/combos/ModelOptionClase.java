@@ -10,13 +10,14 @@ import java.util.List;
 
 /**
  *
- * @author Manuel
+ * @author Juan
  */
-public class ModelOptionClase extends AbstractModelOptionList<Clase>{
+public class ModelOptionClase extends AbstractModelOptionList<Clase> {
 
     public ModelOptionClase(List<Clase> lista) {
         super(lista);
     }
+
 
     @Override
     protected String devolverValorCombo(Clase objeto) {

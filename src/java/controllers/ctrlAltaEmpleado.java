@@ -27,7 +27,7 @@ public class ctrlAltaEmpleado extends GeneralController {
     private ExpAltaEmpleado exp;
 
     public ctrlAltaEmpleado() {
-        exp = (ExpAltaEmpleado) getExpert(ExpAltaEmpleado.class.getName());
+        exp = (ExpAltaEmpleado) super.getExpert(ExpAltaEmpleado.class.getName());
 
     }
 
