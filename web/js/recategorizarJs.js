@@ -113,8 +113,11 @@ function js_save_recat(){
         if ( req.readyState == 4){
             ocultarEspera();
             if (req.status == 200 || window.location.href.indexOf ("http")==- 1) {
-                alert("Operacion realizada con exito");
-                open("underContruction.html","_self");
+                jAlert("Operacion realizada con exito","Sistema Personal", function(){
+                    jConfirm("Continuar para volver al inicio", "Sistema Personal", function(r){
+                       if(r)location="underContruction.html";
+                    });
+                });
             }
             else{
                 alert("No se pudo realizar la operacion \n ERROR: " + req.responseText);

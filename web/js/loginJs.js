@@ -29,11 +29,13 @@ function js_logOff(){
     req.onreadystatechange = function () {
         if ( req.readyState == 4){
             ocultarEspera();
-            alert("Gracias por utilizar nuestro sistema");
-            if(req.status != 200) {
-                alert("Error al cerrar la sesion \nPuede que no se haya inicado con exito la session");
-            }
-            window.location="index.jsp";
+            jAlert("Cerrando sesi&oacuten","Sistema Personal", function(r){
+                if(req.status != 200) {
+                    alert("Error al cerrar la sesi&oacuten \nPuede que no se haya inicado con exito la session");
+                }
+                window.location="index.jsp";
+            });
+            
 
         } else {
             if(req.readyState==1){
