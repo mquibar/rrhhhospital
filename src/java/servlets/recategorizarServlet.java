@@ -60,6 +60,7 @@ public class recategorizarServlet extends HttpServlet {
                     break;
                 case GUARDAR:
                     _control.guardarRecategorizar(request.getParameter("categoria"), request.getParameter("clase"));
+                    break;
                 default:
                     response.sendError(404);
             }

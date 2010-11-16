@@ -3,7 +3,7 @@
 	<property name="ireport.zoom" value="1.0000000000000004"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<queryString language="SQL">
+	<queryString>
 		<![CDATA[SELECT
      empleado."legajo" AS legajo,
      profesional."matricula" AS matricula,
@@ -14,9 +14,9 @@
 FROM
      "public"."persona" persona INNER JOIN "public"."empleado" empleado ON persona."id" = empleado."idempleado"
      INNER JOIN "public"."profesional" profesional ON empleado."idempleado" = profesional."idprofesional"
-     INNER JOIN "public"."cargo" cargo ON empleado."idempleado" = cargo."idempleado"
+     LEFT JOIN "public"."cargo" cargo ON empleado."idempleado" = cargo."idempleado"
 WHERE
-     empleado."eliminado" = false]]>
+          empleado."eliminado" is null or     empleado."eliminado" = false]]>
 	</queryString>
 	<field name="legajo" class="java.lang.Integer"/>
 	<field name="matricula" class="java.lang.String"/>
@@ -31,7 +31,7 @@ WHERE
 		<band height="72">
 			<image scaleImage="FillFrame">
 				<reportElement mode="Transparent" x="0" y="0" width="150" height="72" backcolor="#00FF33"/>
-				<imageExpression class="java.lang.String"><![CDATA["C:\\Documents and Settings\\Manuel\\Escritorio\\reportes\\1fcnyf.jpg"]]></imageExpression>
+				<imageExpression class="java.lang.String"><![CDATA["/reports/1fcnyf.jpg"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement positionType="Float" isPrintRepeatedValues="false" x="150" y="0" width="405" height="43" forecolor="#006699"/>

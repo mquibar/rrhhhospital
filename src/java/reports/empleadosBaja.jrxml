@@ -3,32 +3,31 @@
 	<property name="ireport.zoom" value="1.0000000000000004"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<queryString language="SQL">
-		<![CDATA[SELECT
-  "Empleado"."Legajo",
-  "TipoEmpleado"."Nombre" AS "EmpleadoTipo",
-  "Persona"."Apellido",
-  "Persona"."Nombre",
-  "Empleado"."FechaIngreso",
-  "Empleado"."Eliminado"
-FROM
-  public."Persona",
-  public."Empleado",
-  public."TipoEmpleado"
-WHERE
-  "Empleado"."idEmpleado" = "Persona".id AND
-  "Empleado"."idTipoEmpleado" = "TipoEmpleado".id AND
-  "Empleado"."Eliminado" = false
-ORDER BY
-  "Persona"."Apellido" ASC,
-  "Persona"."Nombre" ASC;]]>
+	<queryString>
+		<![CDATA[select
+  "empleado"."legajo" as "Legajo",
+  "tipoempleado"."nombre" as "EmpleadoTipo",
+  "persona"."apellido" as "Apellido",
+  "persona"."nombre" as "Nombre",
+  "empleado"."fechaingreso" as "FechaIngreso"
+from
+  public."persona",
+  public."empleado",
+  public."tipoempleado"
+where
+  "empleado"."idempleado" = "persona".id and
+  "empleado"."idtipoempleado" = "tipoempleado".id and
+  "empleado"."eliminado" = false
+order by
+  "persona"."apellido" asc,
+  "persona"."nombre" asc;
+]]>
 	</queryString>
 	<field name="Legajo" class="java.lang.Integer"/>
 	<field name="EmpleadoTipo" class="java.lang.String"/>
 	<field name="Apellido" class="java.lang.String"/>
 	<field name="Nombre" class="java.lang.String"/>
 	<field name="FechaIngreso" class="java.sql.Date"/>
-	<field name="Eliminado" class="java.lang.Boolean"/>
 	<background>
 		<band/>
 	</background>
@@ -36,7 +35,7 @@ ORDER BY
 		<band height="72">
 			<image scaleImage="FillFrame">
 				<reportElement mode="Transparent" x="0" y="0" width="150" height="72" backcolor="#00FF33"/>
-				<imageExpression class="java.lang.String"><![CDATA["C:\\Documents and Settings\\Manuel\\Escritorio\\reportes\\1fcnyf.jpg"]]></imageExpression>
+				<imageExpression class="java.lang.String"><![CDATA["/reports/1fcnyf.jpg"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement positionType="Float" isPrintRepeatedValues="false" x="150" y="0" width="405" height="43" forecolor="#006699"/>

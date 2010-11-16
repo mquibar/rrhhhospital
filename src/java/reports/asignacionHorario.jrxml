@@ -3,27 +3,25 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<parameter name="pmes" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT
-  "TipoEmpleado"."Nombre" AS "EmpleadoTipo",
-  "Persona"."Apellido" AS "Apellido",
-  "Persona"."Nombre" AS "Nombre",
-  "Empleado"."Legajo" AS "Legajo",
-  "TipoHorario"."Nombre" as "Horario"
-FROM
-  public."Persona",
-  public."Empleado",
-  public."TipoEmpleado",
-  public."TipoHorario",
-  public."AsignacionHorario"
-WHERE
-  "Empleado"."idEmpleado" = "Persona".id AND
-  "Empleado"."idTipoEmpleado" = "TipoEmpleado".id AND
-  "AsignacionHorario"."idTipoHorario" = "TipoHorario".id AND
-  "AsignacionHorario"."idEmpleado" = "Empleado"."idEmpleado" AND
-  "Empleado"."Eliminado" = false AND
-  extract(month from "AsignacionHorario"."Fecha") = $P{pmes};]]>
+		<![CDATA[select
+  "tipoempleado"."nombre" as "EmpleadoTipo",
+  "persona"."apellido" as "Apellido",
+  "persona"."nombre" as "Nombre",
+  "empleado"."legajo" as "Legajo",
+  "tipohorario"."nombre" as "Horario"
+from
+  public."persona",
+  public."empleado",
+  public."tipoempleado",
+  public."tipohorario",
+  public."asignacionhorario"
+where
+  "empleado"."idempleado" = "persona".id and
+  "empleado"."idtipoempleado" = "tipoempleado".id and
+  "asignacionhorario"."idtipohorario" = "tipohorario".id and
+  "asignacionhorario"."idempleado" = "empleado"."idempleado" and
+  "empleado"."eliminado" is null;]]>
 	</queryString>
 	<field name="EmpleadoTipo" class="java.lang.String"/>
 	<field name="Apellido" class="java.lang.String"/>
@@ -37,7 +35,7 @@ WHERE
 		<band height="72">
 			<image scaleImage="FillFrame">
 				<reportElement mode="Transparent" x="0" y="0" width="150" height="72" backcolor="#00FF33"/>
-				<imageExpression class="java.lang.String"><![CDATA["1fcnyf.jpg"]]></imageExpression>
+				<imageExpression class="java.lang.String"><![CDATA["/reports/1fcnyf.jpg"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement positionType="Float" isPrintRepeatedValues="false" x="150" y="0" width="405" height="43" forecolor="#006699"/>
