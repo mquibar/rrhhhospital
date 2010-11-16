@@ -1,6 +1,8 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Controlador de Modificación de Persona controlador encargado de derivar
+ * la información a los controladores especificos, el de profesional y el de
+ * empleado, asi ellos realizan la comunicación
+ * 
  */
 
 package controllers;
@@ -14,8 +16,9 @@ import models.combos.ModelOptionEmpleado;
 import models.combos.ModelOptionProfesional;
 
 /**
- *
- * @author MARIANO
+ * Controlador modificar persona, realiza la comunicación entre el
+ * los controladores especificos
+ * @author Juan
  */
 
 public class ctrlModificarPersona extends GeneralController {
@@ -49,8 +52,8 @@ public class ctrlModificarPersona extends GeneralController {
         return model;
     }
 
-    /* Recupera la informacion del empleado, para poder escribirla en la pantalla
-     * para poder leer los datos del empleado. Luego se efectua la modificacion
+    /* Recupera la informacion segun el tipo de persona, para poder escribirla en la pantalla
+     * para poder leer los datos del empleado. Luego se efectua la modificación
      */
     public String recuperarDato (String valor) {
         String option = (model.getSelectedItem(valor).getIdTipoEmpleado()).getNombre().toUpperCase();
@@ -105,6 +108,7 @@ public class ctrlModificarPersona extends GeneralController {
          return url;
    }
 
+    /*llama al controlador especifico para el manejo de la clase empleado, asi lo actualiza*/
     public void guardarEmpleado (String nombre, String apellido, String dni, String fechaNacimiento,
             String telefono, String barrio, String calle, String numero, String piso, String departamanto,
             String localidad, String provincia, String pais, String cuil) throws Exception {
@@ -115,6 +119,7 @@ public class ctrlModificarPersona extends GeneralController {
     
     }
 
+    /*llama al controlador especifico para el manejo de la clase profesional, asi lo actualiza*/
     public void guardarProfesional (String nombre, String apellido, String dni, String fechaNacimiento,
             String telefono, String barrio, String calle, String numero, String piso, String departamanto,
             String localidad, String provincia, String pais, String cuil, String matricula, String titulo) throws Exception {
