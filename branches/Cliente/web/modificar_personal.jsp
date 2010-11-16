@@ -224,7 +224,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 		</div>
 		<div class="guardar">
 			<label>
-			  <input type="submit" name="buttonSave" id="buttonSave" value="Guardar" />
+			  <input type="submit" name="buttonSave" id="buttonSave" value="Actualizar" />
 			</label>
 			<label>
 			  <input type="submit" name="buttonCancel" id="buttonCancel" value="Cancelar" />

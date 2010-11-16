@@ -27,7 +27,7 @@
                         </select>
 			<br />
                         <label>
-                            <input type="button" name="buttonSave" id="buttonTraer" value="buttonTraer" onclick="loadPersonas()" />
+                            <input type="button" name="buttonTraer" id="buttonTraer" value="Consultar Empleado" onclick="loadPersonas()" />
 			</label>
 			<br />
 			Nombre<br />
@@ -121,9 +121,6 @@
 		  <br />
 		</div>
 		<div class="guardar">
-			<label>
-			  <input type="submit" name="buttonSave" id="buttonSave" value="Guardar" />
-			</label>
 			<label>
 			  <input type="submit" name="buttonCancel" id="buttonCancel" value="Cancelar" />
 			</label>

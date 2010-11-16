@@ -1,5 +1,4 @@
-<%@page import="controllers.ctrlAltaProfesional" %>
-<%@page import="controllers.ctrlAltaEmpleado" %>
+<%@page import="controllers.ctrlAltaPersonal" %>
 
 <%!
 String getValue(ServletRequest request, String varName)
@@ -25,7 +24,7 @@ if (request.getParameter("buttonCancel") != null)
 }
 else
 {
-    ctrlAltaEmpleado c = new ctrlAltaEmpleado();
+    ctrlAltaPersonal c = new ctrlAltaPersonal();
 
     String nombre           = getValue(request, "nombre");
     String apellido         = getValue(request, "apellido");
@@ -39,6 +38,7 @@ else
     String barrio           = getValue(request, "barrio");
     String piso             = getValue(request, "piso");
     String departamento     = getValue(request, "departamento");
+    String titulo            = getValue(request, "titulo");
 
     String numerotarjeta    = getValue(request, "ntarjeta");
     String tipoEmpleado     = getValue(request, "tipoEmpleado");
@@ -68,6 +68,8 @@ else
                              pais,
                              "Masculino",
                              cuil,
+                             matricula,
+                             titulo,
                              numerotarjeta
                             );
 
@@ -171,6 +173,18 @@ else
                         <label>
                             <input type="text" name="cuil" id="cuil" value='<%=cuil%>' />
                         </label>
+                        <br />
+                        <br />
+			Título<br />
+			<label>
+			  <input type="text" name="titulo" id="titulo" value="<%=titulo%>"/>
+			</label>
+                        <br />
+                        <br />
+                  Numero Tarjeta<br />
+                        <select name="ntarjeta" id="ntarjeta" >
+                            <%= c.getModels("TARJETA").toString()%>
+                        </select>
                     </div>
                     <div class="derecha"><br />
 		  DOMICILIO<br />
@@ -222,12 +236,6 @@ else
                         <select name="localidad" id="localidad" >
                             <%--= c.getModels("LOCALIDAD").toString()--%>
                         </select>
-                        <br />
-                  Numero Tarjeta<br />
-                        <select name="ntarjeta" id="ntarjeta" >
-                            <%= c.getModels("TARJETA").toString()%>
-                        </select>
-                        <br />
                         <br />
                     </div>
                     <div class="guardar">
