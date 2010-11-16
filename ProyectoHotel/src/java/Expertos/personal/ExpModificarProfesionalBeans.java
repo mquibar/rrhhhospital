@@ -1,6 +1,5 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Experto que realiza la modificación del profesional
  */
 
 package Expertos.personal;

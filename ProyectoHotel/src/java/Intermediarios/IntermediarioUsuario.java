@@ -31,7 +31,7 @@ public class IntermediarioUsuario extends Intermediario<Usuario> {
         if(dtoUs.getPassword()!=null)
             restricciones.put("password", dtoUs.getPassword());
         try {
-            return (List<Usuario>) crearQuery(restricciones).getResultList();
+            return(List<Usuario>) crearQuery(restricciones).getResultList();
         } catch (Exception e) {
             return null;
         }

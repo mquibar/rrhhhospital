@@ -1,6 +1,6 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Intermediario que se encarga de la comunicación con la base de datos
+ * para persistir a un profesional
  */
 
 package Intermediarios;
@@ -18,8 +18,9 @@ import org.hibernate.criterion.Order;
 
 
 /**
+ * Intermediario que persiste la entidad profesional
  *
- * @author MARIANO
+ * @author Juan
  */
 public class IntermediarioProfesional extends Intermediario <Profesional> {
 
@@ -28,6 +29,12 @@ public class IntermediarioProfesional extends Intermediario <Profesional> {
         _log = LogAdmin.getInstance().getLog(this.getClass());
     }
 
+    /**
+     * Redefine la busqueda por DTO, para consultas especificas de profesional
+     *
+     * @param dto
+     * @return : devuelve a la lista de profesionales encontrado por los datos que le pasa el dto
+     */
     @Override
     public List findByDto(Object dto) {
        DTOProfesional dtoPro = (DTOProfesional) dto;
@@ -53,6 +60,12 @@ public class IntermediarioProfesional extends Intermediario <Profesional> {
         }
     }
 
+    /**
+     * Trae los profesionales listados por el parametro orden
+     *
+     * @param orden
+     * @return : devuelve una lista de profesionales ordenados por el parametro
+     */
     @Override
     public List<Profesional> findInOrden(String orden) {
         /*Criteria criterio = ((Session)GestorConeccion.getInstance().getManager().getDelegate()).createCriteria("Persona").addOrder(Order.asc(orden));
@@ -72,7 +85,7 @@ public class IntermediarioProfesional extends Intermediario <Profesional> {
         }
     }
 
-     public Profesional findByMatricula (String matricula) {
+    public Profesional findByMatricula (String matricula) {
             try {
             Query q = GestorConeccion.getInstance().getManager().createNamedQuery(_clase + ".findByMatricula").setParameter("matricula", matricula);
             return (Profesional)q.getSingleResult();
@@ -83,6 +96,10 @@ public class IntermediarioProfesional extends Intermediario <Profesional> {
         }
     }
 
+    /**
+     * Lista todos los profesionales del hospital que no estan eliminados
+     * @return : retorna una lista con todos los profesionales del hospital
+     */
     @Override
     public List<Profesional> findAll() {
         try {
