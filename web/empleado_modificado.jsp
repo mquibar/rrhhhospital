@@ -49,7 +49,7 @@ else
     if (request.getParameter("buttonSave") != null)
     {
 
-        mensageEstado = c.modificarEmpleado
+        /*mensageEstado = c.modificarEmpleado
                             (
                              empleado,
                              nombre,
@@ -67,7 +67,7 @@ else
                              pais,
                              "Masculino",
                              cuil
-                            );
+                            );*/
     }
 
     if (mensageEstado != "" && mensageEstado.indexOf("Error") == -1)
@@ -107,7 +107,7 @@ else
         <div class="forms">
 	<form id="form1" name="form1" method="post" action="">
 		<div class="izquierda"><br />
-			Profesional: <%=empleado%> <br />
+			Empleado: <%=empleado%> <br />
 			<br />
                         <br />
 			Nombre<br />
@@ -200,7 +200,7 @@ else
 		</div>
 		<div class="guardar">
 			<label>
-			  <input type="submit" name="buttonSave" id="buttonSave" value="Guardar" />
+			  <input type="button" name="buttonSave" id="buttonSave" value="Actualizar" onclick="guardarModificacionEmpleado()" />
 			</label>
 			<label>
 			  <input type="submit" name="buttonVolver" id="buttonVolver" value="Volver" />

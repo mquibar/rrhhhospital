@@ -203,7 +203,7 @@ function guardarModificacionEmpleado () {
             ocultarEspera();
             if (req.status == 200 || window.location.href.indexOf ("http")==- 1) {
                 alert("Actualizo");
-                open("/underContruction.html","_self");
+                
             }else {
                 alert("Error");
             }
@@ -213,21 +213,21 @@ function guardarModificacionEmpleado () {
             }
         }
     };
-    req.open("GET", "ServletBajaPersonal?operacion=guardar&"+
-                           document.getElementById("nombre")+"&"+
-                           document.getElementById("apellido")+"&"+
-                           document.getElementById("dni")+"&"+
-                           document.getElementById("fechaNacimiento")+"&"+
-                           document.getElementById("telefono")+"&"+
-                           document.getElementById("cuil")+"&"+
-                           document.getElementById("calle")+"&"+
-                           document.getElementById("numero")+"&"+
-                           document.getElementById("barrio")+"&"+
-                           document.getElementById("piso")+"&"+
-                           document.getElementById("departamento")+"&"+
-                           document.getElementById("pais")+"&"+
-                           document.getElementById("localidad")+"&"+
-                           document.getElementById("provincia"), true);
+    req.open("GET", "ServletModificarPersonal?operacion=guardaremp&"+
+                           "nombre="+document.getElementById("nombre").value+"&"+
+                           "apellido="+document.getElementById("apellido").value+"&"+
+                           "dni="+document.getElementById("dni").value+"&"+
+                           "fechaNacimiento="+document.getElementById("fechaNacimiento").value+"&"+
+                           "telefono="+document.getElementById("telefono").value+"&"+
+                           "barrio="+document.getElementById("barrio").value+"&"+
+                           "calle="+document.getElementById("calle").value+"&"+
+                           "numero="+document.getElementById("numero").value+"&"+
+                           "piso="+document.getElementById("piso").value+"&"+
+                           "departamento="+document.getElementById("departamento").value+"&"+
+                           "pais="+document.getElementById("pais").value+"&"+
+                           "localidad="+document.getElementById("localidad").value+"&"+
+                           "provincia="+document.getElementById("provincia").value+"&"+
+                           "cuil="+document.getElementById("cuil").value, true);
     req.send(null);
 
     return (true);
@@ -241,7 +241,7 @@ function guardarModificacionProfesional () {
             ocultarEspera();
             if (req.status == 200 || window.location.href.indexOf ("http")==- 1) {
                 alert("Actualizo");
-                open("/underContruction.html","_self");
+                
             }else {
                 alert("Error");
             }
@@ -251,23 +251,23 @@ function guardarModificacionProfesional () {
             }
         }
     };
-    req.open("GET", "ServletBajaPersonal?operacion=guardar&"+
-                           document.getElementById("nombre")+"&"+
-                           document.getElementById("apellido")+"&"+
-                           document.getElementById("dni")+"&"+
-                           document.getElementById("fechaNacimiento")+"&"+
-                           document.getElementById("telefono")+"&"+
-                           document.getElementById("titulo")+"&"+
-                           document.getElementById("matricula")+"&"+
-                           document.getElementById("cuil")+"&"+
-                           document.getElementById("calle")+"&"+
-                           document.getElementById("numero")+"&"+
-                           document.getElementById("barrio")+"&"+
-                           document.getElementById("piso")+"&"+
-                           document.getElementById("departamento")+"&"+
-                           document.getElementById("pais")+"&"+
-                           document.getElementById("localidad")+"&"+
-                           document.getElementById("provincia"), true);
+    req.open("GET", "ServletModificarPersonal?operacion=guardarprof&"+
+                           "nombre="+document.getElementById("nombre").value+"&"+
+                           "apellido="+document.getElementById("apellido").value+"&"+
+                           "dni="+document.getElementById("dni").value+"&"+
+                           "fechaNacimiento="+document.getElementById("fechaNacimiento").value+"&"+
+                           "telefono="+document.getElementById("telefono").value+"&"+
+                           "barrio="+document.getElementById("barrio").value+"&"+
+                           "calle="+document.getElementById("calle").value+"&"+
+                           "numero="+document.getElementById("numero").value+"&"+
+                           "piso="+document.getElementById("piso").value+"&"+
+                           "departamento="+document.getElementById("departamento").value+"&"+
+                           "pais="+document.getElementById("pais").value+"&"+
+                           "localidad="+document.getElementById("localidad").value+"&"+
+                           "provincia="+document.getElementById("provincia").value+"&"+
+                           "cuil="+document.getElementById("cuil").value+"&"+
+                           "matricula="+document.getElementById("matricula").value+"&"+
+                           "titulo="+document.getElementById("titulo").value, true);
     req.send(null);
 
     return (true);
