@@ -31,6 +31,8 @@ public class IntermediarioClase extends Intermediario<Clase>{
         Map<String,Object> restricciones = new HashMap<String, Object>();
         if(dtoClase.getNombre()!=null)
             restricciones.put("nombre", dtoClase.getNombre());
+        if(dtoClase.getClaseVigente()!=null)
+            restricciones.put("claseVigenteList", dtoClase.getClaseVigente());
         return crearQuery(restricciones).getResultList();
     }
 
