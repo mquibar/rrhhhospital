@@ -6,7 +6,7 @@ function cargarSource(iframe, target)
 
 function cargarNoticias(target)
 {
-    cargarSource('ifnoticias', target)
+    cargarSource('noticias', target)
 }
 
 function cargar(target)
