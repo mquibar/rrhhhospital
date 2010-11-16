@@ -85,7 +85,7 @@ public class ExpAltaLicenciaBeans implements ExpAltaLicencia {
             Boolean eliminada
             ) {
 
-        if(idEntidad != null && idEntidad != "")
+        if(idEntidad != null && !idEntidad.isEmpty())
         {
             try
             {

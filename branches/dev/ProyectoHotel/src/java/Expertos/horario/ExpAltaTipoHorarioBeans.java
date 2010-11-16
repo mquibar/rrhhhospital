@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Expertos.horario;
 
 import Entidades.TipoHorario;
@@ -19,56 +18,43 @@ import javax.ejb.Stateless;
 public class ExpAltaTipoHorarioBeans implements ExpAltaTipoHorario {
 
     private TipoHorario _tipoHorario;
-    private boolean _flagSave=false;
+    private boolean _flagSave = false;
     private boolean _esAlta = true;
-
 
     public ExpAltaTipoHorarioBeans() {
         _tipoHorario = new TipoHorario();
     }
-    
+
     public String guardar() {
 
         String res = "Error: se produjo un error durante la validacion";
 
-        if(_flagSave)
-        {
-            try
-            {
+        if (_flagSave) {
+            try {
                 GestorConeccion gc = GestorConeccion.getInstance();
                 gc.beginTransaction();
-                if( persistir() )
-                {
+                if (persistir()) {
                     res = "El Tipo de Horario se guardo correctamente. Confirmado.";
                     System.out.println(res);
                     GestorConeccion.getInstance().commitTransaction();
-                }
-                else
-                {
+                } else {
                     res = "Error durante el guardado, Rolling Back";
                     System.out.println(res);
                     GestorConeccion.getInstance().rollbackTransaction();
                 }
-            }
-            catch(Exception ex)
-            {
-                    res = "Error: se produjo el siguiente error durante el guardado : <br />"
-                            + ex.toString();
+            } catch (Exception ex) {
+                res = "Error: se produjo el siguiente error durante el guardado : <br />" + ex.toString();
             }
         }
 
         return res;
     }
 
-    Boolean persistir()
-    {
-        if(_esAlta)
-        {
+    Boolean persistir() {
+        if (_esAlta) {
             System.out.println("Iniciando Alta...\n" + _tipoHorario);
             return (new IntermediarioTipoHorario()).guardar(_tipoHorario);
-        }
-        else
-        {
+        } else {
             System.out.println("Iniciando Modificacion...\n" + _tipoHorario);
             return (new IntermediarioTipoHorario()).actualizar(_tipoHorario);
         }
@@ -84,19 +70,14 @@ public class ExpAltaTipoHorarioBeans implements ExpAltaTipoHorario {
             String descripcion,
             Date horarioEntrada,
             Date horarioSalida,
-            Boolean eliminado
-            ) {
-        if(idEntidad != null && !idEntidad.equals(""))
-        {
-            try
-            {
-                _tipoHorario.setId(Integer.parseInt(idEntidad));
+            Boolean eliminado) {
+        if (idEntidad != null && !idEntidad.isEmpty()) {
+            try {
+                Integer.parseInt(idEntidad);
                 _esAlta = false;
                 _tipoHorario = getEntidad(idEntidad);
                 System.out.println("Modificando entidad con id '" + _tipoHorario.getId() + "'...");
-            }
-            catch(Exception ex)
-            {
+            } catch (Exception ex) {
                 System.out.println(
                         "Error al tratar de modificar, agregando entidad nueva: " +
                         ex.toString());
@@ -112,29 +93,21 @@ public class ExpAltaTipoHorarioBeans implements ExpAltaTipoHorario {
         _flagSave = validar();
     }
 
-    private boolean validar()
-    {
+    private boolean validar() {
         return true;
     }
 
-    TipoHorario _th = null;
-    public TipoHorario getEntidad(String idEntidad)
-    {
-        if(_th == null)
+    TipoHorario getEntidad(String idEntidad) {
+        TipoHorario _th = null;
+        try
         {
-            try
-            {
-                int idE = Integer.parseInt(idEntidad);
-                _th = new ExpConsultarTipoHorarioBeans().consultarTipoHorarioPorId(idE);
-            }
-            catch(Exception ex)
-            {
-                _th = new TipoHorario();
-            }
+            int idE = Integer.parseInt(idEntidad);
+            _th = new ExpConsultarTipoHorarioBeans().consultarTipoHorarioPorId(idE);
+        } catch (Exception ex) {
+            _th = new TipoHorario();
         }
+
 
         return _th;
     }
-
-
 }
