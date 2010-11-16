@@ -203,9 +203,11 @@ function guardarModificacionEmpleado () {
             ocultarEspera();
             if (req.status == 200 || window.location.href.indexOf ("http")==- 1) {
                 alert("Actualizo");
+                location="PanelNoticias.html";
                 
             }else {
                 alert("Error");
+                location="modificar_personal_ajax.jsp";
             }
         } else {
             if(req.readyState==1){
@@ -241,9 +243,10 @@ function guardarModificacionProfesional () {
             ocultarEspera();
             if (req.status == 200 || window.location.href.indexOf ("http")==- 1) {
                 alert("Actualizo");
-                
+                location="PanelNoticias.html";
             }else {
                 alert("Error");
+                location="modificar_personal_ajax.jsp";
             }
         } else {
             if(req.readyState==1){
