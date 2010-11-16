@@ -26,9 +26,9 @@ public class GeneraReporteBeans implements GeneraReporte{
         if(_con != null) return _con;
         try{
             Class.forName("org.postgresql.Driver").newInstance();
-            String urlConexion = "jdbc:postgresql://localhost:5432/hospital"; //System.getProperties().getProperty("hibernate.connection.url");
-            String usr ="postgres";// System.getProperties().getProperty("hibernate.connection.username");
-            String pass = "postgres";//System.getProperties().getProperty("hibernate.connection.password");
+            String urlConexion = System.getProperties().getProperty("hibernate.connection.url");
+            String usr = System.getProperties().getProperty("hibernate.connection.username");
+            String pass = System.getProperties().getProperty("hibernate.connection.password");
             _con = DriverManager.getConnection(urlConexion, usr, pass);
         }catch(Exception ex){
             ex.printStackTrace();
