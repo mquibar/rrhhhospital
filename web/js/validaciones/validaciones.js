@@ -23,6 +23,17 @@ function esHora(cadena)
     return /^[012]?[0-9]:[0-5][0-9]$/.test(cadena);
 }
 
+function getDate(fecha)
+{
+    arrDate = fecha.split("/");
+    return new Date(arrDate[2], arrDate[1]-1, arrDate[0]);
+}
+
+function esPeriodoValido(fechaIni, fechaFin)
+{
+    return getDate(fechaIni) <= getDate(fechaFin);
+}
+
 function validarFormulario()
 {
     listaErrores = validarCampos();

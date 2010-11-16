@@ -24,7 +24,7 @@ public class ModelOptionLicencia extends AbstractModelOptionList<Licencia>{
         return objeto.getIdEmpleado().getNombre() + " " +
                 objeto.getIdEmpleado().getApellido() + " - " +
                 ManejaFechas.convertirDate(objeto.getFechaInicio())+ " a " +
-                ManejaFechas.convertirDate(objeto.getFechaInicio());
+                ManejaFechas.convertirDate(objeto.getFechaFin());
     }
 
 }

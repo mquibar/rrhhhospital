@@ -47,7 +47,7 @@ if (request.getParameter("buttonCancel") != null)
 
     <jsp:forward page="../tools/messageBox.jsp">
     <jsp:param name="msg" value="Operacion cancelada por el usuario" />
-    <jsp:param name="target" value="home.html" />
+    <jsp:param name="target" value="../PanelNoticias.html" />
     </jsp:forward>
 
 <%
@@ -111,7 +111,7 @@ else
 
         <jsp:forward page="../tools/messageBox.jsp">
             <jsp:param name="msg" value="<%=mensageEstado%>" />
-            <jsp:param name="target" value="home.html" />
+            <jsp:param name="target" value="../PanelNoticias.html" />
         </jsp:forward>
 
 <%
@@ -143,13 +143,6 @@ else
         </head>
 
         <body>
-            <div class="cabecera">
-                <div class="logo"></div>
-                <div class="user">
-                    <div class="user_2">User: </div>
-                    <div class="log_off">LogOff </div>
-                </div>
-            </div>
             <div class="noticias" id="noticias_2">
                 <%=getTitle(esBorrado, idEntidad)%> ASIGNACION HORARIO<br />
 <%

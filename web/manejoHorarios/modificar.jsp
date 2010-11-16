@@ -38,9 +38,8 @@
     </head>
     <body>
         Elija <%=nombreImprimible(request)%> a modificar: 
-        <select onchange="cargarSource('abm', '<%=getValue(request, "pathEntidad")%><%=getValue(request, "nombreEntidad")%>.jsp?idEntidad=' + this.value);">Seleccionar
+        <select onchange="cargar('<%=getValue(request, "pathEntidad")%><%=getValue(request, "nombreEntidad")%>.jsp?idEntidad=' + this.value);">Seleccionar
             <%=ctrlComboSeleccion.getCombo(getValue(request, "nombreEntidad"))%>
         </select>
-        <iframe class="noticias" id="abm" src="#"></iframe>
     </body>
 </html>

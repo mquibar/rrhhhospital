@@ -2,6 +2,11 @@ function validarCampos()
 {
     listaErrores = ""
 
+    if(valorFromId("empleado") == "0" )
+    {
+        listaErrores += "Debe elegir un empleado.\n";
+    }
+
     if(!tieneDatos(valorFromId("DPC_edit1")))
     {
         listaErrores += "Fecha no debe ser vacio.\n";
@@ -31,7 +36,10 @@ function validarCampos()
         }
     }
 
-
+    if(valorFromId("horaEntrada") >= valorFromId("horaSalida"))
+    {
+        listaErrores += "Hora Salida debe ser mayor que Hora Entrada.\n";
+    }
 
     return listaErrores;
 }

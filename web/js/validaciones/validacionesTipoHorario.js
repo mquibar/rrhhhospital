@@ -38,7 +38,10 @@ function validarCampos()
         }
     }
 
-
+    if(valorFromId("horaEntrada") >= valorFromId("horaSalida"))
+    {
+        listaErrores += "Hora Salida debe ser mayor que Hora Entrada.\n";
+    }
 
     return listaErrores;
 }
