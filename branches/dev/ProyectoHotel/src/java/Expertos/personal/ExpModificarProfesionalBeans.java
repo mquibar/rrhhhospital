@@ -76,7 +76,7 @@ public class ExpModificarProfesionalBeans implements ExpModificarProfesional {
             profesional.setApellido(apellido);
             profesional.setDni(dni);
             profesional.setFechaNacimiento(Tools.ManejaFechas.convertirString(fechaNacimiento));
-            profesional.setTelefono(Long.getLong(telefono));
+            profesional.setTelefono(Long.parseLong(telefono));
             profesional.setIdSexo(sexo);
             profesional.setCuil(cuil);
             modificarDomicilioProfesional (profesional, barrio, calle,

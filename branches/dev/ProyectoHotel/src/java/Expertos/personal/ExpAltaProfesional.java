@@ -9,19 +9,15 @@ import javax.ejb.Remote;
 
 
 /**
+ * Interfaz que es implementada por el experto beans
  *
- * @author MARIANO
+ * @author Juan
  */
 
 @Remote
 public interface ExpAltaProfesional{
 
     public void agregarProfesional (Entidades.Profesional profesional);
-
-    public boolean iniciarAlta(String nombre, String apellido, String dni, java.util.Date fechaNacimiento,
-            long telefono, String barrio, String calle, String numero, String piso,
-            String departamanto, Entidades.Localidad localidad, Entidades.Provincia provincia, Entidades.Pais pais,
-            Entidades.Sexo sexo, String cuil, String matricula, String titulo);
 
     public java.util.Map<java.lang.String, java.util.List> iniciarProfesional();
 

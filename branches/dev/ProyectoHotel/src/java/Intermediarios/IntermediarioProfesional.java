@@ -63,7 +63,7 @@ public class IntermediarioProfesional extends Intermediario <Profesional> {
 
     public Profesional findByDni (String dni) {
             try {
-            Query q = GestorConeccion.getInstance().getManager().createNamedQuery(super._clase + ".findByDni").setParameter("dni", dni);
+            Query q = GestorConeccion.getInstance().getManager().createQuery("SELECT e FROM Profesional e WHERE e.dni = "+dni);
             return (Profesional)q.getSingleResult();
         } catch (Exception ex) {
             ex.printStackTrace();

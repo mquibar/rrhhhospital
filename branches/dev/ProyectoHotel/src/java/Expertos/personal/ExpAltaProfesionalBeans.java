@@ -54,37 +54,38 @@ public class ExpAltaProfesionalBeans implements ExpAltaProfesional {
             String departamanto, Localidad localidad, Provincia provincia, Pais pais, Sexo sexo,
             String cuil, String matricula, String titulo, Tarjeta tarjeta) {
         boolean resultado;
-       
-        _profesional.setNombre(nombre);
-        _profesional.setApellido(apellido);
-        _profesional.setDni(dni);
-        _profesional.setFechaNacimiento(fechaNacimiento);
-        _profesional.setTelefono(telefono);
-        agregarDomicilio(barrio, calle, numero, piso, departamanto, localidad, provincia, pais);
-        _profesional.setIdSexo(sexo);
-        _profesional.setCuil(cuil);
-        _profesional.setMatricula(matricula);
-        _profesional.setTitulo(titulo);
-        _profesional.setFechaIngreso(new Date());
-        _profesional.setIdTipoEmpleado(tipo);
-        _profesional.setIdTarjeta(tarjeta);
+        
+        
+                _profesional.setNombre(nombre);
+                _profesional.setApellido(apellido);
+                _profesional.setDni(dni);
+                _profesional.setFechaNacimiento(fechaNacimiento);
+                _profesional.setTelefono(telefono);
+                agregarDomicilio(barrio, calle, numero, piso, departamanto, localidad, provincia, pais);
+                _profesional.setIdSexo(sexo);
+                _profesional.setCuil(cuil);
+                _profesional.setMatricula(matricula);
+                _profesional.setTitulo(titulo);
+                _profesional.setFechaIngreso(new Date());
+                _profesional.setIdTipoEmpleado(tipo);
+                _profesional.setIdTarjeta(tarjeta);
 
-         GestorConeccion.getInstance().beginTransaction();
-        try{
-            if( (new IntermediarioProfesional()).guardar(_profesional) ){
-                resultado = true;
-                GestorConeccion.getInstance().commitTransaction();
-            }
-            else{
-                resultado = false;
-                GestorConeccion.getInstance().rollbackTransaction();
-            }
-        }catch(Exception ex){
-            System.out.println("************ <Error en el Experto de Alta de Persona>");
-            ex.printStackTrace();
-            System.out.println("<\\Error> *****************");
-            resultado = false;
-        }
+                 GestorConeccion.getInstance().beginTransaction();
+                try{
+                    if( (new IntermediarioProfesional()).guardar(_profesional) ){
+                        resultado = true;
+                        GestorConeccion.getInstance().commitTransaction();
+                    }
+                    else{
+                        resultado = false;
+                        GestorConeccion.getInstance().rollbackTransaction();
+                    }
+                }catch(Exception ex){
+                    System.out.println("************ <Error en el Experto de Alta de Persona>");
+                    ex.printStackTrace();
+                    System.out.println("<\\Error> *****************");
+                    resultado = false;
+                }
         return resultado;
         
     }
@@ -98,12 +99,5 @@ public class ExpAltaProfesionalBeans implements ExpAltaProfesional {
 
     }
 
-    public boolean iniciarAlta(String nombre, String apellido, String dni,
-            Date fechaNacimiento, long telefono, String barrio, String calle,
-            String numero, String piso, String departamanto, Localidad localidad,
-            Provincia provincia, Pais pais, Sexo sexo, String cuil, String matricula,
-            String titulo) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
 }

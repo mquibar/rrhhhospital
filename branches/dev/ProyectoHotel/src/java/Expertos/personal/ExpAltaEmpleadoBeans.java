@@ -21,6 +21,8 @@ import java.util.Map;
 import javax.ejb.Stateless;
 
 /**
+ * Experto encargado de interactuar con la base de datos, para guardar el empleado en 
+ * forma correcta
  *
  * @author Juan
  */
@@ -48,6 +50,28 @@ public class ExpAltaEmpleadoBeans implements ExpAltaEmpleado {
         return listas;
     }
 
+    /**
+     * Realiza la alta del empleado, con los datos que se le envian como parametro
+     *
+     * @param tipo
+     * @param nombre
+     * @param apellido
+     * @param dni
+     * @param fechaNacimiento
+     * @param telefono
+     * @param barrio
+     * @param calle
+     * @param numero
+     * @param piso
+     * @param departamanto
+     * @param localidad
+     * @param provincia
+     * @param pais
+     * @param sexo
+     * @param cuil
+     * @param tarjeta
+     * @return: true si el empleado fue dado de alta
+     */
     public boolean iniciarAlta(TipoEmpleado tipo,String nombre, String apellido, String dni, Date fechaNacimiento,
             long telefono, String barrio, String calle, String numero, String piso, String departamanto,
             Localidad localidad, Provincia provincia, Pais pais, Sexo sexo, String cuil, Tarjeta tarjeta) {
