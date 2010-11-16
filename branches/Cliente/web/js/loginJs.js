@@ -16,7 +16,29 @@ function js_logIn(){
             }
         }
     };
-    req.open("POST", "logInServlet?userName="+document.getElementById("user").value+"&pass="+document.getElementById("password").value, true);
+    req.open("POST", "logInServlet?segurityOption=login&userName="+document.getElementById("user").value+"&pass="+document.getElementById("password").value, true);
+    req.send(null);
+
+    return (true);
+}
+
+function js_logOff(){
+    req.onreadystatechange = function () {
+        if ( req.readyState == 4){
+            ocultarEspera();
+            alert("Gracias por utilizar nuestro sistema");
+            if(req.status != 200) {
+                alert("Error al cerrar la sesion \nPuede que no se haya inicado con exito la session");
+            }
+            window.location="index.jsp";
+
+        } else {
+            if(req.readyState==1){
+                mostrarEspera();
+            }
+        }
+    };
+    req.open("POST", "logInServlet?segurityOption=logoff", true);
     req.send(null);
 
     return (true);

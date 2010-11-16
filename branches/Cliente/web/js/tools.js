@@ -13,3 +13,8 @@ function cargar(target)
 {
     window.location = target;
 }
+
+function js_cancel_operacion(){
+    alert("Operacion cancelada por el usuario");
+    location="PanelNoticias.html";
+}
