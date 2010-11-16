@@ -7,17 +7,10 @@
 <script language="javascript" type="text/javascript" src="./js/esperar.js"></script>
 <script language="javascript" type="text/javascript" src="./js/Personal.js"></script>
 <script language="javascript" type="text/javascript" src="./js/Funciones.js"></script>
-</head>
+<script language="javascript" type="text/javascript" src="./js/tools.js"></script>
 </head>
 
 <body onload="iniciaBaja()">
-<div class="cabecera">
-  <div class="logo"></div>
-  <div class="user">
-    <div class="user_2">User: </div>
-    <div class="log_off">LogOff </div>
-  </div>
-</div>
 <div class="noticias" id="noticias_2"> Baja Personal<br />
   <div class="forms">
     <div class="izquierda"><br />
@@ -38,10 +31,10 @@
       <br />
       <br />
       <label>
-        <input type="button" name="Baja" id="button" onclick="darBaja()" />
+        <input type="button" name="Baja" id="button" onclick="darBaja()" value="Aceptar"/>
       </label>
       <label>
-        <input type="submit" name="button2" id="button2" value="Cancelar" />
+          <input type="button" name="button2" id="button2" value="Cancelar" onclick="js_cancel_operacion()" />
       </label>
       <br />
       <br />

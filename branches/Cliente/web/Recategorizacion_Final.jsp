@@ -3,9 +3,13 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Home</title>
         <link href="./css/estilos.css" rel="stylesheet" type="text/css" />
+        <link href="./js/jquery.alerts-1.1/jquery.alerts.css" rel="stylesheet" type="text/css" media="screen" />
         <script language="javascript" type="text/javascript" src="./js/createRequestJs.js"></script>
         <script language="javascript" type="text/javascript" src="./js/esperar.js"></script>
         <script language="javascript" type="text/javascript" src="./js/recategorizarJs.js"></script>
+        <script language="javascript" type="text/javascript" src="./js/jquery/alerts/jquery/jquery-1.4.2.min.js"></script>
+        <script language="javascript" type="text/javascript" src="./js/jquery/alerts/jquery/ui/jquery.ui.draggable.js"></script>
+        <script language="javascript" type="text/javascript" src="./js/jquery/alerts/jquery/alerts.js"></script>
     </head>
 
     <body onload="js_recategor()">
@@ -48,7 +52,7 @@
                             <input type="button" name="buttonActualizar" id="buttonActualizar" value="Actualizar" onclick="js_save_recat()"/>
                         </p>
                         <p>
-                            <input type="button" name="buttonCancel" id="buttonCancel" value="Cancelar" onclick="js_cancel_recat()"/>
+                            <input type="button" name="buttonCancel" id="buttonCancel" value="Cancelar" onclick="jAlert('Operacion Cancelada por el Usuario', 'Sistema Personal')"/>
                         </p>
                     </form>
                 </div>

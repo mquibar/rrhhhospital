@@ -24,10 +24,21 @@
         <servlet-name>servletConsultarDomicilio</servlet-name>
         <servlet-class>servlets.servletConsultarDomicilio</servlet-class>
     </servlet>
-    <servlet><servlet-name>ServletConsultarPersonal</servlet-name><servlet-class>servlets.ServletConsultarPersonal</servlet-class></servlet>
+    <servlet>
+        <servlet-name>ServletConsultarPersonal</servlet-name>
+        <servlet-class>servlets.ServletConsultarPersonal</servlet-class>
+    </servlet>
     <servlet>
         <servlet-name>ServletBajaPersonal</servlet-name>
         <servlet-class>servlets.ServletBajaPersonal</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>logInServlet</servlet-name>
+        <servlet-class>servlets.logInServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>asignarLegServlet</servlet-name>
+        <servlet-class>servlets.asignarLegServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>testAgrupamiento</servlet-name>
@@ -60,6 +71,14 @@
     <servlet-mapping>
         <servlet-name>ServletBajaPersonal</servlet-name>
         <url-pattern>/ServletBajaPersonal</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>logInServlet</servlet-name>
+        <url-pattern>/logInServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>asignarLegServlet</servlet-name>
+        <url-pattern>/asignarLegServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

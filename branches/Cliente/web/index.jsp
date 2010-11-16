@@ -38,7 +38,7 @@
                                     <td> Username  : </td><td> <input id="user" name="username" size=15 type="text" /> </td>
                                 </tr>
                                 <tr>
-                                    <td> Password  : </td><td> <input id="password" name="password" size=15 type="text" /> </td>
+                                    <td> Password  : </td><td> <input id="password" name="password" size=15 type="password" /> </td>
                                 </tr>
                             </table>
                             <input align="center" type="button" value="login" onclick="js_logIn()" />

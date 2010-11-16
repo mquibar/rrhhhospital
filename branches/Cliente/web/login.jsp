@@ -72,7 +72,7 @@ bodyLogin
   <div class="forms">
     <div class="izquierda" id="login">
       <div class="logo_login">
-          <img src="img/Logo.jpg" alt="logo" width="402" height="316" align="absmiddle" />
+          <img src="./img/Logo.jpg" alt="logo" width="402" height="316" align="absmiddle" />
       </div>
 <%
     if(mensageEstado != "")
