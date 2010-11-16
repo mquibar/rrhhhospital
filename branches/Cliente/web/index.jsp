@@ -13,7 +13,7 @@
         <link href="./css/estilos.css" rel="stylesheet" type="text/css" />
         <link href="./js/jqueryjs/jquery.alerts.css" rel="stylesheet" type="text/css" media="screen" />
         <script type="text/javascript" src="./js/jqueryjs/js/jquery-1.4.2.min.js"></script>
-        <script type="text/javascript" src="./js/jqueryjs/jquery.alerts.js"></script>)
+        <script type="text/javascript" src="./js/jqueryjs/jquery.alerts.js"></script>
         <style type="text/css">
             bodyLogin
             {
