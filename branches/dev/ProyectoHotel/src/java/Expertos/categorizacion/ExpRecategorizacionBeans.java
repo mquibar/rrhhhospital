@@ -41,7 +41,7 @@ public class ExpRecategorizacionBeans implements ExpRecategorizacion {
         List<Categoria> posibles, categorias = _consultaCategorias.listarCategorias();
         posibles = new ArrayList<Categoria>();
         List<ClaseContenida> contenidas = null;
-        long antiguedad = Tools.ManejaFechas.difencia(e.getFechaIngreso());
+        long antiguedad = Tools.ManejaFechas.difencia(e.getFechaIngreso())/356;
         int idx = 0;
         //Completa la lista de las categorias que se pueden listar
         for (Categoria c : categorias) {
@@ -50,8 +50,7 @@ public class ExpRecategorizacionBeans implements ExpRecategorizacion {
             }
             contenidas = new ArrayList<ClaseContenida>();
             idx = 0;
-            while (c.getClaseContenida().size() > idx
-                    && antiguedad >= c.getClaseContenida().get(idx).getAntiguedadMinima()) {
+            while (c.getClaseContenida().size() > idx && antiguedad >= c.getClaseContenida().get(idx).getAntiguedadMinima()) {
                 contenidas.add(c.getClaseContenida().get(idx));
                 idx++;
             }
@@ -105,8 +104,8 @@ public class ExpRecategorizacionBeans implements ExpRecategorizacion {
         cv.setCategoria(_consultaCategorias.consultarCategoria(categoria));
         cv.setClase(clase);
         cv.setEmpleado(_empleado);
-
-        for (ClaseVigente claseVigente : _empleado.getClaseVigenteList()) {
+        List<ClaseVigente> lista = (new Intermediarios.IntermediarioClaseVigente()).findByDto(_empleado);
+        for (ClaseVigente claseVigente : lista) {
             if (claseVigente.getVigente()) {
                 claseVigente.setVigente(false);
             }
@@ -115,13 +114,20 @@ public class ExpRecategorizacionBeans implements ExpRecategorizacion {
         if (categoria.getCupo() > 1) {
             categoria.setCupo(categoria.getCupo() - 1);
         }
-        _empleado.getClaseVigenteList().add(cv);
+        lista.add(cv);
 
         Intermediarios.GestorConeccion.getInstance().beginTransaction();
         try {
             if ((new Intermediarios.IntermediarioEmpleado()).actualizar(_empleado)) {
                 if ((new Intermediarios.IntermediarioCategoria()).actualizar(categoria)) {
                     guardado = true;
+                    Intermediarios.Intermediario<ClaseVigente> interm = new Intermediarios.IntermediarioClaseVigente();
+                    for (ClaseVigente claseVigente : lista) {
+                        if (!interm.actualizar(cv)) {
+                            guardado = false;
+                        }
+                    }
+
                 }
             }
             if (guardado) {
@@ -163,8 +169,7 @@ public class ExpRecategorizacionBeans implements ExpRecategorizacion {
             idx = 0;
 
             //EN ESTA LINEA REVISO CUAL ES LA CLASE MAXIMA QUE SE PUEDE ALCANZAR SEGUN LA ANTIGÜEDAD
-            while (cat.getClaseContenida().size() > idx
-                    && antiguedad >= cat.getClaseContenida().get(idx).getAntiguedadMinima()) {
+            while (cat.getClaseContenida().size() > idx && antiguedad >= cat.getClaseContenida().get(idx).getAntiguedadMinima()) {
                 contenidas.add(cat.getClaseContenida().get(idx));
                 cat.getClaseContenida().get(idx).getClase();
                 idx++;
@@ -261,10 +266,12 @@ public class ExpRecategorizacionBeans implements ExpRecategorizacion {
         try {
             if ((new Intermediarios.IntermediarioEmpleado()).actualizar(e)) {
                 if ((new Intermediarios.IntermediarioCategoria()).actualizar(cat)) {
-                    Intermediarios.GestorConeccion.getInstance().commitTransaction();
-                } else {
-                    Intermediarios.GestorConeccion.getInstance().rollbackTransaction();
-                    throw new Exception();
+                    if ((new Intermediarios.IntermediarioClaseVigente()).guardar(cv)) {
+                        Intermediarios.GestorConeccion.getInstance().commitTransaction();
+                    } else {
+                        Intermediarios.GestorConeccion.getInstance().rollbackTransaction();
+                        throw new Exception();
+                    }
                 }
             }
         } catch (Exception ex) {
