@@ -29,7 +29,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "Licencia")
-@NamedQueries({@NamedQuery(name = "Licencia.findAll", query = "SELECT l FROM Licencia l")
+@NamedQueries({@NamedQuery(name = "Licencia.findAll", query = "SELECT l FROM Licencia l WHERE l.eliminada = false")
 /*
 ,@NamedQuery(name = "Licencia.findById", query = "SELECT l FROM Licencia l WHERE l.id = :id"),
 @NamedQuery(name = "Licencia.findByFechaInicio", query = "SELECT l FROM Licencia l WHERE l.fechaInicio = :fechaInicio"),

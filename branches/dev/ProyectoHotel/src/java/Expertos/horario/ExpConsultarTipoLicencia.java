@@ -7,7 +7,6 @@ package Expertos.horario;
 
 import Entidades.TipoLicencia;
 import java.util.List;
-import javax.ejb.Local;
 import javax.ejb.Remote;
 
 /**
@@ -15,7 +14,6 @@ import javax.ejb.Remote;
  * @author Desarrollo
  */
 @Remote
-@Local
 public interface  ExpConsultarTipoLicencia {
 
     public List<TipoLicencia> listar();

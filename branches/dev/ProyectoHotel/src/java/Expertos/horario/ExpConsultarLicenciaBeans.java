@@ -6,7 +6,6 @@
 package Expertos.horario;
 
 import Entidades.Licencia;
-import Expertos.horario.ExpConsultarLicencia;
 import Intermediarios.IntermediarioLicencia;
 import java.util.List;
 import javax.ejb.Stateless;
