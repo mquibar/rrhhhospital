@@ -7,10 +7,12 @@ package Expertos.categorizacion;
 
 import DTO.DtoAgrupamiento;
 import DTO.DtoCategoria;
+import DTO.DtoClase;
 import DTO.DtoTramo;
 import Entidades.Agrupamiento;
 import Entidades.Categoria;
 import Entidades.Clase;
+import Entidades.ClaseVigente;
 import Entidades.Tramo;
 import Intermediarios.IntermediarioAgrupamiento;
 import Intermediarios.IntermediarioCategoria;
@@ -110,4 +112,13 @@ public class ExpConsultarCategoriaBeans implements ExpConsultarCategoria {
         }
     }
 
+    public List<Clase> consultarClase(ClaseVigente cv){
+        DtoClase dto = new DtoClase();
+        dto.setClaseVigente(cv);
+        try{
+            return (new Intermediarios.IntermediarioClase()).findByDto(dto);
+        }catch(Exception e){
+            return null;
+        }
+    }
 }

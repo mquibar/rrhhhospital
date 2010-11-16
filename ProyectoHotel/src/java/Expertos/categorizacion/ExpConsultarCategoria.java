@@ -36,4 +36,6 @@ public interface  ExpConsultarCategoria {
 
     public Categoria consultarCategoria(Categoria categoria);
     public Tramo consultarTramo(Categoria categoria);
+
+    public java.util.List<Entidades.Clase> consultarClase(Entidades.ClaseVigente cv);
 }

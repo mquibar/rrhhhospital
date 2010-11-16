@@ -5,7 +5,6 @@
 
 package Expertos.reports;
 
-import Expertos.reports.GeneraReporte;
 import Tools.OpenFile;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -27,7 +26,7 @@ public class GeneraReporteBeans implements GeneraReporte{
         if(_con != null) return _con;
         try{
             Class.forName("org.postgresql.Driver").newInstance();
-            String urlConexion = "jdbc:postgresql://192.168.7.190:5432/hospital"; //System.getProperties().getProperty("hibernate.connection.url");
+            String urlConexion = "jdbc:postgresql://localhost:5432/hospital"; //System.getProperties().getProperty("hibernate.connection.url");
             String usr ="postgres";// System.getProperties().getProperty("hibernate.connection.username");
             String pass = "postgres";//System.getProperties().getProperty("hibernate.connection.password");
             _con = DriverManager.getConnection(urlConexion, usr, pass);
@@ -41,7 +40,7 @@ public class GeneraReporteBeans implements GeneraReporte{
     public JasperPrint printReport(Map parametros, String xmlFile){
 
         try{
-            return JasperFillManager.fillReport(JasperCompileManager.compileReport(OpenFile.openInputStream("/reports/"+xmlFile)), parametros,getConection());
+            return JasperFillManager.fillReport(JasperCompileManager.compileReport(OpenFile.openInputStream("/reports/"+xmlFile+".jrxml")), parametros,getConection());
         }catch(Exception ex){
             ex.printStackTrace();
         }
