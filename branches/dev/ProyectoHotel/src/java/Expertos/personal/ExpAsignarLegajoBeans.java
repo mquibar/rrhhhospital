@@ -14,7 +14,6 @@ import Entidades.Tramo;
 import Expertos.categorizacion.ExpRecategorizacion;
 import Intermediarios.IntermediarioEmpleado;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -31,7 +30,7 @@ public class ExpAsignarLegajoBeans implements ExpAsignarLegajo {
     ExpRecategorizacion _expRecategoria;
 
     public List<Empleado> beginCU() {
-        return (new IntermediarioEmpleado()).findNotLegajo();
+        return (new IntermediarioEmpleado()).findNotLegajo(0);
     }
 
     public List<Agrupamiento> listarAgrupamiento() {

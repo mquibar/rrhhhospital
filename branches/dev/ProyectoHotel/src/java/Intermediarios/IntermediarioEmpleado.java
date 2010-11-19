@@ -12,9 +12,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.Query;
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.criterion.Order;
 
 /**
  *
@@ -97,10 +94,12 @@ public class IntermediarioEmpleado extends Intermediario<Empleado> {
         }
     }
 
-    public List<Empleado> findNotLegajo() {
+    public List<Empleado> findNotLegajo(Object legajo) {
         try{
-            String query = "SELECT e FROM Empleado WHERE e.legajo = 0";
-            return GestorConeccion.getInstance().getManager().createQuery(query).getResultList();
+            String query = "SELECT e FROM Empleado WHERE e.legajo = :legajo";
+            Query q =GestorConeccion.getInstance().getManager().createQuery(query);
+            q.setParameter("legajo", legajo);
+            return q.getResultList();
         }catch(Exception e){
             return null;
         }

@@ -34,7 +34,7 @@ public class ExpModificarAgrupamientoBeans implements ExpModificarAgrupamiento{
     }
 
     public boolean cambiarNombre( Agrupamiento agrupamiento, String nombre){
-
+        nombre = nombre.toUpperCase();
         if( _expertoConsulta.consultarAgrupamientoByNombre(nombre) !=null )
             return false;
         agrupamiento.setNombre(nombre);
