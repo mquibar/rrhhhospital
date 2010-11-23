@@ -16,7 +16,7 @@ import system.exception.SystemException;
  */
 @Remote
 public interface ExpNewUser {
-    public List<Perfil> iniciarNewUser();
+    public List<Perfil> listarPerfil();
     public void newUser(String nombre, String password, Perfil... perfiles)throws SystemException;
     
 }
