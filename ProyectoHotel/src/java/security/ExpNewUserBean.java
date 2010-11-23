@@ -25,7 +25,7 @@ import system.exception.SystemException;
 @Stateless
 public class ExpNewUserBean implements ExpNewUser {
 
-    public List<Perfil> iniciarNewUser() {
+    public List<Perfil> listarPerfil() {
         return (new IntermediarioPerfil()).findAll();
     }
 
