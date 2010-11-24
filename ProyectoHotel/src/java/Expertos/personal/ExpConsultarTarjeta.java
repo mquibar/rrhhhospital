@@ -16,4 +16,6 @@ public interface ExpConsultarTarjeta {
 
     public Entidades.Tarjeta listarTarjetas(long numero);
 
+    public java.util.List<Entidades.Tarjeta> listarTarjetasNoOcupadas();
+
 }
