@@ -7,10 +7,13 @@ package controllers;
 
 import Entidades.Empleado;
 import Entidades.Profesional;
+import Entidades.Tarjeta;
 import Expertos.personal.ExpConsultarPersonal;
+import Expertos.personal.ExpConsultarTarjeta;
 import java.util.List;
 import models.combos.AbstractModelOptionList;
 import models.combos.ModelOptionEmpleado;
+import models.combos.ModelOptionTarjeta;
 
 /**
  *
@@ -19,11 +22,13 @@ import models.combos.ModelOptionEmpleado;
 public class ctrlConsultarPersona extends GeneralController {
 
     private ExpConsultarPersonal _exp;
+    private ExpConsultarTarjeta _expTarjeta;
     private ModelOptionEmpleado model = null;
 
     /*Constructor del experto de consultar*/
     public ctrlConsultarPersona() {
         _exp = (ExpConsultarPersonal) super.getExpert(ExpConsultarPersonal.class.getName());
+        _expTarjeta = (ExpConsultarTarjeta) super.getExpert(ExpConsultarTarjeta.class.getName());
     }
 
     /*Lista a todos los profesionales del hospital*/
@@ -67,4 +72,8 @@ public class ctrlConsultarPersona extends GeneralController {
 
     }
 
+    /*Busca Tarjeta que no tengo asociado ningun personal*/
+    public AbstractModelOptionList listarTarjeta () {
+        return new ModelOptionTarjeta(_expTarjeta.listarTarjetasNoOcupadas());
+    }
 }
