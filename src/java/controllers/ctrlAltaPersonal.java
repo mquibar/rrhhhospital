@@ -30,9 +30,10 @@ public class ctrlAltaPersonal extends GeneralController {
         private ModelOptionLocalidad modellocalidad;
         private ModelOptionTipoEmpleado modeltipo;
         private ModelOptionTarjeta modelotarjeta;
-        private enum TipoEmpleado {
-        EMPLEADO,PROFESIONAL
-    }
+        private String tipoPersona;
+        private enum AltaPersona {
+            EMPLEADO,PROFESIONAL
+        }
 
 
     public ctrlAltaPersonal() {
@@ -57,44 +58,75 @@ public class ctrlAltaPersonal extends GeneralController {
         models.put("TARJETA", modelotarjeta);
 
     }
+    /**
+     * Inicia el alta de la persona dependiendo el tipo
+     * @param valor: valor del tipo de persona
+     * @return, Retorna el contenido de la pagina a cargar
+     */
+    public String iniciar (String valor) {
+        tipoPersona = valor;
+        String option = modeltipo.getSelectedItem(valor).getNombre().toUpperCase();
+        String url = null;
+        try {
+        switch (AltaPersona.valueOf(option)) {
+                case EMPLEADO:
+                    url="alta_empleado.jsp?";
+                    break;
+                case PROFESIONAL:
+                    url="alta_profesional.jsp?";
+                    break;
+                default:
+                    System.out.println("default entro");
+                    url="underContruction.html";
+        }
+        } catch (Exception e){
+            System.out.println("exception"+e.getMessage());
+        }
+         return url;
 
-    public String iniciarAlta(String tipo, String nombre, String apellido, String dni,
+    }
+
+
+    public String iniciarAltaEmpleado(String nombre, String apellido, String dni,
             String fechaNacimiento, String telefono, String barrio,
             String calle, String numero, String piso, String departamanto,
             String localidad, String provincia, String pais, String sexo, String cuil,
-            String matricula, String titulo, String tarjeta) {
+            String tarjeta) {
             
-            String option = (modeltipo.getSelectedItem(tipo).getNombre()).toUpperCase();
-            String respuesta = null;
             try {
-            switch (TipoEmpleado.valueOf(option)) {
-                case EMPLEADO:
-                    respuesta = controladorEmpleado.iniciarAlta(modeltipo.getSelectedItem(tipo),nombre,
+                return controladorEmpleado.iniciarAlta(modeltipo.getSelectedItem(tipoPersona),nombre,
                             apellido,dni,Tools.ManejaFechas.convertirString(fechaNacimiento),
                             Long.parseLong(telefono),barrio, calle,numero,piso,departamanto,
                             modellocalidad.getSelectedItem(localidad),
                             modelprovincia.getSelectedItem(provincia), modelpais.getSelectedItem(pais),
                             expsexo.listarSexo(sexo),cuil,modelotarjeta.getSelectedItem(tarjeta));
-                    break;
-               case PROFESIONAL:
-                    respuesta = controladorProfesional.iniciarAlta(modeltipo.getSelectedItem(tipo),nombre,apellido,dni,Tools.ManejaFechas.convertirString(fechaNacimiento),
-                                    Long.parseLong(telefono),barrio, calle,numero,piso,departamanto,modellocalidad.getSelectedItem(localidad),
-                                    modelprovincia.getSelectedItem(provincia), modelpais.getSelectedItem(pais),
-                                    expsexo.listarSexo(sexo),cuil,matricula,titulo,modelotarjeta.getSelectedItem(tarjeta));
-                    break;
-                default:
-                    respuesta = "Tipo de Empleado no encontrado";
-                    break;
-
+                
+            } catch (Exception ex) {
+                return "Error: Error de conexion con servidor de aplicaciones"+ex.toString();
             }
-            return respuesta;
-        } catch (Exception ex) {
-            return "Error: Error de conexion con servidor de aplicaciones"+ex.toString();
-        }
 
     }
 
-    public AbstractModelOptionList getModels(String key) {
+
+    public String iniciarAltapRrofesional(String nombre, String apellido, String dni,
+            String fechaNacimiento, String telefono, String barrio,
+            String calle, String numero, String piso, String departamanto,
+            String localidad, String provincia, String pais, String sexo, String cuil,
+            String matricula, String titulo, String tarjeta) {
+
+            try {
+                return controladorProfesional.iniciarAlta(modeltipo.getSelectedItem(tipoPersona),nombre,apellido,dni,Tools.ManejaFechas.convertirString(fechaNacimiento),
+                                    Long.parseLong(telefono),barrio, calle,numero,piso,departamanto,modellocalidad.getSelectedItem(localidad),
+                                    modelprovincia.getSelectedItem(provincia), modelpais.getSelectedItem(pais),
+                                    expsexo.listarSexo(sexo),cuil,matricula,titulo,modelotarjeta.getSelectedItem(tarjeta));
+
+            } catch (Exception ex) {
+                return "Error: Error de conexion con servidor de aplicaciones"+ex.toString();
+            }
+
+    }
+
+   public AbstractModelOptionList getModels(String key) {
         try {
             return models.get(key.toUpperCase());
         } catch (Exception e) {
