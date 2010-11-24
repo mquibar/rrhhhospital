@@ -236,6 +236,7 @@ function guardarModificacionEmpleado () {
 
 }
 
+/*Guarda las modificaciones de un profesional*/
 function guardarModificacionProfesional () {
 
     req.onreadystatechange = function () {
@@ -277,3 +278,121 @@ function guardarModificacionProfesional () {
 
 }
 
+/*Inicia el alta del personal, llenando el combo de tipos, con los datos correspondientes*/
+function iniciarAltaPersonal () {
+    req.onreadystatechange = function () {
+        if ( req.readyState == 4 && (req.status == 200 || window.location.href.indexOf ("http")==- 1)) {
+            document.getElementById("tipoEmpleado").innerHTML = req.responseText;
+            ocultarEspera();
+        } else {
+            if(req.readyState==1){
+               mostrarEspera();
+            }
+        }
+    };
+    req.open("GET", "ServletAltaPersonal?operacion=load" , true);
+    req.send(null);
+
+    return (true);
+
+
+}
+
+function altaEspecifica () {
+    req.onreadystatechange = function () {
+        if ( req.readyState == 4 && (req.status == 200 || window.location.href.indexOf ("http")==- 1)) {
+            document.getElementById("noticias_2").innerHTML = req.responseText;
+            ocultarEspera();
+        } else {
+            if(req.readyState==1){
+               mostrarEspera();
+            }
+        }
+    };
+    req.open("GET", "ServletAltaPersonal?operacion=especifica&valor="+ document.getElementById("empleados").value, true);
+    req.send(null);
+
+    return (true);
+
+}
+
+function altaProfesional () {
+
+    req.onreadystatechange = function () {
+        if ( req.readyState == 4 ) {
+            ocultarEspera();
+            if (req.status == 200 || window.location.href.indexOf ("http")==- 1) {
+                alert("Guardo");
+                location="PanelNoticias.html";
+            }else {
+                alert("Error");
+                location="alta_personal.jsp";
+            }
+        } else {
+            if(req.readyState==1){
+               mostrarEspera();
+            }
+        }
+    };
+    req.open("GET", "ServletAltaPersonal?operacion=altaprofesional&"+
+                           "nombre="+document.getElementById("nombre").value+"&"+
+                           "apellido="+document.getElementById("apellido").value+"&"+
+                           "dni="+document.getElementById("dni").value+"&"+
+                           "fechaNacimiento="+document.getElementById("fechaNacimiento").value+"&"+
+                           "telefono="+document.getElementById("telefono").value+"&"+
+                           "barrio="+document.getElementById("barrio").value+"&"+
+                           "calle="+document.getElementById("calle").value+"&"+
+                           "numero="+document.getElementById("numero").value+"&"+
+                           "piso="+document.getElementById("piso").value+"&"+
+                           "departamento="+document.getElementById("departamento").value+"&"+
+                           "pais="+document.getElementById("pais").value+"&"+
+                           "localidad="+document.getElementById("localidad").value+"&"+
+                           "provincia="+document.getElementById("provincia").value+"&"+
+                           "cuil="+document.getElementById("cuil").value+"&"+
+                           "matricula="+document.getElementById("matricula").value+"&"+
+                           "titulo="+document.getElementById("titulo").value, true);
+    req.send(null);
+
+    return (true);
+
+}
+
+function altaEmpleado () {
+
+    req.onreadystatechange = function () {
+        if ( req.readyState == 4 ) {
+            ocultarEspera();
+            if (req.status == 200 || window.location.href.indexOf ("http")==- 1) {
+                alert("Actualizo");
+                location="PanelNoticias.html";
+
+            }else {
+                alert("Error");
+                location="alta_personal.jsp";
+            }
+        } else {
+            if(req.readyState==1){
+               mostrarEspera();
+            }
+        }
+    };
+    req.open("GET", "ServletAltaPersonal?operacion=altaempleado&"+
+                           "nombre="+document.getElementById("nombre").value+"&"+
+                           "apellido="+document.getElementById("apellido").value+"&"+
+                           "dni="+document.getElementById("dni").value+"&"+
+                           "fechaNacimiento="+document.getElementById("fechaNacimiento").value+"&"+
+                           "telefono="+document.getElementById("telefono").value+"&"+
+                           "barrio="+document.getElementById("barrio").value+"&"+
+                           "calle="+document.getElementById("calle").value+"&"+
+                           "numero="+document.getElementById("numero").value+"&"+
+                           "piso="+document.getElementById("piso").value+"&"+
+                           "departamento="+document.getElementById("departamento").value+"&"+
+                           "pais="+document.getElementById("pais").value+"&"+
+                           "localidad="+document.getElementById("localidad").value+"&"+
+                           "provincia="+document.getElementById("provincia").value+"&"+
+                           "cuil="+document.getElementById("cuil").value, true);
+    req.send(null);
+
+    return (true);
+
+}
