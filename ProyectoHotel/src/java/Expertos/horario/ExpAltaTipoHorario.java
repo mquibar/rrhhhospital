@@ -5,8 +5,6 @@
 
 package Expertos.horario;
 
-import Entidades.TipoHorario;
-import java.util.Date;
 import javax.ejb.Remote;
 
 /**
@@ -16,16 +14,17 @@ import javax.ejb.Remote;
 @Remote
 public interface  ExpAltaTipoHorario {
 
-    public void agregarTipoHorario (TipoHorario tipoHorario);
-    public void iniciarAlta (
-            String idEntidad,
-            String nombre,
-            String descripcion,
-            Date horaIngreso,
-            Date horaSalida,
-            Boolean eliminado
-            );
+    public void iniciarAlta (String idEntidad, Object ... data);
 
     public String guardar();
+
+//    public void iniciarAlta (String idEntidad,
+//        String nombre,
+//        String descripcion,
+//        Date horaIngreso,
+//        Date horaSalida,
+//        Boolean eliminado
+//        );
+
 
 }

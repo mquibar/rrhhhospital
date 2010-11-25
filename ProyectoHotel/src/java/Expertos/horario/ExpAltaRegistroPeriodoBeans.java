@@ -5,6 +5,7 @@
 
 package Expertos.horario;
 
+import Expertos.horario.consultar.ExpConsultarRegistroPeriodoBeans;
 import Entidades.Empleado;
 import Entidades.RegistroPeriodo;
 import Intermediarios.GestorConeccion;

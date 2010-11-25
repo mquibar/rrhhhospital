@@ -3,10 +3,10 @@
  * and open the template in the editor.
  */
 
-package Expertos.horario;
+package Expertos.horario.consultar;
 
 import Entidades.AsignacionHorario;
-import Expertos.horario.ExpConsultarAsignacionHorario;
+import Expertos.horario.consultar.ExpConsultarAsignacionHorario;
 import Intermediarios.IntermediarioAsignacionHorario;
 import java.util.List;
 import javax.ejb.Stateless;
