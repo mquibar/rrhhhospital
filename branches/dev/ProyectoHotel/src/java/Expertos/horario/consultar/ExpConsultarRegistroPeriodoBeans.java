@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package Expertos.horario;
+package Expertos.horario.consultar;
 
 import DTO.DtoRegistroPeriodo;
 import Entidades.Empleado;

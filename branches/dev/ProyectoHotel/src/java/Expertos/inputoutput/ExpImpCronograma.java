@@ -5,7 +5,7 @@
 package Expertos.inputoutput;
 
 import Expertos.horario.ExpAltaAsignacionHorarioBeans;
-import Expertos.horario.ExpConsultarTipoHorarioBeans;
+import Expertos.horario.consultar.ExpConsultarTipoHorarioBeans;
 import Expertos.personal.ExpConsultarPersonalBeans;
 import Entidades.Empleado;
 import Entidades.TipoHorario;

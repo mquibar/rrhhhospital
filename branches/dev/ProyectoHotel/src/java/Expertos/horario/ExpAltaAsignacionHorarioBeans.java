@@ -5,6 +5,7 @@
 
 package Expertos.horario;
 
+import Expertos.horario.consultar.ExpConsultarAsignacionHorarioBeans;
 import Entidades.AsignacionHorario;
 import Entidades.Empleado;
 import Entidades.TipoHorario;

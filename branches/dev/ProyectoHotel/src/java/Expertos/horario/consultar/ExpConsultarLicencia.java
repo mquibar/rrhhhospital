@@ -3,9 +3,9 @@
  * and open the template in the editor.
  */
 
-package Expertos.horario;
+package Expertos.horario.consultar;
 
-import Entidades.TipoHorario;
+import Entidades.Licencia;
 import java.util.List;
 import javax.ejb.Remote;
 
@@ -14,7 +14,7 @@ import javax.ejb.Remote;
  * @author Desarrollo
  */
 @Remote
-public interface ExpConsultarTipoHorario {
+public interface  ExpConsultarLicencia {
 
-    public List<TipoHorario> listar();
+    public List<Licencia> listar();
 }

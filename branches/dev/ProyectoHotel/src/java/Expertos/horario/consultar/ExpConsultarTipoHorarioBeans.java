@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package Expertos.horario;
+package Expertos.horario.consultar;
 
 import Entidades.TipoHorario;
 import Intermediarios.IntermediarioTipoHorario;
