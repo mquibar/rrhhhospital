@@ -39,4 +39,11 @@ public abstract class AbstractTable<E> extends AbstractTableModel{
     public void delRow(E e){
         _lista.remove(e);
     }
+
+    public E getSelectedIndex( int rowIndex){
+        if(_lista == null ||rowIndex<0)
+            return null;
+        return _lista.get(rowIndex);
+    }
+
 }
