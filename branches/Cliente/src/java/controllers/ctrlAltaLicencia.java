@@ -7,9 +7,9 @@ package controllers;
 
 import Entidades.Licencia;
 import Expertos.horario.ExpAltaLicencia;
-import Expertos.horario.ExpConsultarLicencia;
+import Expertos.horario.consultar.ExpConsultarLicencia;
 import Expertos.personal.ExpConsultarPersonal;
-import Expertos.horario.ExpConsultarTipoLicencia;
+import Expertos.horario.consultar.ExpConsultarTipoLicencia;
 import Tools.ManejaFechas;
 import models.combos.ModelOptionEmpleado;
 import models.combos.ModelOptionLicencia;

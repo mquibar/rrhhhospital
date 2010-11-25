@@ -1,7 +1,7 @@
 function validarCampos()
 {
     listaErrores = ""
-alert(valorFromId("empleado"));
+    
     if(valorFromId("empleado") == "0" )
     {
         listaErrores += "Debe elegir un empleado.\n";

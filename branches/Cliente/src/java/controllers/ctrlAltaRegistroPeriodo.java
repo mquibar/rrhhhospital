@@ -7,7 +7,7 @@ package controllers;
 
 import Entidades.RegistroPeriodo;
 import Expertos.horario.ExpAltaRegistroPeriodo;
-import Expertos.horario.ExpConsultarRegistroPeriodo;
+import Expertos.horario.consultar.ExpConsultarRegistroPeriodo;
 import Expertos.personal.ExpConsultarPersonal;
 import Tools.ManejaFechas;
 import models.combos.ModelOptionEmpleado;
