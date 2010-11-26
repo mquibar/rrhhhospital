@@ -526,6 +526,14 @@ public class AdminEscalafon extends javax.swing.JFrame {
         return _txtFilter;
     }
 
+    public JTextField getTxtAgrupamiento() {
+        return _txtAgrupamiento;
+    }
+
+    public JTextField getTxtTramo() {
+        return _txtTramo;
+    }
+
 
     private void detallesAgrupamiento(){
         boolean flag = _pnlTramo.isVisible();
@@ -535,6 +543,7 @@ public class AdminEscalafon extends javax.swing.JFrame {
         if(!flag){
             _pnlAddAgrup.setVisible(flag);
             _btnAgrupView.setText("Ocultar");
+            _control.listarTramo();
         }
         else
             _btnAgrupView.setText("Detalles");
