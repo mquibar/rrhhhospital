@@ -8,6 +8,7 @@ package Expertos.personal;
 import Entidades.Sexo;
 import Expertos.personal.ExpConsultarSexo;
 import Intermediarios.IntermediarioSexo;
+import java.util.List;
 import javax.ejb.Stateless;
 
 /**
@@ -23,5 +24,9 @@ public class ExpConsultarSexoBeans implements ExpConsultarSexo {
 
     public Sexo listarPorId (int id) {
         return ( new IntermediarioSexo().findById(id));
+    }
+
+    public List <Sexo> listAll () {
+        return ( new IntermediarioSexo().findAll());
     }
 }
