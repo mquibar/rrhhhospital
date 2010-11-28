@@ -38,7 +38,7 @@ public class GestorConeccion {
         System.out.println("Pass = " + System.getProperty("hibernate.connection.password"));
         System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
         try{
-        _factory = Persistence.createEntityManagerFactory("ProyectoHotelPU", System.getProperties());
+        _factory = Persistence.createEntityManagerFactory("ProyectoHotelPU");//, System.getProperties());
         _log = Configuraciones.LogAdmin.getInstance().getLog(this.toString());
         }catch(Exception e){
             System.out.println("Error"+e);

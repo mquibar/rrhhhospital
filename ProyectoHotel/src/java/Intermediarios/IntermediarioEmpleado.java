@@ -96,7 +96,7 @@ public class IntermediarioEmpleado extends Intermediario<Empleado> {
 
     public List<Empleado> findNotLegajo(Object legajo) {
         try{
-            String query = "SELECT e FROM Empleado WHERE e.legajo = :legajo";
+            String query = "SELECT e FROM Empleado e WHERE e.legajo = :legajo";
             Query q =GestorConeccion.getInstance().getManager().createQuery(query);
             q.setParameter("legajo", legajo);
             return q.getResultList();
@@ -105,5 +105,12 @@ public class IntermediarioEmpleado extends Intermediario<Empleado> {
         }
     }
 
+    public List<Empleado> findNotUser(){
+        try{
+            return GestorConeccion.getInstance().getManager().createQuery("Select e From Empleado e WHERE e NOT IN (SELECT u.empleado FROM Usuario u);").getResultList();
+        }catch(Exception e){
+                return null;
+        }
+    }
 
 }

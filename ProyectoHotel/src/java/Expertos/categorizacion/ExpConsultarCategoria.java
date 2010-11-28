@@ -10,13 +10,13 @@ import Entidades.Categoria;
 import Entidades.Clase;
 import Entidades.Tramo;
 import java.util.List;
-import javax.ejb.Remote;
+import javax.ejb.Local;
 
 /**
  *
  * @author Desarrollo
  */
-@Remote
+@Local
 public interface  ExpConsultarCategoria {
 
     public List<Entidades.Agrupamiento> listarAgrupamientos();
