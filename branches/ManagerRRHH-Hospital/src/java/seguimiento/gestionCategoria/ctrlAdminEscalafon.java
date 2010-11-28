@@ -9,6 +9,10 @@ import Entidades.Categoria;
 import Expertos.categorizacion.ExpAltaAgrupamiento;
 import Expertos.categorizacion.ExpConsultarCategoria;
 import Expertos.categorizacion.ExpModificarAgrupamiento;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import managerrrhhhospital.ContextGenerator;
@@ -38,10 +42,22 @@ public class ctrlAdminEscalafon {
         _tablaAgrupamiento = new TableAgrupamiento(_gestorConsulta.listarAgrupamientos());
         _pantalla.getTblAgrup().setModel(_tablaAgrupamiento);
         _pantalla.setVisible(true);
+        _pantalla.getTxtFilter().addKeyListener( new KeyListener() {
+
+            public void keyTyped(KeyEvent e) {
+            }
+
+            public void keyPressed(KeyEvent e) {
+            }
+
+            public void keyReleased(KeyEvent e) {
+                filtrar();
+            }
+        });
     }
 
     void filtrar() {
-        _tablaAgrupamiento.filter(_pantalla.getTxtFilter().getText());
+        _tablaAgrupamiento.filter(_pantalla.getTxtFilter().getText().toUpperCase());
     }
 
     void listarTramo(){
@@ -69,12 +85,18 @@ public class ctrlAdminEscalafon {
     }
 
     void addAgrupamiento(){
-        ExpAltaAgrupamiento gestor = (ExpAltaAgrupamiento) ContextGenerator.getInstance().createGestor(ExpAltaAgrupamiento.class.getName());
-        gestor.guardarNuevo(_pantalla.getTxtAgrupamiento().getText());
-        gestor =null;
+        if(_pantalla.getTxtAgrupamiento().getText().isEmpty())
+            return;
+        
+        if(((ExpAltaAgrupamiento) ContextGenerator.getInstance().createGestor(ExpAltaAgrupamiento.class.getName())).guardarNuevo(_pantalla.getTxtAgrupamiento().getText()))
+            System.out.println(" guardado");
+        else
+            System.out.println("No Guardado");
     }
 
     void addTramo(){
+        if(_pantalla.getTxtTramo().getText().isEmpty())
+            return;
         ExpModificarAgrupamiento gestor=(ExpModificarAgrupamiento) ContextGenerator.getInstance().createGestor(ExpModificarAgrupamiento.class.getName());
         gestor.agregarTramo(_tablaAgrupamiento.getSelectedIndex(_pantalla.getTblAgrup().getSelectedRow()), _pantalla.getTxtTramo().getText());
     }
