@@ -450,7 +450,7 @@ public class AdminEscalafon extends javax.swing.JFrame {
     }//GEN-LAST:event__btnAgrupCancelActionPerformed
 
     private void _btnAgrupOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event__btnAgrupOkActionPerformed
-
+        _control.addAgrupamiento();
     }//GEN-LAST:event__btnAgrupOkActionPerformed
 
     private void _txtTramoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event__txtTramoActionPerformed
@@ -458,7 +458,7 @@ public class AdminEscalafon extends javax.swing.JFrame {
     }//GEN-LAST:event__txtTramoActionPerformed
 
     private void _btnTramoOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event__btnTramoOkActionPerformed
-        // TODO add your handling code here:
+        _control.addTramo();
     }//GEN-LAST:event__btnTramoOkActionPerformed
 
     private void _btnTramoCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event__btnTramoCancelActionPerformed
