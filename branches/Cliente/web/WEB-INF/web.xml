@@ -44,6 +44,10 @@
         <servlet-name>ServletAltaPersonal</servlet-name>
         <servlet-class>servlets.ServletAltaPersonal</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>loadPageServlet</servlet-name>
+        <servlet-class>servlets.loadPageServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>testAgrupamiento</servlet-name>
         <url-pattern>/testAgrupamiento</url-pattern>
@@ -87,6 +91,10 @@
     <servlet-mapping>
         <servlet-name>ServletAltaPersonal</servlet-name>
         <url-pattern>/ServletAltaPersonal</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>loadPageServlet</servlet-name>
+        <url-pattern>/loadPageServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

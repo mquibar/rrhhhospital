@@ -97,7 +97,7 @@ public class menuServlet extends HttpServlet {
                 default:
                     url = "underContruction.html";
             }
-            out.println(url);
+            response.sendRedirect(url);
         } catch (Exception e) {
             response.sendRedirect("underContruction.jsp");
             out.close();

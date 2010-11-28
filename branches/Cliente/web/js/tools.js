@@ -10,7 +10,22 @@ function cargarSource(iframe, target)
 
 function cargarNoticias(target)
 {
-    cargarSource('noticias', target)
+    obj = createRequestObject();
+    //cargarSource('noticias', target)
+    obj.onreadystatechange = function () {
+        if ( obj.readyState == 4 && (obj.status == 200 || window.location.href.indexOf ("http")==- 1)) {
+            document.getElementById("noticias").innerHTML = obj.responseText;
+            ocultarEspera();
+        } else {
+            if(obj.readyState==1){
+                mostrarEspera();
+            }
+        }
+    };
+    obj.open("GET", "loadPageServlet?target="+target , true);
+    obj.send(null);
+
+    return (true);
 }
 
 function cargar(target)
