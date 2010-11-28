@@ -18,4 +18,6 @@ public interface ExpConsultarSexo {
 
     public Entidades.Sexo listarPorId(int id);
 
+    public java.util.List<Entidades.Sexo> listAll();
+
 }
