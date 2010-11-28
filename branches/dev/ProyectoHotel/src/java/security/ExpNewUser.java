@@ -5,6 +5,7 @@
 
 package security;
 
+import Entidades.Empleado;
 import Entidades.seguridad.Perfil;
 import java.util.List;
 import javax.ejb.Remote;
@@ -16,7 +17,8 @@ import system.exception.SystemException;
  */
 @Remote
 public interface ExpNewUser {
+    public List<Empleado> listarEmpleado();
     public List<Perfil> listarPerfil();
-    public void newUser(String nombre, String password, Perfil... perfiles)throws SystemException;
+    public void newUser(Empleado empleado, String password, Perfil... perfiles)throws SystemException;
     
 }

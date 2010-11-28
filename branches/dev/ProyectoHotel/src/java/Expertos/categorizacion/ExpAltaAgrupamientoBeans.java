@@ -6,7 +6,6 @@
 package Expertos.categorizacion;
 
 import Entidades.Agrupamiento;
-import Expertos.categorizacion.ExpAltaAgrupamiento;
 import Intermediarios.GestorConeccion;
 import Intermediarios.IntermediarioAgrupamiento;
 import javax.ejb.Stateless;
