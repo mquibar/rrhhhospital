@@ -236,6 +236,6 @@
             </ul>
             <a id="pcm" href="http://www.purecssmenu.com/">CSS Drop Down Menu by PureCSSMenu.com</a>
             <!-- End PureCSSMenu.com MENU --></div>
-        <iframe id="noticias" class="noticias" src="PanelNoticias.html"></iframe>
+        <div id="noticias" class="noticias" src="PanelNoticias.html"></div>
     </body>
 </html>
