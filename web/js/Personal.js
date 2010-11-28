@@ -229,6 +229,7 @@ function guardarModificacionEmpleado () {
                            "pais="+document.getElementById("pais").value+"&"+
                            "localidad="+document.getElementById("localidad").value+"&"+
                            "provincia="+document.getElementById("provincia").value+"&"+
+                           "sexo="+document.getElementById("sexo").value+"&"+
                            "cuil="+document.getElementById("cuil").value, true);
     req.send(null);
 
@@ -269,6 +270,7 @@ function guardarModificacionProfesional () {
                            "pais="+document.getElementById("pais").value+"&"+
                            "localidad="+document.getElementById("localidad").value+"&"+
                            "provincia="+document.getElementById("provincia").value+"&"+
+                           "sexo="+document.getElementById("sexo").value+"&"+
                            "cuil="+document.getElementById("cuil").value+"&"+
                            "matricula="+document.getElementById("matricula").value+"&"+
                            "titulo="+document.getElementById("titulo").value, true);
@@ -309,7 +311,7 @@ function altaEspecifica () {
             }
         }
     };
-    req.open("GET", "ServletAltaPersonal?operacion=especifica&valor="+ document.getElementById("empleados").value, true);
+    req.open("GET", "ServletAltaPersonal?operacion=especifica&valor="+ document.getElementById("tipoEmpleado").value, true);
     req.send(null);
 
     return (true);
@@ -317,7 +319,9 @@ function altaEspecifica () {
 }
 
 function altaProfesional () {
-
+    if(!validarFormularioProfesional()) {
+        return (false);
+    }
     req.onreadystatechange = function () {
         if ( req.readyState == 4 ) {
             ocultarEspera();
@@ -338,7 +342,7 @@ function altaProfesional () {
                            "nombre="+document.getElementById("nombre").value+"&"+
                            "apellido="+document.getElementById("apellido").value+"&"+
                            "dni="+document.getElementById("dni").value+"&"+
-                           "fechaNacimiento="+document.getElementById("fechaNacimiento").value+"&"+
+                           "fechaNacimiento="+document.getElementById("DPC_edit1").value+"&"+
                            "telefono="+document.getElementById("telefono").value+"&"+
                            "barrio="+document.getElementById("barrio").value+"&"+
                            "calle="+document.getElementById("calle").value+"&"+
@@ -349,8 +353,10 @@ function altaProfesional () {
                            "localidad="+document.getElementById("localidad").value+"&"+
                            "provincia="+document.getElementById("provincia").value+"&"+
                            "cuil="+document.getElementById("cuil").value+"&"+
+                           "sexo="+document.getElementById("sexo").value+"&"+
                            "matricula="+document.getElementById("matricula").value+"&"+
-                           "titulo="+document.getElementById("titulo").value, true);
+                           "titulo="+document.getElementById("titulo").value+"&"+
+                           "tarjeta="+document.getElementById("ntarjeta").value, true);
     req.send(null);
 
     return (true);
@@ -358,12 +364,14 @@ function altaProfesional () {
 }
 
 function altaEmpleado () {
-
+    if(!validarFormularioEmpleado()) {
+        return (false);
+    }
     req.onreadystatechange = function () {
         if ( req.readyState == 4 ) {
             ocultarEspera();
             if (req.status == 200 || window.location.href.indexOf ("http")==- 1) {
-                alert("Actualizo");
+                alert("Guardo");
                 location="PanelNoticias.html";
 
             }else {
@@ -380,7 +388,7 @@ function altaEmpleado () {
                            "nombre="+document.getElementById("nombre").value+"&"+
                            "apellido="+document.getElementById("apellido").value+"&"+
                            "dni="+document.getElementById("dni").value+"&"+
-                           "fechaNacimiento="+document.getElementById("fechaNacimiento").value+"&"+
+                           "fechaNacimiento="+document.getElementById("DPC_edit1").value+"&"+
                            "telefono="+document.getElementById("telefono").value+"&"+
                            "barrio="+document.getElementById("barrio").value+"&"+
                            "calle="+document.getElementById("calle").value+"&"+
@@ -390,6 +398,8 @@ function altaEmpleado () {
                            "pais="+document.getElementById("pais").value+"&"+
                            "localidad="+document.getElementById("localidad").value+"&"+
                            "provincia="+document.getElementById("provincia").value+"&"+
+                           "sexo="+document.getElementById("sexo").value+"&"+
+                           "tarjeta="+document.getElementById("ntarjeta").value+"&"+
                            "cuil="+document.getElementById("cuil").value, true);
     req.send(null);
 

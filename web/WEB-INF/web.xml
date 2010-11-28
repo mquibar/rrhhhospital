@@ -40,6 +40,10 @@
         <servlet-name>asignarLegServlet</servlet-name>
         <servlet-class>servlets.asignarLegServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletAltaPersonal</servlet-name>
+        <servlet-class>servlets.ServletAltaPersonal</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>testAgrupamiento</servlet-name>
         <url-pattern>/testAgrupamiento</url-pattern>
@@ -79,6 +83,10 @@
     <servlet-mapping>
         <servlet-name>asignarLegServlet</servlet-name>
         <url-pattern>/asignarLegServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletAltaPersonal</servlet-name>
+        <url-pattern>/ServletAltaPersonal</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

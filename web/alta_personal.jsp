@@ -9,6 +9,9 @@
         <script language="javascript" type="text/javascript" src="./js/createRequestJs.js"></script>
         <script language="javascript" type="text/javascript" src="./js/esperar.js"></script>
         <script language="javascript" type="text/javascript" src="./js/Personal.js"></script>
+        <script language="javascript" type="text/javascript" src="./js/validaciones/validaciones.js"></script>
+        <script language="javascript" type="text/javascript" src="./js/validaciones/validacionesProfesional.js"></script>
+        <script language="javascript" type="text/javascript" src="./js/validaciones/validacionesEmpleado.js"></script>
         <script language="javascript" type="text/javascript" src="./js/tools.js"></script>
         <link  href="./tools/datepicker/datepickercontrol.css" type="text/css" rel="stylesheet" />
         

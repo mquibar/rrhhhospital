@@ -8,6 +8,19 @@ function esDecimal(numero)
     return /^[0-9]+,?[0-9]*$/.test(numero);
 }
 
+function esDni (numero)
+{
+    return /^([0-9]{7,8})$/.test(numero);
+
+}
+
+function esCuil (numero)
+{
+
+    return /(^((20|27|30)\-[0-9]{7,8}\-[0-9])|^)$/.test(numero);
+
+}
+
 function esNumerico(numero)
 {
     return /^[0-9]+$/.test(numero);
@@ -37,6 +50,34 @@ function esPeriodoValido(fechaIni, fechaFin)
 function validarFormulario()
 {
     listaErrores = validarCampos();
+    if(listaErrores != "")
+    {
+        alert(listaErrores);
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
+
+function validarFormularioProfesional()
+{
+    listaErrores = validarCamposProfesional();
+    if(listaErrores != "")
+    {
+        alert(listaErrores);
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
+
+function validarFormularioEmpleado()
+{
+    listaErrores = validarCamposEmpleado();
     if(listaErrores != "")
     {
         alert(listaErrores);
