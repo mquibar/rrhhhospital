@@ -24,6 +24,10 @@ public class ServletAltaPersonal extends HttpServlet {
         LOAD,ESPECIFICA, ALTAEMPLEADO,ALTAPROFESIONAL
     }
 
+    public ServletAltaPersonal() {
+        _control = new ctrlAltaPersonal();
+    }
+
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
@@ -41,7 +45,8 @@ public class ServletAltaPersonal extends HttpServlet {
             switch (operaciones.valueOf(option)) {
                 //Inicia los tipos de empleados
                 case LOAD:
-                    _control.getModels("TIPO");
+                    System.out.println("entra al servlet");
+                    out.println(_control.getModels("TIPO").toString());
                     break;
                 case ESPECIFICA:
                     response.sendRedirect(_control.iniciar(request.getParameter("valor")));

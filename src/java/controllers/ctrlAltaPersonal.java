@@ -30,6 +30,7 @@ public class ctrlAltaPersonal extends GeneralController {
         private ModelOptionLocalidad modellocalidad;
         private ModelOptionTipoEmpleado modeltipo;
         private ModelOptionTarjeta modelotarjeta;
+        private ModelOptionSexo modelsexo;
         private String tipoPersona;
         private enum AltaPersona {
             EMPLEADO,PROFESIONAL
@@ -50,12 +51,13 @@ public class ctrlAltaPersonal extends GeneralController {
         modelpais = new ModelOptionPais(listas.get("PAIS"));
         modellocalidad = new ModelOptionLocalidad(listas.get("LOCALIDAD"));
         modelprovincia = new ModelOptionProvincia(listas.get("PROVINCIA"));
-
+        modelsexo = new ModelOptionSexo(expsexo.listAll());
         models.put("TIPO", modeltipo);
         models.put("PAIS", modelpais);
         models.put("LOCALIDAD", modellocalidad);
         models.put("PROVINCIA", modelprovincia);
         models.put("TARJETA", modelotarjeta);
+        models.put("SEXO", modelsexo);
 
     }
     /**
@@ -99,7 +101,7 @@ public class ctrlAltaPersonal extends GeneralController {
                             Long.parseLong(telefono),barrio, calle,numero,piso,departamanto,
                             modellocalidad.getSelectedItem(localidad),
                             modelprovincia.getSelectedItem(provincia), modelpais.getSelectedItem(pais),
-                            expsexo.listarSexo(sexo),cuil,modelotarjeta.getSelectedItem(tarjeta));
+                            modelsexo.getSelectedItem(sexo),cuil,modelotarjeta.getSelectedItem(tarjeta));
                 
             } catch (Exception ex) {
                 return "Error: Error de conexion con servidor de aplicaciones"+ex.toString();
@@ -118,7 +120,7 @@ public class ctrlAltaPersonal extends GeneralController {
                 return controladorProfesional.iniciarAlta(modeltipo.getSelectedItem(tipoPersona),nombre,apellido,dni,Tools.ManejaFechas.convertirString(fechaNacimiento),
                                     Long.parseLong(telefono),barrio, calle,numero,piso,departamanto,modellocalidad.getSelectedItem(localidad),
                                     modelprovincia.getSelectedItem(provincia), modelpais.getSelectedItem(pais),
-                                    expsexo.listarSexo(sexo),cuil,matricula,titulo,modelotarjeta.getSelectedItem(tarjeta));
+                                    modelsexo.getSelectedItem(sexo),cuil,matricula,titulo,modelotarjeta.getSelectedItem(tarjeta));
 
             } catch (Exception ex) {
                 return "Error: Error de conexion con servidor de aplicaciones"+ex.toString();
