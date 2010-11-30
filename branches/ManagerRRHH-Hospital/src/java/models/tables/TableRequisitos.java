@@ -33,5 +33,24 @@ public class TableRequisitos extends AbstractTable<Requisito> {
         }
     }
 
+    @Override
+    public boolean isCellEditable(int rowIndex, int columnIndex) {
+        if(columnIndex!=0)
+            return true;
+        return false;
+    }
+
+    @Override
+    public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+        if(!isCellEditable(rowIndex, columnIndex))
+            return;
+
+        try{
+            _lista.get(rowIndex).setDescripcion((String) aValue);
+        }catch(Exception e){
+
+        }
+    }
+
 
 }
