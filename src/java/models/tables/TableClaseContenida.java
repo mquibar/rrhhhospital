@@ -6,6 +6,8 @@
 package models.tables;
 
 import Entidades.ClaseContenida;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -33,6 +35,19 @@ public class TableClaseContenida extends AbstractTable<ClaseContenida> {
         } catch (Exception e) {
             return "-";
         }
+    }
+
+    public void sort() {
+        Collections.sort(_lista, new Comparator<ClaseContenida>() {
+
+            public int compare(ClaseContenida o1, ClaseContenida o2) {
+                return o1.getNumeroIndiceOrden()-o2.getNumeroIndiceOrden();
+            }
+        });
+        for (int i = 0; i < _lista.size(); i++) {
+            _lista.get(i).setNumeroIndiceOrden(i+1);
+        }
+        fireTableDataChanged();
     }
 
 
