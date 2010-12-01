@@ -34,10 +34,21 @@ public abstract class AbstractTable<E> extends AbstractTableModel{
 
     public void addRow(E e){
         _lista.add(e);
+        fireTableDataChanged();
+    }
+    public void addAll(List<E> e){
+        _lista.addAll(e);
+        fireTableDataChanged();
     }
 
     public void delRow(E e){
         _lista.remove(e);
+        fireTableDataChanged();
+    }
+
+    public void delRow(int rowIndex){
+        _lista.remove(rowIndex);
+        fireTableDataChanged();
     }
 
     public E getSelectedIndex( int rowIndex){
@@ -46,4 +57,12 @@ public abstract class AbstractTable<E> extends AbstractTableModel{
         return _lista.get(rowIndex);
     }
 
+    public List<E> getAllRow(){
+        return _lista;
+    }
+
+    public void clear(){
+        _lista.clear();
+        fireTableDataChanged();
+    }
 }

@@ -12,6 +12,7 @@
 package seguimiento.gestionCategoria;
 
 import javax.swing.JButton;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 /**
@@ -43,14 +44,14 @@ public class AltaCategoria extends javax.swing.JDialog {
         _txtCupo = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        _tblRequisitos = new javax.swing.JTable();
         _btnAddRequisito = new javax.swing.JButton();
         _btnDelRequisito = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        _tblClases = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        _tblClasesAsignadas = new javax.swing.JTable();
         _btnAddOne = new javax.swing.JButton();
         _btnAddAll = new javax.swing.JButton();
         _bntRemoveAll = new javax.swing.JButton();
@@ -94,7 +95,7 @@ public class AltaCategoria extends javax.swing.JDialog {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Requisitos"));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        _tblRequisitos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -102,7 +103,7 @@ public class AltaCategoria extends javax.swing.JDialog {
                 "Número", "Descripción"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(_tblRequisitos);
 
         _btnAddRequisito.setText("add");
 
@@ -135,7 +136,7 @@ public class AltaCategoria extends javax.swing.JDialog {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Clases"));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        _tblClases.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -143,9 +144,9 @@ public class AltaCategoria extends javax.swing.JDialog {
                 "Clase"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(_tblClases);
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        _tblClasesAsignadas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -153,7 +154,7 @@ public class AltaCategoria extends javax.swing.JDialog {
                 "Clase"
             }
         ));
-        jScrollPane3.setViewportView(jTable3);
+        jScrollPane3.setViewportView(_tblClasesAsignadas);
 
         _btnAddOne.setText(">");
 
@@ -251,6 +252,9 @@ public class AltaCategoria extends javax.swing.JDialog {
     private javax.swing.JButton _btnDelRequisito;
     private javax.swing.JButton _btnOk;
     private javax.swing.JButton _btnRemoveOne;
+    private javax.swing.JTable _tblClases;
+    private javax.swing.JTable _tblClasesAsignadas;
+    private javax.swing.JTable _tblRequisitos;
     private javax.swing.JTextField _txtCupo;
     private javax.swing.JTextField _txtNombre;
     private javax.swing.JLabel jLabel1;
@@ -261,13 +265,10 @@ public class AltaCategoria extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
     // End of variables declaration//GEN-END:variables
     private ctrlAltaCategoria _control;
 
-    public JButton getBntRemoveAll() {
+    public JButton getBtnRemoveAll() {
         return _bntRemoveAll;
     }
 
@@ -309,6 +310,18 @@ public class AltaCategoria extends javax.swing.JDialog {
 
     public JTextField getTxtNombre() {
         return _txtNombre;
+    }
+
+    public JTable getTblRequisitos() {
+        return _tblRequisitos;
+    }
+
+    public JTable getTblClases() {
+        return _tblClases;
+    }
+
+    public JTable getTblClasesAsignadas() {
+        return _tblClasesAsignadas;
     }
 
     

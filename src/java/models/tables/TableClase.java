@@ -6,6 +6,8 @@
 package models.tables;
 
 import Entidades.Clase;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -30,6 +32,16 @@ public class TableClase extends AbstractTable<Clase> {
         } catch (Exception e) {
             return "-";
         }
+    }
+
+    public void sort() {
+        Collections.sort(_lista, new Comparator<Clase>() {
+
+            public int compare(Clase o1, Clase o2) {
+                return o1.getNombre().compareToIgnoreCase(o2.getNombre());
+            }
+        });
+        fireTableDataChanged();
     }
 
 }

@@ -6,6 +6,8 @@
 package models.tables;
 
 import Entidades.Requisito;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -52,5 +54,24 @@ public class TableRequisitos extends AbstractTable<Requisito> {
         }
     }
 
+    public void sort(){
+        Collections.sort(_lista, new Comparator<Requisito>() {
+
+            public int compare(Requisito o1, Requisito o2) {
+                if(o1.getNumero()<o2.getNumero())
+                    return -1;
+                else
+                    if(o1.getNumero()==o2.getNumero())
+                        return 0;
+                    else
+                        return 1;
+            }
+        });
+        for (int i = 0; i < _lista.size(); i++) {
+            _lista.get(i).setNumero(i+1);
+
+        }
+        fireTableDataChanged();
+    }
 
 }
