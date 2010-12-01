@@ -6,6 +6,8 @@
 package Expertos.categorizacion;
 
 import Entidades.Clase;
+import Entidades.ClaseContenida;
+import Entidades.Requisito;
 import Entidades.Tramo;
 import java.util.List;
 import javax.ejb.Remote;
@@ -19,8 +21,10 @@ public interface  ExpAltaCategoria {
 
     public List<Clase> iniciarCU(Tramo tramo);
     public boolean guardarCategoria();
-    public void agergarClase(Entidades.Clase clase, int antiguedadMinima, boolean inicial);
+    public void setterRequisito(List<Requisito> requisitos);
+    public void setterClase(List<ClaseContenida> clases);
+    /*public void agergarClase(Entidades.Clase clase, int antiguedadMinima, boolean inicial);
     public void agregarRequerimiento(String descripcion);
-    public void agergarClase(Entidades.Clase clase, int antiguedadMinima);
+    public void agergarClase(Entidades.Clase clase, int antiguedadMinima);*/
 
 }
