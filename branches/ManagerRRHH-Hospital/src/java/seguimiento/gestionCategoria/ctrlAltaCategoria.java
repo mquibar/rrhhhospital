@@ -6,6 +6,7 @@
 package seguimiento.gestionCategoria;
 
 import Entidades.Clase;
+import Entidades.ClaseContenida;
 import Entidades.Requisito;
 import Entidades.Tramo;
 import Expertos.categorizacion.ExpAltaCategoria;
@@ -14,6 +15,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import managerrrhhhospital.ContextGenerator;
 import models.tables.TableClase;
+import models.tables.TableClaseContenida;
 import models.tables.TableRequisitos;
 
 /**
@@ -25,13 +27,14 @@ public class ctrlAltaCategoria {
     private AltaCategoria _pantalla;
     private ExpAltaCategoria _gestorCategoria;
     private TableRequisitos _requisitos;
-    private TableClase _clases, _clasesContenidas;
+    private TableClase _clases;
+    private TableClaseContenida _clasesContenidas;
 
     public ctrlAltaCategoria(AdminEscalafon pantalla, Tramo tramo) {
         _pantalla = new AltaCategoria(pantalla, this);
         _gestorCategoria = (ExpAltaCategoria) ContextGenerator.getInstance().createGestor(ExpAltaCategoria.class.getName());
         _clases = new TableClase(_gestorCategoria.iniciarCU(tramo));
-        _clasesContenidas = new TableClase(new ArrayList<Clase>());
+        _clasesContenidas = new TableClaseContenida(new ArrayList<ClaseContenida>());
         _requisitos = new TableRequisitos(new ArrayList<Requisito>());
 
         _pantalla.getBtnAddRequisito().addActionListener(new ActionListener() {
@@ -92,7 +95,7 @@ public class ctrlAltaCategoria {
     }
 
     void pressOkButton(){
-        
+        _gestorCategoria.setterRequisito(_requisitos.getAllRow());
     }
 
     void pressAddRequest(){
@@ -110,7 +113,10 @@ public class ctrlAltaCategoria {
     }
 
     void pressAddOne(){
-        _clasesContenidas.addRow(_clases.getSelectedIndex(_pantalla.getTblClases().getSelectedRow()));
+        ClaseContenida cc = new ClaseContenida();
+        cc.setAntiguedadMinima( Long.valueOf("0") );
+//        Integer.MIN_VALUE)
+//        _clasesContenidas.addRow(_clases.getSelectedIndex(_pantalla.getTblClases().getSelectedRow()));
         _clases.delRow(_pantalla.getTblClases().getSelectedRow());
         _clases.sort();
         _clasesContenidas.sort();
@@ -121,7 +127,7 @@ public class ctrlAltaCategoria {
         _pantalla.getBtnRemoveAll().setEnabled(true);
     }
     void pressAddAll(){
-        _clasesContenidas.addAll(_clases.getAllRow());
+        //_clasesContenidas.addAll(_clases.getAllRow());
         _clases.clear();
         _clasesContenidas.sort();
         _pantalla.getBtnAddAll().setEnabled(false);
@@ -131,7 +137,7 @@ public class ctrlAltaCategoria {
     }
 
     void pressRemoveOne(){
-        _clases.addRow(_clasesContenidas.getSelectedIndex(_pantalla.getTblClasesAsignadas().getSelectedRow()));
+        //_clases.addRow(_clasesContenidas.getSelectedIndex(_pantalla.getTblClasesAsignadas().getSelectedRow()));
         _clasesContenidas.delRow(_pantalla.getTblClasesAsignadas().getSelectedRow());
         _clasesContenidas.sort();
         _clases.sort();
@@ -143,7 +149,7 @@ public class ctrlAltaCategoria {
     }
 
     void pressRemoveAll(){
-        _clases.addAll(_clasesContenidas.getAllRow());
+        //_clases.addAll(_clasesContenidas.getAllRow());
         _clasesContenidas.clear();
         _clases.sort();
         _pantalla.getBtnRemoveOne().setEnabled(false);
