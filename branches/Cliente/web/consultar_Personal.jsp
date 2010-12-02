@@ -1,4 +1,10 @@
+<head>
 <link href="./css/estilos.css" rel="stylesheet" type="text/css" />
+        <script language="javascript" type="text/javascript" src="./js/createRequestJs.js"></script>
+        <script language="javascript" type="text/javascript" src="./js/esperar.js"></script>
+        <script language="javascript" type="text/javascript" src="./js/Personal.js"></script>
+        <script language="javascript" type="text/javascript" src="./js/tools.js"></script>
+</head>
 
 <div class="noticias" id="noticias_2">Consultar Personal<br />
             <div class="forms">

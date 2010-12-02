@@ -13,6 +13,7 @@
         <script language="javascript" type="text/javascript" src="./js/validaciones/validacionesProfesional.js"></script>
         <script language="javascript" type="text/javascript" src="./js/validaciones/validacionesEmpleado.js"></script>
         <script language="javascript" type="text/javascript" src="./js/tools.js"></script>
+        <script src="./tools/datepicker/datepickercontrol.js" type="text/javascript"></script>
         <link  href="./tools/datepicker/datepickercontrol.css" type="text/css" rel="stylesheet" />
         
     </head>
