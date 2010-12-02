@@ -24,4 +24,15 @@ public class ModelOptionSexo extends AbstractModelOptionList<Sexo> {
         return objeto.getSexo();
     }
 
+    public String toStringSexo(String sexo){
+        try {
+            if (options == null)
+                toString();
+            String nuevoString = options.replaceAll(">" + sexo, " selected=\"selected\" >"+sexo);
+            options = null;
+            return nuevoString;
+        } catch (Exception e) {
+            return toString();
+        }
+    }
 }
