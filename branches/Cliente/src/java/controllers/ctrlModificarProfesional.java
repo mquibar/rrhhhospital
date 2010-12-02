@@ -16,6 +16,7 @@ import models.combos.ModelOptionLocalidad;
 import models.combos.ModelOptionPais;
 import models.combos.ModelOptionProfesional;
 import models.combos.ModelOptionProvincia;
+import models.combos.ModelOptionSexo;
 
 /**
  * Controlador especifico que se encarga de la modificacion de un profesional
@@ -31,6 +32,7 @@ public class ctrlModificarProfesional extends GeneralController {
     private ModelOptionProvincia modelprovincia;
     private ModelOptionLocalidad modellocalidad;
     private ModelOptionProfesional modelprofesional;
+    private ModelOptionSexo modelosexo;
 
     /**
      * Crea e inicializa el controlador especifico que modificará al profesional
@@ -45,10 +47,12 @@ public class ctrlModificarProfesional extends GeneralController {
         modelpais = new ModelOptionPais(listas.get("PAIS"));
         modellocalidad = new ModelOptionLocalidad(listas.get("LOCALIDAD"));
         modelprovincia = new ModelOptionProvincia(listas.get("PROVINCIA"));
+        modelosexo = new ModelOptionSexo(_expsexo.listAll());
         models.put("PROFESIONAL", modelprofesional);
         models.put("PAIS", modelpais);
         models.put("LOCALIDAD", modellocalidad);
         models.put("PROVINCIA", modelprovincia);
+        models.put("SEXO", modelosexo);
     }
 
     /**
@@ -103,7 +107,7 @@ public class ctrlModificarProfesional extends GeneralController {
                     fechaNacimiento, telefono, barrio, calle, numero, piso,
                     departamanto, modellocalidad.getSelectedItem(localidad),
                     modelprovincia.getSelectedItem(provincia), modelpais.getSelectedItem(pais),
-                    _expsexo.listarSexo(sexo), cuil, matricula, titulo)){
+                    modelosexo.getSelectedItem(sexo), cuil, matricula, titulo)){
                 return "Profesional Actualizado";
 
             } else {

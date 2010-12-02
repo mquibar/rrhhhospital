@@ -73,6 +73,7 @@ public class ctrlModificarPersona extends GeneralController {
                            "barrio="+empleado.getIdDomicilio().getBarrio()+"&"+
                            "piso="+empleado.getIdDomicilio().getPiso()+"&"+
                            "departamento="+empleado.getIdDomicilio().getDepartamento()+"&"+
+                           "sexo="+empleado.getIdSexo().getSexo()+"&"+
                            "pais="+empleado.getIdPais().getPais()+"&"+
                            "localidad="+empleado.getIdDomicilio().getIdLocalidad().getLocalidad()+"&"+
                            "provincia="+empleado.getIdDomicilio().getIdProvincia().getProvincia()+"&"+
@@ -93,6 +94,7 @@ public class ctrlModificarPersona extends GeneralController {
                            "barrio="+profesional.getIdDomicilio().getBarrio()+"&"+
                            "piso="+profesional.getIdDomicilio().getPiso()+"&"+
                            "departamento="+profesional.getIdDomicilio().getDepartamento()+"&"+
+                           "sexo="+profesional.getIdSexo().getSexo()+"&"+
                            "pais="+profesional.getIdPais().getPais()+"&"+
                            "localidad="+profesional.getIdDomicilio().getIdLocalidad().getLocalidad()+"&"+
                            "provincia="+profesional.getIdDomicilio().getIdProvincia().getProvincia()+"&"+
@@ -111,25 +113,25 @@ public class ctrlModificarPersona extends GeneralController {
     /*llama al controlador especifico para el manejo de la clase empleado, asi lo actualiza*/
     public void guardarEmpleado (String nombre, String apellido, String dni, String fechaNacimiento,
             String telefono, String barrio, String calle, String numero, String piso, String departamanto,
-            String localidad, String provincia, String pais, String cuil) throws Exception {
+            String localidad, String provincia, String pais, String sexo, String cuil) throws Exception {
             
             ctrlModificarEmpleado controlador = new ctrlModificarEmpleado();
             System.out.println(controlador.modificarEmpleado(empleado, nombre, apellido, dni, fechaNacimiento, telefono,
-                    barrio, calle, numero, piso, departamanto, localidad, provincia, pais, "Masculino", cuil));
+                    barrio, calle, numero, piso, departamanto, localidad, provincia, pais, sexo, cuil));
     
     }
 
     /*llama al controlador especifico para el manejo de la clase profesional, asi lo actualiza*/
     public void guardarProfesional (String nombre, String apellido, String dni, String fechaNacimiento,
             String telefono, String barrio, String calle, String numero, String piso, String departamanto,
-            String localidad, String provincia, String pais, String cuil, String matricula, String titulo) throws Exception {
+            String localidad, String provincia, String pais, String sexo, String cuil, String matricula, String titulo) throws Exception {
             System.out.println(telefono);
             System.out.println(calle);
             System.out.println("Telefono del profesional: "+profesional.getTelefono());
             ctrlModificarProfesional controlador = new ctrlModificarProfesional();
             System.out.println(controlador.modificarProfesional(profesional, nombre, apellido, dni, fechaNacimiento,
                     telefono, barrio, calle, numero, piso, departamanto, localidad, provincia, pais,
-                    "Masculino", cuil, matricula, titulo));
+                    sexo, cuil, matricula, titulo));
     }
 
 }

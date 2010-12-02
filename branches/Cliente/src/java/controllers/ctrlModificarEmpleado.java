@@ -15,6 +15,7 @@ import models.combos.ModelOptionEmpleado;
 import models.combos.ModelOptionLocalidad;
 import models.combos.ModelOptionPais;
 import models.combos.ModelOptionProvincia;
+import models.combos.ModelOptionSexo;
 
 /**
  *  Controlador especifico que se encarga de modificar un empleado
@@ -25,18 +26,19 @@ public class ctrlModificarEmpleado extends GeneralController{
 
     private ExpModificarEmpleado _exp;
     private ModelOptionEmpleado listaempleado;
-    private ExpConsultarSexo expsexo;
+    private ExpConsultarSexo _expsexo;
     private Map<String, AbstractModelOptionList> models;
     private ModelOptionPais modelpais;
     private ModelOptionProvincia modelprovincia;
     private ModelOptionLocalidad modellocalidad;
+    private ModelOptionSexo modelosexo;
 
     /**
      * Crea e inicializa el controlador especifico que modificará al empleado
      */
     public ctrlModificarEmpleado() {
         _exp = (ExpModificarEmpleado) getExpert(ExpModificarEmpleado.class.getName());
-        expsexo = (ExpConsultarSexo) getExpert(ExpConsultarSexo.class.getName());
+        _expsexo = (ExpConsultarSexo) getExpert(ExpConsultarSexo.class.getName());
 
         Map<String, List> listas;
         listas = _exp.listarEmpleados();
@@ -45,11 +47,12 @@ public class ctrlModificarEmpleado extends GeneralController{
         modelpais = new ModelOptionPais(listas.get("PAIS"));
         modellocalidad = new ModelOptionLocalidad(listas.get("LOCALIDAD"));
         modelprovincia = new ModelOptionProvincia(listas.get("PROVINCIA"));
-
+        modelosexo = new ModelOptionSexo(_expsexo.listAll());
         models.put("EMPLEADO", listaempleado);
         models.put("PAIS", modelpais);
         models.put("LOCALIDAD", modellocalidad);
         models.put("PROVINCIA", modelprovincia);
+        models.put("SEXO", modelosexo);
     }
 
     /**
@@ -101,7 +104,7 @@ public class ctrlModificarEmpleado extends GeneralController{
                     fechaNacimiento, telefono, barrio, calle, numero, piso,
                     departamanto, modellocalidad.getSelectedItem(localidad),
                     modelprovincia.getSelectedItem(provincia), modelpais.getSelectedItem(pais), 
-                    expsexo.listarSexo(sexo), cuil)){
+                    modelosexo.getSelectedItem(sexo), cuil)){
                 return "Empleado: Actualizado";
 
             } else {

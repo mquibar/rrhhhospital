@@ -65,6 +65,7 @@ public class ServletModificarPersonal extends HttpServlet {
                                     request.getParameter("localidad"),
                                     request.getParameter("provincia"),
                                     request.getParameter("pais"),
+                                    request.getParameter("sexo"),
                                     request.getParameter("cuil"));
                     break;
                 //Le dice al controlador que actualice al profesional que estaba cargado en la pagina
@@ -83,6 +84,7 @@ public class ServletModificarPersonal extends HttpServlet {
                                     request.getParameter("localidad"),
                                     request.getParameter("provincia"),
                                     request.getParameter("pais"),
+                                    request.getParameter("sexo"),
                                     request.getParameter("cuil"),
                                     request.getParameter("matricula"),
                                     request.getParameter("titulo"));

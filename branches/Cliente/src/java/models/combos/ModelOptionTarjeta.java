@@ -20,7 +20,7 @@ public class ModelOptionTarjeta extends AbstractModelOptionList<Tarjeta> {
 
     @Override
     protected String devolverValorCombo(Tarjeta objeto) {
-        return objeto.getId().toString();
+        return String.valueOf(objeto.getNumero());
     }
 
 }
