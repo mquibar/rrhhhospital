@@ -1,6 +1,10 @@
 <%@page import="controllers.ctrlConsultarDomicilio" %>
 <%@page import="controllers.ctrlConsultarPersona" %>
 
+<head>
+        <script src="./tools/datepicker/datepickercontrol.js" type="text/javascript"></script>
+        <link  href="./tools/datepicker/datepickercontrol.css" type="text/css" rel="stylesheet" />
+</head>
 
 <%
     ctrlConsultarDomicilio c = new ctrlConsultarDomicilio();

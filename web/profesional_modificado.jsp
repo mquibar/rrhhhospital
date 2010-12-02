@@ -3,6 +3,7 @@
 <%@page import="models.combos.ModelOptionLocalidad" %>
 <%@page import="models.combos.ModelOptionProvincia" %>
 <%@page import="models.combos.ModelOptionProfesional" %>
+<%@page import="models.combos.ModelOptionSexo" %>
 
 <%!
 String getValue(ServletRequest request, String varName)
@@ -13,18 +14,7 @@ String getValue(ServletRequest request, String varName)
 %>
 
 <%
-if (request.getParameter("buttonVolver") != null)
-{
 
-    %>
-
-    <jsp:forward page="modificar_personal_ajax.jsp"/>
-
-    <%
-
-}
-else
-{
     ctrlModificarProfesional c = new ctrlModificarProfesional();
 
     String nombre           = getValue(request, "nombre");
@@ -34,6 +24,7 @@ else
     String telefono         = getValue(request, "telefono");
     String matricula        = getValue(request, "matricula");
     String cuil             = getValue(request, "cuil");
+    String sexo             = getValue(request, "sexo");
     String calle            = getValue(request, "calle");
     String numero           = getValue(request, "numero");
     String barrio           = getValue(request, "barrio");
@@ -46,50 +37,7 @@ else
     String provincia        = getValue(request, "provincia");
     String pais             = getValue(request, "pais");
 
-    String mensageEstado = "";
-
-    if (request.getParameter("buttonSave") != null)
-    {
-       /*mensageEstado = c.modificarProfesional
-                            (
-                             profesional,
-                             nombre,
-                             apellido,
-                             dni,
-                             fechaNacimiento,
-                             telefono,
-                             barrio,
-                             calle,
-                             numero,
-                             piso,
-                             departamento,
-                             localidad,
-                             provincia,
-                             pais,
-                             "Masculino",
-                             cuil,
-                             matricula,
-                             titulo
-                            );*/
-    }
-
-    if (mensageEstado != "" && mensageEstado.indexOf("Error") == -1)
-    {
-
-    %>
-
-    <jsp:forward page="./tools/messageBox.jsp">
-        <jsp:param name="msg" value="<%=mensageEstado%>" />
-        <jsp:param name="target" value="home.html" />
-    </jsp:forward>
-
-    <%
-
-    }
-    else
-    {
-
-%>
+   %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
@@ -101,14 +49,8 @@ else
 
 <body>
 <div class="noticias" id="noticias_2"> Modificar Personal<br />
-   <%
-        if(mensageEstado != "")
-        {
-            out.println("<p class='error'>" + mensageEstado + "</p>");
-        }
-        %>
-        <div class="forms">
-	<form id="form1" name="form1" method="post" action="profesional_modificado.jsp">
+         <div class="forms">
+	<form id="form1" name="form1" method="post" action="">
 		<div class="izquierda"><br />
 			Profesional<br />
 			<br />
@@ -135,6 +77,9 @@ else
 			<label>
 			  <input type="text" name="fechaNacimiento" id="fechaNacimiento" value="<%=fechaNacimiento%>" />
 			</label>
+                        <br />
+                        <br />
+			Sexo<br /><select name="sexo" id="sexo" ><%= ( (ModelOptionSexo) c.getModels("SEXO")).toStringSexo(sexo)%></select>
 			<br />
 			<br />
 			Teléfono<br />
@@ -217,7 +162,7 @@ else
 			  <input type="button" name="buttonSave" id="buttonSave" value="Actualizar" onclick="guardarModificacionProfesional()" />
 			</label>
 			<label>
-			  <input type="submit" name="buttonVolver" id="buttonVolver" value="Volver" />
+			  <input type="button" name="buttonVolver" id="buttonVolver" value="Volver" onclick="js_cancel_operacion()"  />
 			</label>
 		</div>
 	</form>
@@ -226,6 +171,3 @@ else
 </div>
 </body>
 </html>
-<%
-    }
-}%>
