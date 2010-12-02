@@ -22,7 +22,7 @@ public class ExpConsultarTarjetaBeans implements ExpConsultarTarjeta {
     }
     
     public List <Tarjeta> listarTarjetasNoOcupadas () {
-        return (new Intermediarios.IntermediarioTarjeta()).findAll();
+        return (new Intermediarios.IntermediarioTarjeta()).findInOrden(null);
     }  
 
 }

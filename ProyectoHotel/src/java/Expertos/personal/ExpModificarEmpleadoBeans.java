@@ -67,13 +67,13 @@ public class ExpModificarEmpleadoBeans implements ExpModificarEmpleado {
             String telefono, String barrio, String calle, String numero, String piso, String departamanto,
             Localidad localidad, Provincia provincia, Pais pais, Sexo sexo, String cuil) {
         
-            empleado.setNombre(nombre);
-            empleado.setApellido(apellido);
-            empleado.setDni(dni);
+            empleado.setNombre(nombre.toUpperCase());
+            empleado.setApellido(apellido.toUpperCase());
+            empleado.setDni(dni.toUpperCase());
             empleado.setFechaNacimiento(Tools.ManejaFechas.convertirString(fechaNacimiento));
             empleado.setTelefono(Long.parseLong(telefono));
             empleado.setIdSexo(sexo);
-            empleado.setCuil(cuil);
+            empleado.setCuil(cuil.toUpperCase());
             modificarDomicilioEmpleado(empleado, barrio, calle,
                      numero, piso, departamanto, localidad, provincia, pais);
 
@@ -114,11 +114,11 @@ public class ExpModificarEmpleadoBeans implements ExpModificarEmpleado {
             String calle, String numero, String piso, String departamanto,
             Localidad localidad, Provincia provincia, Pais pais){
 
-            empleado.getIdDomicilio().setCalle(calle);
-            empleado.getIdDomicilio().setBarrio(barrio);
+            empleado.getIdDomicilio().setCalle(calle.toUpperCase());
+            empleado.getIdDomicilio().setBarrio(barrio.toUpperCase());
             empleado.getIdDomicilio().setNumero(Integer.getInteger(numero));
-            empleado.getIdDomicilio().setPiso(piso);
-            empleado.getIdDomicilio().setDepartamento(departamanto);
+            empleado.getIdDomicilio().setPiso(piso.toUpperCase());
+            empleado.getIdDomicilio().setDepartamento(departamanto.toUpperCase());
             empleado.getIdDomicilio().setIdLocalidad(localidad);
             empleado.getIdDomicilio().setIdProvincia(provincia);
             empleado.setIdPais(pais);

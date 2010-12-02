@@ -8,7 +8,6 @@ package Expertos.personal;
 import Entidades.Domicilio;
 import Entidades.Localidad;
 import Entidades.Provincia;
-import Expertos.personal.ExpAltaDomicilio;
 import Intermediarios.GestorConeccion;
 import Intermediarios.IntermediarioDomicilio;
 import javax.ejb.Stateless;
@@ -31,11 +30,11 @@ public class ExpAltaDomicilioBeans implements ExpAltaDomicilio {
         
         Domicilio resultado;
 
-        _domicilio.setBarrio(barrio);
-        _domicilio.setCalle(calle);
+        _domicilio.setBarrio(barrio.toUpperCase());
+        _domicilio.setCalle(calle.toUpperCase());
         _domicilio.setNumero(Integer.parseInt(numero));
-        _domicilio.setPiso(piso);
-        _domicilio.setDepartamento(departamanto);
+        _domicilio.setPiso(piso.toUpperCase());
+        _domicilio.setDepartamento(departamanto.toUpperCase());
         _domicilio.setIdLocalidad(localidad);
         _domicilio.setIdProvincia(provincia);
 
