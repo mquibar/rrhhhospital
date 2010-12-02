@@ -11,6 +11,8 @@
 
 package seguimiento.gestionCategoria;
 
+import javax.swing.JButton;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -271,11 +273,6 @@ public class AdminEscalafon extends javax.swing.JFrame {
         jPanel3.add(_btnTramoDel, gridBagConstraints);
 
         _btnTramoView.setText("Detalles");
-        _btnTramoView.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                _btnTramoViewActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         jPanel3.add(_btnTramoView, gridBagConstraints);
@@ -433,10 +430,6 @@ public class AdminEscalafon extends javax.swing.JFrame {
         _pnlAddTramo.setVisible(true);
     }//GEN-LAST:event__btnTramoAddActionPerformed
 
-    private void _btnTramoViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event__btnTramoViewActionPerformed
-        detalleTramo();
-    }//GEN-LAST:event__btnTramoViewActionPerformed
-
     private void _txtFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event__txtFilterActionPerformed
         _control.filtrar();
     }//GEN-LAST:event__txtFilterActionPerformed
@@ -549,19 +542,61 @@ public class AdminEscalafon extends javax.swing.JFrame {
             _btnAgrupView.setText("Detalles");
     }
 
-    private void detalleTramo(){
-        boolean flag = _pnlCategoria.isVisible();
-        _pnlCategoria.setVisible(!flag);
-        _btnTramoAdd.setEnabled(flag);
-        _btnTramoDel.setEnabled(flag);
-        if(!flag){
-            _pnlAddTramo.setVisible(flag);
-            _btnTramoView.setText("Ocultar");
-            _btnAgrupView.setEnabled(flag);
-        }
-        else{
-            _btnTramoView.setText("Detalles");
-            _btnAgrupView.setEnabled(flag);
-        }
+    public JButton getBtnAgrupAdd() {
+        return _btnAgrupAdd;
     }
+
+    public JButton getBtnAgrupCancel() {
+        return _btnAgrupCancel;
+    }
+
+    public JButton getBtnAgrupDel() {
+        return _btnAgrupDel;
+    }
+
+    public JButton getBtnAgrupOk() {
+        return _btnAgrupOk;
+    }
+
+    public JButton getBtnAgrupView() {
+        return _btnAgrupView;
+    }
+
+    public JButton getBtnTramoAdd() {
+        return _btnTramoAdd;
+    }
+
+    public JButton getBtnTramoCancel() {
+        return _btnTramoCancel;
+    }
+
+    public JButton getBtnTramoDel() {
+        return _btnTramoDel;
+    }
+
+    public JButton getBtnTramoOk() {
+        return _btnTramoOk;
+    }
+
+    public JButton getBtnTramoView() {
+        return _btnTramoView;
+    }
+
+    public JPanel getPnlAddAgrup() {
+        return _pnlAddAgrup;
+    }
+
+    public JPanel getPnlAddTramo() {
+        return _pnlAddTramo;
+    }
+
+    public JPanel getPnlCategoria() {
+        return _pnlCategoria;
+    }
+
+    public JPanel getPnlTramo() {
+        return _pnlTramo;
+    }
+
+    
 }
