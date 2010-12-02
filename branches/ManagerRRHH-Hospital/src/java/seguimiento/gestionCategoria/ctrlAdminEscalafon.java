@@ -87,17 +87,31 @@ public class ctrlAdminEscalafon {
             _tablaCategoria = new TableCategoria(_gestorConsulta.consultarCategoria(_tablaTramo.getSelectedIndex(_pantalla.getTblTramo().getSelectedRow())));
             _pantalla.getTblCateg().addMouseListener(new MouseAdapter() {
 
+                private btnDerechoCategoria _popUp=null;
+
                 @Override
                 public void mousePressed(MouseEvent e) {
-                    System.out.println("Entro");
-                    if (e.getButton() == MouseEvent.BUTTON1) {
-                        mostrarRequisitos(e);
-                        System.out.println(" BOTON 1");
-                    } else {
-                        System.out.println("Otro");
-                        new btnDerechoCategoria();
-                    }
+                    checkButton(e);
+                }
 
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    checkButton(e);
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                    checkButton(e);
+                }
+
+                private void checkButton(MouseEvent e){
+                    if(e.isPopupTrigger()){
+                        if(_popUp == null)
+                            _popUp = new btnDerechoCategoria();
+                        _popUp.show(_pantalla.getTblCateg(), e.getXOnScreen(), e.getYOnScreen());
+                    }
+                    else
+                        mostrarRequisitos(e);
                 }
 
             });
@@ -142,8 +156,7 @@ class btnDerechoCategoria extends JPopupMenu {
     JMenuItem mnuAdd;
 
     public btnDerechoCategoria() {
-        mnuAdd = new JMenuItem("Agregar Nueva");
+        mnuAdd = new JMenuItem("Agregar Categoría");
         this.add(mnuAdd);
-        this.setVisible(true);
     }
 }
