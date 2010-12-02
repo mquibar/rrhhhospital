@@ -71,17 +71,17 @@ public class ExpModificarProfesionalBeans implements ExpModificarProfesional {
             String matricula, String titulo) {
 
 
-            profesional.setNombre(nombre);
-            profesional.setApellido(apellido);
-            profesional.setDni(dni);
+            profesional.setNombre(nombre.toUpperCase());
+            profesional.setApellido(apellido.toUpperCase());
+            profesional.setDni(dni.toUpperCase());
             profesional.setFechaNacimiento(Tools.ManejaFechas.convertirString(fechaNacimiento));
             profesional.setTelefono(Long.parseLong(telefono));
             profesional.setIdSexo(sexo);
-            profesional.setCuil(cuil);
+            profesional.setCuil(cuil.toUpperCase());
             modificarDomicilioProfesional (profesional, barrio, calle,
                      numero, piso, departamanto, localidad, provincia, pais);
-            profesional.setTitulo(titulo);
-            profesional.setMatricula(matricula);
+            profesional.setTitulo(titulo.toUpperCase());
+            profesional.setMatricula(matricula.toUpperCase());
 
             /*Comienza una transaccion con la base de datos para actulizar el contenido*/
             try{
@@ -120,11 +120,11 @@ public class ExpModificarProfesionalBeans implements ExpModificarProfesional {
             String calle, String numero, String piso, String departamanto,
             Localidad localidad, Provincia provincia, Pais pais){
 
-            profesional.getIdDomicilio().setCalle(calle);
-            profesional.getIdDomicilio().setBarrio(barrio);
+            profesional.getIdDomicilio().setCalle(calle.toUpperCase());
+            profesional.getIdDomicilio().setBarrio(barrio.toUpperCase());
             profesional.getIdDomicilio().setNumero(Integer.getInteger(numero));
-            profesional.getIdDomicilio().setPiso(piso);
-            profesional.getIdDomicilio().setDepartamento(departamanto);
+            profesional.getIdDomicilio().setPiso(piso.toUpperCase());
+            profesional.getIdDomicilio().setDepartamento(departamanto.toUpperCase());
             profesional.getIdDomicilio().setIdLocalidad(localidad);
             profesional.getIdDomicilio().setIdProvincia(provincia);
             profesional.setIdPais(pais);

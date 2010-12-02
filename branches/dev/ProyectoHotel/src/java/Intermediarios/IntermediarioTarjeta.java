@@ -45,7 +45,14 @@ public class IntermediarioTarjeta extends Intermediario <Tarjeta> {
 
     @Override
     public List<Tarjeta> findInOrden(String orden) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try{
+            String query = "SELECT t FROM " + _clase + " t WHERE t NOT IN (SELECT e.idTarjeta FROM Empleado e WHERE e.eliminado is Null OR e.eliminado = false)";
+            Query q = GestorConeccion.getInstance().getManager().createQuery(query);
+            return q.getResultList();
+        }catch(Exception e){
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override

@@ -12,9 +12,7 @@ import DTO.DTOProfesional;
 import java.util.HashMap;
 import java.util.Map;
 import javax.persistence.Query;
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.criterion.Order;
+
 
 
 /**
@@ -75,7 +73,7 @@ public class IntermediarioProfesional extends Intermediario <Profesional> {
     }
 
     public Profesional findByDni (String dni) {
-            try {
+       try {
             Query q = GestorConeccion.getInstance().getManager().createQuery("SELECT e FROM Profesional e WHERE e.dni = "+dni);
             return (Profesional)q.getSingleResult();
         } catch (Exception ex) {

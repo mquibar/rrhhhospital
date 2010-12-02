@@ -18,6 +18,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 /**
@@ -27,7 +28,8 @@ import javax.ejb.Stateless;
 
 @Stateless
 public class ExpAltaProfesionalBeans implements ExpAltaProfesional {
-
+    @EJB
+    private ExpConsultarPersonal _expConsulta;
     private Profesional _profesional;
 
     public ExpAltaProfesionalBeans() {
@@ -54,18 +56,21 @@ public class ExpAltaProfesionalBeans implements ExpAltaProfesional {
             String departamanto, Localidad localidad, Provincia provincia, Pais pais, Sexo sexo,
             String cuil, String matricula, String titulo, Tarjeta tarjeta) {
         boolean resultado;
+
+
+            if (_expConsulta.consultarEmpleadoPorDNI(dni) != null)
+                return false;
         
-        
-                _profesional.setNombre(nombre);
-                _profesional.setApellido(apellido);
+                _profesional.setNombre(nombre.toUpperCase());
+                _profesional.setApellido(apellido.toUpperCase());
                 _profesional.setDni(dni);
                 _profesional.setFechaNacimiento(fechaNacimiento);
                 _profesional.setTelefono(telefono);
                 agregarDomicilio(barrio, calle, numero, piso, departamanto, localidad, provincia, pais);
                 _profesional.setIdSexo(sexo);
-                _profesional.setCuil(cuil);
-                _profesional.setMatricula(matricula);
-                _profesional.setTitulo(titulo);
+                _profesional.setCuil(cuil.toUpperCase());
+                _profesional.setMatricula(matricula.toUpperCase());
+                _profesional.setTitulo(titulo.toUpperCase());
                 _profesional.setFechaIngreso(new Date());
                 _profesional.setIdTipoEmpleado(tipo);
                 _profesional.setIdTarjeta(tarjeta);
@@ -81,7 +86,7 @@ public class ExpAltaProfesionalBeans implements ExpAltaProfesional {
                         GestorConeccion.getInstance().rollbackTransaction();
                     }
                 }catch(Exception ex){
-                    System.out.println("************ <Error en el Experto de Alta de Persona>");
+                    System.out.println("************ <Error en el Experto de Alta de Profesional>");
                     ex.printStackTrace();
                     System.out.println("<\\Error> *****************");
                     resultado = false;

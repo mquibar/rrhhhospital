@@ -74,7 +74,8 @@ public class IntermediarioEmpleado extends Intermediario<Empleado> {
 
     public Empleado findByDni (String dni) {
             try {
-            Query q = GestorConeccion.getInstance().getManager().createNamedQuery(super._clase + ".findByDni").setParameter("dni", dni);
+            Query q = GestorConeccion.getInstance().getManager().createQuery("SELECT e FROM Empleado e WHERE e.dni = :dni");
+            q.setParameter("dni", dni);
             return (Empleado)q.getSingleResult();
         } catch (Exception ex) {
             ex.printStackTrace();

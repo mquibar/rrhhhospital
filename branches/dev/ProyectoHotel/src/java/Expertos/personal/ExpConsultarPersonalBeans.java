@@ -9,7 +9,6 @@ import DTO.DtoEmpleado;
 import DTO.DTOProfesional;
 import Entidades.Empleado;
 import Entidades.Profesional;
-import Expertos.personal.ExpConsultarPersonal;
 import Intermediarios.IntermediarioEmpleado;
 import Intermediarios.IntermediarioProfesional;
 import java.util.List;
@@ -34,8 +33,10 @@ public class ExpConsultarPersonalBeans implements ExpConsultarPersonal {
         IntermediarioEmpleado intermediario = new IntermediarioEmpleado();
         List<Empleado> empleado;
         DtoEmpleado dto = new DtoEmpleado();
-        dto.setApellido(apellido);
-        dto.setNombre(nombre);
+        if (!apellido.isEmpty())
+            dto.setApellido(apellido.toUpperCase());
+        if (!nombre.isEmpty())
+            dto.setNombre(nombre.toUpperCase());
         try {
             empleado = intermediario.findByDto(dto);
         } catch (NullPointerException e) {

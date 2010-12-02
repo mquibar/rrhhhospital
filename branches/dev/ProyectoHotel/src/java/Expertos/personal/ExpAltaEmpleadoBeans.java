@@ -18,6 +18,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 /**
@@ -30,6 +31,8 @@ import javax.ejb.Stateless;
 @Stateless
 public class ExpAltaEmpleadoBeans implements ExpAltaEmpleado {
 
+    @EJB
+    private ExpConsultarPersonal _expConsulta;
     private Empleado _empleado;
 
     public ExpAltaEmpleadoBeans() {
@@ -77,14 +80,17 @@ public class ExpAltaEmpleadoBeans implements ExpAltaEmpleado {
             Localidad localidad, Provincia provincia, Pais pais, Sexo sexo, String cuil, Tarjeta tarjeta) {
             boolean resultado;
 
-            _empleado.setNombre(nombre);
-            _empleado.setApellido(apellido);
-            _empleado.setDni(dni);
+            if (_expConsulta.consultarEmpleadoPorDNI(dni) != null)
+                return false;
+
+            _empleado.setNombre(nombre.toUpperCase());
+            _empleado.setApellido(apellido.toUpperCase());
+            _empleado.setDni(dni.toUpperCase());
             _empleado.setFechaNacimiento(fechaNacimiento);
             _empleado.setTelefono(telefono);
             agregarDomicilio(barrio, calle, numero, piso, departamanto, localidad, provincia, pais);
             _empleado.setIdSexo(sexo);
-            _empleado.setCuil(cuil);
+            _empleado.setCuil(cuil.toUpperCase());
             _empleado.setFechaIngreso(new Date());
             _empleado.setIdTipoEmpleado(tipo);
             _empleado.setIdTarjeta(tarjeta);
@@ -100,7 +106,7 @@ public class ExpAltaEmpleadoBeans implements ExpAltaEmpleado {
                     GestorConeccion.getInstance().rollbackTransaction();
                 }
             }catch(Exception ex){
-                System.out.println("************ <Error en el Experto de Alta de Persona>");
+                System.out.println("************ <Error en el Experto de Alta de Empleado>");
                 ex.printStackTrace();
                 System.out.println("<\\Error> *****************");
                 resultado = false;
