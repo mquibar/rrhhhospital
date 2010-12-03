@@ -13,10 +13,12 @@ import Entidades.Agrupamiento;
 import Entidades.Categoria;
 import Entidades.Clase;
 import Entidades.ClaseVigente;
+import Entidades.Requisito;
 import Entidades.Tramo;
 import Intermediarios.IntermediarioAgrupamiento;
 import Intermediarios.IntermediarioCategoria;
 import Intermediarios.IntermediarioClase;
+import Intermediarios.IntermediarioRequisitos;
 import Intermediarios.IntermediarioTramo;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -120,5 +122,9 @@ public class ExpConsultarCategoriaBeans implements ExpConsultarCategoria {
         }catch(Exception e){
             return null;
         }
+    }
+
+    public List<Requisito> listarRequisitos(Categoria c){
+        return (new IntermediarioRequisitos()).findByDto(c);
     }
 }
