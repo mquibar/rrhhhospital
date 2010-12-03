@@ -9,6 +9,7 @@ import Entidades.Clase;
 import Entidades.ClaseContenida;
 import Entidades.Requisito;
 import Entidades.Tramo;
+import Intermediarios.GestorConeccion;
 import Intermediarios.IntermediarioCategoria;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,6 @@ import javax.ejb.Stateless;
 public class ExpAltaCategoriaBeans implements ExpAltaCategoria {
 
     private Categoria _categoria;
-    private boolean _flagSave = true;
     @EJB
     Expertos.categorizacion.ExpConsultarCategoria _expertoConsulta;
 
@@ -32,51 +32,52 @@ public class ExpAltaCategoriaBeans implements ExpAltaCategoria {
     }
 
     public List<Clase> iniciarCU(Tramo tramo) {
-//        nombreCategoria= nombreCategoria.toUpperCase();
         _categoria.setTramo(tramo);
-//        _categoria.setNombre(nombreCategoria);
-//        _categoria.setCupo(cupoMaximo);
-//        if(_expertoConsulta.consultarCategoriaByNombre(nombreCategoria)!= null)
-//            return null;
+        System.out.println(tramo.getNombre());
         return _expertoConsulta.listarClases();
     }
 
     public void setterRequisito(List<Requisito> requisitos) {
-        _flagSave = requisitos.isEmpty();
         if(_categoria.getRequisitoList()==null)
             _categoria.setRequisitoList(new ArrayList<Requisito>());
         _categoria.getRequisitoList().addAll(requisitos);
     }
 
     public void setterClase(List<ClaseContenida> clases){
-        _flagSave = clases.isEmpty();
         if(_categoria.getClaseContenida()==null)
             _categoria.setClaseContenidaList(new ArrayList<ClaseContenida>());
         clases.get(0).setInicial(true);
         _categoria.getClaseContenida().addAll(clases);
     }
-    /*public void agergarClase(Clase clase, int antiguedadMinima, boolean inicial) {
-    _categoria.addClase(clase, antiguedadMinima, inicial);
-    _flagSave = true;
-    }
 
-    public void agergarClase(Clase clase, int antiguedadMinima) {
-    _categoria.addClase(clase, antiguedadMinima, false);
+    public void setterNombre(String nombre, Integer cupo){
+        _categoria.setNombre(nombre.toUpperCase());
+        _categoria.setCupo(cupo);
     }
-
-    public void agregarRequerimiento(String descripcion) {
-        Requisito requisito = new Requisito();
-        requisito.setIdCategoria(_categoria);
-        requisito.setDescripcion(descripcion);
-        requisito.setNumero(_categoria.getRequisitoList().size() + 1);
-        _categoria.getRequisitoList().add(requisito);
-        _flagSave = true;
-    }*/
 
     public boolean guardarCategoria() {
-        if (!_flagSave) {
+        if(_categoria.getNombre().isEmpty()||_categoria.getClaseContenida().isEmpty()||_categoria.getRequisitoList().isEmpty())
+            return false;
+        for (ClaseContenida claseContenida : _categoria.getClaseContenida()) {
+            claseContenida.setCategoria(_categoria);
+        }
+        for (Requisito requisito : _categoria.getRequisitoList()) {
+            requisito.setIdCategoria(_categoria);
+        }
+        try{
+        GestorConeccion.getInstance().beginTransaction();
+            if((new IntermediarioCategoria()).guardar(_categoria)){
+                GestorConeccion.getInstance().commitTransaction();
+                return true;
+            }
+            else{
+                GestorConeccion.getInstance().rollbackTransaction();
+                return false;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
             return false;
         }
-        return (new IntermediarioCategoria()).guardar(_categoria);
+
     }
 }

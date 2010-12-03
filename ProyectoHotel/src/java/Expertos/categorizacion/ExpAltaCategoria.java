@@ -23,6 +23,7 @@ public interface  ExpAltaCategoria {
     public boolean guardarCategoria();
     public void setterRequisito(List<Requisito> requisitos);
     public void setterClase(List<ClaseContenida> clases);
+    public void setterNombre(String nombre, Integer cupo);
     /*public void agergarClase(Entidades.Clase clase, int antiguedadMinima, boolean inicial);
     public void agregarRequerimiento(String descripcion);
     public void agergarClase(Entidades.Clase clase, int antiguedadMinima);*/
