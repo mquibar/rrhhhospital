@@ -5,7 +5,6 @@
 
 package seguimiento.gestionCategoria;
 
-import Entidades.Clase;
 import Entidades.ClaseContenida;
 import Entidades.Requisito;
 import Entidades.Tramo;
@@ -88,6 +87,10 @@ public class ctrlAltaCategoria {
                 pressOkButton();
             }
         });
+        _pantalla.getTblRequisitos().setModel(_requisitos);
+        _pantalla.getTblClases().setModel(_clases);
+        _pantalla.getTblClasesAsignadas().setModel(_clasesContenidas);
+        _pantalla.setVisible(true);
     }
 
     void pressCancelButton(){

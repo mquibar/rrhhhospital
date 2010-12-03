@@ -36,9 +36,11 @@ public class ctrlAdminEscalafon {
     private TableCategoria _tablaCategoria = null;
     private TableRequisitos _tablaRequisito = null;
     private TableClaseContenida _tablaClase = null;
+    private MousePanelCategoria _menuCategoria = null;
 
     public ctrlAdminEscalafon() {
         _pantalla = new AdminEscalafon(this);
+        _menuCategoria = new MousePanelCategoria(_pantalla, this);
         _gestorConsulta = (ExpConsultarCategoria) ContextGenerator.getInstance().createGestor(ExpConsultarCategoria.class.getName());
         _tablaAgrupamiento = new TableAgrupamiento(_gestorConsulta.listarAgrupamientos());
         _pantalla.getTblAgrup().setModel(_tablaAgrupamiento);
@@ -46,13 +48,19 @@ public class ctrlAdminEscalafon {
         _pantalla.getTxtFilter().addKeyListener(new KeyListener() {
 
             public void keyTyped(KeyEvent e) {
+                filtrar();
             }
 
             public void keyPressed(KeyEvent e) {
+                filtrar();
             }
 
             public void keyReleased(KeyEvent e) {
                 filtrar();
+            }
+
+            private void filtrar() {
+                _tablaAgrupamiento.filter(_pantalla.getTxtFilter().getText().toUpperCase());
             }
         });
 
@@ -62,11 +70,9 @@ public class ctrlAdminEscalafon {
                 listarCategoria();
             }
         });
+        _pantalla.getPnlCategoria().addMouseListener(_menuCategoria);
+        _pantalla.getTblCateg().addMouseListener(_menuCategoria);
 
-    }
-
-    void filtrar() {
-        _tablaAgrupamiento.filter(_pantalla.getTxtFilter().getText().toUpperCase());
     }
 
     void listarTramo() {
@@ -85,36 +91,6 @@ public class ctrlAdminEscalafon {
             _pantalla.getBtnTramoView().setText("Ocultar");
             _pantalla.getBtnAgrupView().setEnabled(flag);
             _tablaCategoria = new TableCategoria(_gestorConsulta.consultarCategoria(_tablaTramo.getSelectedIndex(_pantalla.getTblTramo().getSelectedRow())));
-            _pantalla.getTblCateg().addMouseListener(new MouseAdapter() {
-
-                private btnDerechoCategoria _popUp=null;
-
-                @Override
-                public void mousePressed(MouseEvent e) {
-                    checkButton(e);
-                }
-
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    checkButton(e);
-                }
-
-                @Override
-                public void mouseReleased(MouseEvent e) {
-                    checkButton(e);
-                }
-
-                private void checkButton(MouseEvent e){
-                    if(e.isPopupTrigger()){
-                        if(_popUp == null)
-                            _popUp = new btnDerechoCategoria();
-                        _popUp.show(_pantalla.getTblCateg(), e.getXOnScreen(), e.getYOnScreen());
-                    }
-                    else
-                        mostrarRequisitos(e);
-                }
-
-            });
             _pantalla.getTblCateg().setModel(_tablaCategoria);
         } else {
             _pantalla.getBtnTramoView().setText("Detalles");
@@ -122,9 +98,9 @@ public class ctrlAdminEscalafon {
         }
     }
 
-    private void mostrarRequisitos(MouseEvent e) {
+    void mostrarRequisitos(MouseEvent e) {
         Categoria c = _tablaCategoria.getSelectedIndex(_pantalla.getTblCateg().rowAtPoint(e.getPoint()));
-        _tablaRequisito = new TableRequisitos(c.getRequisitoList());
+        _tablaRequisito = new TableRequisitos(_gestorConsulta.listarRequisitos(c));
         _pantalla.getTblRequ().setModel(_tablaRequisito);
         _tablaClase = new TableClaseContenida(c.getClaseContenida());
         _pantalla.getTblClass().setModel(_tablaClase);
@@ -149,14 +125,57 @@ public class ctrlAdminEscalafon {
         ExpModificarAgrupamiento gestor = (ExpModificarAgrupamiento) ContextGenerator.getInstance().createGestor(ExpModificarAgrupamiento.class.getName());
         gestor.agregarTramo(_tablaAgrupamiento.getSelectedIndex(_pantalla.getTblAgrup().getSelectedRow()), _pantalla.getTxtTramo().getText());
     }
-}
 
-class btnDerechoCategoria extends JPopupMenu {
-
-    JMenuItem mnuAdd;
-
-    public btnDerechoCategoria() {
-        mnuAdd = new JMenuItem("Agregar CategorÃ­a");
-        this.add(mnuAdd);
+    void addCategoria() {
+        new ctrlAltaCategoria(_pantalla, _tablaTramo.getSelectedIndex(_pantalla.getTblCateg().getSelectedRow()));
     }
 }
+
+class MousePanelCategoria extends MouseAdapter {
+
+    private JPopupMenu _menu;
+    private JMenuItem _mnuAdd;
+    private AdminEscalafon _pantalla;
+    private ctrlAdminEscalafon _control;
+
+    public MousePanelCategoria(AdminEscalafon pantalla, ctrlAdminEscalafon control) {
+        _menu = new JPopupMenu("Menu Categorías");
+        _mnuAdd = new JMenuItem("Agregar");
+        _mnuAdd.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                _control.addCategoria();
+            }
+        });
+        _menu.add(_mnuAdd);
+        _menu.addSeparator();
+        _mnuAdd = new JMenuItem("Eliminar");
+        _menu.add(_mnuAdd);
+        _pantalla = pantalla;
+        _control = control;
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        checkButton(e);
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        checkButton(e);
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        checkButton(e);
+    }
+
+    private void checkButton(MouseEvent e) {
+        if (e.isPopupTrigger()) {
+            _menu.show(_pantalla.getTblCateg(), e.getX(), e.getY());
+        } else if (e.getButton() == MouseEvent.BUTTON1) {
+            _control.mostrarRequisitos(e);
+        }
+    }
+}
+
