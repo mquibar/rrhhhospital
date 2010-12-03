@@ -8,6 +8,7 @@ package Expertos.categorizacion;
 import Entidades.Agrupamiento;
 import Entidades.Categoria;
 import Entidades.Clase;
+import Entidades.Requisito;
 import Entidades.Tramo;
 import java.util.List;
 import javax.ejb.Remote;
@@ -38,4 +39,6 @@ public interface  ExpConsultarCategoria {
     public Tramo consultarTramo(Categoria categoria);
 
     public java.util.List<Entidades.Clase> consultarClase(Entidades.ClaseVigente cv);
+
+    public List<Requisito> listarRequisitos(Categoria c);
 }
