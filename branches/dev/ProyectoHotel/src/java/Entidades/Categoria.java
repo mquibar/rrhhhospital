@@ -172,7 +172,7 @@ public class Categoria implements Serializable {
         return "Entidades.Categoria[id=" + id + "]";
     }
 
-    public void addClase(Clase clase, long antMinima, boolean inicial){
+    public void addClase(Clase clase, Integer antMinima, boolean inicial){
         if(claseContenidaList==null)
             claseContenidaList = new ArrayList<ClaseContenida>();
         ClaseContenida cc = new ClaseContenida();

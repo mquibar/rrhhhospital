@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,7 +35,7 @@ public class Usuario implements Serializable {
     private String nombre;
     private String password;
     private boolean eliminado;
-    @OneToOne
+    @OneToOne(fetch=FetchType.EAGER)
     private Empleado empleado;
     @ManyToMany
     private List<Perfil> perfiles;
