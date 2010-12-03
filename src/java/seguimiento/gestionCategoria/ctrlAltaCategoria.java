@@ -5,6 +5,7 @@
 
 package seguimiento.gestionCategoria;
 
+import Entidades.Clase;
 import Entidades.ClaseContenida;
 import Entidades.Requisito;
 import Entidades.Tramo;
@@ -12,6 +13,7 @@ import Expertos.categorizacion.ExpAltaCategoria;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import managerrrhhhospital.ContextGenerator;
 import models.tables.TableClase;
 import models.tables.TableClaseContenida;
@@ -99,6 +101,11 @@ public class ctrlAltaCategoria {
 
     void pressOkButton(){
         _gestorCategoria.setterRequisito(_requisitos.getAllRow());
+        _gestorCategoria.setterClase(_clasesContenidas.getAllRow());
+        _gestorCategoria.setterNombre(_pantalla.getTxtNombre().getText(), Integer.valueOf(_pantalla.getTxtCupo().getText()));
+        if(_gestorCategoria.guardarCategoria()){
+            JOptionPane.showMessageDialog(_pantalla, "Operación Exitosa");
+        }
     }
 
     void pressAddRequest(){
@@ -117,9 +124,13 @@ public class ctrlAltaCategoria {
 
     void pressAddOne(){
         ClaseContenida cc = new ClaseContenida();
-        cc.setAntiguedadMinima( Long.valueOf("0") );
-//        Integer.MIN_VALUE)
-//        _clasesContenidas.addRow(_clases.getSelectedIndex(_pantalla.getTblClases().getSelectedRow()));
+        cc.setNumeroIndiceOrden(_clasesContenidas.getAllRow().size()+1);
+        if(cc.getNumeroIndiceOrden()==1)
+            cc.setAntiguedadMinima(0);
+        else
+            cc.setAntiguedadMinima(_clasesContenidas.getSelectedIndex(_clasesContenidas.getRowCount()-1).getAntiguedadMinima()+1);
+        cc.setClase(_clases.getSelectedIndex(_pantalla.getTblClases().getSelectedRow()));
+        _clasesContenidas.addRow(cc);
         _clases.delRow(_pantalla.getTblClases().getSelectedRow());
         _clases.sort();
         _clasesContenidas.sort();
@@ -130,7 +141,14 @@ public class ctrlAltaCategoria {
         _pantalla.getBtnRemoveAll().setEnabled(true);
     }
     void pressAddAll(){
-        //_clasesContenidas.addAll(_clases.getAllRow());
+        int i=_clasesContenidas.getSelectedIndex(_clasesContenidas.getRowCount()-1).getAntiguedadMinima();
+        ClaseContenida cc = null;
+        for (Clase clase : _clases.getAllRow()) {
+            cc=new ClaseContenida();
+            cc.setAntiguedadMinima(++i);
+            cc.setClase(clase);
+            _clasesContenidas.addRow(cc);
+        }
         _clases.clear();
         _clasesContenidas.sort();
         _pantalla.getBtnAddAll().setEnabled(false);
@@ -140,7 +158,7 @@ public class ctrlAltaCategoria {
     }
 
     void pressRemoveOne(){
-        //_clases.addRow(_clasesContenidas.getSelectedIndex(_pantalla.getTblClasesAsignadas().getSelectedRow()));
+        _clases.addRow(_clasesContenidas.getSelectedIndex(_pantalla.getTblClasesAsignadas().getSelectedRow()).getClase());
         _clasesContenidas.delRow(_pantalla.getTblClasesAsignadas().getSelectedRow());
         _clasesContenidas.sort();
         _clases.sort();
@@ -152,7 +170,9 @@ public class ctrlAltaCategoria {
     }
 
     void pressRemoveAll(){
-        //_clases.addAll(_clasesContenidas.getAllRow());
+        for (ClaseContenida claseContenida : _clasesContenidas.getAllRow()) {
+            _clases.addRow(claseContenida.getClase());
+        }
         _clasesContenidas.clear();
         _clases.sort();
         _pantalla.getBtnRemoveOne().setEnabled(false);

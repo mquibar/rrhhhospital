@@ -61,7 +61,7 @@ public class AltaCategoria extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Descripción"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Descripci�n"));
 
         jLabel1.setText("Nombre");
 
@@ -100,7 +100,7 @@ public class AltaCategoria extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Número", "Descripción"
+
             }
         ));
         jScrollPane1.setViewportView(_tblRequisitos);
@@ -141,7 +141,7 @@ public class AltaCategoria extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Clase"
+
             }
         ));
         jScrollPane2.setViewportView(_tblClases);
@@ -151,7 +151,7 @@ public class AltaCategoria extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Clase"
+
             }
         ));
         jScrollPane3.setViewportView(_tblClasesAsignadas);

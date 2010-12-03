@@ -88,12 +88,12 @@ public class ctrlAdminEscalafon {
         _pantalla.getBtnTramoDel().setEnabled(flag);
         if (!flag) {
             _pantalla.getPnlAddTramo().setVisible(flag);
-            _pantalla.getBtnTramoView().setText("Ocultar");
+            _pantalla.getBtnTramoView().setText("Ocultar Categorías");
             _pantalla.getBtnAgrupView().setEnabled(flag);
             _tablaCategoria = new TableCategoria(_gestorConsulta.consultarCategoria(_tablaTramo.getSelectedIndex(_pantalla.getTblTramo().getSelectedRow())));
             _pantalla.getTblCateg().setModel(_tablaCategoria);
         } else {
-            _pantalla.getBtnTramoView().setText("Detalles");
+            _pantalla.getBtnTramoView().setText("Ver Categorías");
             _pantalla.getBtnAgrupView().setEnabled(flag);
         }
     }

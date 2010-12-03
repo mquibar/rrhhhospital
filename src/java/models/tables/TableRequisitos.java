@@ -17,7 +17,7 @@ import java.util.List;
 public class TableRequisitos extends AbstractTable<Requisito> {
 
     public TableRequisitos(List<Requisito> _lista) {
-        super(_lista, "Nro", "DescripciÃ³n");
+        super(_lista, "Nro", "Descripción");
     }
 
     public Object getValueAt(int rowIndex, int columnIndex) {

@@ -15,7 +15,7 @@ import java.util.List;
 public class TableCategoria extends AbstractTable<Categoria>{
 
     public TableCategoria(List<Categoria> _lista) {
-        super(_lista, "Nro.", "CategorÃ­a", "Cupo");
+        super(_lista, "Nro.", "Categoría", "Cupo");
     }
 
     public Object getValueAt(int rowIndex, int columnIndex) {

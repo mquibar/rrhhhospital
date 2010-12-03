@@ -152,7 +152,7 @@ public class AdminEscalafon extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         jPanel2.add(_btnAgrupDel, gridBagConstraints);
 
-        _btnAgrupView.setText("Detalles");
+        _btnAgrupView.setText("Ver Tramos");
         _btnAgrupView.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 _btnAgrupViewActionPerformed(evt);
@@ -267,7 +267,7 @@ public class AdminEscalafon extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         jPanel3.add(_btnTramoDel, gridBagConstraints);
 
-        _btnTramoView.setText("Detalles");
+        _btnTramoView.setText("Ver Categorías");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         jPanel3.add(_btnTramoView, gridBagConstraints);
@@ -356,13 +356,13 @@ public class AdminEscalafon extends javax.swing.JFrame {
 
         _tblRequ.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Número", "Descripción"
+
             }
         ));
         jScrollPane4.setViewportView(_tblRequ);
@@ -382,7 +382,7 @@ public class AdminEscalafon extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Núm", "Clase", "Ant. Min."
+
             }
         ));
         jScrollPane5.setViewportView(_tblClass);
@@ -525,14 +525,15 @@ public class AdminEscalafon extends javax.swing.JFrame {
         _btnAgrupAdd.setEnabled(flag);
         _btnAgrupDel.setEnabled(flag);
         _tblAgrup.setEnabled(flag);
+        _txtFilter.setEnabled(flag);
         if(!flag){
             _pnlAddAgrup.setVisible(flag);
-            _btnAgrupView.setText("Ocultar");
+            _btnAgrupView.setText("Ocultar Tramos");
             _control.listarTramo();
 
         }
         else
-            _btnAgrupView.setText("Detalles");
+            _btnAgrupView.setText("Ver Tramos");
     }
 
     public JButton getBtnAgrupAdd() {
