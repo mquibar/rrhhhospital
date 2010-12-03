@@ -13,6 +13,7 @@ package seguimiento.gestionCategoria;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -41,7 +42,7 @@ public class AdminEscalafon extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         _txtFilter = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        _scrlAgrupamiento = new javax.swing.JScrollPane();
         _tblAgrup = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         _btnAgrupAdd = new javax.swing.JButton();
@@ -53,7 +54,7 @@ public class AdminEscalafon extends javax.swing.JFrame {
         _btnAgrupOk = new javax.swing.JButton();
         _btnAgrupCancel = new javax.swing.JButton();
         _pnlTramo = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        _scrTramo = new javax.swing.JScrollPane();
         _tblTramo = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         _btnTramoAdd = new javax.swing.JButton();
@@ -65,7 +66,7 @@ public class AdminEscalafon extends javax.swing.JFrame {
         _btnTramoOk = new javax.swing.JButton();
         _btnTramoCancel = new javax.swing.JButton();
         _pnlCategoria = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
+        _scrCategoria = new javax.swing.JScrollPane();
         _tblCateg = new javax.swing.JTable();
         jScrollPane4 = new javax.swing.JScrollPane();
         _tblRequ = new javax.swing.JTable();
@@ -85,12 +86,6 @@ public class AdminEscalafon extends javax.swing.JFrame {
         gridBagConstraints.weightx = 0.0010;
         gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
         jPanel1.add(jLabel1, gridBagConstraints);
-
-        _txtFilter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                _txtFilterActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -128,7 +123,7 @@ public class AdminEscalafon extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(_tblAgrup);
+        _scrlAgrupamiento.setViewportView(_tblAgrup);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -137,7 +132,7 @@ public class AdminEscalafon extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.0010;
         gridBagConstraints.weighty = 2.0;
-        getContentPane().add(jScrollPane1, gridBagConstraints);
+        getContentPane().add(_scrlAgrupamiento, gridBagConstraints);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.gray, java.awt.Color.lightGray));
         jPanel2.setLayout(new java.awt.GridBagLayout());
@@ -243,7 +238,7 @@ public class AdminEscalafon extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(_tblTramo);
+        _scrTramo.setViewportView(_tblTramo);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -252,7 +247,7 @@ public class AdminEscalafon extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.0010;
         gridBagConstraints.weighty = 0.2;
-        _pnlTramo.add(jScrollPane2, gridBagConstraints);
+        _pnlTramo.add(_scrTramo, gridBagConstraints);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.gray, java.awt.Color.lightGray));
         jPanel3.setLayout(new java.awt.GridBagLayout());
@@ -337,17 +332,17 @@ public class AdminEscalafon extends javax.swing.JFrame {
         _pnlCategoria.setVisible(false);
         _pnlCategoria.setLayout(new java.awt.GridBagLayout());
 
-        jScrollPane3.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.gray, java.awt.Color.lightGray));
+        _scrCategoria.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.gray, java.awt.Color.lightGray));
 
         _tblCateg.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "NÃºmero", "CategorÃ­a", "Cupo"
+                "Número", "Categoría", "Cupo"
             }
         ));
-        jScrollPane3.setViewportView(_tblCateg);
+        _scrCategoria.setViewportView(_tblCateg);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -355,7 +350,7 @@ public class AdminEscalafon extends javax.swing.JFrame {
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.01;
-        _pnlCategoria.add(jScrollPane3, gridBagConstraints);
+        _pnlCategoria.add(_scrCategoria, gridBagConstraints);
 
         jScrollPane4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.gray, java.awt.Color.lightGray), "Requisitos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 0))); // NOI18N
 
@@ -367,7 +362,7 @@ public class AdminEscalafon extends javax.swing.JFrame {
                 {null, null}
             },
             new String [] {
-                "NÃºmero", "DescripciÃ³n"
+                "Número", "Descripción"
             }
         ));
         jScrollPane4.setViewportView(_tblRequ);
@@ -387,7 +382,7 @@ public class AdminEscalafon extends javax.swing.JFrame {
 
             },
             new String [] {
-                "NÃºm", "Clase", "Ant. Min."
+                "Núm", "Clase", "Ant. Min."
             }
         ));
         jScrollPane5.setViewportView(_tblClass);
@@ -430,10 +425,6 @@ public class AdminEscalafon extends javax.swing.JFrame {
         _pnlAddTramo.setVisible(true);
     }//GEN-LAST:event__btnTramoAddActionPerformed
 
-    private void _txtFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event__txtFilterActionPerformed
-        _control.filtrar();
-    }//GEN-LAST:event__txtFilterActionPerformed
-
     private void _txtAgrupamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event__txtAgrupamientoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event__txtAgrupamientoActionPerformed
@@ -473,6 +464,9 @@ public class AdminEscalafon extends javax.swing.JFrame {
     private javax.swing.JPanel _pnlAddTramo;
     private javax.swing.JPanel _pnlCategoria;
     private javax.swing.JPanel _pnlTramo;
+    private javax.swing.JScrollPane _scrCategoria;
+    private javax.swing.JScrollPane _scrTramo;
+    private javax.swing.JScrollPane _scrlAgrupamiento;
     private javax.swing.JTable _tblAgrup;
     private javax.swing.JTable _tblCateg;
     private javax.swing.JTable _tblClass;
@@ -487,9 +481,6 @@ public class AdminEscalafon extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     // End of variables declaration//GEN-END:variables
@@ -533,10 +524,12 @@ public class AdminEscalafon extends javax.swing.JFrame {
         _pnlTramo.setVisible(!flag);
         _btnAgrupAdd.setEnabled(flag);
         _btnAgrupDel.setEnabled(flag);
+        _tblAgrup.setEnabled(flag);
         if(!flag){
             _pnlAddAgrup.setVisible(flag);
             _btnAgrupView.setText("Ocultar");
             _control.listarTramo();
+
         }
         else
             _btnAgrupView.setText("Detalles");
@@ -596,6 +589,18 @@ public class AdminEscalafon extends javax.swing.JFrame {
 
     public JPanel getPnlTramo() {
         return _pnlTramo;
+    }
+
+    public JScrollPane getScrCategoria() {
+        return _scrCategoria;
+    }
+
+    public JScrollPane getScrTramo() {
+        return _scrTramo;
+    }
+
+    public JScrollPane getScrlAgrupamiento() {
+        return _scrlAgrupamiento;
     }
 
     
