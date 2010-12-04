@@ -26,30 +26,30 @@
 
     <body>
         <div class="cabecera">
-            <div class="logo"></div>
+            <div class="logo">
+            </div>
             <div class="user">
-				<ul class="pureCssMenu pureCssMenum0">
-					<li><a class="user_2" href="#"><span><b>User<b></span><![if gt IE 6]></a><![endif]>
-						<ul class="pureCssMenum">
-							<li class="pureCssMenui"><a id="User_mnu1" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Editar Perfil</a></li>
-							<li class="pureCssMenui"><a id="User_mnu2" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Cerrar Sesión</a></li>
-						</ul>
-					</li>
-				</ul>
-			</div>
+                <ul class="pureCssMenu pureCssMenum0">
+                    <li><a class="user_2" href="#"><span  style="background-image: url(./img/arr_black.gif); background-position: center right; background-repeat:no-repeat; padding-right:9px; text-align:right;"><b>User<b></span><![if gt IE 6]></a><![endif]>
+                        <ul class="pureCssMenum">
+                            <li class="pureCssMenui"><a id="User_mnu1" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Editar Perfil</a></li>
+                            <li class="pureCssMenui"><a id="User_mnu2" class="pureCssMenui" onclick="js_logOff()" href="#">Cerrar Sesión</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div>
-            <table width="100%" height="20" border="0" align="center" class="botonera">
+        <div class="botonera" width="100%">
+            <table height="20" border="0" align="center" class="botonera">
                 <tr>
-                    <td width="542">&nbsp;</td>
-                    <td width="584" height="40" align="center" valign="top">
+                    <td height="40" align="center" valign="top">
                         <ul class="pureCssMenu pureCssMenum0">
                             <li class="pureCssMenui0"><a class="pureCssMenui0" href="#"><span>Personal</span><![if gt IE 6]></a><![endif]>
-                                <ul class="pureCssMenum">
-                                    <li class="pureCssMenui"><a id="Personal_mnu1" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Gestionar personal</a></li>
-                                    <li class="pureCssMenui"><a id="Personal_mnu2" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Consultar personal</a></li>
-                                    <li class="pureCssMenui"><a id="Personal_mnu3" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Asignar legajo</a></li>
-                                </ul>
+                                                                <ul class="pureCssMenum">
+                                                                    <li class="pureCssMenui"><a id="Personal_mnu1" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Gestionar personal</a></li>
+                                                                    <li class="pureCssMenui"><a id="Personal_mnu2" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Consultar personal</a></li>
+                                                                    <li class="pureCssMenui"><a id="Personal_mnu3" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Asignar legajo</a></li>
+                                                                </ul>
                             </li>
                             <li class="pureCssMenui0"><a class="pureCssMenui0" href="#"><span>Horarios</span><![if gt IE 6]></a><![endif]><!--[if lte IE 6]><table><tr><td><![endif]-->
                                 <ul class="pureCssMenum">
@@ -59,30 +59,30 @@
                                     <li class="pureCssMenui"><a id="Horario_mnu4" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Manejo de licencias</a></li>
                                 </ul>
                             </li>
-                            <li class="pureCssMenui0"><a class="pureCssMenui0" href="#"><span>Seguimiento</span><![if gt IE 6]></a><![endif]><!--[if lte IE 6]><table><tr><td><![endif]-->
-                                <ul class="pureCssMenum">
-                                    <li class="pureCssMenui"><a id="Seguimiento_mnu1" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Gestionar categoria</a></li>
-                                    <li class="pureCssMenui"><a id="Seguimiento_mnu2" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Gestionar departamentos</a></li>
-                                    <li class="pureCssMenui"><a id="Seguimiento_mnu3" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Recategorizar Empleado</a></li>
-                                    <li class="pureCssMenui"><a id="Seguimiento_mnu4" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Consultar categorias</a></li>
-                                    <li class="pureCssMenui"><a id="Seguimiento_mnu5" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Consultar departamento</a></li>
-                                </ul>
-                            </li>
-                            <li class="pureCssMenui0"><a class="pureCssMenui0" href="#"><span>Reportes</span><![if gt IE 6]></a><![endif]><!--[if lte IE 6]><table><tr><td><![endif]-->
-                                <ul class="pureCssMenum">
-                                    <li class="pureCssMenui"><a id="Reporte_mnu1" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Reportes personal</a></li>
-                                    <li class="pureCssMenui"><a id="Reporte_mnu2" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Reportes horarios</a></li>
-                                    <li class="pureCssMenui"><a id="Reporte_mnu3" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Reportes seguimiento</a></li>
-                                    <li class="pureCssMenui"><a id="Reporte_mnu4" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Reportes departamentos</a></li>
-                                    <li class="pureCssMenui"><a id="Reporte_mnu5" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Reportes usuarios</a></li>
-                                </ul>
-                            </li>
+                                                            <li class="pureCssMenui0"><a class="pureCssMenui0" href="#"><span>Seguimiento</span><![if gt IE 6]></a><![endif]><!--[if lte IE 6]><table><tr><td><![endif]-->
+                                                                <ul class="pureCssMenum">
+                                                                    <li class="pureCssMenui"><a id="Seguimiento_mnu1" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Gestionar categoria</a></li>
+                                                                    <li class="pureCssMenui"><a id="Seguimiento_mnu2" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Gestionar departamentos</a></li>
+                                                                    <li class="pureCssMenui"><a id="Seguimiento_mnu3" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Recategorizar Empleado</a></li>
+                                                                    <li class="pureCssMenui"><a id="Seguimiento_mnu4" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Consultar categorias</a></li>
+                                                                    <li class="pureCssMenui"><a id="Seguimiento_mnu5" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Consultar departamento</a></li>
+                                                                </ul>
+                                                            </li>
+                                                            <li class="pureCssMenui0"><a class="pureCssMenui0" href="#"><span>Reportes</span><![if gt IE 6]></a><![endif]><!--[if lte IE 6]><table><tr><td><![endif]-->
+                                                                <ul class="pureCssMenum">
+                                                                    <li class="pureCssMenui"><a id="Reporte_mnu1" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Reportes personal</a></li>
+                                                                    <li class="pureCssMenui"><a id="Reporte_mnu2" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Reportes horarios</a></li>
+                                                                    <li class="pureCssMenui"><a id="Reporte_mnu3" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Reportes seguimiento</a></li>
+                                                                    <li class="pureCssMenui"><a id="Reporte_mnu4" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Reportes departamentos</a></li>
+                                                                    <li class="pureCssMenui"><a id="Reporte_mnu5" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Reportes usuarios</a></li>
+                                                                </ul>
+                                                            </li>
                         </ul>
                     </td>
-                    <td width="502">&nbsp;</td>
-
+                    <td>&nbsp;</td>
                 </tr>
             </table>
-            <div id="noticias" class="noticias" src="PanelNoticias.html"></div>
+        </div>
+        <div id="noticias" class="noticias" src="PanelNoticias.html"></div>
     </body>
 </html>
