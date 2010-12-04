@@ -22,7 +22,7 @@ public abstract class Intermediario<E> {
 
     public List<E> findAll() {
         try {
-            Query q = GestorConeccion.getInstance().getManager().createNamedQuery(_clase + ".findAll");
+            Query q = GestorConeccion.getInstance().getManager().createQuery("SELECT o FROM "+_clase + " o");
             return q.getResultList();
         } catch (Exception ex) {
             ex.printStackTrace();

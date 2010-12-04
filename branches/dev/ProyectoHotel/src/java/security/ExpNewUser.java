@@ -19,6 +19,6 @@ import system.exception.SystemException;
 public interface ExpNewUser {
     public List<Empleado> listarEmpleado();
     public List<Perfil> listarPerfil();
-    public void newUser(Empleado empleado, String password, Perfil... perfiles)throws SystemException;
+    public void newUser(Empleado empleado, String password, Perfil perfiles)throws SystemException;
     
 }

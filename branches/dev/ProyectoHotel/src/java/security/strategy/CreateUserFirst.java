@@ -14,7 +14,7 @@ import Entidades.Empleado;
 class CreateUserFirst implements StrategyCreateUser{
 
     public String crearNombreUsuario(Empleado empleado) {
-        return empleado.getNombre()+empleado.getApellido();
+        return empleado.getNombre().substring(0, 1)+empleado.getApellido();
     }
 
 }

@@ -20,8 +20,6 @@ import system.exception.InvalidDataException;
 @Stateless
 public class GestorUserAdminBean implements GestorUserAdminRemote {
 
-    @EJB
-    ExpSeguridad _exp;
 
     public List<Usuario> listarUsuarios() {
         return (new IntermediarioUsuario()).findAll();
@@ -53,7 +51,7 @@ public class GestorUserAdminBean implements GestorUserAdminRemote {
         if (passwords.length < 3) {
             throw new GenericException("Cantidad de parametros incorrecto");
         }
-        Usuario user = _exp.getUser();
+        Usuario user = ExpSeguridad.getInstance().getUser();
         String passOrg = Tools.Encriptador.getStringMessageDigest(user.getPassword(), "MD5");
         String passIn = Tools.Encriptador.getStringMessageDigest(passwords[0], "MD5");
 

@@ -8,13 +8,11 @@ import DTO.DtoUsuario;
 import Entidades.Empleado;
 import Entidades.seguridad.Perfil;
 import Entidades.seguridad.Usuario;
-import Expertos.personal.ExpConsultarPersonal;
 import Intermediarios.GestorConeccion;
 import Intermediarios.IntermediarioPerfil;
 import Intermediarios.IntermediarioUsuario;
 import java.util.ArrayList;
 import java.util.List;
-import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import security.strategy.FactoryStrategy;
 import system.exception.DuplicateKeyException;
@@ -28,8 +26,7 @@ import system.exception.SystemException;
  */
 @Stateless
 public class ExpNewUserBean implements ExpNewUser {
-    @EJB
-    private ExpConsultarPersonal expConsultar;
+
 
     public List<Empleado> listarEmpleado(){
         return (new Intermediarios.IntermediarioEmpleado().findNotUser());
@@ -38,18 +35,17 @@ public class ExpNewUserBean implements ExpNewUser {
         return (new IntermediarioPerfil()).findAll();
     }
 
-    public void newUser(Empleado empleado, String password, Perfil... perfiles) throws SystemException {
+    public void newUser(Empleado empleado, String password, Perfil perfiles) throws SystemException {
         String nombre = FactoryStrategy.getInstance().getStrategy().crearNombreUsuario(empleado);
         userNameVerify(nombre);
         passwordVerify(password);
         Usuario usuario = new Usuario();
+        usuario.setEmpleado(empleado);
         usuario.setNombre(nombre);
         usuario.setPassword(Tools.Encriptador.getStringMessageDigest(password,"MD5"));
         usuario.setEliminado(false);
         usuario.setPerfiles(new ArrayList<Perfil>());
-        for (Perfil perfil : perfiles) {
-            usuario.getPerfiles().add(perfil);
-        }
+        usuario.getPerfiles().add(perfiles);
         try {
             GestorConeccion.getInstance().beginTransaction();
             if( (new IntermediarioUsuario()).guardar(usuario) ){
