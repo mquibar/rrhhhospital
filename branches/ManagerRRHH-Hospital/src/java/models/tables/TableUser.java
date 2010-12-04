@@ -15,11 +15,24 @@ import java.util.List;
 public class TableUser extends AbstractTable<Usuario>{
 
     public TableUser(List<Usuario> _lista) {
-        super(_lista, "Empleado","Legajo","Usuario","Contraseña");
+        super(_lista, "Empleado","Legajo","Usuario");
     }
 
     public Object getValueAt(int rowIndex, int columnIndex) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try{
+            switch (columnIndex){
+                case 0:
+                    return _lista.get(rowIndex).getEmpleado().getApellido()+", "+_lista.get(rowIndex).getEmpleado().getNombre();
+                case 1:
+                    return _lista.get(rowIndex).getEmpleado().getLegajo();
+                case 2:
+                    return _lista.get(rowIndex).getNombre();
+                default:
+                    return "-";
+            }
+        }catch(Exception e){
+            return "-";
+        }
     }
 
 

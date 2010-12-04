@@ -11,6 +11,9 @@
 
 package seguimiento.gestionUsuarios;
 
+import javax.swing.JButton;
+import javax.swing.JTable;
+
 /**
  *
  * @author Manuel
@@ -18,8 +21,9 @@ package seguimiento.gestionUsuarios;
 public class UiUserAdmin extends javax.swing.JFrame {
 
     /** Creates new form UiUserAdmin */
-    public UiUserAdmin() {
+    public UiUserAdmin(ctrlUserAdmin control) {
         initComponents();
+        _control=control;
     }
 
     /** This method is called from within the constructor to
@@ -34,8 +38,8 @@ public class UiUserAdmin extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         _tblUser = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        _btnNewUser = new javax.swing.JButton();
+        _btnChangeUser = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,9 +58,9 @@ public class UiUserAdmin extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.lightGray, java.awt.Color.gray));
 
-        jButton1.setText("Nuevo");
+        _btnNewUser.setText("Nuevo");
 
-        jButton2.setText("Modificar");
+        _btnChangeUser.setText("Modificar");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -65,17 +69,17 @@ public class UiUserAdmin extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(_btnNewUser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(_btnChangeUser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
+                .addComponent(_btnNewUser)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
+                .addComponent(_btnChangeUser)
                 .addContainerGap(73, Short.MAX_VALUE))
         );
 
@@ -103,23 +107,26 @@ public class UiUserAdmin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-    * @param args the command line arguments
-    */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new UiUserAdmin().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton _btnChangeUser;
+    private javax.swing.JButton _btnNewUser;
     private javax.swing.JTable _tblUser;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+    private ctrlUserAdmin _control;
+
+    public JButton getBtnChangeUser() {
+        return _btnChangeUser;
+    }
+
+    public JButton getBtnNewUser() {
+        return _btnNewUser;
+    }
+
+    public JTable getTblUser() {
+        return _tblUser;
+    }
 
 }
