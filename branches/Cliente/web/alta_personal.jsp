@@ -19,7 +19,7 @@
     </head>
 
     <body onload="iniciarAltaPersonal()">
-        <div class="noticias" id="noticias_2">Alta personal<br />
+        <div id="noticias_2">Alta personal<br />
             <div class="forms">
                 <form id="form1" name="form1" method="post" action="">
                     <div class="izquierda"><br />

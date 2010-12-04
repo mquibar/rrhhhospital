@@ -35,6 +35,6 @@ function cargar(target)
 
 function js_cancel_operacion(){
     jConfirm('Desea Cancelar la Operacion?', 'Sistema Personal', function(r) {
-        if( r )  location="PanelNoticias.html";
+        if( r )  loadMenuFunction("gohome");
     });
 }
