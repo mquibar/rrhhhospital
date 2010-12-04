@@ -108,7 +108,7 @@ public class IntermediarioEmpleado extends Intermediario<Empleado> {
 
     public List<Empleado> findNotUser(){
         try{
-            return GestorConeccion.getInstance().getManager().createQuery("Select e From Empleado e WHERE e NOT IN (SELECT u.empleado FROM Usuario u);").getResultList();
+            return GestorConeccion.getInstance().getManager().createQuery("Select e From Empleado e WHERE e NOT IN (SELECT u.empleado FROM Usuario u)").getResultList();
         }catch(Exception e){
                 return null;
         }
