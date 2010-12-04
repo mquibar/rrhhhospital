@@ -38,3 +38,12 @@ function js_cancel_operacion(){
         if( r )  loadMenuFunction("gohome");
     });
 }
+
+function js_confirm_operacion(exito){
+    if(exito==true)
+        jAlert("Operacion realizada con exito", "Sistema Personal", function(r){
+            if(r) loadMenuFunction("gohome");
+        });
+    else
+        jAlert("Se produjo un error al completar la operación intente nuevamente", "Sistema Personal");
+}
