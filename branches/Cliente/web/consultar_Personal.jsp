@@ -6,7 +6,7 @@
         <script language="javascript" type="text/javascript" src="./js/tools.js"></script>
 </head>
 
-<div class="noticias" id="noticias_2">Consultar Personal<br />
+<div id="noticias_2">Consultar Personal<br />
             <div class="forms">
                 <div align="left"></div>
                 <div class="izquierda">

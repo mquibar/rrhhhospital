@@ -1,15 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Home</title>
-        <link href="./css/estilos.css" rel="stylesheet" type="text/css" />
-        <script language="javascript" type="text/javascript" src="./js/asignarLegJs.js"></script>
-        <script language="javascript" type="text/javascript" src="./js/tools.js"></script>
-    </head>
-
-    <body onload="js_begin_asignar()">
-        <div class="noticias" id="noticias_2"> Alta Legajo<br />
+        <div id="noticias_2"> Alta Legajo<br />
 
             <div class="forms">
                 <div class="izquierda"><br />
@@ -47,12 +36,12 @@
                         </p>
                         <p>Clase</p>
                         <p>
-                            <select name="clase" size="1" id="categoria" >
+                            <select name="clase" size="1" id="clase" >
                             </select>
                         </p>
                         <p>&nbsp;</p>
                         <p>
-                            <input type="button" name="buttonActualizar" id="buttonActualizar" value="Actualizar" onclick="js_save_alegajo()"/>
+                            <input type="button" name="buttonActualizar" id="buttonSave" value="Actualizar" onclick="js_save_alegajo()"/>
                         </p>
                         <p>
                             <input type="button" name="buttonCancel" id="buttonCancel" value="Cancelar" onclick="js_cancel_operacion()"/>
@@ -62,5 +51,3 @@
                 <div class="derecha"></div>
             </div>
         </div>
-    </body>
-</html>

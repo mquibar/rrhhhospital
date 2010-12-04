@@ -2,7 +2,7 @@ var req = createRequestObject();
 function js_begin_asignar(){
     req.onreadystatechange = function () {
         if ( req.readyState == 4 && (req.status == 200 || window.location.href.indexOf ("http")==- 1)) {
-            document.getElementById("empleado").innerHTML = req.responseText;
+            document.getElementById("empleados").innerHTML = req.responseText;
             document.getElementById("agrupamiento").innerHTML="";
             document.getElementById("tramo").innerHTML="";
             document.getElementById("categoria").innerHTML="";
@@ -90,6 +90,9 @@ function js_clase_alegajo(){
 }
 
 function js_save_alegajo(){
+    if(!validarFormularioAsignarLegajo()) {
+        return (false);
+    }
     req.onreadystatechange = function () {
         if ( req.readyState == 4){
             ocultarEspera();

@@ -16,3 +16,4 @@ function loadMenuFunction(menu){
 
     return (true);
 }
+
