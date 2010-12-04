@@ -13,7 +13,6 @@ String getValue(ServletRequest request, String varName)
 }
 %>
 
-
 <%
 
     ctrlModificarEmpleado c = new ctrlModificarEmpleado();
@@ -38,22 +37,12 @@ String getValue(ServletRequest request, String varName)
 
    %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Home</title>
-<link href="./css/estilos.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript"></script>
-</head>
-
-<body>
-<div class="noticias" id="noticias_2"> Modificar Personal<br />
+<div id="noticias_2"> Modificar Personal - Modificar Empleado<br />
         <div class="forms">
 	<form id="form1" name="form1" method="post" action="">
-		<div class="izquierda"><br />
+		<div class="izquierda" style="height: 0px; width: 500px; padding-left: 200px;"><br />
 			Empleado <br />
 			<br />
-                        <br />
 			Nombre<br />
 			<label>
 			  <input type="text" name="nombre" id="nombre" value="<%=nombre%>" />
@@ -93,8 +82,8 @@ String getValue(ServletRequest request, String varName)
 			</label>
                         <br />
 		</div>
-		<div class="derecha"><br />
-		  DOMICILIO<br />
+		<div class="derecha" style="width: 1500px;"><br />
+		  Domicilio<br />
 		  <br />
 		  Calle<br />
 			<label>
@@ -145,17 +134,16 @@ String getValue(ServletRequest request, String varName)
 		  </select>
 		  <br />
 		</div>
-		<div class="guardar">
+		<div class="guardar" style="width: 1500px; heigth: 50px; padding-top: 200px;">
 			<label>
 			  <input type="button" name="buttonSave" id="buttonSave" value="Actualizar" onclick="guardarModificacionEmpleado()" />
 			</label>
 			<label>
-			  <input type="submit" name="buttonVolver" id="buttonVolver" value="Volver" />
+			  <input type="button" name="buttonVolver" id="buttonVolver" value="Cancelar" onclick="js_cancel_operacion()" />
 			</label>
 		</div>
 	</form>
 
 	</div>
 </div>
-</body>
-</html>
+

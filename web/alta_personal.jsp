@@ -1,30 +1,12 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Alta Personal</title>
-        <link href="./css/estilos.css" rel="stylesheet" type="text/css" />
-        <script src="./tools/datepicker/datepickercontrol.js" type="text/javascript"></script>
-        <script language="javascript" type="text/javascript" src="./js/createRequestJs.js"></script>
-        <script language="javascript" type="text/javascript" src="./js/esperar.js"></script>
-        <script language="javascript" type="text/javascript" src="./js/Personal.js"></script>
-        <script language="javascript" type="text/javascript" src="./js/validaciones/validaciones.js"></script>
-        <script language="javascript" type="text/javascript" src="./js/validaciones/validacionesProfesional.js"></script>
-        <script language="javascript" type="text/javascript" src="./js/validaciones/validacionesEmpleado.js"></script>
-        <script language="javascript" type="text/javascript" src="./js/tools.js"></script>
-        <script src="./tools/datepicker/datepickercontrol.js" type="text/javascript"></script>
-        <link  href="./tools/datepicker/datepickercontrol.css" type="text/css" rel="stylesheet" />
-        
-    </head>
-
     <body onload="iniciarAltaPersonal()">
         <div id="noticias_2">Alta personal<br />
             <div class="forms">
-                <form id="form1" name="form1" method="post" action="">
-                    <div class="izquierda"><br />
-			TIPO<br />
+                <form id="form1" name="form1" method="post" action="" >
+                    <div class="izquierda" style="height: 0px; width: 500px; padding-left: 200px;"><br />
+			Datos Personales<br />
                         <br />
+                        Tipo Empleado<br />
                         <select name="tipoEmpleado" size="1" id="tipoEmpleado" onchange="altaEspecifica ()">
                         </select>
                         <br />
@@ -81,8 +63,8 @@
                         <select name="ntarjeta" id="ntarjeta" >
                         </select>
                     </div>
-                    <div class="derecha"><br />
-		  DOMICILIO<br />
+                    <div class="derecha" style="width: 1450px;"><br />
+		  Domicilio<br />
                         <br />
 		  Calle<br />
                         <label>
@@ -130,7 +112,7 @@
                         </select>
                         <br />
                     </div>
-                    <div class="guardar">
+                    <div class="guardar" style="width: 1500px; heigth: 50px; padding-top: 200px;">
                         <label>
                             <input type="button" name="buttonCancel" id="buttonCancel" onclick="js_cancel_operacion()" value="Cancelar" />
                         </label>

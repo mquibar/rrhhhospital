@@ -179,9 +179,18 @@ function mostrarDatosParaDarBaja() {
 function darBaja () {
 
     req.onreadystatechange = function () {
-        if ( req.readyState == 4 && (req.status == 200 || window.location.href.indexOf ("http")==- 1)) {
-            document.getElementById("datos").innerHTML = req.responseText;
+        if ( req.readyState == 4 ) {
             ocultarEspera();
+            if (req.status == 200 || window.location.href.indexOf ("http")==- 1) {
+                jConfirm('Empleado dado de Baja?', 'Sistema Personal', function(r) {
+                    if( r )  loadMenuFunction("gohome");
+                });
+                
+
+            }else {
+                jAlert("Error");
+
+            }
         } else {
             if(req.readyState==1){
                mostrarEspera();
@@ -202,12 +211,14 @@ function guardarModificacionEmpleado () {
         if ( req.readyState == 4 ) {
             ocultarEspera();
             if (req.status == 200 || window.location.href.indexOf ("http")==- 1) {
-                alert("Actualizo");
-                location="PanelNoticias.html";
+                jConfirm('Empleado Actualizado?', 'Sistema Personal', function(r) {
+                    if( r )  loadMenuFunction("gohome");
+                });
+                
                 
             }else {
                 alert("Error");
-                location="modificar_personal_ajax.jsp";
+                
             }
         } else {
             if(req.readyState==1){
@@ -244,11 +255,13 @@ function guardarModificacionProfesional () {
         if ( req.readyState == 4 ) {
             ocultarEspera();
             if (req.status == 200 || window.location.href.indexOf ("http")==- 1) {
-                alert("Actualizo");
-                location="PanelNoticias.html";
+                jConfirm('Profesional Actualizado?', 'Sistema Personal', function(r) {
+                    if( r )  loadMenuFunction("gohome");
+                });
+                
             }else {
-                alert("Error");
-                location="modificar_personal_ajax.jsp";
+                jAlert("Error");
+                
             }
         } else {
             if(req.readyState==1){
@@ -326,11 +339,13 @@ function altaProfesional () {
         if ( req.readyState == 4 ) {
             ocultarEspera();
             if (req.status == 200 || window.location.href.indexOf ("http")==- 1) {
-                alert("Guardo");
-                location="PanelNoticias.html";
+                jConfirm('Profesional Guardado?', 'Sistema Personal', function(r) {
+                    if( r )  loadMenuFunction("gohome");
+                });
+                
             }else {
-                alert("Error");
-                location="alta_personal.jsp";
+                jAlert("Error");
+                
             }
         } else {
             if(req.readyState==1){
@@ -371,11 +386,12 @@ function altaEmpleado () {
         if ( req.readyState == 4 ) {
             ocultarEspera();
             if (req.status == 200 || window.location.href.indexOf ("http")==- 1) {
-                alert("Guardo");
-                location="PanelNoticias.html";
-
+               jConfirm('Empleado Guardado?', 'Sistema Personal', function(r) {
+                    if( r )  loadMenuFunction("gohome");
+                });
+                
             }else {
-                alert("Error");
+                jAlert("Error");
                 location="alta_personal.jsp";
             }
         } else {

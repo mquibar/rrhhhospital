@@ -14,11 +14,19 @@
         <title>SISTEMA PERSONAL</title>
         <link href="./css/estilos.css" rel="stylesheet" type="text/css" />
         <link href="./css/mn_css_menu.css" rel="stylesheet" type="text/css" />
-        <script language="javascript" type="text/javascript" src="./js/tools.js"></script>
+        <link  href="./tools/datepicker/datepickercontrol.css" type="text/css" rel="stylesheet" />
+        <script src="./tools/datepicker/datepickercontrol.js" type="text/javascript"></script>
         <script language="javascript" type="text/javascript" src="./js/createRequestJs.js"></script>
         <script language="javascript" type="text/javascript" src="./js/esperar.js"></script>
-        <script language="javascript" type="text/javascript" src="./js/menuJavaScript.js"></script>
+        <script language="javascript" type="text/javascript" src="./js/Personal.js"></script>
         <script language="javascript" type="text/javascript" src="./js/loginJs.js"></script>
+        <script language="javascript" type="text/javascript" src="./js/tools.js"></script>
+        <script language="javascript" type="text/javascript" src="./js/asignarLegJs.js"></script>
+        <script language="javascript" type="text/javascript" src="./js/validaciones/validaciones.js"></script>
+        <script language="javascript" type="text/javascript" src="./js/validaciones/validacionesProfesional.js"></script>
+        <script language="javascript" type="text/javascript" src="./js/validaciones/validacionesEmpleado.js"></script>
+        <script language="javascript" type="text/javascript" src="./js/validaciones/validacionesAsignarLegajo.js"></script>
+        <script language="javascript" type="text/javascript" src="./js/menuJavaScript.js"></script>
         <style type="text/css">
             html { overflow-x:hidden; }
         </style>
@@ -48,7 +56,7 @@
                                                                 <ul class="pureCssMenum">
                                                                     <li class="pureCssMenui"><a id="Personal_mnu1" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Gestionar personal</a></li>
                                                                     <li class="pureCssMenui"><a id="Personal_mnu2" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Consultar personal</a></li>
-                                                                    <li class="pureCssMenui"><a id="Personal_mnu3" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Asignar legajo</a></li>
+                                                                    <li class="pureCssMenui"><a id="Personal_mnu3" class="pureCssMenui" onclick="cargarNoticiasAsignarLegajo('Alta_Legajo_Final.jsp')" href="#">Asignar legajo</a></li>
                                                                 </ul>
                             </li>
                             <li class="pureCssMenui0"><a class="pureCssMenui0" href="#"><span>Horarios</span><![if gt IE 6]></a><![endif]><!--[if lte IE 6]><table><tr><td><![endif]-->
@@ -83,6 +91,6 @@
                 </tr>
             </table>
         </div>
-        <div id="noticias" class="noticias" src="PanelNoticias.html"></div>
+        <div id="noticias" class="noticias" src="PanelNoticias.html"> </div>
     </body>
 </html>

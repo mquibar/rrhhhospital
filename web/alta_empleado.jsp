@@ -14,7 +14,9 @@
             Alta Personal - Alta Empleado<br />
             <div class="forms">
                 <form id="form1" name="form1" method="post" action="">
-                    <div class="izquierda">
+                    <div class="izquierda" style="height: 0px; width: 500px; padding-left: 200px;"><br />
+                        Datos Personales<br />
+                        <br />
 			Nombre<br />
                         <label>
                             <input type="text" name="nombre" id="nombre"  />
@@ -57,7 +59,7 @@
                         Numero Tarjeta<br />
                         <select name="ntarjeta" id="ntarjeta" ><%= cp.listarTarjeta().toString()%></select>
                     </div>
-                    <div class="derecha"><br />
+                    <div class="derecha" style="width: 1450px;"><br />
 		  Domicilio<br />
                         <br />
 		  Calle<br />
@@ -108,7 +110,7 @@
                         </select>
                         <br />
                     </div>
-                    <div class="guardar">
+                    <div class="guardar" style="width: 1500px; heigth: 50px; padding-top: 200px;">
                         <label>
                             <input type="button" name="buttonSave" id="buttonSave" value="Guardar" onclick="altaEmpleado()"/>
                         </label>

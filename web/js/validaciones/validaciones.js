@@ -89,6 +89,20 @@ function validarFormularioEmpleado()
     }
 }
 
+function validarFormularioAsignarLegajo()
+{
+    listaErrores = validarCamposAsignarLegajo();
+    if(listaErrores != "")
+    {
+        alert(listaErrores);
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
+
 function valorFromId(nombre)
 {
     return document.getElementById(nombre).value;
