@@ -22,7 +22,7 @@ public class menuServlet extends HttpServlet {
         PERSONAL_MNU1, PERSONAL_MNU2, PERSONAL_MNU3,
         HORARIO_MNU1, HORARIO_MNU2, HORARIO_MNU3, HORARIO_MNU4,
         SEGUIMIENTO_MNU1, SEGUIMIENTO_MNU2, SEGUIMIENTO_MNU3, SEGUIMIENTO_MNU4, SEGUIMIENTO_MNU5,
-        REPORTE_MNU1, REPORTE_MNU2, REPORTE_MNU3, REPORTE_MNU4, REPORTE_MNU5, GOHOME
+        REPORTE_MNU1, REPORTE_MNU2, REPORTE_MNU3, REPORTE_MNU4, REPORTE_MNU5, GOHOME, USER_MNU1
     }
 
     /**
@@ -91,8 +91,10 @@ public class menuServlet extends HttpServlet {
                     url = "Reportes_Usuarios.html";
                     break;
                 case GOHOME:
-                    System.out.println("ACa Entro");
-                    url = "undeContruction.html";
+                    url = "PanelNoticias.html";
+                    break;
+                case USER_MNU1:
+                    url="user_pass.jsp";
                     break;
                 default:
                     url = "underContruction.html";
