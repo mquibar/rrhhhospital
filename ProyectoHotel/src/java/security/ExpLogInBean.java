@@ -35,7 +35,7 @@ public class ExpLogInBean implements ExpLogIn {
 
         if(!pass.equals(password))
             throw new InvalidDataException("password", "password incorrecto");
-        //ExpSeguridad.getInstance().setUser(user);
+        ExpSeguridad.getInstance().setUser(user);
         
     }
 
