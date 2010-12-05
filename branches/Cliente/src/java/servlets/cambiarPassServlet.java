@@ -2,9 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package servlets;
 
-import controllers.ctrlLogin;
+import controllers.ctrlCambiarContraseña;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -14,22 +15,17 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Juan
+ * @author Manuel
  */
-public class logInServlet extends HttpServlet {
+public class cambiarPassServlet extends HttpServlet {
+   private ctrlCambiarContraseña _control;
 
-    private ctrlLogin _control;
-
-    public logInServlet() {
-        _control = new ctrlLogin();
+    public cambiarPassServlet() {
+        _control = new ctrlCambiarContraseña();
     }
 
-    private enum option {
 
-        LOGIN, LOGOFF
-    }
-
-    /**
+    /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
      * @param response servlet response
@@ -37,25 +33,19 @@ public class logInServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            String opt = request.getParameter("segurityOption").toUpperCase();
-            switch (option.valueOf(opt)) {
-                case LOGIN:
-                    String userName = request.getParameter("userName");
-                    String user = _control.login(userName, request.getParameter("pass"));
-                    out.println(user);
-                    return;
-                case LOGOFF:
-                    _control.logoff();
-                    return;
-            }
-        } catch (Exception e) {
-            response.sendError(401);
+            String passA = request.getParameter("actual");
+            String passN = request.getParameter("nuevo");
+            String passC = request.getParameter("confirma");
+            _control.cambiarPass(passA,passN,passC);
+        } catch(Exception e ) {
+            out.println(e.getMessage());
+            response.sendError(response.SC_NOT_FOUND);
         }
-    }
+    } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 
@@ -67,9 +57,9 @@ public class logInServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         processRequest(request, response);
-    }
+    } 
 
     /** 
      * Handles the HTTP <code>POST</code> method.
@@ -80,7 +70,7 @@ public class logInServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -92,4 +82,5 @@ public class logInServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
 }
