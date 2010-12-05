@@ -42,8 +42,7 @@ public class cambiarPassServlet extends HttpServlet {
             String passC = request.getParameter("confirma");
             _control.cambiarPass(passA,passN,passC);
         } catch(Exception e ) {
-            out.println(e.getMessage());
-            response.sendError(response.SC_NOT_FOUND);
+            response.sendError(response.SC_NOT_FOUND,e.getMessage());
         }
     } 
 
