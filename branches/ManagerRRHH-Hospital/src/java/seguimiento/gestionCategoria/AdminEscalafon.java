@@ -523,6 +523,8 @@ public class AdminEscalafon extends javax.swing.JInternalFrame {
 
 
     private void detallesAgrupamiento(){
+        if(_tblAgrup.getSelectedRow()<0)
+            return;
         boolean flag = _pnlTramo.isVisible();
         _pnlTramo.setVisible(!flag);
         _btnAgrupAdd.setEnabled(flag);
