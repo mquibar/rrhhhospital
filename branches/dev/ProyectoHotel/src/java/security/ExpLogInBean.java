@@ -20,7 +20,7 @@ import system.exception.SystemException;
 @Stateless
 public class ExpLogInBean implements ExpLogIn {
     
-    public void logIn(String userName, String password) throws SystemException{
+    public Usuario logIn(String userName, String password) throws SystemException{
         DtoUsuario dto = new DtoUsuario();
         dto.setNombre(userName);
 
@@ -36,7 +36,7 @@ public class ExpLogInBean implements ExpLogIn {
         if(!pass.equals(password))
             throw new InvalidDataException("password", "password incorrecto");
         ExpSeguridad.getInstance().setUser(user);
-        
+        return user;
     }
 
     public void logOff() {
