@@ -211,13 +211,13 @@ function guardarModificacionEmpleado () {
         if ( req.readyState == 4 ) {
             ocultarEspera();
             if (req.status == 200 || window.location.href.indexOf ("http")==- 1) {
-                jConfirm('Empleado Actualizado?', 'Sistema Personal', function(r) {
+                jConfirm('Empleado Actualizado', 'Sistema Personal', function(r) {
                     if( r )  loadMenuFunction("gohome");
                 });
                 
                 
             }else {
-                alert("Error");
+                jAlert("Error");
                 
             }
         } else {
@@ -255,7 +255,7 @@ function guardarModificacionProfesional () {
         if ( req.readyState == 4 ) {
             ocultarEspera();
             if (req.status == 200 || window.location.href.indexOf ("http")==- 1) {
-                jConfirm('Profesional Actualizado?', 'Sistema Personal', function(r) {
+                jConfirm('Profesional Actualizado', 'Sistema Personal', function(r) {
                     if( r )  loadMenuFunction("gohome");
                 });
                 
@@ -339,12 +339,14 @@ function altaProfesional () {
         if ( req.readyState == 4 ) {
             ocultarEspera();
             if (req.status == 200 || window.location.href.indexOf ("http")==- 1) {
-                jConfirm('Profesional Guardado?', 'Sistema Personal', function(r) {
+                jConfirm('Profesional Guardado', 'Sistema Personal', function(r) {
                     if( r )  loadMenuFunction("gohome");
                 });
                 
             }else {
-                jAlert("Error");
+                jAlert('Error al guardar', 'Sistema Personal', function(r) {
+                    if( r )  loadMenuFunction("gohome");
+                });
                 
             }
         } else {
@@ -386,13 +388,14 @@ function altaEmpleado () {
         if ( req.readyState == 4 ) {
             ocultarEspera();
             if (req.status == 200 || window.location.href.indexOf ("http")==- 1) {
-               jConfirm('Empleado Guardado?', 'Sistema Personal', function(r) {
+               jConfirm('Empleado Guardado', 'Sistema Personal', function(r) {
                     if( r )  loadMenuFunction("gohome");
                 });
                 
             }else {
-                jAlert("Error");
-                location="alta_personal.jsp";
+                jAlert('Error al guardar', 'Sistema Personal', function(r) {
+                    if( r )  loadMenuFunction("gohome");
+                });
             }
         } else {
             if(req.readyState==1){

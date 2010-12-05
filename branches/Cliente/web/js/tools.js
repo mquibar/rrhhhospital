@@ -28,6 +28,69 @@ function cargarNoticias(target)
     return (true);
 }
 
+function cargarNoticiasAltaProfesional(target)
+{
+    obj = createRequestObject();
+    //cargarSource('noticias', target)
+    obj.onreadystatechange = function () {
+        if ( obj.readyState == 4 && (obj.status == 200 || window.location.href.indexOf ("http")==- 1)) {
+            document.getElementById("noticias").innerHTML = obj.responseText;
+            iniciarAltaPersonal ();
+            ocultarEspera();
+        } else {
+            if(obj.readyState==1){
+                mostrarEspera();
+            }
+        }
+    };
+    obj.open("GET", "loadPageServlet?target="+target , true);
+    obj.send(null);
+
+    return (true);
+}
+
+function cargarNoticiasBajaProfesional(target)
+{
+    obj = createRequestObject();
+    //cargarSource('noticias', target)
+    obj.onreadystatechange = function () {
+        if ( obj.readyState == 4 && (obj.status == 200 || window.location.href.indexOf ("http")==- 1)) {
+            document.getElementById("noticias").innerHTML = obj.responseText;
+            iniciaBaja();
+            ocultarEspera();
+        } else {
+            if(obj.readyState==1){
+                mostrarEspera();
+            }
+        }
+    };
+    obj.open("GET", "loadPageServlet?target="+target , true);
+    obj.send(null);
+
+    return (true);
+}
+
+function cargarNoticiasAsignarLegajo(target)
+{
+    obj = createRequestObject();
+    //cargarSource('noticias', target)
+    obj.onreadystatechange = function () {
+        if ( obj.readyState == 4 && (obj.status == 200 || window.location.href.indexOf ("http")==- 1)) {
+            document.getElementById("noticias").innerHTML = obj.responseText;
+            js_begin_asignar();
+            ocultarEspera();
+        } else {
+            if(obj.readyState==1){
+                mostrarEspera();
+            }
+        }
+    };
+    obj.open("GET", "loadPageServlet?target="+target , true);
+    obj.send(null);
+
+    return (true);
+}
+
 function cargar(target)
 {
     window.location = target;
