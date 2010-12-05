@@ -65,14 +65,15 @@ function js_login_abrirHome(usuario){
 }
 
 function js_cambiar_pass(){
-    req.onreadystatechange()= function(){
+    req.onreadystatechange= function () {
         if ( req.readyState == 4){
+            ocultarEspera();
             if(req.status == 200 || window.location.href.indexOf ("http")==- 1) {
-                ocultarEspera();
+                
                 js_confirm_operacion(true);
             }
             else{
-                jAlert(req.responseText, "Error de Sistema" );
+                jAlert(req.statusText, "Error de Sistema" );
             }
 
         } else {

@@ -107,8 +107,3 @@ function validarFormularioAsignarLegajo()
     }
 }
 
-window.onload = function()
-{
-    document.getElementById("buttonSave").onclick = validarFormulario;
-}
-
