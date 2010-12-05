@@ -41,7 +41,7 @@
             </div>
             <div class="user">
                 <ul class="pureCssMenu pureCssMenum0">
-                    <li><a class="user_2" href="#"><span  style="background-image: url(./img/arr_black.gif); background-position: center right; background-repeat:no-repeat; padding-right:9px; text-align:right;"><b>User<b></span><![if gt IE 6]></a><![endif]>
+                    <li><a class="user_2" href="#"><span id="username" style="background-image: url(./img/arr_black.gif); background-position: center right; background-repeat:no-repeat; padding-right:9px; text-align:right; font-weight:bold;"> <%= user %> </span><![if gt IE 6]></a><![endif]>
                         <ul class="pureCssMenum">
                             <li class="pureCssMenui"><a id="User_mnu1" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Editar Perfil</a></li>
                             <li class="pureCssMenui"><a id="User_mnu2" class="pureCssMenui" onclick="js_logOff()" href="#">Cerrar Sesión</a></li>
