@@ -57,7 +57,9 @@ public class IntermediarioEmpleado extends Intermediario<Empleado> {
         /*Criteria criterio = ((Session)GestorConeccion.getInstance().getManager().getDelegate()).createCriteria("Persona").addOrder(Order.asc(orden));
         return criterio.list();*/
         Query q = GestorConeccion.getInstance().getManager().createQuery("SELECT e FROM Empleado e WHERE e.eliminado is null ORDER by e."+orden);
-        return q.getResultList();
+        List<Empleado> l = q.getResultList();
+        System.out.println(_clase + ".findInOrden (" + orden + "): encontrados " + l.size());
+        return l;
     }
 
     @Override

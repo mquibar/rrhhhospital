@@ -20,8 +20,6 @@ public class ExpConsultarTipoLicenciaBeans implements ExpConsultarTipoLicencia {
 
     public List<TipoLicencia> listar() {
         List<TipoLicencia> lista = (new IntermediarioTipoLicencia()).findAll();
-
-        System.out.println("Listar TipoLicencia: " + lista.toString());
  
         return lista;
     }
