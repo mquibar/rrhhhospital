@@ -29,25 +29,19 @@ public class ctrlAltaProfesional extends GeneralController {
 
     }
 
-    public String iniciarAlta(TipoEmpleado tipo, String nombre, String apellido, String dni, Date fechaNacimiento,
+    public boolean iniciarAlta(TipoEmpleado tipo, String nombre, String apellido, String dni, Date fechaNacimiento,
             long telefono, String barrio, String calle, String numero, String piso,
             String departamanto, Localidad localidad, Provincia provincia, Pais pais, Sexo sexo,
-            String cuil, String matricula, String titulo, Tarjeta tarjeta) {
-       try {
-
+            String cuil, String matricula, String titulo, Tarjeta tarjeta) throws Exception {
+      
             if(exp.iniciarAlta(tipo,nombre,apellido,dni,fechaNacimiento,
                     telefono,barrio, calle,numero,piso,departamanto,localidad,
                     provincia, pais, sexo,cuil,matricula,titulo,tarjeta)){
-                return "Profesional Guardado";
+                return true;
                 
             } else {
-                return "Error: Error al Guardar";
-                
+                return false;
             }
-        } catch (Exception ex) {
-            return "Error: Error de conexion con servidor de aplicaciones"+ex.toString();
-        }
-
     }
 
 }
