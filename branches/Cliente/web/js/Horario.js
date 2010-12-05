@@ -100,8 +100,8 @@ function guardarModificacionAsignacionHorario()
         datos =
            "empleado="+document.getElementById("empleado").value+"&"+
            "descripcion="+document.getElementById("descripcion").value+"&"+
-           "fechaInicio="+document.getElementById("fechaInicio").value+"&"+
-           "fechaFin="+document.getElementById("fechaFin").value+"&"+
+           "fechaInicio="+document.getElementById("DPC_edit1").value+"&"+
+           "fechaFin="+document.getElementById("DPC_edit2").value+"&"+
            "tipoHorario="+document.getElementById("tipoHorario").value+"&"+
            
            "idEntidad="+document.getElementById("idEntidad").value+"&"+
@@ -121,7 +121,7 @@ function guardarModificacionRegistroPeriodo()
     {
         datos =
            "empleado="+document.getElementById("empleado").value+"&"+
-           "fechaEntrada="+document.getElementById("fechaEntrada").value+"&"+
+           "fechaEntrada="+document.getElementById("DPC_edit1").value+"&"+
            "horaEntrada="+document.getElementById("horaEntrada").value+"&"+
            "horaSalida="+document.getElementById("horaSalida").value+"&"+
 
@@ -143,8 +143,8 @@ function guardarModificacionLicencia()
         datos =
            "empleado="+document.getElementById("empleado").value+"&"+
            "tipoLicencia="+document.getElementById("tipoLicencia").value+"&"+
-           "fechaInicio="+document.getElementById("fechaInicio").value+"&"+
-           "fechaFin="+document.getElementById("fechaFin").value+"&"+
+           "fechaInicio="+document.getElementById("DPC_edit1").value+"&"+
+           "fechaFin="+document.getElementById("DPC_edit2").value+"&"+
            "motivo="+document.getElementById("motivo").value+"&"+
 
            "idEntidad="+document.getElementById("idEntidad").value+"&"+

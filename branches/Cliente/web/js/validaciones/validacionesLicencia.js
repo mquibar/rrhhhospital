@@ -11,7 +11,6 @@ function validarCamposLicencia()
     {
         listaErrores += "Debe elegir un tipo de licencia.\n";
     }
-//alert("llegue: " + listaErrores);
 
     if(!tieneDatos(valorFromId("DPC_edit1")))
     {
@@ -23,9 +22,12 @@ function validarCamposLicencia()
         listaErrores += "Fecha Fin no debe ser vacio.\n";
     }
 
-    if(!esPeriodoValido(valorFromId(fechaInicio), valorFromId(fechaFin)))
+    if(tieneDatos(valorFromId("DPC_edit1")) && tieneDatos(valorFromId("DPC_edit2")))
     {
-        listaErrores += "El periodo ingresado no es valido.\n";
+        if(!esPeriodoValido(valorFromId("DPC_edit1"), valorFromId("DPC_edit2")))
+        {
+            listaErrores += "El periodo ingresado no es valido.\n";
+        }
     }
 
     return listaErrores;

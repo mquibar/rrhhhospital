@@ -22,9 +22,12 @@ function validarCamposAsignacionHorario()
         listaErrores += "Fecha Fin no debe ser vacio.\n";
     }
 
-    if(!esPeriodoValido(valorFromId("DPC_edit1"), valorFromId("DPC_edit2")))
+    if(tieneDatos(valorFromId("DPC_edit1")) && tieneDatos(valorFromId("DPC_edit2")))
     {
-        listaErrores += "El periodo ingresado no es valido.\n";
+        if(!esPeriodoValido(valorFromId("DPC_edit1"), valorFromId("DPC_edit2")))
+        {
+            listaErrores += "El periodo ingresado no es valido.\n";
+        }
     }
 
     return listaErrores;
