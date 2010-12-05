@@ -405,11 +405,17 @@ exists or setup the property manually. For example like this:
     <target depends="compile" name="library-inclusion-in-archive">
         <mkdir dir="${build.classes.dir}/META-INF/lib"/>
         <copyfiles files="${reference.ProyectoHotel.dist}" todir="${build.classes.dir}/META-INF/lib"/>
+        <copyfiles files="${file.reference.synthetica.jar}" todir="${build.classes.dir}/META-INF/lib"/>
+        <copyfiles files="${file.reference.syntheticaBlackEye.jar}" todir="${build.classes.dir}/META-INF/lib"/>
+        <copyfiles files="${file.reference.syntheticaSkyMetallic.jar}" todir="${build.classes.dir}/META-INF/lib"/>
     </target>
     <target depends="compile" if="dist.ear.dir" name="library-inclusion-in-manifest">
         <copyfiles files="${reference.ProyectoHotel.dist}" manifestproperty="manifest.reference.ProyectoHotel.dist" todir="${dist.ear.dir}"/>
+        <copyfiles files="${file.reference.synthetica.jar}" manifestproperty="manifest.file.reference.synthetica.jar" todir="${dist.ear.dir}"/>
+        <copyfiles files="${file.reference.syntheticaBlackEye.jar}" manifestproperty="manifest.file.reference.syntheticaBlackEye.jar" todir="${dist.ear.dir}"/>
+        <copyfiles files="${file.reference.syntheticaSkyMetallic.jar}" manifestproperty="manifest.file.reference.syntheticaSkyMetallic.jar" todir="${dist.ear.dir}"/>
         <manifest file="${build.ear.classes.dir}/META-INF/MANIFEST.MF" mode="update">
-            <attribute name="Class-Path" value="${manifest.reference.ProyectoHotel.dist} "/>
+            <attribute name="Class-Path" value="${manifest.reference.ProyectoHotel.dist} ${manifest.file.reference.synthetica.jar} ${manifest.file.reference.syntheticaBlackEye.jar} ${manifest.file.reference.syntheticaSkyMetallic.jar} "/>
         </manifest>
     </target>
     <target name="-copy-meta-inf">

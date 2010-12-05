@@ -85,6 +85,8 @@ public class ctrlAdminEscalafon {
     }
 
     void listarCategoria() {
+        if(_pantalla.getTblTramo().getSelectedRow()<0 )
+            return;
         boolean flag = _pantalla.getPnlCategoria().isVisible();
         _pantalla.getPnlCategoria().setVisible(!flag);
         _pantalla.getBtnTramoAdd().setEnabled(flag);
@@ -102,6 +104,8 @@ public class ctrlAdminEscalafon {
     }
 
     void mostrarRequisitos(MouseEvent e) {
+        if(_pantalla.getTblCateg().getSelectedRow()<0)
+            return;
         Categoria c = _tablaCategoria.getSelectedIndex(_pantalla.getTblCateg().rowAtPoint(e.getPoint()));
         _tablaRequisito = new TableRequisitos(_gestorConsulta.listarRequisitos(c));
         _pantalla.getTblRequ().setModel(_tablaRequisito);
@@ -142,6 +146,7 @@ class MousePanelCategoria extends MouseAdapter {
     private ctrlAdminEscalafon _control;
 
     public MousePanelCategoria(AdminEscalafon pantalla, ctrlAdminEscalafon control) {
+        _pantalla = pantalla;
         _menu = new JPopupMenu("Menu Categorías");
         _mnuAdd = new JMenuItem("Agregar");
         _mnuAdd.addActionListener(new ActionListener() {
@@ -154,7 +159,6 @@ class MousePanelCategoria extends MouseAdapter {
         _menu.addSeparator();
         _mnuAdd = new JMenuItem("Eliminar");
         _menu.add(_mnuAdd);
-        _pantalla = pantalla;
         _control = control;
     }
 
