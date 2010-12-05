@@ -26,7 +26,7 @@
     </head>
 
     <body bgcolor="#FFFFFF">
-        <div class="noticias" id="noticias_2"><br />
+        <div id="noticias_2"><br />
 
             <div class="forms">
                 <div class="izquierda" id="login">

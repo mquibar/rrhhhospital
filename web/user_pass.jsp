@@ -6,15 +6,15 @@
          <p align="left">Usuario</p>
          <p align="left">Contraseña Actual<br />
            <label>
-             <input type="text" name="textfield2" id="textfield2" />
+             <input type="password" name="textfield2" id="passActual" />
            </label>
            <br />
            <br />
            Nueva Contraseña<br />
-           <input type="text" name="textfield" id="textfield" />
+           <input type="password" name="textfield" id="passNuevo" />
          </p>
          <p align="left">Confirmar Contraseña<br />
-           <input type="text" name="textfield3" id="textfield3" />
+           <input type="password" name="textfield3" id="passConfirm" />
          </p>
          <p align="left">
            <label>
