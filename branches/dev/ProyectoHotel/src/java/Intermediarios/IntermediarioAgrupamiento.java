@@ -10,9 +10,6 @@ import DTO.DtoAgrupamiento;
 import Entidades.Agrupamiento;
 import java.util.List;
 import javax.persistence.Query;
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.criterion.Order;
 
 /**
  *
@@ -41,8 +38,10 @@ public class IntermediarioAgrupamiento extends Intermediario<Agrupamiento>{
 
     @Override
     public List<Agrupamiento> findInOrden(String orden) {
-        Criteria criterio = ((Session)GestorConeccion.getInstance().getManager().getDelegate()).createCriteria(Agrupamiento.class).addOrder(Order.asc(orden));
-        try{return criterio.list();}catch(Exception ex){ex.printStackTrace();return null;}
+        Query q = GestorConeccion.getInstance().getManager().createQuery("SELECT a FROM "+ _clase + " a WHERE a.eliminado = :elim ORDER BY :orden");
+        q.setParameter("elim", false);
+        q.setParameter("orden", orden);
+        return q.getResultList();
     }
    
 }

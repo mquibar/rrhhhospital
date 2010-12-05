@@ -17,6 +17,16 @@ public class DtoTramo {
     private String nombre=null;
     private Agrupamiento agrupamiento=null;
     private Categoria categoria = null;
+    private boolean eliminado = false;
+
+    public boolean isEliminado() {
+        return eliminado;
+    }
+
+    public void setEliminado(boolean eliminado) {
+        this.eliminado = eliminado;
+    }
+    
 
     public Agrupamiento getAgrupamiento() {
         return agrupamiento;
