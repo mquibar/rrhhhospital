@@ -28,21 +28,13 @@ public class ctrlAltaRegistroPeriodo extends GeneralController
 
     public ctrlAltaRegistroPeriodo() {
         _expAlta = (ExpAltaRegistroPeriodo) super.getExpert(ExpAltaRegistroPeriodo.class.getName());
-        _expPers = (ExpConsultarPersonal) super.getExpert(ExpConsultarPersonal.class.getName());
         _expRP = (ExpConsultarRegistroPeriodo) super.getExpert(ExpConsultarRegistroPeriodo.class.getName());
+        _expPers = (ExpConsultarPersonal) super.getExpert(ExpConsultarPersonal.class.getName());
 
        try
        {
+            _mrp = new ModelOptionRegistroPeriodo(_expRP.listar());
             _mpers = new ModelOptionEmpleado(_expPers.listarEmpleadoinOrder());
-
-            if(_expRP != null)
-            {
-                _mrp = new ModelOptionRegistroPeriodo(_expRP.listar());
-            }
-            else
-            {
-                System.out.println("ctrlAltaRegistroPeriodo: no se creo ExpConsultarRegistroPeriodo");
-            }
        }
        catch(Exception ex)
        {

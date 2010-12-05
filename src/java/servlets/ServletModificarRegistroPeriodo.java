@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Administrador
  */
 public class ServletModificarRegistroPeriodo extends HttpServlet {
-   
+
     private ctrlAltaRegistroPeriodo _control;
     private enum operaciones {LOADTH,MODIFICAR,ELIMINAR,GUARDAR}
 
@@ -28,7 +28,7 @@ public class ServletModificarRegistroPeriodo extends HttpServlet {
         _control = new ctrlAltaRegistroPeriodo();
     }
 
-    /** 
+    /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
      * @param response servlet response
@@ -69,7 +69,7 @@ public class ServletModificarRegistroPeriodo extends HttpServlet {
                     }
 
                     break;
-                    
+
                 default:
                     out.println("Operacion no valida");
                     break;
@@ -109,7 +109,7 @@ public class ServletModificarRegistroPeriodo extends HttpServlet {
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /** 
+    /**
      * Handles the HTTP <code>GET</code> method.
      * @param request servlet request
      * @param response servlet response
@@ -120,9 +120,9 @@ public class ServletModificarRegistroPeriodo extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         processRequest(request, response);
-    } 
+    }
 
-    /** 
+    /**
      * Handles the HTTP <code>POST</code> method.
      * @param request servlet request
      * @param response servlet response
@@ -135,7 +135,7 @@ public class ServletModificarRegistroPeriodo extends HttpServlet {
         processRequest(request, response);
     }
 
-    /** 
+    /**
      * Returns a short description of the servlet.
      * @return a String containing servlet description
      */

@@ -32,19 +32,19 @@ public class ctrlAltaLicencia extends GeneralController
 
     public ctrlAltaLicencia() {
         _expAlta = (ExpAltaLicencia) super.getExpert(ExpAltaLicencia.class.getName());
+        _expL = (ExpConsultarLicencia) super.getExpert(ExpConsultarLicencia.class.getName());
         _expTL = (ExpConsultarTipoLicencia) super.getExpert(ExpConsultarTipoLicencia.class.getName());
         _expPers = (ExpConsultarPersonal) super.getExpert(ExpConsultarPersonal.class.getName());
-        _expL = (ExpConsultarLicencia) super.getExpert(ExpConsultarLicencia.class.getName());
 
         try
         {
-            _mpers = new ModelOptionEmpleado(_expPers.listarEmpleadoinOrder());
-            _mtl = new ModelOptionTipoLicencia(_expTL.listar());
             _ml = new ModelOptionLicencia(_expL.listar());
+            _mtl = new ModelOptionTipoLicencia(_expTL.listar());
+            _mpers = new ModelOptionEmpleado(_expPers.listarEmpleadoinOrder());
         }
         catch(Exception ex)
         {
-            System.out.println("ctrlAltaAsignacionHorario: Error creando modelos: " + ex.toString());
+            System.out.println("ctrlAltaLicencia: Error creando modelos: " + ex.toString());
         }
 
     }
@@ -93,6 +93,7 @@ public class ctrlAltaLicencia extends GeneralController
 
     public String getOptionsEmpleado(String empleado)
     {
+        System.out.println("ctrlAltaLicencia: getOptionsEmpleado...");
         String opt = "<option>No Hay opciones disponibles</option>\n";
 
         if(_mpers != null)
@@ -105,6 +106,7 @@ public class ctrlAltaLicencia extends GeneralController
     
     public String getOptionsTipoLicencia(String tipoLicencia)
     {
+        System.out.println("ctrlAltaLicencia: getOptionsTipoLicencia...");
         String opt = "<option>No Hay opciones disponibles</option>\n";
 
         if(_mtl != null)
@@ -128,6 +130,7 @@ public class ctrlAltaLicencia extends GeneralController
 
     public String getOptionsLicencia(String Licencia)
     {
+        System.out.println("ctrlAltaLicencia: getOptionsLicencia...");
         String opt = "<option>No Hay opciones disponibles</option>\n";
 
         if(_ml != null)

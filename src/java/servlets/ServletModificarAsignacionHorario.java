@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Administrador
  */
 public class ServletModificarAsignacionHorario extends HttpServlet {
-   
+
     private ctrlAltaAsignacionHorario _control;
     private enum operaciones {LOADTH,MODIFICAR,ELIMINAR,GUARDAR}
 
@@ -27,7 +27,7 @@ public class ServletModificarAsignacionHorario extends HttpServlet {
         _control = new ctrlAltaAsignacionHorario();
     }
 
-    /** 
+    /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
      * @param response servlet response
@@ -68,7 +68,7 @@ public class ServletModificarAsignacionHorario extends HttpServlet {
                     }
 
                     break;
-                    
+
                 default:
                     out.println("Operacion no valida");
                     break;
@@ -108,7 +108,7 @@ public class ServletModificarAsignacionHorario extends HttpServlet {
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /** 
+    /**
      * Handles the HTTP <code>GET</code> method.
      * @param request servlet request
      * @param response servlet response
@@ -119,9 +119,9 @@ public class ServletModificarAsignacionHorario extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         processRequest(request, response);
-    } 
+    }
 
-    /** 
+    /**
      * Handles the HTTP <code>POST</code> method.
      * @param request servlet request
      * @param response servlet response
@@ -134,7 +134,7 @@ public class ServletModificarAsignacionHorario extends HttpServlet {
         processRequest(request, response);
     }
 
-    /** 
+    /**
      * Returns a short description of the servlet.
      * @return a String containing servlet description
      */
