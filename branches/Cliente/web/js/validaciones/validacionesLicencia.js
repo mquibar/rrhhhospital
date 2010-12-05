@@ -1,4 +1,4 @@
-function validarCampos()
+function validarCamposLicencia()
 {
     listaErrores = ""
     
@@ -7,10 +7,11 @@ function validarCampos()
         listaErrores += "Debe elegir un empleado.\n";
     }
 
-    if(valorFromId("tipoHorario") == "0" )
+    if(valorFromId("tipoLicencia") == "0" )
     {
         listaErrores += "Debe elegir un tipo de licencia.\n";
     }
+//alert("llegue: " + listaErrores);
 
     if(!tieneDatos(valorFromId("DPC_edit1")))
     {

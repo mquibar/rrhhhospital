@@ -33,15 +33,15 @@ public class ctrlAltaAsignacionHorario extends GeneralController
 
     public ctrlAltaAsignacionHorario() {
             _expAlta = (ExpAltaAsignacionHorario) super.getExpert(ExpAltaAsignacionHorario.class.getName());
+            _expAH = (ExpConsultarAsignacionHorario) super.getExpert(ExpConsultarAsignacionHorario.class.getName());
             _expTH = (ExpConsultarTipoHorario) super.getExpert(ExpConsultarTipoHorario.class.getName());
             _expPers = (ExpConsultarPersonal) super.getExpert(ExpConsultarPersonal.class.getName());
-            _expAH = (ExpConsultarAsignacionHorario) super.getExpert(ExpConsultarAsignacionHorario.class.getName());
 
         try
         {
-            _mpers = new ModelOptionEmpleado(_expPers.listarEmpleadoinOrder());
-            _mth = new ModelOptionTipoHorario(_expTH.listar());
             _mah = new ModelOptionAsignacionHorario(_expAH.listar());
+            _mth = new ModelOptionTipoHorario(_expTH.listar());
+            _mpers = new ModelOptionEmpleado(_expPers.listarEmpleadoinOrder());
         }
         catch(Exception ex)
         {
@@ -166,6 +166,22 @@ public class ctrlAltaAsignacionHorario extends GeneralController
         }
 
         return _ah;
+    }
+
+    public String getUrlModificar(String idEntidad)
+    {
+        return  "manejoHorarios/asignacion_horario_1.jsp?" +
+               "idEntidad="+idEntidad+"&"+
+               "empleado="+getEmpleado(idEntidad)+"&"+
+               "descripcion="+getDescripcion(idEntidad)+"&"+
+               "fechaInicio="+getFechaInicio(idEntidad)+"&"+
+               "fechaFin="+getFechaFin(idEntidad)+"&"+
+               "tipoHorario="+getTipoHorario(idEntidad);
+    }
+
+    public String getUrlEliminar(String idEntidad)
+    {
+        return getUrlModificar(idEntidad) + "&action=delete";
     }
 
 }

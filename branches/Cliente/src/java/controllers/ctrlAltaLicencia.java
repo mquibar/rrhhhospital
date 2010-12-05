@@ -168,5 +168,20 @@ public class ctrlAltaLicencia extends GeneralController
         return getEntidad(idEntidad).getMotivo();
     }
 
+    public String getUrlModificar(String idEntidad)
+    {
+        return  "manejoHorarios/licencia_1.jsp?" +
+               "idEntidad="+idEntidad+"&"+
+               "empleado="+getEmpleado(idEntidad)+"&"+
+               "tipoLicencia="+getTipoLicencia(idEntidad)+"&"+
+               "fechaInicio="+getFechaInicio(idEntidad)+"&"+
+               "fechaFin="+getFechaFin(idEntidad)+"&"+
+               "motivo="+getMotivo(idEntidad);
+    }
+
+    public String getUrlEliminar(String idEntidad)
+    {
+        return getUrlModificar(idEntidad) + "&action=delete";
+    }
 
 }
