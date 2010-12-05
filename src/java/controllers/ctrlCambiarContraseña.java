@@ -25,6 +25,10 @@ public class ctrlCambiarContraseña extends GeneralController {
      * @throws Exception
      */
     public void cambiarPass(String... pass)throws Exception{
+        for (int i = 0; i < pass.length; i++) {
+            pass[i] = tools.EncriptadorCliente.getStringMessageDigest(pass[i], "MD5");
+
+        }
         _exp.changePass(pass);
     }
 
