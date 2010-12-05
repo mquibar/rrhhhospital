@@ -40,13 +40,32 @@
         <servlet-name>asignarLegServlet</servlet-name>
         <servlet-class>servlets.asignarLegServlet</servlet-class>
     </servlet>
+
     <servlet>
         <servlet-name>ServletAltaPersonal</servlet-name>
         <servlet-class>servlets.ServletAltaPersonal</servlet-class>
     </servlet>
+
     <servlet>
         <servlet-name>loadPageServlet</servlet-name>
         <servlet-class>servlets.loadPageServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ServletModificarTipoHorario</servlet-name>
+        <servlet-class>servlets.ServletModificarTipoHorario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletModificarAsignacionHorario</servlet-name>
+        <servlet-class>servlets.ServletModificarAsignacionHorario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletModificarLicencia</servlet-name>
+        <servlet-class>servlets.ServletModificarLicencia</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletModificarRegistroPeriodo</servlet-name>
+        <servlet-class>servlets.ServletModificarRegistroPeriodo</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>testAgrupamiento</servlet-name>
@@ -88,6 +107,8 @@
         <servlet-name>asignarLegServlet</servlet-name>
         <url-pattern>/asignarLegServlet</url-pattern>
     </servlet-mapping>
+
+
     <servlet-mapping>
         <servlet-name>ServletAltaPersonal</servlet-name>
         <url-pattern>/ServletAltaPersonal</url-pattern>
@@ -95,6 +116,24 @@
     <servlet-mapping>
         <servlet-name>loadPageServlet</servlet-name>
         <url-pattern>/loadPageServlet</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet-mapping>
+        <servlet-name>ServletModificarTipoHorario</servlet-name>
+        <url-pattern>/ServletModificarTipoHorario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletModificarAsignacionHorario</servlet-name>
+        <url-pattern>/ServletModificarAsignacionHorario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletModificarLicencia</servlet-name>
+        <url-pattern>/ServletModificarLicencia</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletModificarRegistroPeriodo</servlet-name>
+        <url-pattern>/ServletModificarRegistroPeriodo</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
