@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JDesktopPane;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import managerrrhhhospital.ContextGenerator;
@@ -26,22 +27,24 @@ public class ctrlUserAdmin {
     private TableUser _userTable=null;
     private GestorUserAdminRemote _gestoUsuarios;
     private JPopupMenu _menuDerecho;
+    private JDesktopPane _panelPrincipal;
 
-    public ctrlUserAdmin() {
-        _pantalla= new UiUserAdmin(this);
+    public ctrlUserAdmin(JDesktopPane panelPrincipal) {
+        _panelPrincipal=panelPrincipal;
+        _pantalla= new UiUserAdmin();
         _gestoUsuarios = (GestorUserAdminRemote) ContextGenerator.getInstance().createGestor(GestorUserAdminRemote.class.getName());
         _userTable = new TableUser(_gestoUsuarios.listarUsuarios());
         _pantalla.getTblUser().setModel(_userTable);
         
         _menuDerecho = new JPopupMenu("Gestión de Usuario");
         
-        ActionListener actNew = new ActionNewUser();
+        ActionListener actNew = new ActionNewUser(this);
         JMenuItem mnuItem = new JMenuItem("Crear Nuevo");
         mnuItem.addActionListener(actNew);
         _menuDerecho.add(mnuItem);
         _pantalla.getBtnNewUser().addActionListener(actNew);
 
-        actNew = new ActionChangeUser();
+        actNew = new ActionChangeUser(this);
         mnuItem = new JMenuItem("Cambiar Contraseña");
         mnuItem.addActionListener(actNew);
         _menuDerecho.add(mnuItem);
@@ -70,20 +73,50 @@ public class ctrlUserAdmin {
                 }
             }
         });
+        _pantalla.setVisible(true);
+        _panelPrincipal.add(_pantalla);
     }
 
+    void refresh(){
+        _userTable = new TableUser(_gestoUsuarios.listarUsuarios());
+        _pantalla.setEnabled(true);
+    }
 
+    void addUser(){
+        new ctrlNewUser(this,_panelPrincipal);
+        _pantalla.setEnabled(false);
+    }
+
+    void changeUser(){
+        if(_pantalla.getTblUser().getSelectedRow()<0)
+            return;
+        new ctrlChangeUser(_pantalla, _userTable.getSelectedIndex(_pantalla.getTblUser().getSelectedRow()));
+    }
 }
+
+
+
 class ActionNewUser implements ActionListener{
 
+    private ctrlUserAdmin control;
+
+    public ActionNewUser(ctrlUserAdmin control) {
+        this.control = control;
+    }
+
     public void actionPerformed(ActionEvent e) {
-        System.out.println("Debo crear la Pantalla");
+        control.addUser();
     }
 }
-
 class ActionChangeUser implements ActionListener{
 
+    private ctrlUserAdmin control;
+
+    public ActionChangeUser(ctrlUserAdmin control) {
+        this.control = control;
+    }
+    
     public void actionPerformed(ActionEvent e) {
-        System.out.println("Debo Implementar el modificar");
+        control.changeUser();
     }
 }

@@ -18,12 +18,11 @@ import javax.swing.JTable;
  *
  * @author Manuel
  */
-public class UiUserAdmin extends javax.swing.JFrame {
+public class UiUserAdmin extends javax.swing.JInternalFrame {
 
     /** Creates new form UiUserAdmin */
-    public UiUserAdmin(ctrlUserAdmin control) {
+    public UiUserAdmin() {
         initComponents();
-        _control=control;
     }
 
     /** This method is called from within the constructor to
@@ -41,19 +40,10 @@ public class UiUserAdmin extends javax.swing.JFrame {
         _btnNewUser = new javax.swing.JButton();
         _btnChangeUser = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
+        setMaximizable(true);
+        setResizable(true);
 
-        _tblUser.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
         jScrollPane1.setViewportView(_tblUser);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.lightGray, java.awt.Color.gray));
@@ -101,7 +91,7 @@ public class UiUserAdmin extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
@@ -115,7 +105,7 @@ public class UiUserAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
-    private ctrlUserAdmin _control;
+
 
     public JButton getBtnChangeUser() {
         return _btnChangeUser;

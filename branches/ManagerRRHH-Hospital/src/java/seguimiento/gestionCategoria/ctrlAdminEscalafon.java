@@ -14,6 +14,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JDesktopPane;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import managerrrhhhospital.ContextGenerator;
@@ -37,8 +38,10 @@ public class ctrlAdminEscalafon {
     private TableRequisitos _tablaRequisito = null;
     private TableClaseContenida _tablaClase = null;
     private MousePanelCategoria _menuCategoria = null;
+    private JDesktopPane _panelPrincipal;
 
-    public ctrlAdminEscalafon() {
+    public ctrlAdminEscalafon(JDesktopPane panelPrincipal) {
+        _panelPrincipal=panelPrincipal;
         _pantalla = new AdminEscalafon(this);
         _menuCategoria = new MousePanelCategoria(_pantalla, this);
         _gestorConsulta = (ExpConsultarCategoria) ContextGenerator.getInstance().createGestor(ExpConsultarCategoria.class.getName());
@@ -72,7 +75,7 @@ public class ctrlAdminEscalafon {
         });
         _pantalla.getPnlCategoria().addMouseListener(_menuCategoria);
         _pantalla.getTblCateg().addMouseListener(_menuCategoria);
-
+        _panelPrincipal.add(_pantalla);
     }
 
     void listarTramo() {
@@ -127,7 +130,7 @@ public class ctrlAdminEscalafon {
     }
 
     void addCategoria() {
-        new ctrlAltaCategoria(_pantalla, _tablaTramo.getSelectedIndex(_pantalla.getTblCateg().getSelectedRow()));
+        new ctrlAltaCategoria( _tablaTramo.getSelectedIndex(_pantalla.getTblCateg().getSelectedRow()),_panelPrincipal);
     }
 }
 
