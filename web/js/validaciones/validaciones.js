@@ -1,3 +1,8 @@
+function valorFromId(nombre)
+{
+    return document.getElementById(nombre).value;
+}
+
 function tieneDatos(cadena)
 {
     return /^.*[^\s]+.*$/.test(cadena);
@@ -47,12 +52,11 @@ function esPeriodoValido(fechaIni, fechaFin)
     return getDate(fechaIni) <= getDate(fechaFin);
 }
 
-function validarFormulario()
+function validarFormulario(listaErrores)
 {
-    listaErrores = validarCampos();
     if(listaErrores != "")
     {
-        alert(listaErrores);
+        jAlert(listaErrores, "Errores en los datos");
         return false;
     }
     else
@@ -101,11 +105,6 @@ function validarFormularioAsignarLegajo()
     {
         return true;
     }
-}
-
-function valorFromId(nombre)
-{
-    return document.getElementById(nombre).value;
 }
 
 window.onload = function()

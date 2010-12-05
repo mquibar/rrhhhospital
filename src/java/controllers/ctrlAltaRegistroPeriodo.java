@@ -158,4 +158,19 @@ public class ctrlAltaRegistroPeriodo extends GeneralController
         return getOptionsRegistroPeriodo("");
     }
 
+    public String getUrlModificar(String idEntidad)
+    {
+        return  "manejoHorarios/registro_periodo_1.jsp?" +
+               "idEntidad="+idEntidad+"&"+
+               "empleado="+getEmpleado(idEntidad)+"&"+
+               "fechaEntrada="+getFechaEntrada(idEntidad)+"&"+
+               "fechaSalida="+getFechaSalida(idEntidad)+"&"+
+               "horaEntrada="+getHoraEntrada(idEntidad)+"&"+
+               "horaSalida="+getHoraSalida(idEntidad);
+    }
+
+    public String getUrlEliminar(String idEntidad)
+    {
+        return getUrlModificar(idEntidad) + "&action=delete";
+    }
 }

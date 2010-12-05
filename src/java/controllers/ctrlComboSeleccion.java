@@ -13,6 +13,7 @@ public class ctrlComboSeleccion
 {
     static public String getCombo(String entidad)
     {
+        entidad = entidad.toLowerCase();
         String combo = "";
         
         if(entidad.equals("tipo_horario"))

@@ -39,74 +39,27 @@ function js_cancel_operacion(){
     });
 }
 
-function js_confirm_operacion(exito){
-    if(exito==true)
-        jAlert("Operacion realizada con exito", "Sistema Personal", function(r){
-            if(r) loadMenuFunction("gohome");
-        });
-    else
-        jAlert("Se produjo un error al completar la operación intente nuevamente", "Sistema Personal");
-}
-
-function cargarNoticiasAltaProfesional(target)
+function filterSelect(dropdownlist)
 {
-    obj = createRequestObject();
-    //cargarSource('noticias', target)
-    obj.onreadystatechange = function () {
-        if ( obj.readyState == 4 && (obj.status == 200 || window.location.href.indexOf ("http")==- 1)) {
-            document.getElementById("noticias").innerHTML = obj.responseText;
-            iniciarAltaPersonal();
-            ocultarEspera();
-        } else {
-            if(obj.readyState==1){
-                mostrarEspera();
-            }
-        }
-    };
-    obj.open("GET", "loadPageServlet?target="+target , true);
-    obj.send(null);
-
-    return (true);
-}
-
-function cargarNoticiasBajaProfesional(target)
-{
-    obj = createRequestObject();
-    //cargarSource('noticias', target)
-    obj.onreadystatechange = function () {
-        if ( obj.readyState == 4 && (obj.status == 200 || window.location.href.indexOf ("http")==- 1)) {
-            document.getElementById("noticias").innerHTML = obj.responseText;
-            iniciaBaja();
-            ocultarEspera();
-        } else {
-            if(obj.readyState==1){
-                mostrarEspera();
-            }
-        }
-    };
-    obj.open("GET", "loadPageServlet?target="+target , true);
-    obj.send(null);
-
-    return (true);
-}
-
-function cargarNoticiasAsignarLegajo(target)
-{
-    obj = createRequestObject();
-    //cargarSource('noticias', target)
-    obj.onreadystatechange = function () {
-        if ( obj.readyState == 4 && (obj.status == 200 || window.location.href.indexOf ("http")==- 1)) {
-            document.getElementById("noticias").innerHTML = obj.responseText;
-            js_begin_asignar();
-            ocultarEspera();
-        } else {
-            if(obj.readyState==1){
-                mostrarEspera();
-            }
-        }
-    };
-    obj.open("GET", "loadPageServlet?target="+target , true);
-    obj.send(null);
-
-    return (true);
+	optionsLength = dropdownlist.options.length;
+	lastCoincidence = 0;
+	for (n=0; n < optionsLength; n++) 
+	{ 
+		optionText = dropdownlist.options[n].text; 
+		if (optionText.indexOf(dropdownlist.keypressBuffer,0) > 0) 
+		{ 
+			dropdownlist.options[n].style.display = "inline";
+			temp = dropdownlist.options[lastCoincidence];
+			dropdownlist.options[lastCoincidence] = dropdownlist.options[n];
+			dropdownlist.options[n] = temp;
+			lastCoincidence++;
+			
+//			dropdownlist.selectedIndex = n; 
+//			return false;  
+		}
+		else
+		{
+			dropdownlist.options[n].style.display = "none";
+		}		
+	} 
 }

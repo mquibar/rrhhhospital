@@ -1,4 +1,4 @@
-function validarCampos()
+function validarCamposRegistroPeriodo()
 {
     listaErrores = ""
 

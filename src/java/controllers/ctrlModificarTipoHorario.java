@@ -6,6 +6,7 @@ package controllers;
 
 import Entidades.TipoHorario;
 import Expertos.horario.ExpAltaTipoHorario;
+import Expertos.horario.ExpModificacionTipoHorario;
 import Expertos.horario.consultar.ExpConsultarTipoHorario;
 import Tools.ManejaFechas;
 import models.combos.ModelOptionTipoHorario;
@@ -14,15 +15,14 @@ import models.combos.ModelOptionTipoHorario;
  *
  * @author leoroot
  */
-public class ctrlAltaTipoHorario extends GeneralController {
+public class ctrlModificarTipoHorario extends GeneralController {
 
-    ExpAltaTipoHorario _expAlta;
     ExpConsultarTipoHorario _expTH;
     ModelOptionTipoHorario _mth;
 
-    public ctrlAltaTipoHorario() {
-        try {
-            _expAlta = (ExpAltaTipoHorario) super.getExpert(ExpAltaTipoHorario.class.getName());
+    public ctrlModificarTipoHorario() {
+        try
+        {
             _expTH = (ExpConsultarTipoHorario) super.getExpert(ExpConsultarTipoHorario.class.getName());
         } catch (Exception ex) {
             System.out.println("Error: No se pudo instanciar el experto: " + ex.getMessage());
@@ -46,15 +46,46 @@ public class ctrlAltaTipoHorario extends GeneralController {
             String horaEntrada,
             String horaSalida,
             String eliminado) {
-        _expAlta.iniciarAlta(
-                idNegocio(idEntidad),
-                nombre,
-                descripcion,
-                ManejaFechas.getHour(horaEntrada),
-                ManejaFechas.getHour(horaSalida),
-                Boolean.parseBoolean(eliminado));
 
-        return _expAlta.guardar();
+        String res = "Error: entidad no guardada";
+
+        try
+        {
+            if(idEntidad != null && !idEntidad.isEmpty())
+            {
+                ExpModificacionTipoHorario _expModif = (ExpModificacionTipoHorario) super.getExpert(ExpModificacionTipoHorario.class.getName());
+
+                _expModif.iniciarAlta(
+                        idNegocio(idEntidad),
+                        nombre,
+                        descripcion,
+                        ManejaFechas.getHour(horaEntrada),
+                        ManejaFechas.getHour(horaSalida),
+                        Boolean.parseBoolean(eliminado));
+
+                res = _expModif.guardar();
+            }
+            else
+            {
+                ExpAltaTipoHorario _expModif = (ExpAltaTipoHorario) super.getExpert(ExpAltaTipoHorario.class.getName());
+
+                _expModif.iniciarAlta(
+                    idNegocio(idEntidad),
+                    nombre,
+                    descripcion,
+                    ManejaFechas.getHour(horaEntrada),
+                    ManejaFechas.getHour(horaSalida),
+                    Boolean.parseBoolean(eliminado));
+
+                res = _expModif.guardar();
+            }
+        }
+        catch (Exception ex)
+        {
+            System.out.println("Error: No se pudo instanciar el experto: " + ex.getMessage());
+        }
+
+        return res;
     }
 
     String idNegocio(String idCombo) {
@@ -96,9 +127,10 @@ public class ctrlAltaTipoHorario extends GeneralController {
 
     public TipoHorario getTipoHorarioSeleccionado(String idTipoHorario)
     {
+        System.out.println("Seleccionado con id =" + idTipoHorario);
         return _mth.getSelectedItem(idTipoHorario);
     }
-    
+
     public String getCombo()
     {
         return getOptionsTipoHorario("");
@@ -115,7 +147,7 @@ public class ctrlAltaTipoHorario extends GeneralController {
 
     public String getUrlModificar(String idEntidad)
     {
-        return  "tipo_horario.jsp?" +
+        return  "manejoHorarios/tipo_horario_1.jsp?" +
                "idEntidad="+idEntidad+"&"+
                "nombre="+getNombre(idEntidad)+"&"+
                "descripcion="+getDescripcion(idEntidad)+"&"+

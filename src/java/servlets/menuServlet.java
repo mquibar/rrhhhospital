@@ -50,16 +50,16 @@ public class menuServlet extends HttpServlet {
                     url = "Alta_Legajo_Final.jsp";
                     break;
                 case HORARIO_MNU1:
-                    url = "./manejoHorarios/gestionar.jsp?nombreEntidad=tipo_horario";
+                    url = "./manejoHorarios/gestionar_1.jsp?nombreEntidad=Tipo_Horario&pathEntidad=manejoHorarios";
                     break;
                 case HORARIO_MNU2:
-                    url = "./manejoHorarios/gestionar.jsp?nombreEntidad=asignacion_horario";
+                    url = "./manejoHorarios/gestionar_1.jsp?nombreEntidad=Asignacion_Horario&pathEntidad=manejoHorarios";
                     break;
                 case HORARIO_MNU3:
-                    url = "./manejoHorarios/gestionar.jsp?nombreEntidad=registro_periodo";
+                    url = "./manejoHorarios/gestionar_1.jsp?nombreEntidad=Registro_Periodo&pathEntidad=manejoHorarios";
                     break;
                 case HORARIO_MNU4:
-                    url = "./manejoHorarios/gestionar.jsp?nombreEntidad=licencia";
+                    url = "./manejoHorarios/gestionar_1.jsp?nombreEntidad=Licencia&pathEntidad=manejoHorarios";
                     break;
                 case SEGUIMIENTO_MNU1:
                     //url = "gestionar_categoria.html";

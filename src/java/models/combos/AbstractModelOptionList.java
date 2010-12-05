@@ -31,6 +31,7 @@ public abstract class AbstractModelOptionList<E> {
 
             }
         } catch (Exception e) {
+            System.out.println("Error al crear modelo para lista de " + _lista.size()+ " elementos: " + e.toString());
             options+= "<option disabled>Sin Elementos</option>\n";
         }
         return options;
