@@ -53,7 +53,7 @@
                             <input type="text" name="cuil" id="cuil" />
                         </label>
                     </div>
-                    <div class="derecha" style="width: 1500px;"><br />
+                    <div class="derecha" style="width: 900px;"><br />
 		  Domicilio<br />
                         <br />
 		  Calle<br />
@@ -102,7 +102,7 @@
                         </select>
                         <br />
                     </div>
-                    <div class="guardar" style="width: 1500px; heigth: 50px; padding-top: 200px;">
+                    <div class="guardar" style="width: 900px; heigth: 50px; padding-top: 150px;">
                         <label>
                             <input type="button" name="buttonCancel" id="buttonCancel" onclick="js_cancel_operacion()" value="Cancelar" />
                         </label>

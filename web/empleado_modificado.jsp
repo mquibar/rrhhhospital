@@ -82,7 +82,7 @@ String getValue(ServletRequest request, String varName)
 			</label>
                         <br />
 		</div>
-		<div class="derecha" style="width: 1500px;"><br />
+		<div class="derecha" style="width: 900px;"><br />
 		  Domicilio<br />
 		  <br />
 		  Calle<br />
@@ -134,7 +134,7 @@ String getValue(ServletRequest request, String varName)
 		  </select>
 		  <br />
 		</div>
-		<div class="guardar" style="width: 1500px; heigth: 50px; padding-top: 200px;">
+		<div class="guardar" style="width: 900px; heigth: 50px; padding-top: 150px;">
 			<label>
 			  <input type="button" name="buttonSave" id="buttonSave" value="Actualizar" onclick="guardarModificacionEmpleado()" />
 			</label>

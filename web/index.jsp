@@ -38,13 +38,13 @@
                             <!--<H1>LOGIN FORM</H1>-->
                             <table>
                                 <tr>
-                                    <td> Username  : </td><td> <input id="user" name="username" size=15 type="text" /> </td>
+                                    <td> Usuario  : </td><td> <input id="user" name="Usuario" size=15 type="text" /> </td>
                                 </tr>
                                 <tr>
-                                    <td> Password  : </td><td> <input id="password" name="password" size=15 type="password" /> </td>
+                                    <td> Contraseña  : </td><td> <input id="password" name="Contraseña" size=15 type="password" /> </td>
                                 </tr>
                             </table>
-                            <input align="center" type="button" value="login" onclick="js_logIn()" />
+                            <input align="center" type="button" value="Ingresar" onclick="js_logIn()" />
                         </form>
                         <br />
                     </div>
