@@ -39,6 +39,7 @@ public class Agrupamiento implements Serializable {
     @Basic(optional = false)
     @Column(name = "Nombre")
     private String nombre;
+    private boolean eliminado=false;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idAgrupamiento", fetch = FetchType.LAZY)
     private List<Tramo> tramoList;
 
@@ -68,6 +69,14 @@ public class Agrupamiento implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public boolean isEliminado() {
+        return eliminado;
+    }
+
+    public void setEliminado(boolean eliminado) {
+        this.eliminado = eliminado;
     }
 
     public List<Tramo> getTramoList() {

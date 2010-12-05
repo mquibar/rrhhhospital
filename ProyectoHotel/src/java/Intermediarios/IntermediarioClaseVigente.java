@@ -6,6 +6,7 @@
 package Intermediarios;
 
 import Configuraciones.LogAdmin;
+import Entidades.Categoria;
 import Entidades.ClaseVigente;
 import java.util.List;
 import javax.persistence.Query;
@@ -33,5 +34,11 @@ public class IntermediarioClaseVigente extends Intermediario<ClaseVigente>{
         return q.getResultList();
     }
 
+    public List<ClaseVigente> findVigenteByCategoria(Categoria c){
+        Query q = GestorConeccion.getInstance().getManager().createQuery("SELECT c FROM "+ _clase + " c WHERE c.vigente = :vig and c.idCategoria = :cat");
+        q.setParameter("vig", true);
+        q.setParameter("cat", c);
+        return q.getResultList();
+    }
 
 }

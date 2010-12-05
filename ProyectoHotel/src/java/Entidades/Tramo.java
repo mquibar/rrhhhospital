@@ -41,6 +41,7 @@ public class Tramo implements Serializable {
     @Basic(optional = false)
     @Column(name = "Nombre")
     private String nombre;
+    private Boolean eliminado;
     @JoinColumn(name = "idAgrupamiento", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Agrupamiento idAgrupamiento;
@@ -73,6 +74,14 @@ public class Tramo implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public Boolean getEliminado() {
+        return eliminado;
+    }
+
+    public void setEliminado(Boolean eliminado) {
+        this.eliminado = eliminado;
     }
 
     public Agrupamiento getAgrupamiento() {

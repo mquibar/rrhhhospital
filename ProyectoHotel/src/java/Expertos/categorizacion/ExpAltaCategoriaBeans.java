@@ -25,7 +25,7 @@ public class ExpAltaCategoriaBeans implements ExpAltaCategoria {
 
     private Categoria _categoria;
     @EJB
-    Expertos.categorizacion.ExpConsultarCategoria _expertoConsulta;
+    ExpConsultarCategoria _expertoConsulta;
 
     public ExpAltaCategoriaBeans() {
         _categoria = new Categoria();
@@ -33,7 +33,6 @@ public class ExpAltaCategoriaBeans implements ExpAltaCategoria {
 
     public List<Clase> iniciarCU(Tramo tramo) {
         _categoria.setTramo(tramo);
-        System.out.println(tramo.getNombre());
         return _expertoConsulta.listarClases();
     }
 

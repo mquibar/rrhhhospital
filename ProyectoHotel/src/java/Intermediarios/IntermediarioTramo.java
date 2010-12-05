@@ -38,6 +38,7 @@ public class IntermediarioTramo extends Intermediario<Tramo> {
         if (dtoTramo.getCategoria()!=null){
             restricciones.put("categoriaList", dtoTramo.getCategoria());
         }
+        restricciones.put("eliminado", dtoTramo.isEliminado());
         return crearQuery(restricciones).getResultList();
     }
 
