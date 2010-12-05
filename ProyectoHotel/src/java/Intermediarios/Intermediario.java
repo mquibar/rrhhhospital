@@ -8,6 +8,7 @@ import Configuraciones.LogAdmin;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import org.apache.commons.logging.Log;
 
@@ -22,9 +23,14 @@ public abstract class Intermediario<E> {
 
     public List<E> findAll() {
         try {
-            Query q = GestorConeccion.getInstance().getManager().createQuery("SELECT o FROM "+_clase + " o");
-            return q.getResultList();
+            EntityManager em = GestorConeccion.getInstance().getManager();
+            Query q = em.createNamedQuery(_clase + ".findAll");
+            List<E> l = q.getResultList();
+            System.out.println(_clase + ".findAll: encontrados " + l.size());
+            return l;
         } catch (Exception ex) {
+            System.out.println(_clase + ".findAll: Error: " + ex.toString());
+            System.out.println(_clase + ".findAll: Mensage: " + ex.getMessage());
             ex.printStackTrace();
             _log.error(ex.getMessage());
             return null;

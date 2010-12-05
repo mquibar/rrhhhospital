@@ -38,7 +38,15 @@ public class IntermediarioRegistroPeriodo extends Intermediario<RegistroPeriodo>
         {
             Criteria criteria = ((Session) GestorConeccion.getInstance().getManager().getDelegate()).createCriteria(RegistroPeriodo.class);
 
-            criteria.add(Restrictions.eq("idEmpleado", dtoCat.getIdEmpleado()));
+            if(dtoCat.getIdEmpleado() != 0)
+            {
+                criteria.add(Restrictions.eq("idEmpleado", dtoCat.getIdEmpleado()));
+            }
+            
+            if(dtoCat.getFechaInicio() != null && dtoCat.getFechaFin() != null )
+            {
+                criteria.add(Restrictions.between("Fecha", dtoCat.getFechaInicio(), dtoCat.getFechaFin()));
+            }
             
             if(dtoCat.getMes() != 0)
             {

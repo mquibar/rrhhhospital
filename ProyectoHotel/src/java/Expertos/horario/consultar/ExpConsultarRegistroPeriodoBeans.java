@@ -9,6 +9,7 @@ import DTO.DtoRegistroPeriodo;
 import Entidades.Empleado;
 import Entidades.RegistroPeriodo;
 import Intermediarios.IntermediarioRegistroPeriodo;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 
@@ -71,6 +72,15 @@ public class ExpConsultarRegistroPeriodoBeans implements ExpConsultarRegistroPer
 
     public RegistroPeriodo consultarRegistroPeriodoPorId(int id) {
         return (new IntermediarioRegistroPeriodo().findById(id));
+    }
+
+    public List<RegistroPeriodo> informeAsistencia(Empleado emp, Date fechaIni, Date fechaFin) {
+        DtoRegistroPeriodo dto = new DtoRegistroPeriodo();
+        dto.setIdEmpleado(emp.getId());
+        dto.setFechaInicio(fechaIni);
+        dto.setFechaFin(fechaFin);
+
+        return (new IntermediarioRegistroPeriodo().findByDto(dto));
     }
 
 }

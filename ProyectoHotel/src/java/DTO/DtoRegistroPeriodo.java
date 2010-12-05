@@ -5,6 +5,8 @@
 
 package DTO;
 
+import java.util.Date;
+
 /**
  *
  * @author Manuel
@@ -30,4 +32,36 @@ public class DtoRegistroPeriodo
     public void setMes(int mes) {
         this._mes = mes;
     }
+
+        private Date _fechaInicio = null;
+    private Date _fechaFin = null;
+
+    /**
+     * @return the _fechaInicio
+     */
+    public Date getFechaInicio() {
+        return _fechaInicio;
+    }
+
+    /**
+     * @param fechaInicio the _fechaInicio to set
+     */
+    public void setFechaInicio(Date fechaInicio) {
+        this._fechaInicio = fechaInicio;
+    }
+
+    /**
+     * @return the _fechaFin
+     */
+    public Date getFechaFin() {
+        return _fechaFin;
+    }
+
+    /**
+     * @param fechaFin the _fechaFin to set
+     */
+    public void setFechaFin(Date fechaFin) {
+        this._fechaFin = fechaFin;
+    }
+
 }

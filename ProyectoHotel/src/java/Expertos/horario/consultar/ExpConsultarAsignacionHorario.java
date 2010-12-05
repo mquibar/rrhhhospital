@@ -6,8 +6,9 @@
 package Expertos.horario.consultar;
 
 import Entidades.AsignacionHorario;
+import Entidades.Empleado;
+import java.util.Date;
 import java.util.List;
-import javax.ejb.Local;
 import javax.ejb.Remote;
 
 /**
@@ -18,4 +19,7 @@ import javax.ejb.Remote;
 public interface  ExpConsultarAsignacionHorario {
 
     public List<AsignacionHorario> listar();
+
+    public List<AsignacionHorario> informeCronograma(Empleado emp, Date fechaIni, Date fechaFin);
+
 }

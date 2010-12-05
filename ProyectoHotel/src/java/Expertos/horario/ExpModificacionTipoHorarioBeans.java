@@ -1,11 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package Expertos.horario;
 
 import Entidades.TipoHorario;
+import Expertos.horario.consultar.ExpConsultarTipoHorarioBeans;
 import java.util.Date;
 import javax.ejb.Stateless;
 
@@ -14,19 +10,13 @@ import javax.ejb.Stateless;
  * @author leoroot
  */
 @Stateless
-public class ExpAltaTipoHorarioBeans 
-        extends ExpertoAlta<TipoHorario>
-        implements ExpAltaTipoHorario
+public class ExpModificacionTipoHorarioBeans
+        extends ExpertoModificacion<TipoHorario>
+        implements ExpModificacionTipoHorario
 {
-    public ExpAltaTipoHorarioBeans()
+    public ExpModificacionTipoHorarioBeans()
     {
         super("tipohorario");
-    }
-
-    @Override
-    protected TipoHorario getEntidad(String idEntidad)
-    {
-        return new TipoHorario();
     }
 
     @Override
@@ -42,13 +32,15 @@ public class ExpAltaTipoHorarioBeans
     }
 
     @Override
-    protected boolean validar(TipoHorario o)
+    protected TipoHorario getById(int idEntidad)
     {
-        Boolean res = true;
+        return new ExpConsultarTipoHorarioBeans().consultarTipoHorarioPorId(idEntidad);
+    }
 
-        if(o.getNombre().equalsIgnoreCase("error"))res = false;
-
-        return res;
+    @Override
+    protected int getId(TipoHorario o)
+    {
+        return o.getId();
     }
 
 }
