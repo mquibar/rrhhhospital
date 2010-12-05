@@ -18,10 +18,10 @@
          </p>
          <p align="left">
            <label>
-             <input type="button" name="button" id="button" value="Guardar" />
+               <input type="button" name="button" id="button" value="Guardar" onclick="js_cambiar_pass();"/>
            </label>
            <label>
-             <input type="button" name="button2" id="button2" value="Cancelar" />
+               <input type="button" name="button2" id="button2" value="Cancelar" onclick="js_cancel_operacion();" />
            </label>
          </p>
          <p align="left"><br />
