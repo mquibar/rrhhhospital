@@ -89,42 +89,42 @@ public class ctrlAltaPersonal extends GeneralController {
     }
 
 
-    public String iniciarAltaEmpleado(String nombre, String apellido, String dni,
+    public void iniciarAltaEmpleado(String nombre, String apellido, String dni,
             String fechaNacimiento, String telefono, String barrio,
             String calle, String numero, String piso, String departamanto,
             String localidad, String provincia, String pais, String sexo, String cuil,
-            String tarjeta) {
+            String tarjeta) throws Exception {
             
-            try {
-                return controladorEmpleado.iniciarAlta(modeltipo.getSelectedItem(tipoPersona),nombre,
+            if(controladorEmpleado.iniciarAlta(modeltipo.getSelectedItem(tipoPersona),nombre,
                             apellido,dni,Tools.ManejaFechas.convertirString(fechaNacimiento),
                             Long.parseLong(telefono),barrio, calle,numero,piso,departamanto,
                             modellocalidad.getSelectedItem(localidad),
                             modelprovincia.getSelectedItem(provincia), modelpais.getSelectedItem(pais),
-                            modelsexo.getSelectedItem(sexo),cuil,modelotarjeta.getSelectedItem(tarjeta));
-                
-            } catch (Exception ex) {
-                return "Error: Error de conexion con servidor de aplicaciones"+ex.toString();
+                            modelsexo.getSelectedItem(sexo),cuil,modelotarjeta.getSelectedItem(tarjeta))){
+                return;
+            } else {
+                throw new Exception("No se guardo");
             }
-
+                
     }
 
 
-    public String iniciarAltapRrofesional(String nombre, String apellido, String dni,
+    public void iniciarAltapRrofesional(String nombre, String apellido, String dni,
             String fechaNacimiento, String telefono, String barrio,
             String calle, String numero, String piso, String departamanto,
             String localidad, String provincia, String pais, String sexo, String cuil,
-            String matricula, String titulo, String tarjeta) {
+            String matricula, String titulo, String tarjeta) throws Exception {
 
-            try {
-                return controladorProfesional.iniciarAlta(modeltipo.getSelectedItem(tipoPersona),nombre,apellido,dni,Tools.ManejaFechas.convertirString(fechaNacimiento),
+
+                if(controladorProfesional.iniciarAlta(modeltipo.getSelectedItem(tipoPersona),nombre,apellido,dni,Tools.ManejaFechas.convertirString(fechaNacimiento),
                                     Long.parseLong(telefono),barrio, calle,numero,piso,departamanto,modellocalidad.getSelectedItem(localidad),
                                     modelprovincia.getSelectedItem(provincia), modelpais.getSelectedItem(pais),
-                                    modelsexo.getSelectedItem(sexo),cuil,matricula,titulo,modelotarjeta.getSelectedItem(tarjeta));
-
-            } catch (Exception ex) {
-                return "Error: Error de conexion con servidor de aplicaciones"+ex.toString();
+                                    modelsexo.getSelectedItem(sexo),cuil,matricula,titulo,modelotarjeta.getSelectedItem(tarjeta))) {
+                return;
+                }  else {
+                    throw new Exception("No se guardo");
             }
+
 
     }
 
