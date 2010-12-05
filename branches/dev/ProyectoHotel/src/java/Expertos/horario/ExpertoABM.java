@@ -30,35 +30,76 @@ public abstract class ExpertoABM <E>
 
     public void iniciarAlta(String idEntidad, Object ... data)
     {
-       E o = getEntidad(idEntidad);
-       o = cargarEntidad(o, data);
+       E o = getEntity(idEntidad);
+       o = fillEntity(o, data);
        _enProc = o;
 
         _flagSave = validar(o);
     }
 
-    protected boolean validar(E o) {
+    protected E getEntity(String idEntidad)
+    {
+        E o = null;
+
+        try
+        {
+            if (idEntidad == null){idEntidad = "";}
+            o = getEntidad(idEntidad);
+        }
+        catch (Exception ex)
+        {
+            System.out.println(
+                    "Error al buscar entidad con ID = '" + idEntidad + "': " +
+                    ex.toString());
+        }
+
+        return o;
+    }
+
+    E fillEntity(E o, Object ... data)
+    {
+        try
+        {
+            o = cargarEntidad(o, data);
+        }
+        catch(Exception ex)
+        {
+            System.out.println("Error al cargar entidad " + _clase + " : " + ex);
+        }
+
+        return o;
+    }
+
+    protected boolean validar(E o)
+    {
         return true;
     }
 
-    public String guardar() {
-
+    public String guardar()
+    {
         String res = "Error: se produjo un error durante la validacion";
 
-        if (_flagSave) {
-            try {
+        if (_flagSave)
+        {
+            try
+            {
                 GestorConeccion gc = GestorConeccion.getInstance();
                 gc.beginTransaction();
-                if (persistir(_enProc)) {
+                if (persistir(_enProc))
+                {
                     res = "La entidad se guardo correctamente. Confirmado.";
                     System.out.println(res);
                     GestorConeccion.getInstance().commitTransaction();
-                } else {
+                } 
+                else
+                {
                     res = "Error durante el guardado, Rolling Back";
                     System.out.println(res);
                     GestorConeccion.getInstance().rollbackTransaction();
                 }
-            } catch (Exception ex) {
+            } 
+            catch (Exception ex)
+            {
                 res = "Error: se produjo el siguiente error durante el guardado : <br />" + ex.toString();
             }
         }

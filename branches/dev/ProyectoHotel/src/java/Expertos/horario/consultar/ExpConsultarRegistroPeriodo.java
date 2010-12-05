@@ -7,6 +7,7 @@ package Expertos.horario.consultar;
 
 import Entidades.Empleado;
 import Entidades.RegistroPeriodo;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Remote;
 
@@ -23,4 +24,7 @@ public interface  ExpConsultarRegistroPeriodo {
     public java.util.List<Entidades.RegistroPeriodo> listar();
 
     public java.util.List<Entidades.RegistroPeriodo> listar(Entidades.Empleado empleado);
+
+    public List<RegistroPeriodo> informeAsistencia(Empleado emp, Date fechaIni, Date fechaFin);
+
 }

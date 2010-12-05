@@ -89,7 +89,7 @@ public class TipoHorario implements Serializable {
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.nombre = nombre.toUpperCase();
     }
 
     public Date getHoraIngreso() {
@@ -113,7 +113,7 @@ public class TipoHorario implements Serializable {
     }
 
     public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+        this.descripcion = descripcion.toUpperCase();
     }
 
     public Boolean getEliminado() {
@@ -156,7 +156,7 @@ public class TipoHorario implements Serializable {
     public String toString() {
         return "Entidades.TipoHorario[id=" + id + "]" + "\n"
                 + "Nombre: " + nombre + "\n"
-                + "Descipcion: " + descripcion + "\n"
+                + "Descripcion: " + descripcion + "\n"
                 + "Hora Ingreso: " + horaIngreso + "\n"
                 + "Hora Salida: " + horaSalida;
     }
