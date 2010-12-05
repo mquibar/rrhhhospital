@@ -19,11 +19,10 @@ import javax.swing.JTextField;
  *
  * @author Manuel
  */
-public class AltaCategoria extends javax.swing.JDialog {
+public class AltaCategoria extends javax.swing.JInternalFrame {
 
     /** Creates new form AltaCategoria */
-    public AltaCategoria(java.awt.Frame parent, ctrlAltaCategoria control) {
-        super(parent, false);
+    public AltaCategoria( ctrlAltaCategoria control) {
         initComponents();
         _control = control;
     }
@@ -59,7 +58,9 @@ public class AltaCategoria extends javax.swing.JDialog {
         _btnOk = new javax.swing.JButton();
         _btnCancel = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setClosable(true);
+        setMaximizable(true);
+        setResizable(true);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Descripción"));
 

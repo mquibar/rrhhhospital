@@ -65,4 +65,11 @@ public abstract class AbstractTable<E> extends AbstractTableModel{
         _lista.clear();
         fireTableDataChanged();
     }
+
+    @Override
+    public String getColumnName(int column) {
+        return _columnNames[column];
+    }
+
+
 }

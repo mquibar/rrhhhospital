@@ -21,7 +21,7 @@ import javax.swing.JTextField;
  *
  * @author Manuel
  */
-public class AdminEscalafon extends javax.swing.JFrame {
+public class AdminEscalafon extends javax.swing.JInternalFrame {
 
     /** Creates new form AdminEscalafon */
     public AdminEscalafon(ctrlAdminEscalafon control) {
@@ -73,7 +73,10 @@ public class AdminEscalafon extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         _tblClass = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMaximizable(true);
+        setResizable(true);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.gray, java.awt.Color.lightGray), "Filtros", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 0))); // NOI18N

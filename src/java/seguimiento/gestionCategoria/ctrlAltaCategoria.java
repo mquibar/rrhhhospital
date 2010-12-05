@@ -13,8 +13,10 @@ import Expertos.categorizacion.ExpAltaCategoria;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import managerrrhhhospital.ContextGenerator;
+import models.limitadores.LimitadorNumerico;
 import models.tables.TableClase;
 import models.tables.TableClaseContenida;
 import models.tables.TableRequisitos;
@@ -31,12 +33,13 @@ public class ctrlAltaCategoria {
     private TableClase _clases;
     private TableClaseContenida _clasesContenidas;
 
-    public ctrlAltaCategoria(AdminEscalafon pantalla, Tramo tramo) {
-        _pantalla = new AltaCategoria(pantalla, this);
+    public ctrlAltaCategoria(Tramo tramo, JDesktopPane panelPrincipal) {
+        _pantalla = new AltaCategoria(this);
         _gestorCategoria = (ExpAltaCategoria) ContextGenerator.getInstance().createGestor(ExpAltaCategoria.class.getName());
         _clases = new TableClase(_gestorCategoria.iniciarCU(tramo));
         _clasesContenidas = new TableClaseContenida(new ArrayList<ClaseContenida>());
         _requisitos = new TableRequisitos(new ArrayList<Requisito>());
+        _pantalla.getTxtCupo().setDocument(new LimitadorNumerico());
 
         _pantalla.getBtnAddRequisito().addActionListener(new ActionListener() {
 
@@ -93,6 +96,7 @@ public class ctrlAltaCategoria {
         _pantalla.getTblClases().setModel(_clases);
         _pantalla.getTblClasesAsignadas().setModel(_clasesContenidas);
         _pantalla.setVisible(true);
+        panelPrincipal.add(_pantalla);
     }
 
     void pressCancelButton(){
