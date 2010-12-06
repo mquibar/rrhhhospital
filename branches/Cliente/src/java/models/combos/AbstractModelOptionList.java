@@ -70,8 +70,6 @@ public abstract class AbstractModelOptionList<E> {
             return null;
         }
 
-        System.out.println("Recuperando entidad con Index = " + Index + "(indice en lista = " + (Index - 1));
-
         return _lista.get(Index - 1);
     }
 
