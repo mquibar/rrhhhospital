@@ -77,14 +77,17 @@ public class ctrlUserAdmin {
         _panelPrincipal.add(_pantalla);
     }
 
-    void refresh(){
-        _userTable = new TableUser(_gestoUsuarios.listarUsuarios());
-        _pantalla.setEnabled(true);
+    void refresh(boolean ref){
+        if(ref){
+            _userTable = new TableUser(_gestoUsuarios.listarUsuarios());
+            _pantalla.getTblUser().setModel(_userTable);
+        }
+        _pantalla.setVisible(true);
     }
 
     void addUser(){
         new ctrlNewUser(this,_panelPrincipal);
-        _pantalla.setEnabled(false);
+        _pantalla.setVisible(false);
     }
 
     void changeUser(){
