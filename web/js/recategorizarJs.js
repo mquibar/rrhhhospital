@@ -8,7 +8,7 @@ function js_cargarNoticias_recat(menu){
             ocultarEspera();
         } else {
             if(req.readyState==1){
-               mostrarEspera();
+                mostrarEspera();
             }
         }
     };
@@ -19,12 +19,14 @@ function js_cargarNoticias_recat(menu){
 }
 function js_recategor(){
     req.onreadystatechange = function () {
-        if ( req.readyState == 4 && (req.status == 200 || window.location.href.indexOf ("http")==- 1)) {
-            document.getElementById("empleado").innerHTML = req.responseText;
-            document.getElementById("agrupamiento").innerHTML="";
-            document.getElementById("tramo").innerHTML="";
-            document.getElementById("categoria").innerHTML="";
-            document.getElementById("clase").innerHTML="";
+        if ( req.readyState == 4){
+            if(req.status == 200 || window.location.href.indexOf ("http")==- 1) {
+                document.getElementById("empleado").innerHTML = req.responseText;
+                document.getElementById("agrupamiento").innerHTML="";
+                document.getElementById("tramo").innerHTML="";
+                document.getElementById("categoria").innerHTML="";
+                document.getElementById("clase").innerHTML="";
+            }
             ocultarEspera();
         } else {
             if(req.readyState==1){
@@ -39,11 +41,13 @@ function js_recategor(){
 
 function js_lista_Agrupamiento(){
     req.onreadystatechange = function () {
-        if ( req.readyState == 4 && (req.status == 200 || window.location.href.indexOf ("http")==- 1)) {
-            document.getElementById("agrupamiento").innerHTML = req.responseText;
-            document.getElementById("tramo").innerHTML="";
-            document.getElementById("categoria").innerHTML="";
-            document.getElementById("clase").innerHTML="";
+        if ( req.readyState == 4){
+            if(req.status == 200 || window.location.href.indexOf ("http")==- 1) {
+                document.getElementById("agrupamiento").innerHTML = req.responseText;
+                document.getElementById("tramo").innerHTML="";
+                document.getElementById("categoria").innerHTML="";
+                document.getElementById("clase").innerHTML="";
+            }
             ocultarEspera();
         } else {
             if(req.readyState==1){
@@ -58,11 +62,12 @@ function js_lista_Agrupamiento(){
 
 function js_lista_tramo(){
     req.onreadystatechange = function () {
-        if ( req.readyState == 4 && (req.status == 200 || window.location.href.indexOf ("http")==- 1)) {
-            document.getElementById("tramo").innerHTML = req.responseText;
-            
-            document.getElementById("categoria").innerHTML="";
-            document.getElementById("clase").innerHTML="";
+        if ( req.readyState == 4 ){
+            if(req.status == 200 || window.location.href.indexOf ("http")==- 1) {
+                document.getElementById("tramo").innerHTML = req.responseText;
+                document.getElementById("categoria").innerHTML="";
+                document.getElementById("clase").innerHTML="";
+            }
             ocultarEspera();
         } else {
             if(req.readyState==1){
@@ -77,10 +82,12 @@ function js_lista_tramo(){
 
 function js_lista_catPosible(){
     req.onreadystatechange = function () {
-        if ( req.readyState == 4 && (req.status == 200 || window.location.href.indexOf ("http")==- 1)) {
-            document.getElementById("categoria").innerHTML = req.responseText;
-            document.getElementById("btnListAll").style.display="block";
-            document.getElementById("clase").innerHTML="";
+        if ( req.readyState == 4){
+            if(req.status == 200 || window.location.href.indexOf ("http")==- 1) {
+                document.getElementById("categoria").innerHTML = req.responseText;
+                document.getElementById("btnListAll").style.display="block";
+                document.getElementById("clase").innerHTML="";
+            }
             ocultarEspera();
         } else {
             if(req.readyState==1){
@@ -95,8 +102,11 @@ function js_lista_catPosible(){
 
 function js_lista_catAll(){
     req.onreadystatechange = function () {
-        if ( req.readyState == 4 && (req.status == 200 || window.location.href.indexOf ("http")==- 1)) {
-            document.getElementById("categoria").innerHTML = req.responseText;
+        if ( req.readyState == 4){
+            if(req.status == 200 || window.location.href.indexOf ("http")==- 1) {
+                document.getElementById("categoria").innerHTML = req.responseText;
+                document.getElementById("clase").innerHTML=""
+            }
             ocultarEspera();
         } else {
             if(req.readyState==1){
@@ -111,8 +121,10 @@ function js_lista_catAll(){
 
 function js_lista_clase(){
     req.onreadystatechange = function () {
-        if ( req.readyState == 4 && (req.status == 200 || window.location.href.indexOf ("http")==- 1)) {
-            document.getElementById("clase").innerHTML = req.responseText;
+        if ( req.readyState == 4 ){
+            if(req.status == 200 || window.location.href.indexOf ("http")==- 1) {
+                document.getElementById("clase").innerHTML = req.responseText;
+            }
             ocultarEspera();
         } else {
             if(req.readyState==1){
