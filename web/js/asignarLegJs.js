@@ -1,12 +1,14 @@
 var req = createRequestObject();
 function js_begin_asignar(){
     req.onreadystatechange = function () {
-        if ( req.readyState == 4 && (req.status == 200 || window.location.href.indexOf ("http")==- 1)) {
-            document.getElementById("empleados").innerHTML = req.responseText;
-            document.getElementById("agrupamiento").innerHTML="";
-            document.getElementById("tramo").innerHTML="";
-            document.getElementById("categoria").innerHTML="";
-            document.getElementById("clase").innerHTML="";
+        if ( req.readyState == 4){
+            if(req.status == 200 || window.location.href.indexOf ("http")==- 1) {
+                document.getElementById("empleados").innerHTML = req.responseText;
+                document.getElementById("agrupamiento").innerHTML="";
+                document.getElementById("tramo").innerHTML="";
+                document.getElementById("categoria").innerHTML="";
+                document.getElementById("clase").innerHTML="";
+            }
             ocultarEspera();
         } else {
             if(req.readyState==1){
@@ -21,11 +23,13 @@ function js_begin_asignar(){
 
 function js_agrupamiento_alegajo(){
     req.onreadystatechange = function () {
-        if ( req.readyState == 4 && (req.status == 200 || window.location.href.indexOf ("http")==- 1)) {
-            document.getElementById("agrupamiento").innerHTML = req.responseText;
-            document.getElementById("tramo").innerHTML="";
-            document.getElementById("categoria").innerHTML="";
-            document.getElementById("clase").innerHTML="";
+        if ( req.readyState == 4 ){
+            if(req.status == 200 || window.location.href.indexOf ("http")==- 1) {
+                document.getElementById("agrupamiento").innerHTML = req.responseText;
+                document.getElementById("tramo").innerHTML="";
+                document.getElementById("categoria").innerHTML="";
+                document.getElementById("clase").innerHTML="";
+            }
             ocultarEspera();
         } else {
             if(req.readyState==1){
@@ -40,11 +44,13 @@ function js_agrupamiento_alegajo(){
 
 function js_tramo_alegajo(){
     req.onreadystatechange = function () {
-        if ( req.readyState == 4 && (req.status == 200 || window.location.href.indexOf ("http")==- 1)) {
-            document.getElementById("tramo").innerHTML = req.responseText;
+        if ( req.readyState == 4 ){
+            if(req.status == 200 || window.location.href.indexOf ("http")==- 1) {
+                document.getElementById("tramo").innerHTML = req.responseText;
 
-            document.getElementById("categoria").innerHTML="";
-            document.getElementById("clase").innerHTML="";
+                document.getElementById("categoria").innerHTML="";
+                document.getElementById("clase").innerHTML="";
+            }
             ocultarEspera();
         } else {
             if(req.readyState==1){
@@ -59,8 +65,11 @@ function js_tramo_alegajo(){
 
 function js_categoria_alegajo(){
     req.onreadystatechange = function () {
-        if ( req.readyState == 4 && (req.status == 200 || window.location.href.indexOf ("http")==- 1)) {
-            document.getElementById("categoria").innerHTML = req.responseText;
+        if ( req.readyState == 4){
+            if(req.status == 200 || window.location.href.indexOf ("http")==- 1) {
+                document.getElementById("categoria").innerHTML = req.responseText;
+                document.getElementById("clase").innerHTML="";
+            }
             ocultarEspera();
         } else {
             if(req.readyState==1){
@@ -68,15 +77,17 @@ function js_categoria_alegajo(){
             }
         }
     };
-    req.open("GET", "asignarLegServlet?operacion=categoria_todo&tramo="+document.getElementById("tramo").value , true);
+    req.open("GET", "asignarLegServlet?operacion=categoria&tramo="+document.getElementById("tramo").value , true);
     req.send(null);
     return (true);
 }
 
 function js_clase_alegajo(){
     req.onreadystatechange = function () {
-        if ( req.readyState == 4 && (req.status == 200 || window.location.href.indexOf ("http")==- 1)) {
-            document.getElementById("clase").innerHTML = req.responseText;
+        if ( req.readyState == 4 ){
+            if(req.status == 200 || window.location.href.indexOf ("http")==- 1) {
+                document.getElementById("clase").innerHTML = req.responseText;
+            }
             ocultarEspera();
         } else {
             if(req.readyState==1){
@@ -109,7 +120,7 @@ function js_save_alegajo(){
             }
         }
     };
-    req.open("GET", "asignarLegServlet?operacion=save&empleado="+document.getElementById("empleado").value+"categoria="+document.getElementById("categoria").value+"&clase="+document.getElementById("clase").value+"&legajo="+document.getElementById("legajo").value , true);
+    req.open("GET", "asignarLegServlet?operacion=save&empleado="+document.getElementById("empleados").value+"categoria="+document.getElementById("categoria").value+"&clase="+document.getElementById("clase").value+"&legajo="+document.getElementById("legajo").value , true);
     req.send(null);
     return (true);
 }

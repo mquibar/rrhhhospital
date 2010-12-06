@@ -35,6 +35,8 @@
         <script language="javascript" type="text/javascript" src="./js/tools.js"></script>
         <script language="javascript" type="text/javascript" src="./js/menuJavaScript.js"></script>
         <script language="javascript" type="text/javascript" src="./js/loginJs.js"></script>
+
+        <script language="javascript" type="text/javascript" src="./js/recategorizarJs.js"></script>
         <style type="text/css">
             html { overflow-x:hidden; }
         </style>
@@ -77,7 +79,7 @@
                                                             <li class="pureCssMenui0"><a class="pureCssMenui0" href="#"><span>Seguimiento</span><![if gt IE 6]></a><![endif]><!--[if lte IE 6]><table><tr><td><![endif]-->
                                                                 <ul class="pureCssMenum">
                                                                     <li class="pureCssMenui"><a id="Seguimiento_mnu1" class="pureCssMenui" onclick="cargarNoticiasAsignarLegajo('Alta_Legajo_Final.jsp')" href="#">Asignar legajo</a></li>
-                                                                    <li class="pureCssMenui"><a id="Seguimiento_mnu2" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Recategorizar Empleado</a></li>
+                                                                    <li class="pureCssMenui"><a id="Seguimiento_mnu3" class="pureCssMenui" onclick="js_cargarNoticias_recat(this.id)" href="#">Recategorizar Empleado</a></li>
                                                                 </ul>
                                                             </li>
                                                             <li class="pureCssMenui0"><a class="pureCssMenui0" href="#"><span>Reportes</span><![if gt IE 6]></a><![endif]><!--[if lte IE 6]><table><tr><td><![endif]-->
