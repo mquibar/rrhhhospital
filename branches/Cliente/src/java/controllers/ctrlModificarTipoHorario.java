@@ -89,6 +89,8 @@ public class ctrlModificarTipoHorario extends GeneralController {
     }
 
     String idNegocio(String idCombo) {
+        resetCacheEntidad();
+
         TipoHorario th = getEntidad(idCombo);
         if (th == null) {
             return "";
@@ -127,7 +129,7 @@ public class ctrlModificarTipoHorario extends GeneralController {
 
     public TipoHorario getTipoHorarioSeleccionado(String idTipoHorario)
     {
-        System.out.println("Seleccionado con id =" + idTipoHorario);
+        System.out.println("Seleccionado TipoHorario con id =" + idTipoHorario);
         return _mth.getSelectedItem(idTipoHorario);
     }
 
@@ -147,6 +149,8 @@ public class ctrlModificarTipoHorario extends GeneralController {
 
     public String getUrlModificar(String idEntidad)
     {
+        resetCacheEntidad();
+        
         return  "manejoHorarios/tipo_horario_1.jsp?" +
                "idEntidad="+idEntidad+"&"+
                "nombre="+getNombre(idEntidad)+"&"+
@@ -159,5 +163,11 @@ public class ctrlModificarTipoHorario extends GeneralController {
     {
         return getUrlModificar(idEntidad) + "&action=delete";
     }
+
+    void resetCacheEntidad()
+    {
+        _th = null;
+    }
+
 
 }

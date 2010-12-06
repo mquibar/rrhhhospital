@@ -71,4 +71,15 @@ public class ctrlReporte extends GeneralController {
             return null;
         }
     }
+
+    public byte[] armarReporte(JasperPrint jp) {
+        try {
+
+            return JasperExportManager.exportReportToPdf(jp);//printReport(new HashMap(), "test.jrxml"));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
 }

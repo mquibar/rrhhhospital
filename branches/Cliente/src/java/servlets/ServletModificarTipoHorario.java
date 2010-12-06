@@ -40,7 +40,9 @@ public class ServletModificarTipoHorario extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             String option = request.getParameter("operacion").toUpperCase();
-            System.out.println(option);
+            System.out.println("Operacion: " + option);
+            System.out.println("Valor: " + getValue(request, "valor"));
+
             switch (operaciones.valueOf(option)) {
                 //Función que carga en pantalla los empleado del hospital
                 case LOADTH:

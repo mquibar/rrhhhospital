@@ -45,7 +45,7 @@
 %>
 
 
-<div class="noticias" id="noticias_2"> GESTIONAR <%=nombreImprimible(request).toUpperCase()%> <br />
+<div id="noticias_2"> GESTIONAR <%=nombreImprimible(request).toUpperCase()%> <br />
   <div class="forms">
     <div class="izquierda"><br />
       <br />

@@ -79,7 +79,7 @@ public class menuServlet extends HttpServlet {
                     url = "Reportes_Personal.html";
                     break;
                 case REPORTE_MNU2:
-                    url = "Reportes_Horarios.html";
+                    url = "Reportes_Horarios.jsp";
                     break;
                 case REPORTE_MNU3:
                     url = "Reportes_Seguimiento.html";
