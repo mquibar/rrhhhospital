@@ -23,11 +23,7 @@ public abstract class Intermediario<E> {
 
     public List<E> findAll() {
         try {
-            EntityManager em = GestorConeccion.getInstance().getManager();
-            Query q = em.createNamedQuery(_clase + ".findAll");
-            List<E> l = q.getResultList();
-            System.out.println(_clase + ".findAll: encontrados " + l.size());
-            return l;
+            return GestorConeccion.getInstance().getManager().createQuery("SELECT o FROM "+_clase + " o").getResultList();
         } catch (Exception ex) {
             System.out.println(_clase + ".findAll: Error: " + ex.toString());
             System.out.println(_clase + ".findAll: Mensage: " + ex.getMessage());
