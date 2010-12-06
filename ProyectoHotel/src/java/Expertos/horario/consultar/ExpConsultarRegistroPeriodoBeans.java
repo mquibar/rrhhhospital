@@ -76,11 +76,11 @@ public class ExpConsultarRegistroPeriodoBeans implements ExpConsultarRegistroPer
 
     public List<RegistroPeriodo> informeAsistencia(Empleado emp, Date fechaIni, Date fechaFin) {
         DtoRegistroPeriodo dto = new DtoRegistroPeriodo();
-        dto.setIdEmpleado(emp.getId());
+        dto.setEmpleado(emp);
         dto.setFechaInicio(fechaIni);
         dto.setFechaFin(fechaFin);
 
-        return (new IntermediarioRegistroPeriodo().findByDto(dto));
+        return (new IntermediarioRegistroPeriodo().getAsistencia(dto));
     }
 
 }

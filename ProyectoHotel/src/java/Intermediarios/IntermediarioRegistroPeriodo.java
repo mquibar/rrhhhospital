@@ -85,4 +85,19 @@ public class IntermediarioRegistroPeriodo extends Intermediario<RegistroPeriodo>
         }
     }
 
+    public List<RegistroPeriodo> getAsistencia(Object dtoo)
+    {
+       DtoRegistroPeriodo dtoCat = (DtoRegistroPeriodo) dtoo;
+
+       EntityManager em = GestorConeccion.getInstance().getManager();
+       Query q = em.createQuery("SELECT c FROM "+ _clase + " c " +
+               "WHERE c.eliminado = :vig and c.idEmpleado = :emp and c.fechaEntrada <= :ffin and c.fechaEntrada >= :fini");
+        q.setParameter("vig", false);
+        q.setParameter("emp", dtoCat.getEmpleado());
+        q.setParameter("fini", dtoCat.getFechaInicio());
+        q.setParameter("ffin", dtoCat.getFechaFin());
+
+        return q.getResultList();
+    }
+
 }

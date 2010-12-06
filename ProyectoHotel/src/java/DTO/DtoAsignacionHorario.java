@@ -5,6 +5,7 @@
 
 package DTO;
 
+import Entidades.Empleado;
 import java.util.Date;
 
 /**
@@ -13,6 +14,7 @@ import java.util.Date;
  */
 public class DtoAsignacionHorario
 {
+    private Empleado _emp;
 
     int _idEmpleado;
 
@@ -71,6 +73,20 @@ public class DtoAsignacionHorario
      */
     public void setFechaFin(Date fechaFin) {
         this._fechaFin = fechaFin;
+    }
+
+    /**
+     * @return the _emp
+     */
+    public Empleado getEmp() {
+        return _emp;
+    }
+
+    /**
+     * @param emp the _emp to set
+     */
+    public void setEmp(Empleado emp) {
+        this._emp = emp;
     }
 
 }

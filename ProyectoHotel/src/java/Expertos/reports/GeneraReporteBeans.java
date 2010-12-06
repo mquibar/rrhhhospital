@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.Map;
 import javax.ejb.Stateless;
+import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -41,6 +42,16 @@ public class GeneraReporteBeans implements GeneraReporte{
 
         try{
             return JasperFillManager.fillReport(JasperCompileManager.compileReport(OpenFile.openInputStream("/reports/"+xmlFile+".jrxml")), parametros,getConection());
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+    public JasperPrint printReport(Map parametros, String xmlFile, JRDataSource datos){
+
+        try{
+            return JasperFillManager.fillReport(JasperCompileManager.compileReport(OpenFile.openInputStream("/reports/"+xmlFile+".jrxml")), parametros,datos);
         }catch(Exception ex){
             ex.printStackTrace();
         }

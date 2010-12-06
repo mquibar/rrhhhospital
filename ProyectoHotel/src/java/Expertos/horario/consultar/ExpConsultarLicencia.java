@@ -5,7 +5,9 @@
 
 package Expertos.horario.consultar;
 
+import Entidades.Empleado;
 import Entidades.Licencia;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Remote;
 
@@ -14,7 +16,10 @@ import javax.ejb.Remote;
  * @author Desarrollo
  */
 @Remote
-public interface  ExpConsultarLicencia {
+public interface  ExpConsultarLicencia
+{
 
     public List<Licencia> listar();
+
+    public List<Licencia> informeLicencias(Empleado emp, Date fechaIni, Date fechaFin);
 }

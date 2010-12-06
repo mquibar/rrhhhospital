@@ -87,4 +87,20 @@ public class IntermediarioLicencia extends Intermediario<Licencia> {
         }
     }
 
+    public List<Licencia> informeLicencias(Object dtoo)
+    {
+       DtoLicencia dtoCat = (DtoLicencia) dtoo;
+
+       EntityManager em = GestorConeccion.getInstance().getManager();
+       Query q = em.createQuery("SELECT c FROM "+ _clase + " c " +
+               "WHERE c.eliminada = :vig and c.idEmpleado = :emp and " +
+               "((c.fechaInicio BETWEEN :fini AND :ffin) OR (c.fechaFin BETWEEN :fini AND :ffin) OR (c.fechaInicio < :fini AND c.fechaFin > :ffin))");
+        q.setParameter("vig", false);
+        q.setParameter("emp", dtoCat.getEmpleado());
+        q.setParameter("fini", dtoCat.getFechaInicio());
+        q.setParameter("ffin", dtoCat.getFechaFin());
+
+        return q.getResultList();
+    }
+
 }
