@@ -535,9 +535,9 @@ public class AdminEscalafon extends javax.swing.JInternalFrame {
             _pnlAddAgrup.setVisible(flag);
             _btnAgrupView.setText("Ocultar Tramos");
             _control.listarTramo();
-
         }
         else
+            ((models.tables.AbstractTable)_tblTramo.getModel()).clear();
             _btnAgrupView.setText("Ver Tramos");
     }
 

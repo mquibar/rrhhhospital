@@ -32,9 +32,12 @@ public class ctrlAltaCategoria {
     private TableRequisitos _requisitos;
     private TableClase _clases;
     private TableClaseContenida _clasesContenidas;
+    private ctrlAdminEscalafon _control;
 
-    public ctrlAltaCategoria(Tramo tramo, JDesktopPane panelPrincipal) {
+    public ctrlAltaCategoria(ctrlAdminEscalafon control, Tramo tramo, JDesktopPane panelPrincipal) {
+        _control = control;
         _pantalla = new AltaCategoria(this);
+        System.out.println(tramo.getNombre());
         _gestorCategoria = (ExpAltaCategoria) ContextGenerator.getInstance().createGestor(ExpAltaCategoria.class.getName());
         _clases = new TableClase(_gestorCategoria.iniciarCU(tramo));
         _clasesContenidas = new TableClaseContenida(new ArrayList<ClaseContenida>());
@@ -100,6 +103,7 @@ public class ctrlAltaCategoria {
     }
 
     void pressCancelButton(){
+        _control.refrescarCategorias(false);
         _pantalla.dispose();
     }
 
@@ -109,6 +113,11 @@ public class ctrlAltaCategoria {
         _gestorCategoria.setterNombre(_pantalla.getTxtNombre().getText(), Integer.valueOf(_pantalla.getTxtCupo().getText()));
         if(_gestorCategoria.guardarCategoria()){
             JOptionPane.showMessageDialog(_pantalla, "Operación Exitosa");
+            _control.refrescarCategorias(true);
+            _pantalla.dispose();
+        }
+        else{
+            JOptionPane.showMessageDialog(_pantalla, "No se pudo complear la operación");
         }
     }
 

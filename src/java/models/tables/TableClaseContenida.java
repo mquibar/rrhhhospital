@@ -49,7 +49,7 @@ public class TableClaseContenida extends AbstractTable<ClaseContenida> {
             Toolkit.getDefaultToolkit().beep();
             return;
         }
-        _lista.get(rowIndex).setAntiguedadMinima((Integer) aValue);
+        _lista.get(rowIndex).setAntiguedadMinima(Integer.valueOf(aValue.toString()));
     }
 
     @Override

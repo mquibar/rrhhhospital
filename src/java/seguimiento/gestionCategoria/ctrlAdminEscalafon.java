@@ -81,7 +81,6 @@ public class ctrlAdminEscalafon {
     void listarTramo() {
         _tablaTramo = new TableTramo(_gestorConsulta.consultaTramo(_tablaAgrupamiento.getSelectedIndex(_pantalla.getTblAgrup().getSelectedRow())));
         _pantalla.getTblTramo().setModel(_tablaTramo);
-
     }
 
     void listarCategoria() {
@@ -100,6 +99,7 @@ public class ctrlAdminEscalafon {
         } else {
             _pantalla.getBtnTramoView().setText("Ver Categorías");
             _pantalla.getBtnAgrupView().setEnabled(flag);
+            _tablaCategoria.clear();
         }
     }
 
@@ -134,7 +134,16 @@ public class ctrlAdminEscalafon {
     }
 
     void addCategoria() {
-        new ctrlAltaCategoria( _tablaTramo.getSelectedIndex(_pantalla.getTblCateg().getSelectedRow()),_panelPrincipal);
+        new ctrlAltaCategoria(this, _tablaTramo.getSelectedIndex(_pantalla.getTblTramo().getSelectedRow()),_panelPrincipal);
+        _pantalla.setVisible(false);
+    }
+
+    void refrescarCategorias(boolean refresh){
+        if(refresh){
+            _tablaCategoria = new TableCategoria(_gestorConsulta.consultarCategoria(_tablaTramo.getSelectedIndex(_pantalla.getTblTramo().getSelectedRow())));
+            _pantalla.getTblCateg().setModel(_tablaCategoria);
+        }
+        _pantalla.setVisible(true);
     }
 }
 
