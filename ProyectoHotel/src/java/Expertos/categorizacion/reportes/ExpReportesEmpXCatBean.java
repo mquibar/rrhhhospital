@@ -16,6 +16,7 @@ import java.util.Map;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -42,13 +43,17 @@ public class ExpReportesEmpXCatBean implements ExpReportesEmpXCatRemote {
     }
 
     public JasperPrint generarReporte(){
-        return _reportes.printReport(null, "empleadoCategoria");
+        JasperPrint jp =_reportes.printReport(null, "empleadoCategoria");
+        JasperViewer.viewReport(jp);
+        return jp;
     }
 
     public JasperPrint generarReporte(Categoria c){
         Map param = new HashMap();
         param.put("p_id", c.getId());
-        return _reportes.printReport(param, "empleadoCategoriaEspecifica");
+        JasperPrint jp =_reportes.printReport(param, "empleadoCategoriaEspecifica");
+        JasperViewer.viewReport(jp);
+        return jp;
     }
 
     public JasperPrint generarReporteRequisitos(Categoria c){

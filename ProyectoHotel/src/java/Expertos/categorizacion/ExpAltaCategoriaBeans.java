@@ -32,6 +32,7 @@ public class ExpAltaCategoriaBeans implements ExpAltaCategoria {
     }
 
     public List<Clase> iniciarCU(Tramo tramo) {
+        _categoria = new Categoria();
         _categoria.setTramo(tramo);
         return _expertoConsulta.listarClases();
     }
