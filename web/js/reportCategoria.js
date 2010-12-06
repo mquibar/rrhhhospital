@@ -83,7 +83,7 @@ function js_imprimir_todo_rpec(){
     req.onreadystatechange = function () {
         if ( req.readyState == 4){
             if(req.status == 200 || window.location.href.indexOf ("http")==- 1) {
-            //document.getElementById("categoria").innerHTML = req.responseText;
+            window.open(req.responseText);
             }
             ocultarEspera();
         } else {
@@ -92,7 +92,25 @@ function js_imprimir_todo_rpec(){
             }
         }
     };
-    req.open("GET", "reportesCategoriaServlet?operacion=imprimirtodo" , true);
+    req.open("GET", "reportesCategoriaServlet?operacion=IMPRIMIRTODO" , true);
+    req.send(null);
+    return (true);
+}
+
+function js_imprimir_todo_rpec(){
+    req.onreadystatechange = function () {
+        if ( req.readyState == 4){
+            if(req.status == 200 || window.location.href.indexOf ("http")==- 1) {
+            window.open(req.responseText);
+            }
+            ocultarEspera();
+        } else {
+            if(req.readyState==1){
+                mostrarEspera();
+            }
+        }
+    };
+    req.open("GET", "reportesCategoriaServlet?operacion=IMPRIMIR&categoria="+document.getElementById("categoria").value , true);
     req.send(null);
     return (true);
 }

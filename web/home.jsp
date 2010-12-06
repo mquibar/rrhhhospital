@@ -89,7 +89,7 @@
                                                                     <li class="pureCssMenui"><a id="Reporte_mnu1" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Reportes personal</a></li>
                                                                     <li class="pureCssMenui"><a id="Reporte_mnu2" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Reportes horarios</a></li>
                                                                     <li class="pureCssMenui"><a id="Reporte_mnu3" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Reportes seguimiento</a></li>
-                                                                    <li class="pureCssMenui"><a id="Reporte_mnu5" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Reportes usuarios</a></li>
+                                                                    <!--li class="pureCssMenui"><a id="Reporte_mnu5" class="pureCssMenui" onclick="loadMenuFunction(this.id)" href="#">Reportes usuarios</a></li-->
                                                                 </ul>
                                                             </li>
                         </ul>

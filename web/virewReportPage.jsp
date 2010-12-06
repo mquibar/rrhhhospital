@@ -17,7 +17,12 @@
     <%
             String reporte = request.getParameter("report");
             ctrlReporte c = new ctrlReporte();
-            byte[] b = c.armarReporte(reporte);
+            byte[] b;
+            if(request.getParameterMap().size()<=1)
+                b = c.armarReporte(reporte);
+            else
+                b= c.armarReporte(request.getParameterMap());
+
             response.setContentType("application/pdf");
             response.setContentLength(b.length);
             ServletOutputStream sos = response.getOutputStream();
