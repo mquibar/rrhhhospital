@@ -29,9 +29,10 @@ function js_logOff(){
     req.onreadystatechange = function () {
         if ( req.readyState == 4){
             ocultarEspera();
-            jAlert("Cerrando sesi&oacuten","Sistema Personal", function(r){
+            response.header = "text/html; charset=utf-8"
+            jAlert("Cerrando sesión","Sistema Personal", function(r){
                 if(req.status != 200) {
-                    alert("Error al cerrar la sesi&oacuten \nPuede que no se haya inicado con exito la session");
+                    alert("Error al cerrar la sesión \nPuede que no se haya inicado con exito la session");
                 }
                 window.location="index.jsp";
             });

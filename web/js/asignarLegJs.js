@@ -108,11 +108,11 @@ function js_save_alegajo(){
         if ( req.readyState == 4){
             ocultarEspera();
             if (req.status == 200 || window.location.href.indexOf ("http")==- 1) {
-                alert("Operacion realizada con exito");
-                open("underContruction.html","_self");
+                js_confirm_operacion(true);
             }
             else{
-                alert("No se pudo realizar la operacion \n ERROR: " + req.responseText);
+                js_confirm_operacion(false);
+                jAlert("ERROR: " + req.statusText);
             }
         } else {
             if(req.readyState==1){
@@ -120,7 +120,7 @@ function js_save_alegajo(){
             }
         }
     };
-    req.open("GET", "asignarLegServlet?operacion=save&empleado="+document.getElementById("empleados").value+"categoria="+document.getElementById("categoria").value+"&clase="+document.getElementById("clase").value+"&legajo="+document.getElementById("legajo").value , true);
+    req.open("GET", "asignarLegServlet?operacion=save&empleado="+document.getElementById("empleados").value+"&categoria="+document.getElementById("categoria").value+"&clase="+document.getElementById("clase").value+"&legajo="+document.getElementById("legajo").value , true);
     req.send(null);
     return (true);
 }
