@@ -56,40 +56,11 @@ public class GeneraReporteBeans implements GeneraReporte{
 
     public JasperPrint printReport(Map parametros, String xmlFile, JRDataSource datos){
 
-        InputStream lis = null;
-
         try{
-           String userdir = new File(".").getCanonicalPath();
-           String fileName = "/reports/"+xmlFile+".jrxml";
-           
-            InputStream file = OpenFile.openInputStream(fileName);
-            if(file == null)
-            {
-                System.out.println("No se pudo abrir " + fileName + " en " + userdir);
-            }
-            else
-            {
-                System.out.println("Encontrado " + fileName + " en " + userdir);
-            }
-
-            lis = new LegacyJasperInputStream(file);
-            System.out.println("Stream compatible listo");
-            //pq reportes generados con cliente nuevos se puedan leer con librerias viejas
-
+            return JasperFillManager.fillReport(JasperCompileManager.compileReport(OpenFile.openInputStream("/reports/"+xmlFile+".jrxml")), parametros,datos);
         }catch(Exception ex){
-            System.out.print("printReport: error en 1: " + ex.toString());
             ex.printStackTrace();
         }
-
-        try{
-            JasperDesign jd = JRXmlLoader.load(lis);
-            JasperReport jr = JasperCompileManager.compileReport(jd);
-            return JasperFillManager.fillReport(jr, parametros,datos);
-        }catch(Exception ex){
-            System.out.print("printReport: error en 2: " + ex.toString());
-            ex.printStackTrace();
-        }
-
         return null;
     }
 }
