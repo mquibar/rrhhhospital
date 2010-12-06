@@ -31,6 +31,11 @@ public class ctrlAltaRegistroPeriodo extends GeneralController
         _expRP = (ExpConsultarRegistroPeriodo) super.getExpert(ExpConsultarRegistroPeriodo.class.getName());
         _expPers = (ExpConsultarPersonal) super.getExpert(ExpConsultarPersonal.class.getName());
 
+        cargarOpciones();
+    }
+
+    void cargarOpciones()
+    {
        try
        {
             _mrp = new ModelOptionRegistroPeriodo(_expRP.listar());
@@ -40,7 +45,6 @@ public class ctrlAltaRegistroPeriodo extends GeneralController
        {
            System.out.println("ctrlAltaRegistroPeriodo: Error creando modelos: " + ex.toString());
        }
-
     }
 
     public String guardar(
@@ -62,7 +66,11 @@ public class ctrlAltaRegistroPeriodo extends GeneralController
              ManejaFechas.getHour(horaSalida),
              Boolean.parseBoolean(eliminado));
 
-            return _expAlta.guardar();
+            String res = _expAlta.guardar();
+
+            cargarOpciones();
+
+            return res;
     }
 
     String idNegocio(String idCombo)

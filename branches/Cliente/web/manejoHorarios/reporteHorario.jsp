@@ -54,7 +54,19 @@
 %>
 
 <%
+    String mensageEstado = "";
+    String idEntidad = getValue(request, "idEntidad");
+    String action = getValue(request, "action");
+    String esRecarga = getValue(request, "esRecarga");
+    String eliminado = getValue(request, "eliminado");
+    Boolean esBorrado = (action.equals("delete"));
+    String deshabilitar = (esBorrado) ? "readonly" : "";
+    boolean cargarEntidad = !idEntidad.equals("") && !esRecarga.equals("Si");
+    eliminado = esBorrado.toString();
+
+
     String empleado = getValue(request, "empleado");
+    String tipoReporte = getTipoReporte(request);
 
     ctrlReporteHorario c = null;
     try
@@ -63,7 +75,7 @@
     }
     catch(Exception ex)
     {
-       String mensageEstado = "Error: " + ex.toString();
+       mensageEstado = "Error: " + ex.toString();
     }
 
 %>
@@ -71,9 +83,20 @@
 <div id="noticias_2"> 
     Reporte <%=getNombreReporte(request)%><br />
 
+<%
+if(mensageEstado != "")
+{
+out.println("<p class='error'>" + mensageEstado + "</p>");
+}
+%>
     <div class="forms">
         <form id="form1" name="form1" method="post" action="">
             <div class="izquierda"><br />
+                    <input type="hidden" name="idEntidad" id="idEntidad" value="<%=idEntidad%>"/>
+                    <input type="hidden" name="esRecarga" id="esRecarga" value="<%=esRecarga%>"/>
+                    <input type="hidden" name="action" id="action" value="<%=action%>"/>
+                    <input type="hidden" name="tipoReporte" id="tipoReporte" value="<%=tipoReporte%>"/>
+
                 EMPLEADO<br />
                 <br />
                 <select id="empleado" name="empleado" size="1"  >
@@ -91,12 +114,12 @@
                 <label>
                     <input type="text" name="fechaFin" id="DPC_edit2" />
                 </label>
-                <br />
+                <!--br />
                 <br />
                 ENTIDADES<br />
                 <br />
                 <select id="entidades" name="entidades" size="1"  >
-                </select>
+                </select-->
             </div>
             <div class="derecha"></div>
 

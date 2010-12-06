@@ -64,7 +64,12 @@ public class ServletReporteHorario extends HttpServlet {
             sos.write(b, 0, b.length);
             sos.flush();
             sos.close();
-        }finally {
+        }
+        catch(Exception ex)
+        {
+            System.out.println("Servlet: error generando reporte: " + ex.getMessage());
+        }
+        finally {
             out.close();
         }
     }

@@ -13,10 +13,6 @@
 
       <p><a href="#" onclick="load('<%=base%>Licencias_Concedidas_a_Empleado','noticias');">
           Licencias Concedidas a Empleado</a></p>
-
-      <p>Cronograma de Horarios Asignados por Mes</p>
-      <p>Resumen  de horas trabajadas y debidas por empleado</p>
-      <p>Listado de empleados que no cumplen con horario asignado</p>
     </div>
     <div class="derecha"></div>
   </div>

@@ -37,6 +37,11 @@ public class ctrlAltaAsignacionHorario extends GeneralController
             _expTH = (ExpConsultarTipoHorario) super.getExpert(ExpConsultarTipoHorario.class.getName());
             _expPers = (ExpConsultarPersonal) super.getExpert(ExpConsultarPersonal.class.getName());
 
+            cargarOpciones();
+    }
+
+    void cargarOpciones()
+    {
         try
         {
             _mah = new ModelOptionAsignacionHorario(_expAH.listar());
@@ -69,7 +74,11 @@ public class ctrlAltaAsignacionHorario extends GeneralController
              descripcion,
              Boolean.parseBoolean(eliminado));
 
-             return _expAlta.guardar();
+             String res = _expAlta.guardar();
+
+             cargarOpciones();
+
+             return res;
     }
 
     String idNegocio(String idCombo)

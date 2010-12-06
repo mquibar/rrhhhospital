@@ -21,6 +21,7 @@
         <script language="javascript" type="text/javascript" src="./js/validaciones/validacionesProfesional.js"></script>
         <script language="javascript" type="text/javascript" src="./js/validaciones/validacionesEmpleado.js"></script>
         <script language="javascript" type="text/javascript" src="./js/validaciones/validacionesAsignarLegajo.js"></script>
+        <script language="javascript" type="text/javascript" src="./js/validaciones/validacionesReporte.js"></script>
         <script language="javascript" type="text/javascript" src="./js/validaciones/validacionesRegistroPeriodo.js"></script>
         <script language="javascript" type="text/javascript" src="./js/validaciones/validacionesLicencia.js"></script>
         <script language="javascript" type="text/javascript" src="./js/validaciones/validacionesAsignacionHorario.js"></script>
