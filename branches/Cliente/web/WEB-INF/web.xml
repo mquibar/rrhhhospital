@@ -75,6 +75,10 @@
         <servlet-name>loadHomeServlet</servlet-name>
         <servlet-class>servlets.loadHomeServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>reportesCategoriaServlet</servlet-name>
+        <servlet-class>servlets.reportesCategoriaServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>testAgrupamiento</servlet-name>
         <url-pattern>/testAgrupamiento</url-pattern>
@@ -150,6 +154,10 @@
     <servlet-mapping>
         <servlet-name>loadHomeServlet</servlet-name>
         <url-pattern>/loadHomeServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>reportesCategoriaServlet</servlet-name>
+        <url-pattern>/reportesCategoriaServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
