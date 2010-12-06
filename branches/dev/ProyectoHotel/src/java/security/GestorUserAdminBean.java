@@ -4,6 +4,7 @@
  */
 package security;
 
+import Entidades.seguridad.Perfil;
 import Entidades.seguridad.Usuario;
 import Intermediarios.GestorConeccion;
 import Intermediarios.IntermediarioUsuario;
@@ -20,12 +21,18 @@ import system.exception.InvalidDataException;
 @Stateless
 public class GestorUserAdminBean implements GestorUserAdminRemote {
 
+    @EJB
+    ExpNewUser gestorNew;
+
+    public List<Perfil> listarPerfiles(){
+        return gestorNew.listarPerfil();
+    }
 
     public List<Usuario> listarUsuarios() {
         return (new IntermediarioUsuario()).findAll();
     }
 
-    public void modificarPass(Usuario user, String pass) throws InvalidDataException, GenericException {
+    public void modificarPass(Usuario user, String pass, Perfil perfil) throws InvalidDataException, GenericException {
         if (user == null) {
             throw new InvalidDataException("Usuario", "no asignado");
         }
@@ -33,6 +40,12 @@ public class GestorUserAdminBean implements GestorUserAdminRemote {
             throw new InvalidDataException("Password", "password vacio");
         }
 
+        if(perfil !=null){
+            for (Perfil perfil1 : user.getPerfiles()) {
+                user.getPerfiles().remove(perfil1);
+            }
+            user.getPerfiles().add(perfil);
+        }
         user.setPassword(Tools.Encriptador.getStringMessageDigest(pass, "MD5"));
         try {
             GestorConeccion.getInstance().beginTransaction();
