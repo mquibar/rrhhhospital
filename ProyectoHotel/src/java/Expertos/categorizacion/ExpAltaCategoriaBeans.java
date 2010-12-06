@@ -39,6 +39,9 @@ public class ExpAltaCategoriaBeans implements ExpAltaCategoria {
     public void setterRequisito(List<Requisito> requisitos) {
         if(_categoria.getRequisitoList()==null)
             _categoria.setRequisitoList(new ArrayList<Requisito>());
+        for (int i = 0; i < requisitos.size(); i++) {
+            requisitos.get(i).setDescripcion(requisitos.get(i).getDescripcion().toUpperCase());
+        }
         _categoria.getRequisitoList().addAll(requisitos);
     }
 
