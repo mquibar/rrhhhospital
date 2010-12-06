@@ -6,6 +6,9 @@
 package Expertos.reports;
 
 import Tools.OpenFile;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.Map;
@@ -14,6 +17,9 @@ import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
 
 /**
  *
@@ -50,11 +56,40 @@ public class GeneraReporteBeans implements GeneraReporte{
 
     public JasperPrint printReport(Map parametros, String xmlFile, JRDataSource datos){
 
+        InputStream lis = null;
+
         try{
-            return JasperFillManager.fillReport(JasperCompileManager.compileReport(OpenFile.openInputStream("/reports/"+xmlFile+".jrxml")), parametros,datos);
+           String userdir = new File(".").getCanonicalPath();
+           String fileName = "/reports/"+xmlFile+".jrxml";
+           
+            InputStream file = OpenFile.openInputStream(fileName);
+            if(file == null)
+            {
+                System.out.println("No se pudo abrir " + fileName + " en " + userdir);
+            }
+            else
+            {
+                System.out.println("Encontrado " + fileName + " en " + userdir);
+            }
+
+            lis = new LegacyJasperInputStream(file);
+            System.out.println("Stream compatible listo");
+            //pq reportes generados con cliente nuevos se puedan leer con librerias viejas
+
         }catch(Exception ex){
+            System.out.print("printReport: error en 1: " + ex.toString());
             ex.printStackTrace();
         }
+
+        try{
+            JasperDesign jd = JRXmlLoader.load(lis);
+            JasperReport jr = JasperCompileManager.compileReport(jd);
+            return JasperFillManager.fillReport(jr, parametros,datos);
+        }catch(Exception ex){
+            System.out.print("printReport: error en 2: " + ex.toString());
+            ex.printStackTrace();
+        }
+
         return null;
     }
 }

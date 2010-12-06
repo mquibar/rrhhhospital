@@ -33,6 +33,7 @@ public class ExpReporteHorarioImpl implements ExpReporteHorario
         JRDataSource ds = null;
         String xmlReporte = "";
 
+        System.out.println("Iniciando reporte para " + tipoReporte);
         switch (operaciones.valueOf(tipoReporte)) {
             case Cronograma_Asignado_por_Empleado:
                 ent = new ExpConsultarAsignacionHorarioBeans().informeCronograma(emp, fini,ffin);
@@ -53,7 +54,10 @@ public class ExpReporteHorarioImpl implements ExpReporteHorario
                 break;
         }
 
-        return  new GeneraReporteBeans().printReport(null, xmlReporte, ds);
+        System.out.println("Generando reporte");
+        JasperPrint jp = new GeneraReporteBeans().printReport(null, xmlReporte, ds);
+
+        return jp;
     }
 
 
