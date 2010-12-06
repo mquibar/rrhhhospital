@@ -23,7 +23,7 @@ public interface GestorUserAdminRemote {
      * @param password nuevo password a asignar
      * @throws system.exception.InvalidDataException la exception sera largada si alguno de los datos solicitados son invalidos o null
      */
-    public void modificarPass(Entidades.seguridad.Usuario user, java.lang.String password) throws system.exception.InvalidDataException, system.exception.GenericException;
+    public void modificarPass(Entidades.seguridad.Usuario user, java.lang.String password, Entidades.seguridad.Perfil perfil) throws system.exception.InvalidDataException, system.exception.GenericException;
 
     /**
      * Con este metodo un usuario logeado puede cambiar el password cdo lo desee,
@@ -33,5 +33,7 @@ public interface GestorUserAdminRemote {
      * @throws system.exception.GenericException
      */
     public void changePass(java.lang.String... passwords) throws system.exception.InvalidDataException, system.exception.GenericException;
+
+    public java.util.List<Entidades.seguridad.Perfil> listarPerfiles();
     
 }
