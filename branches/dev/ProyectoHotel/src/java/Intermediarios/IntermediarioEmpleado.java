@@ -108,6 +108,14 @@ public class IntermediarioEmpleado extends Intermediario<Empleado> {
         }
     }
 
+    public List<Empleado> findWithLegajo(){
+        try{
+            return GestorConeccion.getInstance().getManager().createQuery("SELECT e FROM Empleado e WHERE e.legajo != 0 order by e.apellido" ).getResultList();
+        }catch(Exception e){
+            return null;
+        }
+    }
+
     public List<Empleado> findNotUser(){
         try{
             return GestorConeccion.getInstance().getManager().createQuery("Select e From Empleado e WHERE e NOT IN (SELECT u.empleado FROM Usuario u)").getResultList();
