@@ -51,10 +51,10 @@ public class reportesCategoriaServlet extends HttpServlet {
                     out.println(_control.listarCategorias(request.getParameter("tramo")).toString());
                     break;
                 case IMPRIMIR:
-                    _control.verReportes(request.getParameter("categoria"));
+                    out.println(_control.armarReporte(request.getParameter("categoria")));
                     break;
                 case IMPRIMIRTODO:
-                    _control.verReportes();
+                    out.println("virewReportPage.jsp?report=empleadoCategoria");
                     break;
                 default:
                     response.sendError(404);
