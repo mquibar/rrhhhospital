@@ -65,6 +65,23 @@ public class GestorUserAdminBean implements GestorUserAdminRemote {
         if(!passNew.equals(passConf))
             throw new InvalidDataException("password nuevo, confirmación password", "no coinciden");
 
-        modificarPass(user, passNew);
+        if (user == null) {
+            throw new InvalidDataException("Usuario", "no asignado");
+        }
+        if (passwords[1].isEmpty()) {
+            throw new InvalidDataException("Password", "password vacio");
+        }
+        user.setPassword(passNew);
+
+        try {
+            GestorConeccion.getInstance().beginTransaction();
+            if ((new IntermediarioUsuario()).actualizar(user)) {
+                GestorConeccion.getInstance().commitTransaction();
+            } else {
+                GestorConeccion.getInstance().rollbackTransaction();
+            }
+        } catch (Exception e) {
+            throw new GenericException("No se pudo completar la operación de base de datos. Detalle: "+e);
+        }
     }
 }

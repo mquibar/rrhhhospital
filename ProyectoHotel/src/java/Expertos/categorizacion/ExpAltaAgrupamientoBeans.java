@@ -25,6 +25,7 @@ public class ExpAltaAgrupamientoBeans implements ExpAltaAgrupamiento {
 
     public boolean guardarNuevo(String nombre){
         boolean resultado = false;
+        _agrupamiento= new Agrupamiento();
         nombre=nombre.toUpperCase();
         if((new ExpConsultarCategoriaBeans()).consultarAgrupamientoByNombre(nombre) != null)
             return resultado;
