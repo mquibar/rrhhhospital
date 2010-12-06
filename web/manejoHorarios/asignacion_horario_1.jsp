@@ -68,7 +68,7 @@
     }
 %>
 
-<div class="noticias" id="noticias_2">
+<div id="noticias_2">
     <%=getTitle(esBorrado, idEntidad)%> ASIGNACION HORARIO<br />
 <%
 if(mensageEstado != "")

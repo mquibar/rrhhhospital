@@ -67,6 +67,8 @@ public class ctrlAltaRegistroPeriodo extends GeneralController
 
     String idNegocio(String idCombo)
     {
+        resetCacheEntidad();
+
         if(!idCombo.equals(""))
         {
             RegistroPeriodo th = getEntidad(idCombo);
@@ -152,6 +154,8 @@ public class ctrlAltaRegistroPeriodo extends GeneralController
 
     public String getUrlModificar(String idEntidad)
     {
+        resetCacheEntidad();
+
         return  "manejoHorarios/registro_periodo_1.jsp?" +
                "idEntidad="+idEntidad+"&"+
                "empleado="+getEmpleado(idEntidad)+"&"+
@@ -165,4 +169,10 @@ public class ctrlAltaRegistroPeriodo extends GeneralController
     {
         return getUrlModificar(idEntidad) + "&action=delete";
     }
+
+    void resetCacheEntidad()
+    {
+        _ah = null;
+    }
+
 }

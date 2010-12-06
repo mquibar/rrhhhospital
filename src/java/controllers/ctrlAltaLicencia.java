@@ -75,6 +75,8 @@ public class ctrlAltaLicencia extends GeneralController
     {
         if(!idCombo.equals(""))
         {
+            resetCacheEntidad();
+
             Licencia th = getEntidad(idCombo);
             if(th == null)
             {
@@ -173,6 +175,8 @@ public class ctrlAltaLicencia extends GeneralController
 
     public String getUrlModificar(String idEntidad)
     {
+        resetCacheEntidad();
+
         return  "manejoHorarios/licencia_1.jsp?" +
                "idEntidad="+idEntidad+"&"+
                "empleado="+getEmpleado(idEntidad)+"&"+
@@ -185,6 +189,11 @@ public class ctrlAltaLicencia extends GeneralController
     public String getUrlEliminar(String idEntidad)
     {
         return getUrlModificar(idEntidad) + "&action=delete";
+    }
+
+    void resetCacheEntidad()
+    {
+        _ah = null;
     }
 
 }

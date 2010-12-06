@@ -158,4 +158,22 @@ function guardarModificacionLicencia()
     }
 }
 
+function lanzarReporte()
+{
+    if(validarFormulario(validarCamposReporte()))
+    {
+        tipoOper = document.getElementById("tipoReporte").value;
+
+        datos =
+           "empleado="+document.getElementById("empleado").value+"&"+
+           "fechaInicio="+document.getElementById("DPC_edit1").value+"&"+
+           "fechaFin="+document.getElementById("DPC_edit2").value+"&"+
+
+           "tipoReporte="+tipoOper;
+
+        source = "ServletReporteHorario?operacion=" + tipoOper + "&"+datos;
+
+        load(source,"noticias");
+    }
+}
 

@@ -56,7 +56,7 @@
 
 %>
 
-<div class="noticias" id="noticias_2">
+<div id="noticias_2">
     <%=getTitle(esBorrado, idEntidad)%> TIPO HORARIO<br />
 <%
 if(mensageEstado != "")

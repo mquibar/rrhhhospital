@@ -74,6 +74,8 @@ public class ctrlAltaAsignacionHorario extends GeneralController
 
     String idNegocio(String idCombo)
     {
+        resetCacheEntidad();
+
         AsignacionHorario th = getEntidad(idCombo);
         if(th == null)
         {
@@ -170,6 +172,8 @@ public class ctrlAltaAsignacionHorario extends GeneralController
 
     public String getUrlModificar(String idEntidad)
     {
+        resetCacheEntidad();
+
         return  "manejoHorarios/asignacion_horario_1.jsp?" +
                "idEntidad="+idEntidad+"&"+
                "empleado="+getEmpleado(idEntidad)+"&"+
@@ -182,6 +186,11 @@ public class ctrlAltaAsignacionHorario extends GeneralController
     public String getUrlEliminar(String idEntidad)
     {
         return getUrlModificar(idEntidad) + "&action=delete";
+    }
+
+    void resetCacheEntidad()
+    {
+        _ah = null;
     }
 
 }
