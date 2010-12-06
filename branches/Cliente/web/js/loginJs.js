@@ -87,7 +87,30 @@ function js_cambiar_pass(){
     req.send(null);
 }
 
+function js_loadHome_user(){
 
+     req.onreadystatechange= function () {
+        if ( req.readyState == 4){
+            ocultarEspera();
+            if(req.status == 200 || window.location.href.indexOf ("http")==- 1) {
+
+                //document.getElementById("tablaMenu").innerHTML=req.responseText;
+                document.body = req.responseBody;
+            }
+            else{
+                window.location="index.jsp";
+            }
+
+        } else {
+            if(req.readyState==1){
+                mostrarEspera();
+            }
+        }
+    };
+
+    req.open("GET","loadHomeServlet?segurityOption=gohome");
+    req.send(null);
+}
 
 
 

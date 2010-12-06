@@ -1,5 +1,22 @@
 var req = createRequestObject();
 
+function js_cargarNoticias_recat(menu){
+    req.onreadystatechange = function () {
+        if ( req.readyState == 4 && (req.status == 200 || window.location.href.indexOf ("http")==- 1)) {
+            document.getElementById("noticias").innerHTML = req.responseText;
+            js_recategor();
+            ocultarEspera();
+        } else {
+            if(req.readyState==1){
+               mostrarEspera();
+            }
+        }
+    };
+    req.open("GET", "menuServlet?opMenu="+menu , true);
+    req.send(null);
+
+    return (true);
+}
 function js_recategor(){
     req.onreadystatechange = function () {
         if ( req.readyState == 4 && (req.status == 200 || window.location.href.indexOf ("http")==- 1)) {

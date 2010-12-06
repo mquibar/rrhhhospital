@@ -11,7 +11,7 @@
     </head>
 
     <body onload="js_recategor()">
-        <div class="noticias" id="noticias_2"> Recategorización<br />
+        <div id="noticias_2"> Recategorización<br />
             <div class="forms">
                 <div class="izquierda"><br />
                     <form id="form1" name="form1" method="post" action="" >

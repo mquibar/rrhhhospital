@@ -71,6 +71,10 @@
         <servlet-name>cambiarPassServlet</servlet-name>
         <servlet-class>servlets.cambiarPassServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>loadHomeServlet</servlet-name>
+        <servlet-class>servlets.loadHomeServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>testAgrupamiento</servlet-name>
         <url-pattern>/testAgrupamiento</url-pattern>
@@ -142,6 +146,10 @@
     <servlet-mapping>
         <servlet-name>cambiarPassServlet</servlet-name>
         <url-pattern>/cambiarPassServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>loadHomeServlet</servlet-name>
+        <url-pattern>/loadHomeServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

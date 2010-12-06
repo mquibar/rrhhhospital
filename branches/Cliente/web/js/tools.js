@@ -102,6 +102,17 @@ function js_cancel_operacion(){
     });
 }
 
+function js_confirm_operacion(exito){
+    if(exito){
+        jAlert("Operacion realizada con exito", "Sistema Personal", function (){
+             loadMenuFunction("gohome");
+        });
+    }else
+        {
+            jAlert("Se produjo un error al realizacizar la operación", "Sistema Personal");
+
+        }
+}
 function filterSelect(dropdownlist)
 {
 	optionsLength = dropdownlist.options.length;
