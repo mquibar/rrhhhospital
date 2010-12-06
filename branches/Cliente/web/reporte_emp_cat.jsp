@@ -28,7 +28,7 @@
 
                         <p>&nbsp;</p>
                         <p>
-                            <input type="button" name="buttonActualizar" id="btnImpRepor1" value="Imprimir" onclick="javascript:"/>
+                            <input type="button" name="buttonActualizar" id="btnImpRepor1" value="Imprimir" onclick="js_imprimir_rpec()"/>
                         </p>
                         <p>
                             <input type="button" name="buttonActualizar" id="btnImpRepor2" value="Imprimir Todos" onclick="js_imprimir_todo_rpec()"/>
