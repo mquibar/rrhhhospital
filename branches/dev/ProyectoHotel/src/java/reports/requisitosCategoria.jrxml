@@ -5,72 +5,50 @@
 	<property name="ireport.y" value="0"/>
 	<queryString>
 		<![CDATA[SELECT
-a."nombre" as agrupamiento,
 ct."nombre" as categoria,
 r."numero" as reqNum,
-  r."descripcion" as reqDesc,
+r."descripcion" as reqDesc,
  cl."nombre" as claseInicial
 FROM
-public."agrupamiento" a
-Inner Join  public."tramo" t ON a."id"=t."idagrupamiento"
-Inner Join  public."categoria" ct ON t."id" = ct."idtramo"
-Inner Join  public."requisito" r ON ct."id" = r."idcategoria"
+public."categoria" ct Inner Join  public."requisito" r ON ct."id" = r."idcategoria"
 Left Join  (public."clasecontenida" cc  Inner Join  public."clase" cl On cl."id"=cc."idclase") On ct."id" = cc."idcategoria"
 WHERE
 cc."inicial" = true
 Order By
-agrupamiento asc, categoria asc, reqNum asc;]]>
+categoria asc, reqNum asc;]]>
 	</queryString>
-	<field name="agrupamiento" class="java.lang.String"/>
 	<field name="categoria" class="java.lang.String"/>
 	<field name="reqnum" class="java.lang.Integer"/>
 	<field name="reqdesc" class="java.lang.String"/>
 	<field name="claseinicial" class="java.lang.String"/>
-	<group name="agrupamiento">
-		<groupExpression><![CDATA[$F{agrupamiento}]]></groupExpression>
-		<groupHeader>
-			<band height="33">
-				<staticText>
-					<reportElement mode="Opaque" x="0" y="0" width="100" height="32" forecolor="#666666" backcolor="#E6E6E6"/>
-					<textElement>
-						<font size="12"/>
-					</textElement>
-					<text><![CDATA[agrupamiento]]></text>
-				</staticText>
-				<textField>
-					<reportElement mode="Opaque" x="100" y="0" width="455" height="32" forecolor="#006699" backcolor="#E6E6E6"/>
-					<textElement>
-						<font size="24" isBold="true"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{agrupamiento}]]></textFieldExpression>
-				</textField>
-				<line>
-					<reportElement x="-20" y="32" width="595" height="1" forecolor="#666666"/>
-				</line>
-			</band>
-		</groupHeader>
-		<groupFooter>
-			<band/>
-		</groupFooter>
-	</group>
 	<group name="categoria">
 		<groupExpression><![CDATA[$F{categoria}]]></groupExpression>
 		<groupHeader>
-			<band height="32">
-				<textField>
-					<reportElement x="100" y="0" width="455" height="32" forecolor="#006699"/>
-					<textElement>
-						<font size="22" isBold="true"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{categoria}]]></textFieldExpression>
-				</textField>
+			<band height="40">
 				<staticText>
-					<reportElement x="0" y="0" width="100" height="20" forecolor="#666666"/>
+					<reportElement mode="Opaque" x="1" y="0" width="100" height="32" forecolor="#666666" backcolor="#E6E6E6"/>
 					<textElement>
 						<font size="12"/>
 					</textElement>
-					<text><![CDATA[categoria]]></text>
+					<text><![CDATA[Categoría]]></text>
 				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="370" y="0" width="185" height="20"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{claseinicial}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement mode="Opaque" x="101" y="0" width="269" height="32" forecolor="#006699" backcolor="#E6E6E6"/>
+					<textElement>
+						<font size="24" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{categoria}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="32" width="555" height="1" forecolor="#666666"/>
+				</line>
 			</band>
 		</groupHeader>
 		<groupFooter>
@@ -91,7 +69,7 @@ agrupamiento asc, categoria asc, reqNum asc;]]>
 			</staticText>
 			<image scaleImage="FillFrame">
 				<reportElement mode="Transparent" x="0" y="0" width="150" height="72" backcolor="#00FF33"/>
-				<imageExpression class="java.lang.String"><![CDATA["/reports/1fcnyf.jpg"]]></imageExpression>
+				<imageExpression class="java.lang.String"><![CDATA["1fcnyf.jpg"]]></imageExpression>
 			</image>
 		</band>
 	</title>
@@ -144,13 +122,6 @@ agrupamiento asc, categoria asc, reqNum asc;]]>
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{reqdesc}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="370" y="0" width="185" height="20"/>
-				<textElement>
-					<font size="14"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{claseinicial}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
