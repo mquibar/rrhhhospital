@@ -73,7 +73,7 @@ public class ctrlAdminEscalafon {
                 listarCategoria();
             }
         });
-        _pantalla.getPnlCategoria().addMouseListener(_menuCategoria);
+        _pantalla.getScrCategoria().addMouseListener(_menuCategoria);
         _pantalla.getTblCateg().addMouseListener(_menuCategoria);
         _panelPrincipal.add(_pantalla);
     }
