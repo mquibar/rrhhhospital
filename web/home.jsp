@@ -37,6 +37,7 @@
         <script language="javascript" type="text/javascript" src="./js/loginJs.js"></script>
 
         <script language="javascript" type="text/javascript" src="./js/recategorizarJs.js"></script>
+        <script language="javascript" type="text/javascript" src="./js/reportCategoria.js"></script>
         <style type="text/css">
             html { overflow-x:hidden; }
         </style>
