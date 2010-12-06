@@ -5,6 +5,7 @@
 
 package DTO;
 
+import Entidades.Empleado;
 import java.util.Date;
 
 /**
@@ -73,4 +74,19 @@ public class DtoLicencia
         this._fechaFin = fechaFin;
     }
 
+    private Empleado _empleado;
+
+    /**
+     * @return the _empleado
+     */
+    public Empleado getEmpleado() {
+        return _empleado;
+    }
+
+    /**
+     * @param empleado the _empleado to set
+     */
+    public void setEmpleado(Empleado empleado) {
+        this._empleado = empleado;
+    }
 }

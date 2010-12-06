@@ -54,7 +54,7 @@ public class IntermediarioAsignacionHorario extends Intermediario<AsignacionHora
                 Date iniMes = new Date(today.getYear(), dtoCat.getMes(), 1);
                 Date finMes = new Date(today.getYear(), dtoCat.getMes(), 31);
 
-                criteria.add(Restrictions.between("Fecha", iniMes, finMes));
+                criteria.add(Restrictions.between("fecha", iniMes, finMes));
             }
 
             if(dtoCat.getIdTipoHorario() != 0)
@@ -68,6 +68,21 @@ public class IntermediarioAsignacionHorario extends Intermediario<AsignacionHora
             _log.error(ex.getMessage());
             return null;
         }
+    }
+
+    public List<AsignacionHorario> getCronograma(Object dtoo)
+    {
+       DtoAsignacionHorario dtoCat = (DtoAsignacionHorario) dtoo;
+
+       EntityManager em = GestorConeccion.getInstance().getManager();
+       Query q = em.createQuery("SELECT c FROM "+ _clase + " c " +
+               "WHERE c.vigente = :vig and c.idEmpleado = :emp and c.fecha <= :ffin and c.fecha >= :fini");
+        q.setParameter("vig", true);
+        q.setParameter("emp", dtoCat.getEmp());
+        q.setParameter("fini", dtoCat.getFechaInicio());
+        q.setParameter("ffin", dtoCat.getFechaFin());
+
+        return q.getResultList();
     }
 
     @Override

@@ -16,4 +16,6 @@ public interface GeneraReporte {
 
     public net.sf.jasperreports.engine.JasperPrint printReport(java.util.Map parametros, java.lang.String xmlFile);
 
+    public net.sf.jasperreports.engine.JasperPrint printReport(java.util.Map parametros, java.lang.String xmlFile, net.sf.jasperreports.engine.JRDataSource datos);
+
 }

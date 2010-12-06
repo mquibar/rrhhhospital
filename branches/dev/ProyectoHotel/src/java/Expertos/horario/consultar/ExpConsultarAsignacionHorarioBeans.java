@@ -33,10 +33,10 @@ public class ExpConsultarAsignacionHorarioBeans implements ExpConsultarAsignacio
     public List<AsignacionHorario> informeCronograma(Empleado emp, Date fechaIni, Date fechaFin)
     {
         DtoAsignacionHorario dto = new DtoAsignacionHorario();
-        dto.setIdEmpleado(emp.getId());
+        dto.setEmp(emp);
         dto.setFechaInicio(fechaIni);
         dto.setFechaFin(fechaFin);
 
-        return (new IntermediarioAsignacionHorario().findByDto(dto));
+        return (new IntermediarioAsignacionHorario().getCronograma(dto));
     }
 }
