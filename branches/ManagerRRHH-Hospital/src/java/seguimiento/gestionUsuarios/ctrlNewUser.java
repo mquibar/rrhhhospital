@@ -54,7 +54,7 @@ public class ctrlNewUser {
 
     void pressCancel(){
         _pantalla.dispose();
-        _control.refresh();
+        _control.refresh(false);
     }
     
     void pressOk(){
@@ -63,7 +63,7 @@ public class ctrlNewUser {
         try {
             _gestor.newUser(_empleados.getSelectedIndex(_pantalla.getTblEmpleados().getSelectedRow()), _pantalla.getTxtPassword().getText(), _perfiles.getSelected());
             JOptionPane.showMessageDialog(_pantalla, "Usuario guardado con exito");
-            _control.refresh();
+            _control.refresh(true);
         } catch (SystemException ex) {
             JOptionPane.showMessageDialog(_pantalla, ex.getMessage(), "Error al guardar usuario", JOptionPane.ERROR_MESSAGE);
         }

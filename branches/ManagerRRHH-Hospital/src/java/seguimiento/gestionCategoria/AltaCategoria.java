@@ -58,7 +58,6 @@ public class AltaCategoria extends javax.swing.JInternalFrame {
         _btnOk = new javax.swing.JButton();
         _btnCancel = new javax.swing.JButton();
 
-        setClosable(true);
         setMaximizable(true);
         setResizable(true);
 
@@ -81,7 +80,7 @@ public class AltaCategoria extends javax.swing.JInternalFrame {
                 .addComponent(jLabel2)
                 .addGap(16, 16, 16)
                 .addComponent(_txtCupo, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(165, Short.MAX_VALUE))
+                .addContainerGap(364, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,7 +179,7 @@ public class AltaCategoria extends javax.swing.JInternalFrame {
                         .addComponent(_btnRemoveOne, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(_bntRemoveAll, javax.swing.GroupLayout.Alignment.LEADING)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
