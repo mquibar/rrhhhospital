@@ -32,4 +32,6 @@ public interface ExpConsultarPersonal {
     public Profesional consultarProfesionalPorMatricula(String matricula);
 
     public Empleado consultarEmpleadoPorCuil(String cuil);
+
+    public java.util.List<Entidades.Empleado> listarEmpleadoConLegajo();
 }

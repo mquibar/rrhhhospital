@@ -33,7 +33,7 @@ public class ExpRecategorizacionBeans implements ExpRecategorizacion {
     private Empleado _empleado;
 
     public List<Empleado> iniciarRecategorizacion() {
-        return _consultaPersonal.listarEmpleadoinOrder();
+        return _consultaPersonal.listarEmpleadoConLegajo();
     }
 
     public List<Categoria> buscarCategoriasPosibles(Empleado e) {

@@ -79,4 +79,7 @@ public class ExpConsultarPersonalBeans implements ExpConsultarPersonal {
         return (new IntermediarioProfesional().findByDni(cuil));
     }
 
+    public List<Empleado> listarEmpleadoConLegajo(){
+        return (new IntermediarioEmpleado()).findWithLegajo();
+    }
 }
