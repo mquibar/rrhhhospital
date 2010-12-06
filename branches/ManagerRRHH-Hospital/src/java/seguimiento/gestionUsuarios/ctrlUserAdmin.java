@@ -90,7 +90,7 @@ public class ctrlUserAdmin {
     void changeUser(){
         if(_pantalla.getTblUser().getSelectedRow()<0)
             return;
-        new ctrlChangeUser(_pantalla, _userTable.getSelectedIndex(_pantalla.getTblUser().getSelectedRow()));
+        new ctrlChangeUser(_panelPrincipal, _userTable.getSelectedIndex(_pantalla.getTblUser().getSelectedRow()));
     }
 }
 
