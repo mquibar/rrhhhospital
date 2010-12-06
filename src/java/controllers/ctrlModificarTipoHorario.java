@@ -28,7 +28,12 @@ public class ctrlModificarTipoHorario extends GeneralController {
             System.out.println("Error: No se pudo instanciar el experto: " + ex.getMessage());
         }
 
-        try
+        cargarOpciones();
+    }
+
+    void cargarOpciones()
+    {
+       try
         {
             _mth = new ModelOptionTipoHorario(_expTH.listar());
         }
@@ -36,7 +41,6 @@ public class ctrlModificarTipoHorario extends GeneralController {
         {
             System.out.println("ctrlAltaTipoHorario: Error creando modelos: " + ex.toString());
         }
-
     }
 
     public String guardar(
@@ -84,6 +88,8 @@ public class ctrlModificarTipoHorario extends GeneralController {
         {
             System.out.println("Error: No se pudo instanciar el experto: " + ex.getMessage());
         }
+
+        cargarOpciones();
 
         return res;
     }

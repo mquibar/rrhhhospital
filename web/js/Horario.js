@@ -160,7 +160,7 @@ function guardarModificacionLicencia()
 
 function lanzarReporte()
 {
-    if(validarFormulario(validarCamposReporte()))
+if(validarFormulario(validarCamposReporte()))
     {
         tipoOper = document.getElementById("tipoReporte").value;
 
@@ -175,5 +175,10 @@ function lanzarReporte()
 
         load(source,"noticias");
     }
+}
+
+function prueba()
+{
+    alert("llego");
 }
 

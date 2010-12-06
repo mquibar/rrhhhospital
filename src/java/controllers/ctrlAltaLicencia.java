@@ -36,6 +36,11 @@ public class ctrlAltaLicencia extends GeneralController
         _expTL = (ExpConsultarTipoLicencia) super.getExpert(ExpConsultarTipoLicencia.class.getName());
         _expPers = (ExpConsultarPersonal) super.getExpert(ExpConsultarPersonal.class.getName());
 
+        cargarOpciones();
+    }
+
+    void cargarOpciones()
+    {
         try
         {
             _ml = new ModelOptionLicencia(_expL.listar());
@@ -46,7 +51,6 @@ public class ctrlAltaLicencia extends GeneralController
         {
             System.out.println("ctrlAltaLicencia: Error creando modelos: " + ex.toString());
         }
-
     }
 
     public String guardar(
@@ -68,7 +72,11 @@ public class ctrlAltaLicencia extends GeneralController
              descripcion, 
              Boolean.parseBoolean(eliminada));
 
-            return _expAlta.guardar();
+            String res = _expAlta.guardar();
+
+            cargarOpciones();
+
+            return res;
     }
 
     String idNegocio(String idCombo)
