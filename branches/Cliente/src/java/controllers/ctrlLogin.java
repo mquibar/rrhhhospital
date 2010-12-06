@@ -28,10 +28,8 @@ public class ctrlLogin {
             return u.getEmpleado().getNombre() + " " + u.getEmpleado().getApellido();
     }
 
-    public String getCurrentUserName() {
-        if( user == null)
-            return "";
-        return user.getEmpleado().getNombre() + " " + user.getEmpleado().getApellido();
+    public Usuario getCurrentUserName() {
+        return user;
     }
 
     public void logoff(){
