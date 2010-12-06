@@ -26,7 +26,6 @@ public abstract class AbstractModelOptionList<E> {
         }
         options = "<option value=0>Selecciones un elemento</option>\n";
         try {
-            System.out.println("Creando modelo para lista de " + _lista.size()+ " elementos");
             for (int idx = 0; idx < _lista.size(); idx++) {
                 options += "<option value=" + (idx + 1) + ">" + devolverValorCombo(_lista.get(idx)) + "</option>\n";
 
