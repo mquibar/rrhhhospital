@@ -7,6 +7,7 @@ package controllers;
 
 import Entidades.Categoria;
 import Expertos.categorizacion.reportes.ExpReportesEmpXCatRemote;
+import java.util.Map;
 import models.combos.AbstractModelOptionList;
 import models.combos.ModelOptionAgrupamiento;
 import models.combos.ModelOptionCategoria;
@@ -43,12 +44,13 @@ public class ctrlReporteEmpCat extends GeneralController {
         return _modCategoria;
     }
 
-    public byte[] armarReporte(){
-        return (new ctrlReporte()).armarReporte(_exp.generarReporte());
+    public String armarReporte(){
+        return "empleadoCategoria";
     }
 
-    public byte[] armarReporte(Categoria c){
-        return (new ctrlReporte()).armarReporte(_exp.generarReporte(c));
+    public String armarReporte(String IndexCategoria){
+        Categoria c = _modCategoria.getSelectedItem(IndexCategoria);
+        return "empleadoCategoriaEspecifica&p_id="+c.getId();
     }
 
     public void verReportes(){

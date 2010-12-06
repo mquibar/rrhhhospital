@@ -72,6 +72,19 @@ public class ctrlReporte extends GeneralController {
         }
     }
 
+    public byte[] armarReporte(Map parametros) {
+        String reporte = (String) parametros.get("report");
+
+        parametros.remove("report");
+        try {
+            _report = (GeneraReporte) super.getExpert(GeneraReporte.class.getName());
+            return JasperExportManager.exportReportToPdf(_report.printReport(parametros, reporte));//printReport(new HashMap(), "test.jrxml"));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
     public byte[] armarReporte(JasperPrint jp) {
         try {
 

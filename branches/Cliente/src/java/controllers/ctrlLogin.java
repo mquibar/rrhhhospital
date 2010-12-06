@@ -23,7 +23,7 @@ public class ctrlLogin {
 
     public String login(String user, String pass) throws SystemException {
             pass = tools.EncriptadorCliente.getStringMessageDigest(pass, "MD5");
-            Usuario u = _exp.logIn(user, pass);
+            Usuario u = _exp.logIn(user.toUpperCase(), pass);
             ctrlLogin.user=u;
             return u.getEmpleado().getNombre() + " " + u.getEmpleado().getApellido();
     }
