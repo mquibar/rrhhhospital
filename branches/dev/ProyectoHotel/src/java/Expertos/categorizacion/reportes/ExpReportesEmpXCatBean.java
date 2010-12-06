@@ -50,5 +50,10 @@ public class ExpReportesEmpXCatBean implements ExpReportesEmpXCatRemote {
         param.put("p_id", c.getId());
         return _reportes.printReport(param, "empleadoCategoriaEspecifica");
     }
- 
+
+    public JasperPrint generarReporteRequisitos(Categoria c){
+        Map param = new HashMap();
+        param.put("p_id", c.getId());
+        return _reportes.printReport(param, "empleadoCategoriaEspecifica");
+    }
 }

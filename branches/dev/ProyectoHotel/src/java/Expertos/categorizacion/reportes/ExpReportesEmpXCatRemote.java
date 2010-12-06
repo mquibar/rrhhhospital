@@ -23,5 +23,6 @@ public interface ExpReportesEmpXCatRemote {
     public net.sf.jasperreports.engine.JasperPrint generarReporte();
 
     public net.sf.jasperreports.engine.JasperPrint generarReporte(Entidades.Categoria c);
+    public net.sf.jasperreports.engine.JasperPrint generarReporteRequisitos(Entidades.Categoria c);
     
 }
