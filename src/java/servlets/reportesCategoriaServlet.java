@@ -5,6 +5,7 @@
 
 package servlets;
 
+import controllers.ctrlReporteEmpCat;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -14,10 +15,18 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Manuel
+ * @author desarrollo
  */
-public class loadPageServlet extends HttpServlet {
-   
+public class reportesCategoriaServlet extends HttpServlet {
+
+    private ctrlReporteEmpCat _control;
+
+    public reportesCategoriaServlet() {
+        _control = new ctrlReporteEmpCat();
+    }
+
+    private static enum opciones{AGRUPAMIENTO, TRAMO, CATEGORIA, IMPRIMIR, IMPRIMIRTODO};
+
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
@@ -30,10 +39,28 @@ public class loadPageServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            String page = request.getParameter("target");
-            response.sendRedirect(page);
+            String opera = request.getParameter("operacion").toUpperCase();
+            switch( opciones.valueOf(opera)){
+                case AGRUPAMIENTO:
+                    out.println(_control.listarAgrupamientos().toString());
+                    break;
+                case TRAMO:
+                    out.println(_control.listarTramo(request.getParameter("agrupamiento")).toString());
+                    break;
+                case CATEGORIA:
+                    out.println(_control.listarCategorias(request.getParameter("tramo")).toString());
+                    break;
+                case IMPRIMIR:
+                    _control.verReportes(request.getParameter("categoria"));
+                    break;
+                case IMPRIMIRTODO:
+                    _control.verReportes();
+                    break;
+                default:
+                    response.sendError(404);
+            }
         } catch(Exception e) {
-            response.sendError(404);
+            response.sendError(409,e.getMessage());
         }
     } 
 
