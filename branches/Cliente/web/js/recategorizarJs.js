@@ -130,14 +130,11 @@ function js_save_recat(){
         if ( req.readyState == 4){
             ocultarEspera();
             if (req.status == 200 || window.location.href.indexOf ("http")==- 1) {
-                jAlert("Operacion realizada con exito","Sistema Personal", function(){
-                    jConfirm("Continuar para volver al inicio", "Sistema Personal", function(r){
-                       if(r)location="underContruction.html";
-                    });
-                });
+                js_confirm_operacion(true);
             }
             else{
-                alert("No se pudo realizar la operacion \n ERROR: " + req.responseText);
+                js_confirm_operacion(false)
+                alert("ERROR: " + req.statusText);
             }
         } else {
             if(req.readyState==1){
@@ -152,7 +149,7 @@ function js_save_recat(){
 
 function js_cancel_recat(){
     alert("Operacion cancelada por el usuario");
-    open("underContruction.html","_self");
+    loadMenuFunction("gohome");
 }
 
 
