@@ -54,7 +54,7 @@ public class ctrlReporteEmpCat extends GeneralController {
     }
 
     public void verReportes(){
-        JasperViewer.viewReport(_exp.generarReporte());
+        ctrlReporte.setJsp(_exp.generarReporte());
     }
 
     public void verReportes(String IndexCategoria){
