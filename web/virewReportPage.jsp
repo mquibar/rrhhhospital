@@ -18,17 +18,20 @@
             String reporte = request.getParameter("report");
             ctrlReporte c = new ctrlReporte();
             byte[] b;
-            if(request.getParameterMap().size()<=1)
+            if (reporte != null) {
                 b = c.armarReporte(reporte);
-            else
-                b= c.armarReporte(request.getParameterMap());
-
-            response.setContentType("application/pdf");
-            response.setContentLength(b.length);
-            ServletOutputStream sos = response.getOutputStream();
-            sos.write(b, 0, b.length);
-            sos.flush();
-            sos.close();
+            } else {
+                b = c.armarReporte();
+            }
+            try {
+                response.setContentType("application/pdf");
+                response.setContentLength(b.length);
+                ServletOutputStream sos = response.getOutputStream();
+                sos.write(b, 0, b.length);
+                sos.flush();
+                sos.close();
+            } catch (Exception e) {
+            }
     %>
     <body>
         <h1>Hello World!</h1>
