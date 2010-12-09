@@ -23,6 +23,7 @@ public class ctrlReporte extends GeneralController {
 
     private GeneraReporte _report;
     private Connection _con;
+    private static JasperPrint _jsp;
 
     private Connection getConection() {
         if (_con != null) {
@@ -57,10 +58,41 @@ public class ctrlReporte extends GeneralController {
         return null;
     }
 
+    private byte[] printErrorReport(){
+        try{
+            InputStream io = ctrlReporte.class.getResourceAsStream("/reports/ErrorReport.jrxml");
+            JasperReport jp = JasperCompileManager.compileReport(io);
+            return JasperExportManager.exportReportToPdf(JasperFillManager.fillReport(jp,null));
+        }catch(Exception e)
+        {return null;}
+    }
+
     public ctrlReporte() {
 //        _report = (GeneraReporte) getExpert(GeneraReporte.class.getName());
     }
 
+    public static JasperPrint getJsp() {
+        return _jsp;
+    }
+
+    public static void setJsp(JasperPrint jsp) {
+        if(_jsp!=null)
+            return;
+        ctrlReporte._jsp = jsp;
+    }
+
+    public byte[] armarReporte(){
+        if(_jsp == null)
+            return null;
+        try {
+            byte[] report=JasperExportManager.exportReportToPdf(_jsp);
+            _jsp=null;
+            return report;
+        } catch (Exception e) {
+            _jsp = null;
+            return printErrorReport();
+        }
+    }
     public byte[] armarReporte(String reporte) {
         try {
             _report = (GeneraReporte) super.getExpert(GeneraReporte.class.getName());
