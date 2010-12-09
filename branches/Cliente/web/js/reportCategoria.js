@@ -97,7 +97,7 @@ function js_imprimir_todo_rpec(){
     return (true);
 }
 
-function js_imprimir_todo_rpec(){
+function js_imprimir_rpec(){
     req.onreadystatechange = function () {
         if ( req.readyState == 4){
             if(req.status == 200 || window.location.href.indexOf ("http")==- 1) {
