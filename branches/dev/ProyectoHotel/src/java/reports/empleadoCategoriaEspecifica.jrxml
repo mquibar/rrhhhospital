@@ -3,19 +3,17 @@
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<parameter name="p_id" class="java.lang.String"/>
+	<parameter name="p_id" class="java.lang.Integer"/>
 	<queryString>
 		<![CDATA[SELECT
      persona."apellido"||' '|| persona."nombre" AS apellido,
      empleado."legajo" AS legajo,
      empleado."fechaingreso" AS fechaingreso,
      categoria."nombre" AS categorianombre,
-     clase."nombre" AS clasenombre,
-     cargo."nombre" AS cargonombre
+     clase."nombre" AS clasenombre
 FROM
      "public"."persona" persona INNER JOIN "public"."empleado" empleado ON persona."id" = empleado."idempleado"
      INNER JOIN "public"."clasevigente" clasevigente ON empleado."idempleado" = clasevigente."idempleado"
-     INNER JOIN "public"."cargo" cargo ON empleado."idempleado" = cargo."idempleado"
      INNER JOIN "public"."categoria" categoria ON clasevigente."idcategoria" = categoria."id"
      INNER JOIN "public"."clase" clase ON clasevigente."idclase" = clase."id"
 WHERE
@@ -29,7 +27,6 @@ categorianombre asc, apellido asc]]>
 	<field name="fechaingreso" class="java.sql.Date"/>
 	<field name="categorianombre" class="java.lang.String"/>
 	<field name="clasenombre" class="java.lang.String"/>
-	<field name="cargonombre" class="java.lang.String"/>
 	<group name="categorianombre">
 		<groupExpression><![CDATA[$F{categorianombre}]]></groupExpression>
 		<groupHeader>
@@ -152,13 +149,7 @@ categorianombre asc, apellido asc]]>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{clasenombre}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="444" y="0" width="111" height="20"/>
-				<textElement>
-					<font size="11"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{cargonombre}]]></textFieldExpression>
-			</textField>
+
 		</band>
 	</detail>
 	<columnFooter>
