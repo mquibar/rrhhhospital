@@ -51,9 +51,10 @@ public class reportesCategoriaServlet extends HttpServlet {
                     out.println(_control.listarCategorias(request.getParameter("tramo")).toString());
                     break;
                 case IMPRIMIR:
-                    out.println(_control.armarReporte(request.getParameter("categoria")));
+                    _control.verReportes(request.getParameter("categoria"));
                     break;
                 case IMPRIMIRTODO:
+                    System.out.println("Imprimir Todo");
                     _control.verReportes();
                     break;
                 default:
