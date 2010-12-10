@@ -1,14 +1,15 @@
-
+    req = createRequestObject();
 function js_cargarNoticias_rpec(){
     req.onreadystatechange = function () {
         if ( req.readyState == 4 ){
+            ocultarEspera();
             if(req.status == 200 || window.location.href.indexOf ("http")==- 1) {
                 document.getElementById("noticias").innerHTML = req.responseText;
                 js_lista_agrupamiento_rpec();
             }
             else
                 alert(req.statusText);
-            ocultarEspera();
+            
         } else {
             if(req.readyState==1){
                 mostrarEspera();

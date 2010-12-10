@@ -60,7 +60,7 @@ public class ctrlReporteEmpCat extends GeneralController {
     public void verReportes(String IndexCategoria){
         Categoria c = _modCategoria.getSelectedItem(IndexCategoria);
         if(c== null) return;
-        JasperViewer.viewReport(_exp.generarReporte(c));
+        ctrlReporte.setJsp(_exp.generarReporte(c));//JasperViewer.viewReport(_exp.generarReporte(c));
     }
 
 }

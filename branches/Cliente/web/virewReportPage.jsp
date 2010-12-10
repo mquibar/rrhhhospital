@@ -31,6 +31,7 @@
                 sos.flush();
                 sos.close();
             } catch (Exception e) {
+                System.out.println("ERror caca");
             }
     %>
     <body>
