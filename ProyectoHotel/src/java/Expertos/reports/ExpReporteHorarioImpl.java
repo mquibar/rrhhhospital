@@ -56,6 +56,7 @@ public class ExpReporteHorarioImpl implements ExpReporteHorario
 
         System.out.println("Generando reporte");
         JasperPrint jp = new GeneraReporteBeans().printReport(null, xmlReporte, ds);
+        System.out.println("Reporte generado");
 
         return jp;
     }

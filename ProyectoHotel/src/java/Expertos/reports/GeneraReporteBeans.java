@@ -55,12 +55,54 @@ public class GeneraReporteBeans implements GeneraReporte{
     }
 
     public JasperPrint printReport(Map parametros, String xmlFile, JRDataSource datos){
-
+        InputStream lis = getStream(xmlFile);
+        
+        JasperPrint jp = null;
+        System.out.print("Comenzando creacion de Reporte...");
         try{
-            return JasperFillManager.fillReport(JasperCompileManager.compileReport(OpenFile.openInputStream("/reports/"+xmlFile+".jrxml")), parametros,datos);
+            JasperDesign jd = JRXmlLoader.load(lis);
+            System.out.print("JasperDesign creado con exito");
+
+            JasperReport jr = JasperCompileManager.compileReport(jd);
+            System.out.print("JasperReport creado con exito");
+            
+            jp = JasperFillManager.fillReport(jr, parametros,datos);
+            System.out.print("JasperPrint creado con exito");
         }catch(Exception ex){
+            System.out.print("Error creando jasperprint: " + ex.toString());
             ex.printStackTrace();
         }
-        return null;
+
+        return jp;
+    }
+
+    InputStream getStream(String xmlFile)
+    {
+        InputStream lis = null;
+
+        try{
+           String userdir = new File(".").getCanonicalPath();
+           String fileName = "/reports/"+xmlFile+".jrxml";
+
+            InputStream file = OpenFile.openInputStream(fileName);
+            if(file == null)
+            {
+                System.out.println("No se pudo abrir " + fileName + " en " + userdir);
+            }
+            else
+            {
+                System.out.println("Encontrado " + fileName + " en " + userdir);
+            }
+
+            lis = file;//new LegacyJasperInputStream(file);
+            System.out.println("Stream compatible listo");
+            //pq reportes generados con cliente nuevos se puedan leer con librerias viejas
+
+        }catch(Exception ex){
+            System.out.print("Error creando stream: " + ex.toString());
+            ex.printStackTrace();
+        }
+
+        return lis;
     }
 }
