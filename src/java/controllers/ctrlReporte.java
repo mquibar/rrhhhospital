@@ -118,13 +118,16 @@ public class ctrlReporte extends GeneralController {
     }
 
     public byte[] armarReporte(JasperPrint jp) {
-        try {
+        byte[] rep = new byte[0];
 
-            return JasperExportManager.exportReportToPdf(jp);//printReport(new HashMap(), "test.jrxml"));
+        try {
+            rep = JasperExportManager.exportReportToPdf(jp);//printReport(new HashMap(), "test.jrxml"));
+            System.out.println("armarReporte: Reporte armado con exito");
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return null;
+            System.out.println("armarReporte: Error: " + e.getMessage());
         }
+
+        return rep;
     }
 
 }

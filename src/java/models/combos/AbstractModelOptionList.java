@@ -47,6 +47,19 @@ public abstract class AbstractModelOptionList<E> {
         }
     }
 
+    public String getPreseleccionado(String Index) {
+        System.out.println("Generando combo con indice seleccionado = " + Index);
+        try {
+            toString();
+            String nuevoString = options.replaceAll("value=" + Index, "value=" + Index + " selected=\"selected\"");
+            options = null;
+            return nuevoString;
+        } catch (Exception e) {
+            System.out.println("Algo fallo, devolviendo combo sin seleccion");
+            return toString();
+        }
+    }
+
     public void addOption(E e) {
         _lista.add(e);
         options = null;

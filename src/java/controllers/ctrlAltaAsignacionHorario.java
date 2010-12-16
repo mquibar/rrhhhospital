@@ -102,7 +102,7 @@ public class ctrlAltaAsignacionHorario extends GeneralController
         
         if(_mpers != null)
         {
-            opt = _mpers.toString(empleado);
+            opt = _mpers.getPreseleccionado(empleado);
         }
         
         return  opt;
@@ -114,7 +114,7 @@ public class ctrlAltaAsignacionHorario extends GeneralController
 
         if(_mth != null)
         {
-            opt = _mth.toString(tipoHorario);
+            opt = _mth.getPreseleccionado(tipoHorario);
         }
 
         return  opt;
