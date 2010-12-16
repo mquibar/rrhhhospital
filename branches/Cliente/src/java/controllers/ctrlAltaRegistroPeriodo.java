@@ -101,7 +101,7 @@ public class ctrlAltaRegistroPeriodo extends GeneralController
 
         if(_mpers != null)
         {
-            opt = _mpers.toString(empleado);
+            opt = _mpers.getPreseleccionado(empleado);
         }
 
         return  opt;

@@ -108,7 +108,7 @@ public class ctrlAltaLicencia extends GeneralController
 
         if(_mpers != null)
         {
-            opt = _mpers.toString(empleado);
+            opt = _mpers.getPreseleccionado(empleado);
         }
 
         return  opt;
@@ -121,7 +121,7 @@ public class ctrlAltaLicencia extends GeneralController
 
         if(_mtl != null)
         {
-            opt = _mtl.toString(tipoLicencia);
+            opt = _mtl.getPreseleccionado(tipoLicencia);
         }
 
         return  opt;
